@@ -1,0 +1,165 @@
+---
+title: "Prises de Notes"
+prefer-html: true
+format:
+  html:
+    number-sections: true
+    toc: true
+    toc-depth: 2
+    toc_float: true
+  pdf:
+    number-sections: true
+    toc: true
+    toc-depth: 2
+  docx:
+    number-sections: true
+    toc: true
+    toc-depth: 2
+---
+
+## Valorisation  de l'actif
+### Actions cotées à la bourse
+- Dernier coté avant la date d'inventaire
+- Moyenne des cours côtés des trois derniers mois précédant la date d'inventaire si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par autorité
+
+### Les titres émis par les OPCVM/OPCI
+Ils sont valoriser à leur dernière valeur de liquidation avant l'inventaire.
+
+### Les titres émis par les OPCC/FPCT
+Ces titres sont valoriser à leur dernière valeur connue avant la date d'inventaire.
+
+### Les obligations et bons
+Ils sont valorisés par leur valeur de marché. Ce dernier est calculé par un modèle d'évaluation flux futurs actualisés communément admis sur la base de la courbe des taux de référence publiée quotidiennement par Bank Al-Maghrib (en tenant en compte la prime de risque associé). Ci-après un code permettant de télécharger ces données directement sur le site de la BAM.
+
+
+```{r}
+
+library(rvest)
+link = "https://www.bkam.ma/Marches/Principaux-indicateurs/Marche-obligataire/Marche-des-bons-de-tresor/Marche-secondaire/Taux-de-reference-des-bons-du-tresor?date=30%2F12%2F2022&block=e1d6b9bbf87f86f8ba53e8518e882982#address-c3367fcefc5f524397748201aee5dab8-e1d6b9bbf87f86f8ba53e8518e882982"
+
+TR = read_html(link) %>% 
+  html_element("table") %>% 
+  html_table()
+```
+```{r echo=FALSE}
+#| label: tbl-taux_ref
+#| tbl-cap: "Taux de référence des bons du Trésor du 30/12/2022"
+library(kableExtra)
+TR %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+
+## Provisions techniques prudentielles
+Les provisions techniques prudentielles sont valorisées brutes de réassurance en considérant les contrats dont l'engagement de l'entreprise est en cours à la date d'inventaire. Les contrats d'assurance non-vie à tacite reconduction dont la date d'effet intervient postérieurement à la date d'inventaire et dont le préavis de résiliation a expiré à cette date sans qu'il y ait une demande de résiliation sont également pris en considération.
+
+Elles sont évaluées comme suit :
+$$
+PT = BE_{engagement} + BE_{fraisGestion} + MargeRisque
+$$
+Avec :
+
+- $PT$: la provision technique
+- $BE_{engagement}$: La meilleure estimation des engagements correspond à la somme probabilisée et actualisée de flux de trésorerie futurs afférents aux engagements de l'entreprise d'assurances et de réassurance au titre des contrats souscrits et déterminée, selon la nature des opérations d'assurance
+-$BE_{fraisGestion}$ : La meilleure estimation des frais de gestion correspond à la somme probabilisée et actualisée des flux de frais de gestion des contrats et déterminée, selon la nature des opérations d'assurance.
+- $MargeRisque$: La marge de risque correspond au coût d'immobilisation du capital de solvabilité requis afférent aux engagements garantis. Elle est calculée, séparément pour les engagements des opérations d'assurances vie et rentes découlant des opérations non vie ainsi que pour les engagements des opérations non vie.
+
+### Opérations d'assurance vie, décès ou capitalisation 
+#### Meilleure estimations des engagements ($BE_{engagement}$)
+$$
+BE^{engagement} = BE_{garantie}^{prob} + BDF
+$$
+Avec :
+
+- $BE_{garantie}^{prob}$: la meilleure estimation des garanties probabilisées
+- $BDF$: les bénéfices discrétionnaires futurs
+
+##### Meilleure estimation des garanties probabilisées{#sec-MEGP}
+La meilleure estimation des garanties probabilisées visée à la _spécification technique 15_  est calculée garantie par garantie et tête par tête, en actualisant les flux de trésorerie futurs probabilisés, afférents aux engagements garantis à la date d'inventaire. Toutefois, l'entreprise d'assurances et de réassurance peut procéder à une agrégation en retenant des critères homogènes, notamment l'âge et ce, après accord de l'Autorité.
+$$
+BE_{garantie}^{prob} = \sum\limits_{t=0}^{t=N}\mathbb{E}^{\mathbb{Q}^T}\Bigg[\prod\limits_{s\leq t}\frac{1}{(1+r_s)}(CF^{Dec}_{t}-CF^{Enc}_{t}) \Bigg]
+$$
+
+Avec :
+
+- $\mathbb{Q^T}$: La probabilité $forward-neutre$^[La probabilité forward neutre est la probabilité future qui rendra la valeur actuelle de l'actif dérivé égale à son prix actuel, sans qu'il y ait d'opportunité d'arbitrage. En d'autres termes, elle représente la probabilité implicite de l'évolution future du marché sous-jacent, qui permettrait de justifier le prix actuel de l'actif dérivé.]
+- $CF^{Enc}_{t}$: Les encaissements à la date $t$ qui correspondent aux engagements des assurés.
+- $CF^{Déc}_{t}$: Les décaissements à la date $t$.
+
+Les décaissements correspondent aux règlements de toutes prestations garanties au titre des contrats tels que définis à la _spécification technique 13_ de la _SECTION 4_, y compris les rachats. Ils sont déterminés en tenant compte des engagements contractuels et en utilisant, le cas échéant, les bases techniques suivantes :
+
+* La table de mortalité : La table de mortalité TV 88-90 pour les assurances en cas de vie ou la table de mortalité TD 88-90 pour les assurances en cas de décès prévues à l'annexe N°3 de la présente circulaire, auxquelles l'entreprise d'assurances et de réassurance peut substituer une table de mortalité d'expérience, matérialisant la mortalité propre à la population de ses assurés et ce, après accord de l'Autorité ;
+* La table de rachat en montant, déterminée conformément aux dispositions de la _spécification technique 17_ de la _SECTION 4_;
+* La table de résiliation, déterminée conformément aux dispositions de la _spécification technique 18_ de la _SECTION 4_;
+* Un taux de sortie en rente, déterminé conformément aux dispositions de la _spécification technique 19_ de la _SECTION 4_.
+
+
+**Exemple** :
+
+Si on prend l'exemple d'un contrat d'assurance-vie mixte^[Un contrat d'assurance mixte à prime unique sur $N$ années est un type de contrat d'assurance-vie qui permet de financer l'assurance-vie en une seule fois. Cela signifie que vous payez une prime unique pour couvrir toute la durée du contrat. Ce type de contrat est destiné aux personnes qui disposent d'un capital et souhaitent diversifier leurs placements tout en protégeant leurs proches. Dans sa variante « mixte », elle permet de réaliser un placement rémunérateur tout en assurant une couverture financière à ses proches.] de capital en cas de vie égale au capital en cas de décès $K$.
+Soit $q_{x+t}$ la probabilité qu'un individu d'âge $x$ lors de la souscription décéde entre $x+t$ et $x+t+1$. On note $NbPolice_t$ le nombre de police en début de période $t$ et $r_s$ le taux ZC.
+La prestation correspondante à ce contrat en date t :
+$$
+_{décès}CF^{Déc}_{t} = K  \times  NbPolice_t \times q_{x+t} \times \prod\limits_{s=1}^{t}(1+r_s)
+$$
+
+
+##### Bénéfices discrétionnaires futurs
+
+Les bénéfices discrétionnaires futurs sont évalués pour
+chaque ensemble homogène de contrats.
+
+$$
+BDF = PPB +\bar{r}^{PB}(SoldeT + SoldeF)\times\mathbf{1}_{(SoldeT + SoldeF) > 0}
+$$
+Avec :
+
+- $PPB$ : Le montant de la provision pour participation aux bénéfices, évaluée à la valeur comptable;
+- $SoldeT$ : Somme des soldes techniques
+- $SoldeF$ : Somme des soldes Financiers
+- $\bar{r}^{PB}$ : Le taux de participation aux bénéfices moyen servi aux assurés 
+Le taux de participation aux bénéfices moyen servi aux assurés est calculé en considérant le rapport entre la somme des dotations au titre, des trois derniers exercices clos au moins, affectées à la provision pour participation aux bénéfices afférente aux opérations d'assurance vie, décès ou de capitalisation hors unités de compte et la somme des résultats techniques et financiers desdites opérations sur la même période.
+En notation mathématique ça donne :
+$$
+\bar{r}^{PB} = \frac{Dot}{SoldeT + SoldeF}
+$$
+ Avec :
+ 
+ - $Dot$ : somme des dotations au titre, des trois derniers exercices clos au moins
+
+#### Meilleure estimation des frais de gestions ($BE_{fraisGestion}$)
+
+$$
+FG_t = NbContrat_t \times \bar{FG}^{unitaire}_{t}
+$$
+$$
+BE_{fraisGestion} = \sum\limits_{t = 1}^{N}\Big(\prod_{s\leq t} \frac{FG_t}{(1+r_s)} \Big)
+$$
+Avec :
+
+- $\bar{FG}^{unitaire}_{t}$ : Le montant de frais de gestion unitaire moyen est estimé en considérant la moyenne sur les trois
+derniers exercices clos des montants de frais de gestion unitaires.
+- $NbContrat_t$ : Le nombre de contrats précité est estimé par sous-catégories, compte tenu des bases techniques suivantes (La table de mortalité, La table de rachat en nombre, La table de résiliation)
+- $FG_t$ : Les frais de gestions
+
+Le montant de frais de gestion unitaire au titre de chaque exercice clos, correspond au rapport entre le montant de frais de gestion déterminé par sous-catégories et le nombre de contrats ou d'adhérents pour les contrats d'assurance de groupe, à l'ouverture de l'exercice clos considéré.
+
+$$
+\bar{FG}^{unitaire}_{t} = \frac{\overbrace{\frac{FG_{t-1}}{NbContrat_{t-1}}}^{\text{Frais de gestion unitaire en t-1}}+\frac{FG_{t-2}}{NbContrat_{t-2}}+\frac{FG_{t-3}}{NbContrat_{t-3}}}{3}
+$$
+
+### Rentes découlants des opérations non-vie
+
+$$
+BE_{rnv} = BE_{garantie}^{prob}
+$$
+Avec :
+
+- $BE_{rnv}$ : la meilleure estimation rentes découlant des opérations d'assurance non vie
+- $BE_{garantie}^{prob}$ : la meilleure estimation des garanties probabilisées déterminée dans la section @sec-MEGP
+
+### Opérations d'assurance non vie hors rentes
+À prendre dans la circulaire
+
