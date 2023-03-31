@@ -69,7 +69,7 @@ Avec :
 ### Opérations d'assurance vie, décès ou capitalisation 
 #### Meilleure estimations des engagements ($BE_{engagement}$)
 $$
-BE^{engagement} = BE_{garantie}^{prob} + BDF
+_{vie}BE^{engagement} = BE_{garantie}^{prob} + BDF
 $$
 Avec :
 
@@ -163,5 +163,63 @@ Avec :
 ### Opérations d'assurance non vie hors rentes
 À prendre dans la circulaire
 
-test
+### Part des cessionnaires dans les provisions techniques prudentielles
+
+La part des cessionnaires dans les provisions techniques prudentielles est évaluée en considérant la différence entre d'une part, la meilleure estimation des engagements cédés et d'autre part, l'ajustement pour défaut de contrepartie.
+
+$$
+Part_{cess} = BE_{cedes}^{eng} - Ajust_{DC}
+$$
+#### La meilleure estimation des engagements cédés
+
+##### Les opérations d'assurance vie, décès ou de capitalisation {-}
+
+$$
+_{vie}BE_{cedes}^{eng} = taux_c \times _{vie}BE^{eng}
+$$
+Avec :
+
+- $taux_c$ (taux de cession): le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques, des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
+
+##### Les opérations non vie{-}
+
+$$
+_{nvie}BE_{cedes}^{eng} =\; _{sinsitres}BE_{cedes}^{eng} + \; _{primes}BE_{cedes}^{eng}
+$$
+Avec :
+
+> $_{sinsitres}BE_{cedes}^{eng} = taux_s \times BE_{sinsitres}^{eng}$ : La meilleure estimation des engagements pour sinistres cédés visée à la spécification technique 33 ci- dessus est évaluée en multipliant la meilleure estimation des engagements pour sinistres nets de recours visée à par ($taux_s$) le rapport entre la part des cessionnaires dans les provisions pour sinistres à payer et la provision pour sinistres à payer brute de réassurance.
+
+> $_{primes}BE_{cedes}^{eng} = r^{primes}_{cession} \times BE_{primes}^{eng}$ : La meilleure estimation des engagements pour primes cédés visée est évaluée en multipliant la meilleure estimation des engagements pour primes visée par le taux de cession de primes. Le taux de cession ($r^{primes}_{cession}$) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l'exercice.
+
+#### L'ajustement pour défaut de contrepartie
+
+L'ajustement pour défaut de contrepartie est déterminé en actualisant les flux d'ajustement futurs sur la base de la courbe des taux fixée par l'Autorité.
+Les flux d'ajustement futurs sont déterminés conformément à la méthode, telle que décrite à **l'annexe N°6** de la présente circulaire.
+
+## Capital de Solvabilité Requis (CSR):
+
+Le capital de solvabilité requis du présent chapitre est constitué de la somme des éléments suivants:
+- Le capital de solvabilité requis de base;
+- L’exigence de capital relative au risque opérationnel;
+- L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés;
+- L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés;
+
+### CSR de base ($CSR_{base}$)
+
+Le capital de solvabilité requis de base correspond à la somme agrégée des exigences de capitaux relatives aux risques de marché, de concentration, de contrepartie, de souscription vie et de souscription non-vie et ce, après application des coefficients de corrélations.
+
+$$
+CSR_{base} = \sqrt{\sum\limits_{i,j\in Risk} \Big(\rho_{i,j}\times CSR_i \times CSR_j\Big)}
+$$
+Avec $Risk = $ {risques de marché, de concentration, de contrepartie, de souscription vie, de souscription non-vie} et $\rho$ le coefficient de corrélation.
+
+### Exigence de capital relative aux risque de marché ($CSR_{marche}$)
+
+$$
+CSR_{marche} = \sqrt{\sum\limits_{i,j\in RM} \Big(\rho_{i,j}\times CSR_i \times CSR_j\Big)}
+$$
+
+Avec $RM = $ {ous-risques action, taux, immobilier, écart de taux et change}
+
 
