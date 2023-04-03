@@ -220,6 +220,6 @@ $$
 CSR_{marche} = \sqrt{\sum\limits_{i,j\in RM} \Big(\rho_{i,j}\times CSR_i \times CSR_j\Big)}
 $$
 
-Avec $RM = $ {ous-risques action, taux, immobilier, écart de taux et change}
+Avec $RM =$ \{ous-risques action, taux, immobilier, écart de taux et change\}
 
 

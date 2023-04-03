@@ -48,7 +48,7 @@ get_taux_BAM <- function(DATE = "2021-12-30"){
 get_taux_act <- function(taux_BAM){
   m = taux_BAM$Maturité # Maturite en annee
   tm = taux_BAM$`Taux moyen pondéré` # Taux monetaire
-  TA = (1+tm*m)^(365/(360*m))-1
+  TA = ifelse((tm*m/tm) <= 1, (1+tm*m)^(365/(360*m))-1, tm)
   tibble(Maturité = m,
          `Taux actuariel` = round(TA,5),
          `Taux actuariel (%)` = gsub("\\.",",",paste0(round(TA*100,3),"%"))
@@ -76,7 +76,7 @@ interpolation <- function(TA){
 
 }
 
-# Transformation du taux actuariel en taux ZC avec la méthode boostrap
+# Transformation du taux actuariel en taux ZC avec la méthode boostrap ------------
 #' T_INTER: resultat de la fonction interpolation
 #' Valeurs retournées : Data frame
 #' Contenue du DF retournée : Maturité, Taux actuariel, Taux zéro coupon,
