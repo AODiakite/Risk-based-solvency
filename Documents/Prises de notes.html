@@ -392,7 +392,7 @@ _{vie}BE^{engagement} = BE_{garantie}^{prob} + BDF
 <section id="sec-MEGP" class="level5" data-number="2.1.1.1">
 <h5 data-number="2.1.1.1" class="anchored" data-anchor-id="sec-MEGP"><span class="header-section-number">2.1.1.1</span> Meilleure estimation des garanties probabilisées</h5>
 <p>La meilleure estimation des garanties probabilisées visée à la <em>spécification technique 15</em> est calculée garantie par garantie et tête par tête, en actualisant les flux de trésorerie futurs probabilisés, afférents aux engagements garantis à la date d’inventaire. Toutefois, l’entreprise d’assurances et de réassurance peut procéder à une agrégation en retenant des critères homogènes, notamment l’âge et ce, après accord de l’Autorité. <span class="math display">\[
-BE_{garantie}^{prob} = \sum\limits_{t=0}^{t=N}\mathbb{E}^{\mathbb{Q}^T}\Bigg[\prod\limits_{s\leq t}\frac{1}{(1+r_s)}(CF^{Dec}_{t}-CF^{Enc}_{t}) \Bigg]
+BE_{garantie}^{prob} = \sum\limits_{t=0}^{t=N}\frac{(CF^{Dec}_{t}-CF^{Enc}_{t})}{(1+r_t)^t}
 \]</span></p>
 <p>Avec :</p>
 <ul>
@@ -409,7 +409,7 @@ BE_{garantie}^{prob} = \sum\limits_{t=0}^{t=N}\mathbb{E}^{\mathbb{Q}^T}\Bigg[\pr
 </ul>
 <p><strong>Exemple</strong> :</p>
 <p>Si on prend l’exemple d’un contrat d’assurance-vie mixte<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> de capital en cas de vie égale au capital en cas de décès <span class="math inline">\(K\)</span>. Soit <span class="math inline">\(q_{x+t}\)</span> la probabilité qu’un individu d’âge <span class="math inline">\(x\)</span> lors de la souscription décéde entre <span class="math inline">\(x+t\)</span> et <span class="math inline">\(x+t+1\)</span>. On note <span class="math inline">\(NbPolice_t\)</span> le nombre de police en début de période <span class="math inline">\(t\)</span> et <span class="math inline">\(r_s\)</span> le taux ZC. La prestation correspondante à ce contrat en date t : <span class="math display">\[
-_{décès}CF^{Déc}_{t} = K  \times  NbPolice_t \times q_{x+t} \times \prod\limits_{s=1}^{t}(1+r_s)
+_{décès}CF^{Déc}_{t} = K  \times  NbPolice_t \times q_{x+t} \times (1+r_t)^t
 \]</span></p>
 </section>
 <section id="bénéfices-discrétionnaires-futurs" class="level5" data-number="2.1.1.2">
@@ -434,7 +434,7 @@ BDF = PPB +\bar{r}^{PB}(SoldeT + SoldeF)\times\mathbf{1}_{(SoldeT + SoldeF) &gt;
 <p><span class="math display">\[
 FG_t = NbContrat_t \times \bar{FG}^{unitaire}_{t}
 \]</span> <span class="math display">\[
-BE_{fraisGestion} = \sum\limits_{t = 1}^{N}\Big(\prod_{s\leq t} \frac{FG_t}{(1+r_s)} \Big)
+BE_{fraisGestion} = \sum\limits_{t = 1}^{N} \frac{FG_t}{(1+r_t)^t}
 \]</span> Avec :</p>
 <ul>
 <li><span class="math inline">\(\bar{FG}^{unitaire}_{t}\)</span> : Le montant de frais de gestion unitaire moyen est estimé en considérant la moyenne sur les trois derniers exercices clos des montants de frais de gestion unitaires.</li>
@@ -466,7 +466,9 @@ BE_{rnv} = BE_{garantie}^{prob}
 <p>La part des cessionnaires dans les provisions techniques prudentielles est évaluée en considérant la différence entre d’une part, la meilleure estimation des engagements cédés et d’autre part, l’ajustement pour défaut de contrepartie.</p>
 <p><span class="math display">\[
 Part_{cess} = BE_{cedes}^{eng} - Ajust_{DC}
-\]</span> #### La meilleure estimation des engagements cédés</p>
+\]</span></p>
+<section id="la-meilleure-estimation-des-engagements-cédés" class="level4" data-number="2.4.1">
+<h4 data-number="2.4.1" class="anchored" data-anchor-id="la-meilleure-estimation-des-engagements-cédés"><span class="header-section-number">2.4.1</span> La meilleure estimation des engagements cédés</h4>
 <section id="les-opérations-dassurance-vie-décès-ou-de-capitalisation" class="level5 unnumbered">
 <h5 class="unnumbered anchored" data-anchor-id="les-opérations-dassurance-vie-décès-ou-de-capitalisation">Les opérations d’assurance vie, décès ou de capitalisation</h5>
 <p><span class="math display">\[
@@ -488,8 +490,9 @@ _{nvie}BE_{cedes}^{eng} =\; _{sinsitres}BE_{cedes}^{eng} + \; _{primes}BE_{cedes
 <p><span class="math inline">\(_{primes}BE_{cedes}^{eng} = r^{primes}_{cession} \times BE_{primes}^{eng}\)</span> : La meilleure estimation des engagements pour primes cédés visée est évaluée en multipliant la meilleure estimation des engagements pour primes visée par le taux de cession de primes. Le taux de cession (<span class="math inline">\(r^{primes}_{cession}\)</span>) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l’exercice.</p>
 </blockquote>
 </section>
-<section id="lajustement-pour-défaut-de-contrepartie" class="level4" data-number="2.4.1">
-<h4 data-number="2.4.1" class="anchored" data-anchor-id="lajustement-pour-défaut-de-contrepartie"><span class="header-section-number">2.4.1</span> L’ajustement pour défaut de contrepartie</h4>
+</section>
+<section id="lajustement-pour-défaut-de-contrepartie" class="level4" data-number="2.4.2">
+<h4 data-number="2.4.2" class="anchored" data-anchor-id="lajustement-pour-défaut-de-contrepartie"><span class="header-section-number">2.4.2</span> L’ajustement pour défaut de contrepartie</h4>
 <p>L’ajustement pour défaut de contrepartie est déterminé en actualisant les flux d’ajustement futurs sur la base de la courbe des taux fixée par l’Autorité. Les flux d’ajustement futurs sont déterminés conformément à la méthode, telle que décrite à <strong>l’annexe N°6</strong> de la présente circulaire.</p>
 </section>
 </section>
@@ -502,14 +505,15 @@ _{nvie}BE_{cedes}^{eng} =\; _{sinsitres}BE_{cedes}^{eng} + \; _{primes}BE_{cedes
 <p>Le capital de solvabilité requis de base correspond à la somme agrégée des exigences de capitaux relatives aux risques de marché, de concentration, de contrepartie, de souscription vie et de souscription non-vie et ce, après application des coefficients de corrélations.</p>
 <p><span class="math display">\[
 CSR_{base} = \sqrt{\sum\limits_{i,j\in Risk} \Big(\rho_{i,j}\times CSR_i \times CSR_j\Big)}
-\]</span> Avec $Risk = $ {risques de marché, de concentration, de contrepartie, de souscription vie, de souscription non-vie} et <span class="math inline">\(\rho\)</span> le coefficient de corrélation.</p>
+\]</span></p>
+<p>Avec <span class="math inline">\(Risk =\)</span> {risques de marché, de concentration, de contrepartie, de souscription vie, de souscription non-vie} et <span class="math inline">\(\rho\)</span> le coefficient de corrélation.</p>
 </section>
 <section id="exigence-de-capital-relative-aux-risque-de-marché-csr_marche" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="exigence-de-capital-relative-aux-risque-de-marché-csr_marche"><span class="header-section-number">3.2</span> Exigence de capital relative aux risque de marché (<span class="math inline">\(CSR_{marche}\)</span>)</h3>
 <p><span class="math display">\[
 CSR_{marche} = \sqrt{\sum\limits_{i,j\in RM} \Big(\rho_{i,j}\times CSR_i \times CSR_j\Big)}
 \]</span></p>
-<p>Avec $RM = $ {ous-risques action, taux, immobilier, écart de taux et change}</p>
+<p>Avec <span class="math inline">\(RM =\)</span> {sous-risques action, taux, immobilier, écart de taux et change}</p>
 </section>
 </section>
 

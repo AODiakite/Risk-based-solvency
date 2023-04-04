@@ -18,17 +18,22 @@ format:
 ---
 
 ## Valorisation  de l'actif
+
 ### Actions cotées à la bourse
+
 - Dernier coté avant la date d'inventaire
 - Moyenne des cours côtés des trois derniers mois précédant la date d'inventaire si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par autorité
 
 ### Les titres émis par les OPCVM/OPCI
+
 Ils sont valoriser à leur dernière valeur de liquidation avant l'inventaire.
 
 ### Les titres émis par les OPCC/FPCT
+
 Ces titres sont valoriser à leur dernière valeur connue avant la date d'inventaire.
 
 ### Les obligations et bons
+
 Ils sont valorisés par leur valeur de marché. Ce dernier est calculé par un modèle d'évaluation flux futurs actualisés communément admis sur la base de la courbe des taux de référence publiée quotidiennement par Bank Al-Maghrib (en tenant en compte la prime de risque associé). Ci-après un code permettant de télécharger ces données directement sur le site de la BAM.
 
 
@@ -53,6 +58,7 @@ TR %>%
 
 
 ## Provisions techniques prudentielles
+
 Les provisions techniques prudentielles sont valorisées brutes de réassurance en considérant les contrats dont l'engagement de l'entreprise est en cours à la date d'inventaire. Les contrats d'assurance non-vie à tacite reconduction dont la date d'effet intervient postérieurement à la date d'inventaire et dont le préavis de résiliation a expiré à cette date sans qu'il y ait une demande de résiliation sont également pris en considération.
 
 Elles sont évaluées comme suit :
@@ -67,7 +73,9 @@ Avec :
 - $MargeRisque$: La marge de risque correspond au coût d'immobilisation du capital de solvabilité requis afférent aux engagements garantis. Elle est calculée, séparément pour les engagements des opérations d'assurances vie et rentes découlant des opérations non vie ainsi que pour les engagements des opérations non vie.
 
 ### Opérations d'assurance vie, décès ou capitalisation 
+
 #### Meilleure estimations des engagements ($BE_{engagement}$)
+
 $$
 _{vie}BE^{engagement} = BE_{garantie}^{prob} + BDF
 $$
@@ -77,9 +85,10 @@ Avec :
 - $BDF$: les bénéfices discrétionnaires futurs
 
 ##### Meilleure estimation des garanties probabilisées{#sec-MEGP}
+
 La meilleure estimation des garanties probabilisées visée à la _spécification technique 15_  est calculée garantie par garantie et tête par tête, en actualisant les flux de trésorerie futurs probabilisés, afférents aux engagements garantis à la date d'inventaire. Toutefois, l'entreprise d'assurances et de réassurance peut procéder à une agrégation en retenant des critères homogènes, notamment l'âge et ce, après accord de l'Autorité.
 $$
-BE_{garantie}^{prob} = \sum\limits_{t=0}^{t=N}\mathbb{E}^{\mathbb{Q}^T}\Bigg[\prod\limits_{s\leq t}\frac{1}{(1+r_s)}(CF^{Dec}_{t}-CF^{Enc}_{t}) \Bigg]
+BE_{garantie}^{prob} = \sum\limits_{t=0}^{t=N}\frac{(CF^{Dec}_{t}-CF^{Enc}_{t})}{(1+r_t)^t}
 $$
 
 Avec :
@@ -102,7 +111,7 @@ Si on prend l'exemple d'un contrat d'assurance-vie mixte^[Un contrat d'assurance
 Soit $q_{x+t}$ la probabilité qu'un individu d'âge $x$ lors de la souscription décéde entre $x+t$ et $x+t+1$. On note $NbPolice_t$ le nombre de police en début de période $t$ et $r_s$ le taux ZC.
 La prestation correspondante à ce contrat en date t :
 $$
-_{décès}CF^{Déc}_{t} = K  \times  NbPolice_t \times q_{x+t} \times \prod\limits_{s=1}^{t}(1+r_s)
+_{décès}CF^{Déc}_{t} = K  \times  NbPolice_t \times q_{x+t} \times (1+r_t)^t
 $$
 
 
@@ -135,7 +144,7 @@ $$
 FG_t = NbContrat_t \times \bar{FG}^{unitaire}_{t}
 $$
 $$
-BE_{fraisGestion} = \sum\limits_{t = 1}^{N}\Big(\prod_{s\leq t} \frac{FG_t}{(1+r_s)} \Big)
+BE_{fraisGestion} = \sum\limits_{t = 1}^{N} \frac{FG_t}{(1+r_t)^t}
 $$
 Avec :
 
@@ -161,6 +170,7 @@ Avec :
 - $BE_{garantie}^{prob}$ : la meilleure estimation des garanties probabilisées déterminée dans la section @sec-MEGP
 
 ### Opérations d'assurance non vie hors rentes
+
 À prendre dans la circulaire
 
 ### Part des cessionnaires dans les provisions techniques prudentielles
@@ -170,6 +180,7 @@ La part des cessionnaires dans les provisions techniques prudentielles est éval
 $$
 Part_{cess} = BE_{cedes}^{eng} - Ajust_{DC}
 $$
+
 #### La meilleure estimation des engagements cédés
 
 ##### Les opérations d'assurance vie, décès ou de capitalisation {-}
@@ -212,7 +223,8 @@ Le capital de solvabilité requis de base correspond à la somme agrégée des e
 $$
 CSR_{base} = \sqrt{\sum\limits_{i,j\in Risk} \Big(\rho_{i,j}\times CSR_i \times CSR_j\Big)}
 $$
-Avec $Risk = $ {risques de marché, de concentration, de contrepartie, de souscription vie, de souscription non-vie} et $\rho$ le coefficient de corrélation.
+
+Avec $Risk =$ {risques de marché, de concentration, de contrepartie, de souscription vie, de souscription non-vie} et $\rho$ le coefficient de corrélation.
 
 ### Exigence de capital relative aux risque de marché ($CSR_{marche}$)
 
@@ -220,6 +232,6 @@ $$
 CSR_{marche} = \sqrt{\sum\limits_{i,j\in RM} \Big(\rho_{i,j}\times CSR_i \times CSR_j\Big)}
 $$
 
-Avec $RM =$ \{ous-risques action, taux, immobilier, écart de taux et change\}
+Avec $RM =$ \{sous-risques action, taux, immobilier, écart de taux et change\}
 
 
