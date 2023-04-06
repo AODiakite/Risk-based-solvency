@@ -212,9 +212,9 @@ Les flux d'ajustement futurs sont déterminés conformément à la méthode, tel
 
 Le capital de solvabilité requis du présent chapitre est constitué de la somme des éléments suivants:
 - Le capital de solvabilité requis de base;
-- L’exigence de capital relative au risque opérationnel;
-- L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés;
-- L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés;
+- L'exigence de capital relative au risque opérationnel;
+- L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés;
+- L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés;
 
 ### CSR de base ($CSR_{base}$)
 
@@ -233,5 +233,29 @@ CSR_{marche} = \sqrt{\sum\limits_{i,j\in RM} \Big(\rho_{i,j}\times CSR_i \times 
 $$
 
 Avec $RM =$ \{sous-risques action, taux, immobilier, écart de taux et change\}
+
+#### Exigence de capital relative au risque action
+
+L'exigence de capital relative au risque action visée à la spécification technique 39 ci-dessus correspond à la perte de fonds propres résultant des baisses simultanées des valeurs des actions, valorisées conformément à la section 2 du chapitre I de la présente circulaire.
+Les taux de baisse à appliquer pour le calcul de l'exigence précitée sont fixés pour les catégories d'actions suivantes:
+- Actions cotées à long terme
+- Autres actions cotées
+- Actions non cotées à long terme
+- Autres actions non cotées
+- Entités d'infrastructures
+et ce, conformément à l'annexe n°8 de la présente circulaire.
+
+L'exigence de capital relative au risque action est donnée par :
+
+$$
+CSR_{action} = K\times VaR_{action}
+$$
+
+où :
+
+$K$ représente le coefficient de risque pour les actions, qui est fixé par l'autorité de contrôle ;
+$VaR$ correspond à la valeur à risque, qui est calculée à partir de la perte potentielle en capital résultant de baisses simultanées des valeurs des actions, valorisées au dernier cours avant la date d'inventaire ;
+$VaR_{action}$: La VaR (Value at Risk) est une mesure de risque financier qui évalue la perte maximale probable (en termes de valeur ou de pourcentage) que pourrait subir un portefeuille d'actifs ou un instrument financier sur une période de temps donnée, avec un certain niveau de confiance.
+
 
 
