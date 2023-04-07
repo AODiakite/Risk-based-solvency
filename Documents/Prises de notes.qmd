@@ -50,7 +50,7 @@ TR = read_html(link) %>%
 #| label: tbl-taux_ref
 #| tbl-cap: "Taux de référence des bons du Trésor du 30/12/2022"
 library(kableExtra)
-TR %>% 
+TR[1:10,] %>% 
   kbl() %>% 
   kable_material(c("striped"))
 
@@ -93,7 +93,6 @@ $$
 
 Avec :
 
-- $\mathbb{Q^T}$: La probabilité $forward-neutre$^[La probabilité forward neutre est la probabilité future qui rendra la valeur actuelle de l'actif dérivé égale à son prix actuel, sans qu'il y ait d'opportunité d'arbitrage. En d'autres termes, elle représente la probabilité implicite de l'évolution future du marché sous-jacent, qui permettrait de justifier le prix actuel de l'actif dérivé.]
 - $CF^{Enc}_{t}$: Les encaissements à la date $t$ qui correspondent aux engagements des assurés.
 - $CF^{Déc}_{t}$: Les décaissements à la date $t$.
 
@@ -171,7 +170,91 @@ Avec :
 
 ### Opérations d'assurance non vie hors rentes
 
-À prendre dans la circulaire
+#### La meilleure estimation des engagements
+
+la meilleure estimation des engagements comprend la meilleure estimation des engagements pour sinistres nets de recours et la meilleure estimation des engagements pour primes.
+$$
+_{nvhr}BE_{engagement}= _{nvhr}BE_{sinistres}^{eng} + _{nvhr}BE_{primes}^{eng} 
+$$
+
+#### La meilleure estimation des engagements pour primes 
+
+La meilleure estimation des engagements pour primes correspond à la différence entre :
+- La somme actualisée des flux de règlements futurs probabilisés nets de recours relatifs aux *sinistres non encore survenus* afférents aux contrats.
+- Le montant des primes futures probabilisé et actualisé à la date d'inventaire, net des frais d'acquisition, afférentes aux contrats.
+
+$$
+_{nvhr}BE_{primes}^{eng} = \sum_{t \geq 1} \frac{\overline{FRFP_{t}}}{(1+ r_t)^t}- \frac{PFP_t}{(1+ r_t)^t}
+$$
+avec:
+
+- $PFP$: Le montant des primes futures probabilisé.
+- $\overline{FRFP_{t}}$: La somme actualisée des flux de règlements futurs probabilisés nets de recours relatifs aux sinistres non encore survenus,telle que pour une année de projection donnée:
+
+$$
+\overline{FRFP_{t}} = Tx_{liquidation} * RS_{moyen} * (PPNA + PFP)
+$$
+
+avec:
+
+- $Tx_{liquidation}$: le taux de liquidation,il est estimé en fonction de la cadence de liquidation des engagements pour sinistres survenus.
+- $RS_{moyen}$: le ratio de sinistralité moyen telle que: 
+$$ 
+RS_{moyen_t} = \frac{CU_{t} + CU_{t-1} + CU_{t-2}}{PA_{t} + PA_{t-1}+ PA_{t-2}}
+$$
+où $CU$^[La charge ultime visée correspond, par exercice de survenance, à la somme des règlements cumulés et des règlements futurs au titre de l'année de survenance considérée.] représente la charge ultime et $PA$ les primes acquises.
+et:
+
+$$
+CU_t = RegCumules_t + RegFutures_t
+$$
+
+- $RegCumules_t$ : les règlements cumulés 
+- $RegFutures_t$: les règlements futurs
+- $PPNA$: La provision pour primes non acquises.
+- $PFP$: Le montant des primes futures probabilisé.
+
+#### La meilleure estimation des engagements pour sinistres nets
+
+La meilleure estimation des engagements pour sinistres nets de recours est déterminée en actualisant, les flux de règlements futurs probabilisés nets de recours relatifs aux sinistres survenus afférents aux contrats.
+$$ 
+_{nvhr}BE_{sinistres}^{eng} = \sum_{t \geq 1} \frac{FRFP_{t}}{(1+ r_t)^t} 
+$$
+
+avec:
+
+- $FRFP_{t}$ : les flux de règlements futurs probabilisés nets de recours relatifs aux *sinistres survenus*, sont estimés sur la base d'un triangle de règlements par année de survenance net de recours conformément à la méthode telle que décrite à l'annexe N°5( a voir).
+
+#### La meilleure estimation des frais de gestion.
+
+la meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs liés aux contrats.
+
+$$
+_{nvhr}BE_{fraisGestion}= \sum_{t \geq 1} \frac{FFGF_t}{(1+r_t)^t}
+$$
+
+avec: 
+- $FFGF$: les flux de frais de gestion futurs. telle que:
+$$
+FFGF = Tx_{fraisGestion_{moy}} * (_{nvhr}BE_{sinistres}^{eng} + _{nvhr}BE_{primes}^{eng})
+$$
+
+et:
+- $Tx_{frais gestion_{moy}}$ : Le taux de frais de gestion moyen,il est estimé, par sous-catégories d’opérations d’assurance, en considérant la moyenne sur les trois derniers exercices clos des taux de frais de gestion.
+
+Donc:
+
+$$
+_{t}Tx_{fraisGestion_{moy}}= \frac{Tx_{fraisGestion_{t}} + Tx_{fraisGestion_{t-1}} + Tx_{fraisGestion_{t-2}}}{3}
+$$
+ainsi que :
+
+$$
+Tx_{frais gestion_{t}} = \frac{FG}{_{nvhr}BE_{sinistres}^{eng}+ Reglements_{Clos}}
+$$
+
+- $FG$: le montant frais de gestion
+- $Reglements_{Clos}$ : les règlements au titre de l’exercice clos
 
 ### Part des cessionnaires dans les provisions techniques prudentielles
 
