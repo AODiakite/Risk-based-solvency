@@ -6,9 +6,12 @@ options(warn = -1)
 library(bs4Dash)
 library(shiny)
 library(shinybusy)
+library(shinyalert)
 library(argonDash)
 library(argonR)
+library(thematic)
 library(plotly)
+library(thematic)
 # Taux de référence des bons de trésor -------
 
 get_taux_BAM <- function(DATE = "2021-12-30"){
@@ -23,8 +26,8 @@ get_taux_BAM <- function(DATE = "2021-12-30"){
         html_element("table") %>%
         html_table()
       TRBT = TRBT %>%
-        mutate(Maturité = as.integer(dmy(`Date d'échéance`)-dmy(`Date de la valeur`)),
-               Maturité = round(Maturité/360,3),
+        mutate(Maturite = as.integer(dmy(`Date d'échéance`)-dmy(`Date de la valeur`)),
+               Maturite = round(Maturite/360,3),
                `Taux moyen pondéré (%)` = `Taux moyen pondéré`,
                `Taux moyen pondéré` = parse_number(`Taux moyen pondéré`,
                                                    locale = locale(decimal_mark = ",")),
@@ -32,11 +35,15 @@ get_taux_BAM <- function(DATE = "2021-12-30"){
         ) %>%
         relocate(`Taux moyen pondéré (%)`,.after = `Taux moyen pondéré`) %>%
         na.omit()
-      TRBT
+      Message = c("Ok !", "Téléchargement effectuer avec succès !","success")
+      shinyalert(Message[1], Message[2] , type = Message[3])
+
+    TRBT
     },
     error = function(e){
-      message("Aucune donnée disponible pour cette date !")
-      print(e)
+      Message = c("Oops !", "Le télécharment a échoué. Des données ne sont pas disponibles pour cette date ou vous n'avez pas accès à internet","error")
+      shinyalert(Message[1], Message[2] , type = Message[3])
+      return(0)
     }
   )
 }
@@ -44,32 +51,32 @@ get_taux_BAM <- function(DATE = "2021-12-30"){
 # Conversion du taux monétaire en taux actuariel ----
 #' taux_BAM : Représente la table de taux obtenu grace à la fonction get_taux_BAM
 #' Valeurs retournées : Data frame
-#' Contenue du DF retournée : Maturité, Taux actuariel, Taux actuariel en pourcentage
+#' Contenue du DF retournée : Maturite, Taux actuariel, Taux actuariel en pourcentage
 get_taux_act <- function(taux_BAM){
-  m = taux_BAM$Maturité # Maturite en annee
+  m = taux_BAM$Maturite # Maturite en annee
   tm = taux_BAM$`Taux moyen pondéré` # Taux monetaire
   TA = ifelse((tm*m/tm) <= 1, (1+tm*m)^(365/(360*m))-1, tm)
-  tibble(Maturité = m,
+  tibble(Maturite = m,
          `Taux actuariel` = round(TA,5),
          `Taux actuariel (%)` = gsub("\\.",",",paste0(round(TA*100,3),"%"))
   )
 }
 
-# Interpolation des taux actuariels pour avoir des taux de maturité pleine ----
+# Interpolation des taux actuariels pour avoir des taux de Maturite pleine ----
 #' TA : La table de taux actuariel obtenue grace à la fonction get_taux_act
 #' Valeurs retournées : Data frame
-#' Contenue du DF retournée : Maturité, Taux actuariel, Taux actuariel en pourcentage
+#' Contenue du DF retournée : Maturite, Taux actuariel, Taux actuariel en pourcentage
 interpolation <- function(TA){
   taux_plein = 0
-  m = TA$Maturité
+  m = TA$Maturite
   ta = TA$`Taux actuariel`
-  mat_pleine = 1:trunc(max(m)) # maturités pleines
+  mat_pleine = 1:trunc(max(m)) # Maturites pleines
   for (j in mat_pleine) {
     i = which( m >= j)[1]-1
     taux_plein[j] = ta[i]+((ta[i+1]-ta[i])/(m[i+1]-m[i]))*(j-m[i])
   }
   tibble(
-    "Maturité" = mat_pleine,
+    "Maturite" = mat_pleine,
     `Taux actuariel` = round(taux_plein,5),
     `Taux actuariel (%)` = gsub("\\.",",",paste0(round(taux_plein*100,3),"%"))
   )
@@ -79,19 +86,19 @@ interpolation <- function(TA){
 # Transformation du taux actuariel en taux ZC avec la méthode boostrap ------------
 #' T_INTER: resultat de la fonction interpolation
 #' Valeurs retournées : Data frame
-#' Contenue du DF retournée : Maturité, Taux actuariel, Taux zéro coupon,
+#' Contenue du DF retournée : Maturite, Taux actuariel, Taux zéro coupon,
 #'  Taux actuariel en pourcentage, Taux ZC en pourcentage
 boostrapping <- function(T_INTER){
   ti = T_INTER$`Taux actuariel` # taux actuariel de maturite pleine
   taux_ZC = ti[1]
-  m = range(T_INTER$Maturité)[2] # Maturité maximale
+  m = range(T_INTER$Maturite)[2] # Maturite maximale
   for (i in 2:m) {
     numerateur = (1+ti[i])
     sommation = ti[i]*sum(1/((1+taux_ZC)^(1:(i-1))))
     taux_ZC[i] = -1 + (numerateur/(1-sommation))^(1/i)
   }
   tibble(
-    Maturité = 1:m,
+    Maturite = 1:m,
     "Taux zéro coupon" = round(taux_ZC,5),
     `Taux zéro coupon (%)` = gsub("\\.",",",paste0(round(taux_ZC*100,3),"%"))
   )

@@ -13,6 +13,11 @@ ui <- dashboardPage(
     title = "SBR Application ",
     skin = "light"
   ),
+  controlbar = dashboardControlbar(
+    collapsed = TRUE,
+    div(class = "p-3", skinSelector()),
+    pinned = FALSE
+  ),
   # Sidebar content-------------
   dashboardSidebar(
     status = "navy", skin = "light", collapsed = F,
@@ -52,7 +57,7 @@ ui <- dashboardPage(
               fluidRow(
                 column(
                   9,
-                  dateInput("date_taux", label = "Date de la valeur", max = Sys.Date()),
+                  dateInput("date_taux", label = "Date de la valeur", max = Sys.Date())
                 ),
                 column(
                   3,
@@ -104,12 +109,15 @@ ui <- dashboardPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
+  useAutoColor()
   # Donnees a utiliser---
   # Taux de reference des bons de tresors
   TRBT <- reactive(
     get_taux_BAM(input$date_taux)
   ) %>%
     bindEvent(input$date_btn)
+
+
   # Taux actuariel
   TA <- reactive(get_taux_act(TRBT()))
   # Taux actuariel de maturité pleine (interpolation)
@@ -173,9 +181,9 @@ server <- function(input, output) {
   output$plot_ZC <- renderPlotly({
     df_plot <- merge(TZC(), T_INTER())
     df_plot <- df_plot %>%
-      select(Maturité, `Taux zéro coupon`, `Taux actuariel`) %>%
+      select(Maturite, `Taux zéro coupon`, `Taux actuariel`) %>%
       pivot_longer(
-        cols = -Maturité,
+        cols = -Maturite,
         names_to = "Courbe",
         values_to = "Taux"
       ) %>%
@@ -184,7 +192,7 @@ server <- function(input, output) {
       )
     df_plot %>%
       plot_ly(
-        x = ~Maturité,
+        x = ~Maturite,
         y = ~Taux,
         color = ~Courbe,
         hoverinfo = "text",
