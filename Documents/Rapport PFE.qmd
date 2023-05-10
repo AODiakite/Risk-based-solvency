@@ -1,0 +1,68 @@
+---
+title: "Rapport PFE"
+author: "DIAKITE Abdoul Oudouss, ETTADLAOUI Othmane"
+prefer-html: true
+format:
+  html:
+    number-sections: true
+    toc: true
+    toc-depth: 2
+    toc_float: true
+  pdf:
+    number-sections: true
+    toc: true
+    toc-depth: 2
+  docx:
+    number-sections: true
+    toc: true
+    toc-depth: 2
+---
+
+## Introduction
+
+
+Suite aux crises multiples qui ont secoué le monde de la finance et de l'assurance notamment celle de 2008, les autorités se sont rendu compte de l'insuffisance de la supervision prudentielle. Cette dernière s'est montré très chétive lors de la crise d'où la nécessité de mettre en place de nouvelles dispositions prudentielles plus robustes.
+
+C'est dans ce contexte, à l'image de _Bale 2_ pour la finance, que la _Solvabilté 2_ voit le jour dans le milieu de l'assurance. Cette réforme réglementaire  européenne vient renforcer la précédente en adaptant au mieux les exigences de fonds propres des compagnies d'assurances et de réassurances aux risques qu'elles encourent.
+
+Les insuffisances évoquées n'ont pas épargné le cadre prudentiel marocain. C'est ainsi que l'Autorité de Contrôle des Assurances et de la Prévoyance Sociale (ACAPS^[https://www.acaps.ma/fr/l-acaps/missions]) a adopter la norme de Solvabilité Basé sur les Risques (SBR) afin de tenir compte de la diversités des risques encourues par les compagnies d'assurances et de réassurances marocaines. La SBR s'articule autour de trois piliers :
+
+- *Le pilier I* regroupe les *exigences quantitatives*, à savoir les règles de valorisation des actifs et des passifs ainsi que les exigences de capital et leur mode de calcul;
+- *Le pilier II* porte sur les *exigences qualitatives* et définit les règles de gouvernance et de gestion des risques, en l'occurrence l'évaluation interne des risques de la solvabilité;
+- *Le pilier III* concerne, quant à lui, les *obligations de reporting* à l'Autorité et de diffusion de l'information au public.
+
+## Cadre réglementaire marocain
+
+Le Maroc est l'un des acteurs majeurs de l'assurance en Afrique. Ses compagnies ne cessent de gagner du terrain dans les marchés de la sous-région notamment en Afrique de l'ouest. Selon un rapport de l'[Atlas Mag](https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays)^[https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays], le Maroc est classé **2ème** en arfique et **49ème** modial avec un **chiffre d'affaire de 5 343 millions USD** en 2021.
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-classement
+#| tbl-cap: Marché africain de l'assurance en 2021
+require(rvest)
+library(kableExtra)
+library(dplyr)
+
+link = "https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays"
+table <- read_html(link) %>%
+  html_nodes("table") %>%
+  .[[1]] %>%
+  html_table()
+# Afficher la table avec kableExtra
+table %>%
+  kable(format = "html", booktabs = TRUE) %>%
+  kable_styling(font_size = 10, full_width = FALSE) %>%
+  column_spec(1, width = "2cm") %>%
+  column_spec(2, width = "3cm") %>%
+  column_spec(3, width = "2cm") %>%
+  column_spec(4, width = "2cm") %>%
+  column_spec(5, width = "2cm") %>%
+  column_spec(6, width = "2cm") %>%
+  column_spec(7, width = "2cm")
+```
+
+Le royaume doit ce succès à la rigueur de sont dispositif prudentiel qui se consolide de plus en plus. La SBR vient en ce sens renforcer cette dynamique. Elle s'établi sur trois piliers :
+
+![Les 3 piliers de la SBR](Rapport PFE_files/piliers.png){#fig-piliers}
+
+
+

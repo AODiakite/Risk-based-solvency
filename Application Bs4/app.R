@@ -181,9 +181,9 @@ server <- function(input, output) {
   output$plot_ZC <- renderPlotly({
     df_plot <- merge(TZC(), T_INTER())
     df_plot <- df_plot %>%
-      select(Maturite, `Taux zéro coupon`, `Taux actuariel`) %>%
+      select(Maturité, `Taux zéro coupon`, `Taux actuariel`) %>%
       pivot_longer(
-        cols = -Maturite,
+        cols = -Maturité,
         names_to = "Courbe",
         values_to = "Taux"
       ) %>%
@@ -192,7 +192,7 @@ server <- function(input, output) {
       )
     df_plot %>%
       plot_ly(
-        x = ~Maturite,
+        x = ~Maturité,
         y = ~Taux,
         color = ~Courbe,
         hoverinfo = "text",
