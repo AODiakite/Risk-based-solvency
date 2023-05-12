@@ -21,69 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -116,6 +53,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">1</span>  Introduction</a></li>
   <li><a href="#cadre-réglementaire-marocain" id="toc-cadre-réglementaire-marocain" class="nav-link" data-scroll-target="#cadre-réglementaire-marocain"><span class="toc-section-number">2</span>  Cadre réglementaire marocain</a></li>
   <li><a href="#modélisation-du-prix-des-actions" id="toc-modélisation-du-prix-des-actions" class="nav-link" data-scroll-target="#modélisation-du-prix-des-actions"><span class="toc-section-number">3</span>  Modélisation du prix des actions</a></li>
+  <li><a href="#la-construction-de-la-courbe-des-taux-zéro-coupon" id="toc-la-construction-de-la-courbe-des-taux-zéro-coupon" class="nav-link" data-scroll-target="#la-construction-de-la-courbe-des-taux-zéro-coupon"><span class="toc-section-number">4</span>  La construction de la courbe des taux zéro-coupon :</a></li>
+  <li><a href="#valorisation-des-provisions-techniques-prudentielles" id="toc-valorisation-des-provisions-techniques-prudentielles" class="nav-link" data-scroll-target="#valorisation-des-provisions-techniques-prudentielles"><span class="toc-section-number">5</span>  VALORISATION DES PROVISIONS TECHNIQUES PRUDENTIELLES:</a></li>
+  <li><a href="#capital-de-solvabilité-requis" id="toc-capital-de-solvabilité-requis" class="nav-link" data-scroll-target="#capital-de-solvabilité-requis"><span class="toc-section-number">6</span>  Capital de Solvabilité Requis :</a></li>
   </ul>
 </nav>
 </div>
@@ -146,6 +86,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>Pendant longtemps, l’assurance au Maroc n’a pas été toujours une culture de nos ancêtres. Cette notion a été considérée comme immorale car elle développait la négligence et l’idee de pari. L’assurance aussi a été inacceptable par le système juridique islamique,En excluant les besoins de la croissance économique. Ainsi que, Le faible pouvoir d’achat de la plupart des couches de la population qui considèrent l’assurance comme un produit de luxe, réservé seulement aux marocains issus de la classe à revenu élevé, constituait en partie un véritable handicap au développement naturel de ce secteur. Pour toutes ces raisons, l’assurance, toutes branches confondues, totalement étrangère à la tradition juridique du pays, n’a pu voir le jour qu’après l’avènement du protectorat.</p>
+<p>Au fil du temps, cette pratique a réussi à se tisser une place dans la société marocaine. Les premières compagnies d’assurances étaient des compagnies étrangères travaillant dans le domaine de l’assurance maritime, et ce n’est qu’après, que cette activité a pu se généraliser pour toucher d’autres secteurs avec notamment l’arrivée de nouveaux besoins (santé, automobile, biens divers…).</p>
 <p>Suite aux crises multiples qui ont secoué le monde de la finance et de l’assurance notamment celle de 2008, les autorités se sont rendu compte de l’insuffisance de la supervision prudentielle. Cette dernière s’est montré très chétive lors de la crise d’où la nécessité de mettre en place de nouvelles dispositions prudentielles plus robustes.</p>
 <p>C’est dans ce contexte, à l’image de <em>Bale 2</em> pour la finance, que la <em>Solvabilté 2</em> voit le jour dans le milieu de l’assurance. Cette réforme réglementaire européenne vient renforcer la précédente en adaptant au mieux les exigences de fonds propres des compagnies d’assurances et de réassurances aux risques qu’elles encourent.</p>
 <p>Les insuffisances évoquées n’ont pas épargné le cadre prudentiel marocain. C’est ainsi que l’Autorité de Contrôle des Assurances et de la Prévoyance Sociale (ACAPS<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) a adopter la norme de Solvabilité Basé sur les Risques (SBR) afin de tenir compte de la diversités des risques encourues par les compagnies d’assurances et de réassurances marocaines. La SBR s’articule autour de trois piliers :</p>
@@ -358,61 +300,6 @@ Y_t = log(S_t) =  log(S_0)+  (\mu - \frac{\sigma^2}{2})t + \sigma W_t
 S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
 \tag{4}\]</span></span> est solution de l’EDS.</p>
 <div class="cell" data-label="fig-gbmPlot">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>SBM <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">t0 =</span> <span class="dv">0</span>,<span class="at">T_ =</span> <span class="dv">1</span>,<span class="at">N =</span> <span class="dv">10000</span>,<span class="at">nsim =</span> <span class="dv">100</span>){</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">Map</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x) {<span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">rnorm</span>(<span class="at">n=</span> N,<span class="at">mean =</span> <span class="dv">0</span>,<span class="at">sd =</span> <span class="fu">sqrt</span>((T_ <span class="sc">-</span>t0)<span class="sc">/</span>N))) <span class="sc">%&gt;%</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cumsum</span>()},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(N,nsim))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_cols</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">names&lt;-</span><span class="st">`</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>,<span class="dv">1</span><span class="sc">:</span>nsim))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">t=</span><span class="fu">seq</span>(t0,T_,<span class="at">length.out =</span> N <span class="sc">+</span><span class="dv">1</span>) ) <span class="sc">%&gt;%</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">relocate</span>(t)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  plt <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    reshape2<span class="sc">::</span><span class="fu">melt</span>(<span class="at">id=</span><span class="st">"t"</span>,<span class="at">value.name =</span> <span class="st">"Brownian"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>t, <span class="at">y=</span>Brownian, <span class="at">colour=</span>variable)) <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">show.legend =</span> F) <span class="sc">+</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Brownian motion"</span>)<span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    hrbrthemes<span class="sc">::</span><span class="fu">theme_ipsum</span>(<span class="at">grid =</span> <span class="st">""</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">data =</span> X,<span class="at">plots =</span>plt )</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometric</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>GBM <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">S0=</span><span class="dv">100</span>,<span class="at">mu =</span> .<span class="dv">05</span>,<span class="at">sigma =</span>.<span class="dv">4</span>,<span class="at">t0=</span><span class="dv">0</span>,<span class="at">T_=</span> <span class="dv">1</span>,<span class="at">N =</span> <span class="dv">10000</span>,<span class="at">nsim =</span> <span class="dv">100</span>){</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  sbm <span class="ot">&lt;-</span> <span class="fu">SBM</span>(<span class="at">t0 =</span> t0,<span class="at">T_ =</span> T_,<span class="at">N =</span> N,<span class="at">nsim =</span> nsim)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> sbm<span class="sc">$</span>data<span class="sc">$</span>t</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  listSBM <span class="ot">&lt;-</span>  <span class="fu">as.list</span>(sbm<span class="sc">$</span>data[,<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">=</span> <span class="fu">Map</span>(<span class="cf">function</span>(x){</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    S0<span class="sc">*</span><span class="fu">exp</span>(t<span class="sc">*</span>(mu<span class="fl">-0.5</span><span class="sc">*</span>sigma<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span>sigma<span class="sc">*</span>listSBM[[x]])</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  },<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>nsim) <span class="sc">%&gt;%</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_cols</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">names&lt;-</span><span class="st">`</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>,<span class="dv">1</span><span class="sc">:</span>nsim)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">t=</span>t) <span class="sc">%&gt;%</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">relocate</span>(t)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  plt <span class="ot">&lt;-</span> S <span class="sc">%&gt;%</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    reshape2<span class="sc">::</span><span class="fu">melt</span>(<span class="at">id=</span><span class="st">"t"</span>,<span class="at">value.name =</span> <span class="st">"GBM"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>t, <span class="at">y=</span>GBM, <span class="at">colour=</span>variable)) <span class="sc">+</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">show.legend =</span> F) <span class="sc">+</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Geometric Brownian Motion"</span>)<span class="sc">+</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    hrbrthemes<span class="sc">::</span><span class="fu">theme_ipsum</span>(<span class="at">grid =</span> <span class="st">"XY"</span>)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  mean_path <span class="ot">=</span> <span class="fu">apply</span>(S[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">1</span>,mean)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  ST <span class="ot">=</span> mean_path[<span class="fu">length</span>(mean_path)]</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  plt_mean <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>,<span class="fu">aes</span>(<span class="at">x=</span>t, <span class="at">y=</span>mean_path,<span class="at">color =</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">show.legend =</span> F) <span class="sc">+</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Mean price"</span>)<span class="sc">+</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    hrbrthemes<span class="sc">::</span><span class="fu">theme_ipsum</span>(<span class="at">grid =</span> <span class="st">"XY"</span>)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">data =</span> S,<span class="at">plots =</span>plt ,</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>       <span class="at">mean_path =</span> mean_path,</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>       <span class="at">ST =</span> ST,</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>       <span class="at">plt_mean =</span> plt_mean)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>GBM_Sim <span class="ot">=</span> <span class="fu">GBM</span>()</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>GBM_Sim<span class="sc">$</span>plt_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -424,6 +311,676 @@ S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
 </div>
 </section>
 </section>
+<section id="la-construction-de-la-courbe-des-taux-zéro-coupon" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="la-construction-de-la-courbe-des-taux-zéro-coupon"><span class="header-section-number">4</span> La construction de la courbe des taux zéro-coupon :</h2>
+<p>Dans cette partie nous nous intéressons à la construction de la courbe des taux zéro-coupon dont nous avons besoin dans le reste de ce travaille afin d’actualiser les flux futurs entrant dans le calcul des différentes BEST ESTIMATE. Les taux Zéro Coupons sont extraite à partir des taux moyens pondérés des transactions des bons de trésor publiées par BANK AL MAGHRIB. Ces taux en fait, sont des taux monétaires pour les maturités inférieures ou égales à un an, alors qu’il représente un taux actuariel pour les maturités supérieures à un an, de plus ils ne sont disponibles que pour certaines maturités (Remarque : Insérant une figure).</p>
+<p>Pour cette raison on va suivre les étapes suivantes pour la construction de la courbe des taux zéro-coupon :</p>
+<ul>
+<li>1ere étape : Transformation des taux monétaires en taux actuariels.</li>
+<li>2eme étape : Interpolation linéaire afin d’obtenir des taux actuariels pour des maturités pleines.</li>
+<li>3eme étape : Calcule des taux zéro coupons à partir des taux actuariels des maturités pleines par la Méthode du Bootstrap.</li>
+<li>4eme étape : Extrapolation de la courbe des taux zéro-coupon pour des maturités non observées lointaines par la méthode de Smith-Wilson</li>
+</ul>
+<section id="transformation-des-taux-monétaires-en-taux-actuariels" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="transformation-des-taux-monétaires-en-taux-actuariels"><span class="header-section-number">4.1</span> Transformation des taux monétaires en taux actuariels :</h3>
+<p>Cette étape consiste à transformer les taux monétaires à des taux actuariels en utilisant la relation suivante : <span class="math display">\[
+T_a=(1+\frac{n}{360}*T_m )^{\frac{365}{n}}-1
+\]</span> Avec :</p>
+<p><span class="math inline">\(T_a\)</span> : Le taux actuariel.</p>
+<p><span class="math inline">\(T_m\)</span> : Le taux monétaire.</p>
+<p><span class="math inline">\(n\)</span> : Le nombre de jours entre la date de valeur et la date d’échéance.</p>
+<p><span class="math inline">\(\frac{365}{n}\)</span> : La maturité</p>
+<p>Après l’application de cette formule sur Les données de marché marocain (publie par la BAM), nous avons obtenu les résultats situés dans le tableau suivant : (Remarque insertions des résultats obtenu par l’application)</p>
+</section>
+<section id="interpolation-linéaire-de-la-courbe-des-taux-actuariels" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="interpolation-linéaire-de-la-courbe-des-taux-actuariels"><span class="header-section-number">4.2</span> Interpolation linéaire de la courbe des taux actuariels :</h3>
+<p>En réalité nous disposons que des taux actuariels des maturités ayant des valeurs décimales, le but de cette étape est donc la détermination des taux actuariels avec des maturités pleines en utilisant une interpolation linéaire.</p>
+<p>Cette opération consiste à déterminer Le DPL qui correspond au dernier point liquide. Il est déterminé de sorte que le volume cumulé des obligations dont les échéances sont supérieures au DPL est inférieur à 6% du volume total des transactions prises en compte pour la construction de la courbe des taux zéro-coupon. Il correspond aussi à dernière maturité observable.</p>
+<p>La formule d’interpolation pour toute maturité j allant de 1, 2, . . ., DPL est la suivante : <span class="math display">\[
+t_j=t_i+\frac{t_{i+1 }-t_i}{n_{i+1 }-n_i} *(j-n_i )
+\]</span></p>
+<p>Avec :</p>
+<p><span class="math inline">\(t_j\)</span> : Taux actuariels de maturité pleine j compris entre les maturités n_i et n_(i+1).</p>
+<p><span class="math inline">\(t_i\)</span> : Taux actuariels de maturités n_i.</p>
+</section>
+<section id="la-méthode-de-bootstrap" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="la-méthode-de-bootstrap"><span class="header-section-number">4.3</span> la méthode de Bootstrap:</h3>
+<p>Le Bootstrap est une technique de reconstitution de la courbe zéro-coupon pas à pas, en déterminant les taux zéro-coupon à partir des taux actuariels, en faisant l’hypothèse que le prix théorique d’une obligation correspond à la somme de ses flux futures actualisés aux taux zéro-coupon de l’échéance de chaque flux. Ainsi, on suppose que les prix des obligations des Bons du trésor sont au pair, c’est-à-dire que le prix d’émission des obligations des bons du trésor et leur valeur nominale sont égaux.</p>
+<ul>
+<li><strong>Pour une maturité inferieure ou égale a un an</strong> :</li>
+</ul>
+<p>Le taux zéro-coupon est donc le taux actuariel de même maturité. Car aucun coupon n’est payé avant l’échéance.</p>
+<ul>
+<li><strong>Pour une maturité supérieure à un an</strong> :</li>
+</ul>
+<p>Le taux zéro-coupon est calculé par la formule suivante : <span class="math display">\[
+R_n =  ^{n}\sqrt{\frac{1+t_n}{1-t_n + \sum_{i=1}^{n} \frac{1}{(1+R_i)^{i}}}} - 1
+\]</span></p>
+</section>
+<section id="extrapolation-de-la-courbe-des-taux-zéro-coupon-méthode-de-smith-wilson" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="extrapolation-de-la-courbe-des-taux-zéro-coupon-méthode-de-smith-wilson"><span class="header-section-number">4.4</span> Extrapolation de la courbe des taux zéro-coupon : méthode de Smith-Wilson</h3>
+<p>La méthode Smith-Wilson est une méthode d’extrapolation de la courbe des taux d’intérêt développée par les chercheurs Smith et Wilson en 1995, et est utilisée pour extrapoler les taux à long terme. Son principe est d’ajuster une courbe mathématique à la courbe des taux observée sur le marché, en utilisant une fonction spécifique appelée “fonction de Smith-Wilson”. Cette fonction est une combinaison de deux termes : le premier terme représente une fonction de décroissance exponentielle, qui est utilisée pour modéliser la partie courte de la courbe des taux ; le second terme est une fonction polynomiale qui est utilisée pour modéliser la partie longue de la courbe des taux.</p>
+<p>Une fois que la fonction de Smith-Wilson a été ajustée à la courbe des taux, elle peut être utilisée pour extrapoler les taux pour des maturités plus longues que celles disponibles sur le marché. Cette extrapolation est possible car la fonction de Smith-Wilson est conçue pour s’adapter de manière continue à la fois à la partie courte et à la partie longue de la courbe des taux.</p>
+<p>dans ce modèle le taux à terme à long terme est un paramètre d’entrée fixe qui ne varie pas dans le temps à mesure qu’évoluent les prix des obligations. Elle permet aux taux à terme à long terme de converger vers le taux « infini »(Ultimate Forward Rate) choisi et elle offre une base solide pour couvrir le risque de taux d’intérêt à long terme.</p>
+<p>Les paramètres d’entrée sont les suivants :</p>
+<ul>
+<li>le UFR (Ultimate Forward Rate)</li>
+<li><span class="math inline">\(\alpha\)</span> la vitesse de convergence vers le UFR.</li>
+</ul>
+<p>En fait, sur le marché on observe les prix zéro-coupons de différentes maturités <span class="math inline">\(u_1, u_2, . . . , u_N\)</span> alors Smith-Wilson suppose que le facteur d’actualisation $P() $ est déterminé par: <span class="math display">\[
+P(\tau) = e^{-UFR * \tau} + \sum_{j=1}^N \gamma_j * W(\tau , \mu_j)
+\]</span></p>
+<p>Où: <span class="math display">\[
+W(\tau , \mu_j) =  e^{-UFR * (\tau + \mu_j )} * [ \alpha * min(\tau , \mu_j) - 0,5 *e^{-\alpha*max(\tau , \mu_j)}*(e^{\alpha*min(\tau , \mu_j)}- e^{-\alpha*max(\tau , \mu_j)} ) ]
+\]</span></p>
+<p>Avec : - <span class="math inline">\(W\)</span> représente un ensemble de fonctions à noyau pour chaque prix d’obligation observable d’entrée. - <span class="math inline">\(\alpha\)</span> : la vitesse de convergence vers le UFR. - <span class="math inline">\(N\)</span>: le nombre d’obligations ZC dont le prix est observésur le marché. - <span class="math inline">\(u_j\)</span>: la j-ème maturité disponible. . - <span class="math inline">\(\gamma_j\)</span> : les inconnus à ajuster par rapport à la courbe des taux zéro-coupon disponible avant extrapolation.</p>
+<p>Pour déterminer ces inconnus, on fixe d’abord <span class="math inline">\(UFR\)</span> et <span class="math inline">\(\alpha\)</span>,le vecteur <span class="math inline">\(\gamma\)</span> s’obtient comme solution d’un système d’équations linéaires définies par l’expression du prix de chaque obligation ZC considérée.</p>
+<p>Soit : <span class="math display">\[
+m_j = P(\mu_j) = e^{-UFR * \mu_j} + \sum_{j=1}^N \gamma_j * W(\tau , \mu_j)
+\]</span></p>
+<p>Sous forme matricielle : <span class="math display">\[
+m = P = µ + γ ∗ W ⇒ γ = W^{−1}(P − µ)
+\]</span></p>
+<p>Avec:</p>
+<p><span class="math inline">\(m = (m_1, m_2, . . . , m_N)^T\)</span></p>
+<p><span class="math inline">\(P = (P(u_1) , P(u_2), . . . , P(u_N))^T\)</span></p>
+<p><span class="math inline">\(µ = (e^{−UFR∗u_1}, e^{−UFR∗u_2}, . . .,e^{-UFR*u_N})^T\)</span></p>
+$$ W =
+<span class="math display">\[\begin{bmatrix}
+W_{11} \; \; \;. . . &amp;W_{1N} \\
+\; \; \; . . . . . ..... \\
+W_{N1} \; \; \;. . . &amp;W_{NN}
+
+
+
+\end{bmatrix}\]</span>
+<p><span class="math display">\[
+\]</span> W{ij} = W (u_i, u_j) : i = 1 . . . N ;et ;j = 1 . . . N $$</p>
+<p>Aprés la détermination des inconnus, on passe au calcul des prix zéro-coupon correspondants aux maturités pleines, et finalemet deduire les taux zéro-coupon correspondants à ces maturités par la relation suivante : <span class="math display">\[
+R(t) = (\frac{1}{P(t)})^{\frac{1}{t}} - 1
+\]</span></p>
+</section>
+</section>
+<section id="valorisation-des-provisions-techniques-prudentielles" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="valorisation-des-provisions-techniques-prudentielles"><span class="header-section-number">5</span> VALORISATION DES PROVISIONS TECHNIQUES PRUDENTIELLES:</h2>
+<p>Les provisions techniques prudentielles sont valorisées brutes de réassurance en considérant les contrats dont l’engagement de l’entreprise est en cours à la date d’inventaire. Les contrats d’assurance non-vie à tacite reconduction dont la date d’effet intervient postérieurement à la date d’inventaire et dont le préavis de résiliation a expiré à cette date sans qu’il y ait une demande de résiliation sont également pris en considération.</p>
+<p>Elles sont évaluées comme suit : <span class="math display">\[
+PT = BE_{engagement} + BE_{fraisGestion} + MargeRisque
+\]</span></p>
+<p>Avec :</p>
+<ul>
+<li><p><em><span class="math inline">\(PT\)</span></em> : la provision technique</p></li>
+<li><p><em><span class="math inline">\(BE_{engagement}\)</span></em> : La meilleure estimation des engagements correspond à la somme probabilisée et actualisée de flux de trésorerie futurs afférents aux engagements de l’entreprise d’assurances et de réassurance au titre des contrats souscrits et déterminée, selon la nature des opérations d’assurance</p></li>
+<li><p><em><span class="math inline">\(BE_{fraisGestion}\)</span></em> : La meilleure estimation des frais de gestion correspond à la somme probabilisée et actualisée des flux de frais de gestion des contrats et déterminée, selon la nature des opérations d’assurance.</p></li>
+<li><p><em><span class="math inline">\(MargeRisque\)</span></em> : La marge de risque correspond au coût d’immobilisation du capital de solvabilité requis afférent aux engagements garantis. Elle est calculée, séparément pour les engagements des opérations d’assurances vie et rentes découlant des opérations non vie ainsi que pour les engagements des opérations non vie.</p></li>
+</ul>
+<section id="opérations-dassurance-vie-décès-ou-capitalisation" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="opérations-dassurance-vie-décès-ou-capitalisation"><span class="header-section-number">5.1</span> Opérations d’assurance vie, décès ou capitalisation:</h3>
+<section id="meilleure-estimations-des-engagements-be_engagement" class="level4" data-number="5.1.1">
+<h4 data-number="5.1.1" class="anchored" data-anchor-id="meilleure-estimations-des-engagements-be_engagement"><span class="header-section-number">5.1.1</span> Meilleure estimations des engagements (<span class="math inline">\(BE_{engagement}\)</span>):</h4>
+<p>Pour les opérations d’assurance vie, décès ou de capitalisation hors unités de compte, la meilleure estimation des engagements comprend la meilleure estimation des garanties probabilisées et les bénéfices discrétionnaires futurs. <span class="math display">\[
+_{vie}BE^{engagement} = BE_{garantie}^{prob} + BDF
+\]</span></p>
+<p>Avec :</p>
+<ul>
+<li><span class="math inline">\(BE_{garantie}^{prob}\)</span>: la meilleure estimation des garanties probabilisées.</li>
+<li><span class="math inline">\(BDF\)</span>: les bénéfices discrétionnaires futurs.</li>
+</ul>
+<section id="sec-MEGP" class="level5" data-number="5.1.1.1">
+<h5 data-number="5.1.1.1" class="anchored" data-anchor-id="sec-MEGP"><span class="header-section-number">5.1.1.1</span> Meilleure estimation des garanties probabilisées:</h5>
+<p>La meilleure estimation des garanties probabilisées est calculée garantie par garantie et tête par tête, en actualisant les flux de trésorerie futurs probabilisés, afférents aux engagements garantis à la date d’inventaire. Toutefois, l’entreprise d’assurances et de réassurance peut procéder à une agrégation en retenant des critères homogènes, notamment l’âge et ce, après accord de l’Autorité. <span class="math display">\[
+BE_{garantie}^{prob} = \sum\limits_{t=0}^{t=N}\frac{(CF^{Dec}_{t}-CF^{Enc}_{t})}{(1+r_t)^t}
+\]</span> Avec :</p>
+<ul>
+<li><p><span class="math inline">\(CF^{Enc}_{t}\)</span>: Les encaissements à la date <span class="math inline">\(t\)</span> qui correspondent aux engagements des assurés.</p></li>
+<li><p><span class="math inline">\(CF^{Déc}_{t}\)</span>: Les décaissements à la date <span class="math inline">\(t\)</span>. qui correspondent aux règlements de toutes prestations garanties au titre des contrats, y compris les rachats. Ils sont déterminés en tenant compte des engagements contractuels et en utilisant, le cas échéant, les bases techniques suivantes :</p></li>
+<li><p><strong>La table de mortalité</strong>: La table de mortalité TV 88-90 pour les assurances en cas de vie ou la table de mortalité TD 88-90 pour les assurances en cas de décès (prévues à l’annexe), auxquelles l’entreprise d’assurances et de réassurance peut substituer une table de mortalité d’expérience, matérialisant la mortalité propre à la population de ses assurés et ce, après accord de l’Autorité ;</p></li>
+<li><p><strong>La table de rachat en montant</strong>.</p></li>
+<li><p><strong>La table de résiliation</strong>.</p></li>
+<li><p><strong>Un taux de sortie en rente</strong>.</p></li>
+</ul>
+<p><strong>Remarque:</strong></p>
+<p>Les flux de trésorerie futurs probabilisés précités sont déterminés en considérant un horizon de projection suffisant pour la couverture de l’ensemble de la durée de vie des engagements à la date d’inventaire.</p>
+<p><strong>Exemple</strong> :</p>
+<p>Si on prend l’exemple d’un contrat d’assurance-vie mixte<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> de capital en cas de vie égale au capital en cas de décès <span class="math inline">\(K\)</span>. Soit <span class="math inline">\(q_{x+t}\)</span> la probabilité qu’un individu d’âge <span class="math inline">\(x\)</span> lors de la souscription décéde entre <span class="math inline">\(x+t\)</span> et <span class="math inline">\(x+t+1\)</span>. On note <span class="math inline">\(NbPolice_t\)</span> le nombre de police en début de période <span class="math inline">\(t\)</span> et <span class="math inline">\(r_s\)</span> le taux ZC. La prestation correspondante à ce contrat en date t : <span class="math display">\[
+_{décès}CF^{Déc}_{t} = K  \times  NbPolice_t \times q_{x+t} \times (1+r_t)^t
+\]</span></p>
+</section>
+<section id="bénéfices-discrétionnaires-futurs" class="level5" data-number="5.1.1.2">
+<h5 data-number="5.1.1.2" class="anchored" data-anchor-id="bénéfices-discrétionnaires-futurs"><span class="header-section-number">5.1.1.2</span> Bénéfices discrétionnaires futurs:</h5>
+<p>Les bénéfices discrétionnaires futurs sont évalués pour chaque ensemble homogène de contrats.</p>
+<p><span class="math display">\[
+BDF = PPB +\bar{r}^{PB}(SoldeT + SoldeF)\times\mathbf{1}_{(SoldeT + SoldeF) &gt; 0}
+\]</span> Avec :</p>
+<ul>
+<li><p><strong><span class="math inline">\(PPB\)</span></strong> : Le montant de la provision pour participation aux bénéfices, évaluée à la valeur comptable;</p></li>
+<li><p><strong><span class="math inline">\(SoldeT\)</span></strong> : Somme des soldes techniques.</p></li>
+<li><p><strong><span class="math inline">\(SoldeF\)</span></strong> : Somme des soldes Financiers.</p></li>
+<li><p><strong><span class="math inline">\(\bar{r}^{PB}\)</span></strong> : Le taux de participation aux bénéfices moyen servi aux assurés.</p></li>
+</ul>
+<p><strong>Le taux de participation aux bénéfices moyen servi aux assurés</strong> est calculé en considérant le rapport entre la somme des dotations au titre, des trois derniers exercices clos au moins, affectées à la provision pour participation aux bénéfices afférente aux opérations d’assurance vie, décès ou de capitalisation hors unités de compte et la somme des résultats techniques et financiers des dites opérations sur la même période.</p>
+<p>En notation mathématique ça donne : <span class="math display">\[
+\bar{r}^{PB} = \frac{Dot_{\geq \text{3 exes clos} }}{RT + RF}
+\]</span></p>
+<p>Avec :</p>
+<ul>
+<li><span class="math inline">\(Dot_{\geq \text{3 exes clos} }\)</span> : somme des dotations au titre, des trois derniers exercices clos au moins.</li>
+<li><span class="math inline">\(RT\)</span> :les résultats techniques.</li>
+<li><span class="math inline">\(RF\)</span> :les résultats financiers.</li>
+</ul>
+</section>
+</section>
+<section id="meilleure-estimation-des-frais-de-gestions-be_fraisgestion" class="level4" data-number="5.1.2">
+<h4 data-number="5.1.2" class="anchored" data-anchor-id="meilleure-estimation-des-frais-de-gestions-be_fraisgestion"><span class="header-section-number">5.1.2</span> Meilleure estimation des frais de gestions (<span class="math inline">\(BE_{fraisGestion}\)</span>):</h4>
+<p>La meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs probabilisés. <span class="math display">\[
+BE_{fraisGestion} = \sum\limits_{t = 1}^{N} \frac{FG_t}{(1+r_t)^t}
+\]</span></p>
+<p>Les frais de gestion futurs sont estimés sur la base d’une projection effectuée en considérant un horizon de projection suffisant pour la couverture de la durée de vie des engagements à la date d’inventaire. Ils sont déterminés pour chaque année de projection en multipliant le nombre de contrats par le montant de frais de gestion unitaire moyen. <span class="math display">\[
+FG_t = NbContrat_t \times \bar{FG}^{unitaire}_{t}
+\]</span></p>
+<p>Avec :</p>
+<ul>
+<li><span class="math inline">\(\bar{FG}^{unitaire}_{t}\)</span> : Le montant de frais de gestion unitaire moyen est estimé en considérant la moyenne sur les trois derniers exercices clos des montants de frais de gestion unitaires.</li>
+<li><span class="math inline">\(NbContrat_t\)</span> : Le nombre de contrats précité est estimé par sous-catégories, compte tenu des bases techniques suivantes (La table de mortalité, La table de rachat en nombre, La table de résiliation)</li>
+<li><span class="math inline">\(FG_t\)</span> : Les frais de gestions.</li>
+</ul>
+<p>Le montant de frais de gestion unitaire au titre de chaque exercice clos, correspond au rapport entre le montant de frais de gestion déterminé par sous-catégories et le nombre de contrats ou d’adhérents pour les contrats d’assurance de groupe, à l’ouverture de l’exercice clos considéré.</p>
+<p><span class="math display">\[
+\bar{FG}^{unitaire}_{t} = \frac{\overbrace{\frac{FG_{t-1}}{NbContrat_{t-1}}}^{\text{Frais de gestion unitaire en t-1}}+\frac{FG_{t-2}}{NbContrat_{t-2}}+\frac{FG_{t-3}}{NbContrat_{t-3}}}{3}
+\]</span></p>
+</section>
+</section>
+<section id="rentes-découlants-des-opérations-non-vie" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="rentes-découlants-des-opérations-non-vie"><span class="header-section-number">5.2</span> Rentes découlants des opérations non-vie:</h3>
+<p>La meilleure estimation des engagements pour les rentes découlant des opérations d’assurance non vie correspond à la meilleure estimation des garanties probabilisées déterminée avant. <span class="math display">\[
+BE_{rnv} = BE_{garantie}^{prob}
+\]</span></p>
+<p>Avec :</p>
+<ul>
+<li><span class="math inline">\(BE_{rnv}\)</span> : la meilleure estimation rentes découlant des opérations d’assurance non vie.</li>
+<li><span class="math inline">\(BE_{garantie}^{prob}\)</span> : la meilleure estimation des garanties probabilisées.</li>
+</ul>
+<p>La meilleure estimation des frais de gestion, pour les rentes découlant des opérations d’assurance non vie est déterminée de la meme façon comme avant.</p>
+</section>
+<section id="opérations-dassurance-non-vie-hors-rentes" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="opérations-dassurance-non-vie-hors-rentes"><span class="header-section-number">5.3</span> Opérations d’assurance non vie hors rentes:</h3>
+<section id="la-meilleure-estimation-des-engagements" class="level4" data-number="5.3.1">
+<h4 data-number="5.3.1" class="anchored" data-anchor-id="la-meilleure-estimation-des-engagements"><span class="header-section-number">5.3.1</span> La meilleure estimation des engagements:</h4>
+<p>la meilleure estimation des engagements comprend la meilleure estimation des engagements pour sinistres nets de recours et la meilleure estimation des engagements pour primes. <span class="math display">\[
+_{nvhr}BE_{engagement}= _{nvhr}BE_{sinistres}^{eng} + _{nvhr}BE_{primes}^{eng}
+\]</span></p>
+<section id="la-meilleure-estimation-des-engagements-pour-primes_nvhrbe_primeseng" class="level5" data-number="5.3.1.1">
+<h5 data-number="5.3.1.1" class="anchored" data-anchor-id="la-meilleure-estimation-des-engagements-pour-primes_nvhrbe_primeseng"><span class="header-section-number">5.3.1.1</span> La meilleure estimation des engagements pour primes(<span class="math inline">\(_{nvhr}BE_{primes}^{eng}\)</span>):</h5>
+<p>La meilleure estimation des engagements pour primes correspond à la différence entre :</p>
+<ul>
+<li>La somme actualisée des flux de règlements futurs probabilisés nets de recours relatifs aux <em>sinistres non encore survenus</em> afférents aux contrats.</li>
+<li>Le montant des primes futures probabilisé et actualisé à la date d’inventaire, net des frais d’acquisition, afférentes aux contrats.</li>
+</ul>
+<p><span class="math display">\[
+_{nvhr}BE_{primes}^{eng} = \sum_{t \geq 1} \frac{\overline{FRFP_{t}}}{(1+ r_t)^t}- \frac{PFP_t}{(1+ r_t)^t}
+\]</span></p>
+<p>avec:</p>
+<ul>
+<li><span class="math inline">\(PFP\)</span>: Le montant des primes futures probabilisé.</li>
+<li><span class="math inline">\(\overline{FRFP_{t}}\)</span>: La somme actualisée des flux de règlements futurs probabilisés nets de recours relatifs aux sinistres non encore survenus,telle que pour une année de projection donnée:</li>
+</ul>
+<p><span class="math display">\[
+\overline{FRFP_{t}} = Tx_{liquidation} * RS_{moyen} * (PPNA + PFP)
+\]</span></p>
+<p>Où:</p>
+<ul>
+<li><p><span class="math inline">\(Tx_{liquidation}\)</span>: le taux de liquidation,il est estimé en fonction de la cadence de liquidation des engagements pour sinistres survenus.</p></li>
+<li><p><span class="math inline">\(RS_{moyen}\)</span>: le ratio de sinistralité moyen telle que: <span class="math display">\[
+RS_{moyen_t} = \frac{CU_{t} + CU_{t-1} + CU_{t-2}}{PA_{t} + PA_{t-1}+ PA_{t-2}}
+\]</span></p></li>
+<li><p><span class="math inline">\(CU\)</span>: [La charge ultime visée correspond, par exercice de survenance, à la somme des règlements cumulés et des règlements futurs au titre de l’année de survenance considérée.] représente la charge ultime.</p></li>
+<li><p><span class="math inline">\(PA\)</span> les primes acquises.</p></li>
+</ul>
+<p>Tell que :</p>
+<p><span class="math display">\[
+CU_t = RegCumules_t + RegFutures_t
+\]</span></p>
+<ul>
+<li><span class="math inline">\(RegCumules_t\)</span> : les règlements cumulés</li>
+<li><span class="math inline">\(RegFutures_t\)</span>: les règlements futurs</li>
+<li><span class="math inline">\(PPNA\)</span>: La provision pour primes non acquises.</li>
+<li><span class="math inline">\(PFP\)</span>: Le montant des primes futures probabilisé.</li>
+</ul>
+</section>
+<section id="la-meilleure-estimation-des-engagements-pour-sinistres-nets-_nvhrbe_sinistreseng" class="level5" data-number="5.3.1.2">
+<h5 data-number="5.3.1.2" class="anchored" data-anchor-id="la-meilleure-estimation-des-engagements-pour-sinistres-nets-_nvhrbe_sinistreseng"><span class="header-section-number">5.3.1.2</span> La meilleure estimation des engagements pour sinistres nets (<span class="math inline">\(_{nvhr}BE_{sinistres}^{eng}\)</span>):</h5>
+<p>La meilleure estimation des engagements pour sinistres nets de recours est déterminée en actualisant, les flux de règlements futurs probabilisés nets de recours relatifs aux sinistres survenus afférents aux contrats. <span class="math display">\[
+_{nvhr}BE_{sinistres}^{eng} = \sum_{t \geq 1} \frac{FRFP_{t}}{(1+ r_t)^t}
+\]</span> avec:</p>
+<ul>
+<li><span class="math inline">\(FRFP_{t}\)</span> : les flux de règlements futurs probabilisés nets de recours relatifs aux <em>sinistres survenus</em>, sont estimés sur la base d’un triangle de règlements par année de survenance net de recours conformément à la méthode l’annexe N°5.</li>
+</ul>
+</section>
+</section>
+<section id="la-meilleure-estimation-des-frais-de-gestion" class="level4" data-number="5.3.2">
+<h4 data-number="5.3.2" class="anchored" data-anchor-id="la-meilleure-estimation-des-frais-de-gestion"><span class="header-section-number">5.3.2</span> La meilleure estimation des frais de gestion:</h4>
+<p>la meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs liés aux contrats. <span class="math display">\[
+_{nvhr}BE_{fraisGestion}= \sum_{t \geq 1} \frac{FFGF_t}{(1+r_t)^t}
+\]</span></p>
+<p>avec:</p>
+<ul>
+<li><span class="math inline">\(FFGF\)</span>: les flux de frais de gestion futurs. telle que: <span class="math display">\[
+FFGF = Tx_{fraisGestion_{moy}} * (_{nvhr}BE_{sinistres}^{eng} + _{nvhr}BE_{primes}^{eng})
+\]</span></li>
+</ul>
+<p>et:</p>
+<ul>
+<li><span class="math inline">\(Tx_{frais gestion_{moy}}\)</span> : Le taux de frais de gestion moyen,il est estimé, par sous-catégories d’opérations d’assurance, en considérant la moyenne sur les trois derniers exercices clos des taux de frais de gestion.</li>
+</ul>
+<p>Donc:</p>
+<p><span class="math display">\[
+_{t}Tx_{fraisGestion_{moy}}= \frac{Tx_{fraisGestion_{t}} + Tx_{fraisGestion_{t-1}} + Tx_{fraisGestion_{t-2}}}{3}
+\]</span></p>
+<p>ainsi que :</p>
+<p><span class="math display">\[
+Tx_{frais gestion_{t}} = \frac{FG}{_{nvhr}BE_{sinistres}^{eng}+ Reglements_{Clos}}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(FG\)</span>: le montant frais de gestion.</li>
+<li><span class="math inline">\(Reglements_{Clos}\)</span> : les règlements au titre de l’exercice clos.</li>
+</ul>
+</section>
+</section>
+<section id="part-des-cessionnaires-dans-les-provisions-techniques-prudentielles" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="part-des-cessionnaires-dans-les-provisions-techniques-prudentielles"><span class="header-section-number">5.4</span> Part des cessionnaires dans les provisions techniques prudentielles:</h3>
+<p>La part des cessionnaires dans les provisions techniques prudentielles est évaluée en considérant la différence entre d’une part, la meilleure estimation des engagements cédés et d’autre part, l’ajustement pour défaut de contrepartie.</p>
+<p><span class="math display">\[
+Part_{cess} = BE_{cedes}^{eng} - Ajust_{DC}
+\]</span></p>
+<section id="la-meilleure-estimation-des-engagements-cédés-be_cedeseng" class="level4" data-number="5.4.1">
+<h4 data-number="5.4.1" class="anchored" data-anchor-id="la-meilleure-estimation-des-engagements-cédés-be_cedeseng"><span class="header-section-number">5.4.1</span> La meilleure estimation des engagements cédés (<span class="math inline">\(BE_{cedes}^{eng}\)</span>):</h4>
+<section id="les-opérations-dassurance-vie-décès-ou-de-capitalisation" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="les-opérations-dassurance-vie-décès-ou-de-capitalisation">Les opérations d’assurance vie, décès ou de capitalisation</h5>
+<p>la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des engagements par le rapport entre d’une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d’autre part, la somme des provisions mathématiques , des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.</p>
+<p><span class="math display">\[
+_{vie}BE_{cedes}^{eng} = taux_c \times _{vie}BE^{eng}
+\]</span> Avec :</p>
+<ul>
+<li><span class="math inline">\(taux_c\)</span> (taux de cession): le rapport entre d’une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d’autre part, la somme des provisions mathématiques, des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.</li>
+</ul>
+</section>
+<section id="les-opérations-non-vie" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="les-opérations-non-vie">Les opérations non vie</h5>
+<p>Pour les opérations non vie, la meilleure estimation des engagements cédés correspond à la somme de la meilleure estimation des engagements pour sinistres cédés et de la meilleure estimation des engagements pour primes cédés. <span class="math display">\[
+_{nvie}BE_{cedes}^{eng} =\; _{sinsitres}BE_{cedes}^{eng} + \; _{primes}BE_{cedes}^{eng}
+\]</span> Avec :</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(_{sinsitres}BE_{cedes}^{eng} = taux_s \times BE_{sinsitres}^{eng}\)</span> : La meilleure estimation des engagements pour sinistres cédés visée à la spécification technique 33 ci- dessus est évaluée en multipliant la meilleure estimation des engagements pour sinistres nets de recours visée à par (<span class="math inline">\(taux_s\)</span>) le rapport entre la part des cessionnaires dans les provisions pour sinistres à payer et la provision pour sinistres à payer brute de réassurance.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><span class="math inline">\(_{primes}BE_{cedes}^{eng} = r^{primes}_{cession} \times BE_{primes}^{eng}\)</span> : La meilleure estimation des engagements pour primes cédés visée est évaluée en multipliant la meilleure estimation des engagements pour primes visée par le taux de cession de primes. Le taux de cession (<span class="math inline">\(r^{primes}_{cession}\)</span>) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l’exercice.</p>
+</blockquote>
+</section>
+</section>
+<section id="lajustement-pour-défaut-de-contrepartie" class="level4" data-number="5.4.2">
+<h4 data-number="5.4.2" class="anchored" data-anchor-id="lajustement-pour-défaut-de-contrepartie"><span class="header-section-number">5.4.2</span> L’ajustement pour défaut de contrepartie:</h4>
+<p>L’ajustement pour défaut de contrepartie est déterminé en actualisant les flux d’ajustement futurs sur la base de la courbe des taux fixée par l’Autorité.</p>
+<p>Les flux d’ajustement futurs sont déterminés conformément à la méthode, telle que décrite à <strong>l’annexe N°6</strong> de la circulaire de l’ACAPS.</p>
+</section>
+</section>
+</section>
+<section id="capital-de-solvabilité-requis" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="capital-de-solvabilité-requis"><span class="header-section-number">6</span> Capital de Solvabilité Requis :</h2>
+<p>Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d’assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont exposés. Le CSR correspond au capital dont a besoin une entreprise d’assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c’est-à-dire à une seule occurrence tous les 200 ans.</p>
+<p>Commençons d’abord par la définition des différents risques dans les secteurs d’assurance et de réassurance :</p>
+<ul>
+<li><p><strong>Risque de souscription</strong> : le risque de perte ou de changement défavorable de la situation financière, en raison d’hypothèses inadéquates en matière de sinistralité, de tarification et de provisionnement.</p></li>
+<li><p><strong>Risque de marché</strong> : le risque de perte ou de changement défavorable de la situation financière résultant, directement ou indirectement, de fluctuations affectant le niveau de la valeur des actifs, des passifs et des instruments financiers.</p></li>
+<li><p><strong>Risque de spread</strong> (marge de crédit) : le risque de perte ou de changement défavorable de la situation financière résultant des changements touchant les marges additionnelles par rapport aux taux de référence exigée par les investisseurs sur les emprunts émis par des entités autres que l’Etat.</p></li>
+<li><p><strong>Risque de contrepartie</strong> : le risque de perte ou de changement défavorable de la situation financière résultant d’un défaut de paiement d’une contrepartie ou d’une dégradation de sa qualité de crédit.</p></li>
+<li><p><strong>Risque opérationnel</strong> : le risque de perte ou de changement défavorable de la situation financière résultant de procédures internes, de membres du personnel, de systèmes inadéquats ou défaillants, ou d’événements extérieurs.</p></li>
+<li><p><strong>Risque de concentration</strong> : le risque de perte ou de changement défavorable de la situation financière résultant d’un manque de diversité des émetteurs auxquels l’entreprise d’assurances et de réassurance est exposée.</p></li>
+</ul>
+<p>Selon le circulaire de l’ACAPS (l’Autorité de Contrôle des Assurances et de la Prévoyance Sociale) publié le premier Janvier 2020, Le capital de solvabilité requis est constitué de la somme des éléments suivants :</p>
+<ul>
+<li><p>Le capital de solvabilité requis de base.</p></li>
+<li><p>L’exigence de capital relative au risque opérationnel.</p></li>
+<li><p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés.</p></li>
+<li><p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés.</p></li>
+</ul>
+<section id="le-capital-de-solvabilité-requis-de-base-csr_base" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="le-capital-de-solvabilité-requis-de-base-csr_base"><span class="header-section-number">6.1</span> Le capital de solvabilité requis de base <span class="math inline">\(CSR_{base}\)</span></h3>
+<p>Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de <em>marché</em>, de <em>concentration</em>, de <em>contrepartie</em>, de <em>souscription</em> vie et de <em>souscription non-vie</em> et ce, après application des coefficients de corrélations. <span class="math display">\[
+CSR_{base} = \sqrt{\sum_{i,j\in Risk }(\rho_{i,j} * CSR_{i} * CSR_{j})}
+\]</span> avec :</p>
+<ul>
+<li><p>Risk <span class="math inline">\(\in\)</span> {Marché, Concentration, Contrepartie, Souscription Vie, Souscription Non - Vie}</p></li>
+<li><p><span class="math inline">\(\rho\)</span> : Coefficients de corrélations.</p></li>
+</ul>
+<p>avec la matrice de corrélations suivante:</p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 9%">
+<col style="width: 18%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Marché</th>
+<th>Concentration</th>
+<th>Contrepartie</th>
+<th>Sousc. vie</th>
+<th>Sousc. non-vie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Marché</td>
+<td>1</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="even">
+<td>Concentration</td>
+<td>x</td>
+<td>1</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="odd">
+<td>Contrepartie</td>
+<td>x</td>
+<td>x</td>
+<td>1</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="even">
+<td>Sousc. vie</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>1</td>
+<td>x</td>
+</tr>
+<tr class="odd">
+<td>Sousc. non-vie</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<section id="exigence-de-capital-relative-aux-risques-de-marche-csr_marche" class="level4" data-number="6.1.1">
+<h4 data-number="6.1.1" class="anchored" data-anchor-id="exigence-de-capital-relative-aux-risques-de-marche-csr_marche"><span class="header-section-number">6.1.1</span> EXIGENCE DE CAPITAL RELATIVE AUX RISQUES DE MARCHE <span class="math inline">\(CSR_{marche}\)</span></h4>
+<p>L’exigence de capital relative au risque de marché est le montant total des exigences de capitaux relatives aux sous-risques action, taux, immobilier, écart de taux et change et ce, après application des coefficients de corrélations. <span class="math display">\[
+CSR_{marche} = \sqrt{\sum_{i,j\in RM }(\rho_{i,j} * CSR_{i} * CSR_{j})}
+\]</span> avec :</p>
+<ul>
+<li><p>RM <span class="math inline">\(\in\)</span> {action, taux, immobilier, écart de taux et change}</p></li>
+<li><p><span class="math inline">\(\rho\)</span> : Coefficients de corrélations.</p></li>
+</ul>
+<section id="lexigence-de-capital-relative-au-risque-action-csr_action" class="level5" data-number="6.1.1.1">
+<h5 data-number="6.1.1.1" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-risque-action-csr_action"><span class="header-section-number">6.1.1.1</span> L’exigence de capital relative au risque action (<span class="math inline">\(CSR_{action}\)</span>)</h5>
+<p>L’exigence de capital relative au risque action est le montant de la perte de fonds propres résultant des baisses simultanées des valeurs des actions.</p>
+<p>Les taux de baisse à appliquer pour le calcul de l’exigence précitée sont fixés pour les catégories d’actions suivantes:</p>
+<p>• Actions cotées à long terme</p>
+<p>• Autres actions cotées</p>
+<p>• Actions non cotées à long terme</p>
+<p>• Autres actions non cotées</p>
+<p>• Entités d’infrastructures</p>
+<p><span class="math display">\[
+CSR_{action} = VM_{action}^{\text{cas de baisse}} - VM_{action}
+\]</span></p>
+</section>
+<section id="lexigence-de-capital-relative-au-risque-de-taux-csr_taux" class="level5" data-number="6.1.1.2">
+<h5 data-number="6.1.1.2" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-risque-de-taux-csr_taux"><span class="header-section-number">6.1.1.2</span> L’exigence de capital relative au risque de taux (<span class="math inline">\(CSR_{taux}\)</span>)</h5>
+<p>L’exigence de capital relative au risque de taux, est le montant de la perte maximale de fonds propres qui résulterait de l’application de coefficients à la baisse ou à la hausse à la courbe des taux sur tout actif ou passif.</p>
+<p><span class="math display">\[
+CSR_{taux} = max (CSR_{taux-hausse}; CSR_{taux-baisse})
+\]</span> avec : &nbsp; <span class="math inline">\(CSR_{taux-i} = BE^{scénario-i} - BE\)</span> <span style="display:inline-block;width:2cm;"></span> <span class="math inline">\(i \in \{ hausse,baisse \}\)</span></p>
+</section>
+<section id="lexigence-de-capital-relative-au-risque-immobilier-csr_immobilier" class="level5" data-number="6.1.1.3">
+<h5 data-number="6.1.1.3" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-risque-immobilier-csr_immobilier"><span class="header-section-number">6.1.1.3</span> L’exigence de capital relative au risque immobilier (<span class="math inline">\(CSR_{immobilier}\)</span>)</h5>
+<p>L’exigence de capital relative au risque immobilier est la perte de fonds propres due à une baisse de X% de la valeur des actifs immobiliers. <span class="math display">\[
+CSR_{immobilier} = BE_{eng}^{\text{baisse actifs immobiliers}} - BE_{eng}
+\]</span></p>
+</section>
+<section id="lexigence-de-capital-relative-au-risque-décart-csr_textecart_taux" class="level5" data-number="6.1.1.4">
+<h5 data-number="6.1.1.4" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-risque-décart-csr_textecart_taux"><span class="header-section-number">6.1.1.4</span> L’exigence de capital relative au risque d’écart (<span class="math inline">\(CSR_{\text{Ecart_taux}}\)</span>)</h5>
+<p>L’exigence de capital relative au risque d’écart de taux est la perte de fonds propres due à l’application des taux de baisse à la valeur des titres de créances non émis ou non garantis par l’Etat.</p>
+<p>Les taux de baisse à appliquer sont calculés en fonction de la duration et de la prime de risque à l’émission.</p>
+</section>
+<section id="lexigence-de-capital-relative-au-sous-risque-de-change-csr_change" class="level5" data-number="6.1.1.5">
+<h5 data-number="6.1.1.5" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-sous-risque-de-change-csr_change"><span class="header-section-number">6.1.1.5</span> L’exigence de capital relative au sous-risque de change (<span class="math inline">\(CSR_{change}\)</span>)</h5>
+<p>L’exigence de capital relative au sous-risque de change correspond à la somme des exigences de capitaux pour risque de change pour chaque devise étrangère.</p>
+<p>L’exigence de capital pour risque de change pour chaque devise étrangère correspond à la plus élevée des exigences de capitaux suivantes:</p>
+<ul>
+<li>l’exigence de capital pour risque d’augmentation de la valeur de la devise étrangère par rapport au dirham.</li>
+<li>l’exigence de capital pour risque de diminution de la valeur de la devise étrangère par rapport au dirham.</li>
+</ul>
+<p>L’exigence de capital pour risques d’augmentation ou de diminution de la valeur de la devise étrangère par rapport au dirham est egale à la perte de fonds propres qui résulterait des scénarios d’augmentation ou de diminution, respectivement de <span class="math inline">\(X\%\)</span> et <span class="math inline">\(X\%\)</span>, de la valeur de la devise étrangère par rapport au dirham.</p>
+<p><span class="math display">\[
+CSR_{change} = \sum_{i\in RC} CSR^{change}_{i}
+\]</span> avec : <span class="math inline">\(RC\)</span> = {risque de change pour chaque devise étrangère } et <span class="math display">\[
+CSR^{change}_{i} = max (CSR^{augmentation}_{i} ; CSR^{diminution}_{i})
+\]</span> - augmentation : le risque d’augmentation de la valeur de la devise étrangère par rapport au dirham. - diminution : le risque de diminution de la valeur de la devise étrangère par rapport au dirham.</p>
+<p>tel que: &nbsp; <span class="math inline">\(CSR^{j}_{i} = BE^{\text{scénario j}} - BE\)</span> <span style="display:inline-block;width:2cm;"></span> <span class="math inline">\(j \in \{ augmentation ; diminution\}\)</span></p>
+</section>
+</section>
+<section id="exigence-de-capital-relative-au-risque-de-contrepartie-csr_contrepartie" class="level4" data-number="6.1.2">
+<h4 data-number="6.1.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-contrepartie-csr_contrepartie"><span class="header-section-number">6.1.2</span> Exigence de capital relative au risque de contrepartie (<span class="math inline">\(CSR_{contrepartie}\)</span>)</h4>
+<p>L’exigence de capital relative au risque de contrepartie est le montant total des exigences de capitaux relatives aux sous-risques de contrepartie de <em>type 1</em> et de <em>type 2</em> , une fois les coefficients de corrélation appliqués. <span class="math display">\[
+CSR_{contrepartie} = \sqrt{\sum_{i,j\in type}(\rho_{i,j}\times CSR_{contrepartie}^{i}\times CSR_{contrepartie}^{j})}
+\]</span> avec : <span class="math inline">\(type \in \{type 1 ; type 2\}\)</span></p>
+<section id="exigence-de-capital-relative-au-risque-de-contrepartie-de-type-1" class="level5" data-number="6.1.2.1">
+<h5 data-number="6.1.2.1" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-contrepartie-de-type-1"><span class="header-section-number">6.1.2.1</span> Exigence de capital relative au risque de contrepartie de type 1:</h5>
+<p>L’exigence de capital relative au risque de contrepartie de type 1 est calculé en fonction des montants de pertes en cas de défaut des cessionnaires, des cédantes et des organismes dépositaires, selon la méthode suivante: ** voir l’annexe 9**</p>
+<p><strong>1ère étape:</strong> Calcul des pertes en cas de défaut des différentes contreparties <span class="math inline">\(i\)</span>.</p>
+<ul>
+<li>Pour un contrat de réassurance:</li>
+</ul>
+<p><span class="math display">\[
+LGD_{i} = max (X * (BE_{cédée_{i}} + \text{créances sur les cessionaires} + AR_i) - \text{Dépot en espèces ou en valeur};0)
+\]</span> Où :</p>
+<ul>
+<li><p><span class="math inline">\(BE_{cédée_{i}}\)</span> : La meilleure estimation des engagements cédés au cessionnaire ;</p></li>
+<li><p><span class="math inline">\(LGD_{i}\)</span> : la perte en cas de défaut du cessionnaire i ;</p></li>
+<li><p><span class="math inline">\(\text{Depot en espèces ou en valeur}\)</span> : le montant des dépôts en espèces ou en valeurs du cessionnaire i ;</p></li>
+<li><p><span class="math inline">\(AR_i\)</span> : le montant d’atténuation du risque via les différents contrats de réassurance conclus avec le cessionnaire i. Il correspond à la différence entre les montants d’exigences de capital pour les risques de souscription vie et non-vie calculés compte non tenu de la réassurance et compte tenu de la réassurance.</p></li>
+<li><p>Pour un contrat d’acceptation: <span class="math display">\[
+LGD_{i} = max (\text{Dépôts en espèces aupret de la cédante }_i + \text{Créance sur la cédante}_i - \text{Provision techniques}_i;0  )
+\]</span> Où :</p></li>
+<li><p><span class="math inline">\(LGD_{i}\)</span>: la perte en cas de défaut de la cédante i ;</p></li>
+<li><p><span class="math inline">\(\text{Dépôts en espèces aupret de la cédante }_i\)</span> : le montant des dépôts en espèces déposés chez la cédante i ;</p></li>
+<li><p><span class="math inline">\(\text{Provision techniques}_i\)</span> : le montant des provisions techniques acceptées avec la cédante i</p></li>
+<li><p>Pour un avoir auprès d’un organisme dépositaire : <span class="math display">\[
+LGD_{i} = max (\text{Avoirs en banque}_i;0)
+\]</span> Où :</p></li>
+</ul>
+<p>-<span class="math inline">\(LGD_{i}\)</span> : la perte en cas de défaut de la banque i ;</p>
+<p><strong>2ème étape:</strong> Sommation des LGD par échelle de notation :</p>
+<p>Pour chaque échelle de notation <span class="math inline">\(k\)</span> : <span class="math display">\[
+TLGD_{K} = \sum_{\text{Contrepartie faisant partie de la même échels de notation k}} LGD_k
+\]</span></p>
+<p><strong>3ème étape:</strong> Calcul des volumes suivants : <span class="math display">\[
+V_{inter} = \sum_{j,k} \frac{PD_k * (1-PD_k) * PD_j * (1-PD_j)}{X * (PD_j+PD_k)-PD_j*PD_k} * TLGD_j *TLGD_k
+\]</span> <span class="math display">\[
+V_{inter} = \sum_{j} \frac{X* PD_j * (1-PD_j)}{X - PD_j} * \sum_{PD_j} LGD_{i}^{2}
+\]</span> Où :</p>
+<ul>
+<li><span class="math inline">\(PD_j\)</span> et<span class="math inline">\(PD_k\)</span>: probabilités de défaut des contreparties j et k, établies conformément au tableau prévu au 2) de l’annexe n°12.</li>
+<li><span class="math inline">\(TLGD_j\)</span> et <span class="math inline">\(TLGD_k\)</span> : somme des pertes en cas de défaut pour les contreparties dont la probabilité de défaut est, respectivement, de <span class="math inline">\(PD_j\)</span> et<span class="math inline">\(PD_k\)</span>.</li>
+<li><span class="math inline">\(\sum_{PD_j} LGD_{i}^{2}\)</span> : somme couvrant toutes les expositions dont la probabilité de défaut est de <span class="math inline">\(PD_j\)</span>.</li>
+</ul>
+<p><strong>4ème étape:</strong> Calcul du de la façon suivante : <span class="math display">\[
+CSR_{contrepartie}^{type1} = \begin{cases}
+X * \sqrt{V_{inter} + V_{intra}}; \; &amp; \text{si} \; \frac{\sqrt{V_{inter} + V_{intra}}}{\sum_i LGD_{i}} \leq x1 \\
+X * \sqrt{V_{inter} + V_{intra}}; \; &amp; \text{si} \; x1 \leq\frac{\sqrt{V_{inter} + V_{intra}}}{\sum_i LGD_{i}} \leq x2 \\
+\sum_i LGD_{i}  &amp; \text{si} \; \frac{\sqrt{V_{inter} + V_{intra}}}{\sum_i LGD_{i}} \geq x2 \\
+\end{cases}
+\]</span></p>
+</section>
+<section id="exigence-de-capital-relative-au-risque-de-contrepartie-de-type-2" class="level5" data-number="6.1.2.2">
+<h5 data-number="6.1.2.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-contrepartie-de-type-2"><span class="header-section-number">6.1.2.2</span> Exigence de capital relative au risque de contrepartie de type 2:</h5>
+<p>L’exigence de capital relative au risque de contrepartie de type 2 est le montant total des exigences de capitaux relatives aux risque de contrepartie des assurés, des intermédiaires et des autres contreparties : <span class="math display">\[
+CSR_{contrepartie}^{type2} = CSR_{contrepartie}^{Assures} + CSR_{contrepartie}^{Intermediaires} + CSR_{contrepartie}^{autres-contreparties}
+\]</span> avec :</p>
+<ol type="1">
+<li><p>L’exigence de capital relative au risque de contrepartie des assurés correspond à <span class="math inline">\(X\%\)</span> des créances relatives aux primes ou cotisations qui demeurent impayées six (06) mois après la date de leur émission. Les créances précitées s’entendent nettes de provisions.</p></li>
+<li><p>L’exigence de capital relative au risque de contrepartie des intermédiaires correspond à <span class="math inline">\(X\%\)</span> des créances sur les intermédiaires d’assurances nettes de provisions.</p></li>
+<li><p>L’exigence de capital relative au risque lié aux autres contreparties correspond à <span class="math inline">\(X\%\)</span> de la somme des créances de l’actif circulant, autres que les créances vis-à-vis de l’Etat des contreparties visées aux 1) et 2) ci-dessus et les montants des chèques et valeurs à encaisser, nettes de provisions et qui demeurent impayées pendant une période supérieure à six (06) mois.</p></li>
+</ol>
+</section>
+</section>
+<section id="exigence-de-capital-relative-au-risque-de-concentration-csr_concentration" class="level4" data-number="6.1.3">
+<h4 data-number="6.1.3" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-concentration-csr_concentration"><span class="header-section-number">6.1.3</span> Exigence de capital relative au risque de concentration (<span class="math inline">\(CSR_{concentration}\)</span>)</h4>
+<p>L’exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d’émetteurs appartenant aux mêmes groupes. Elle correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d’émetteurs. <span class="math display">\[
+CSR_{concentration} = \sqrt{\sum_i CSR_i^2}
+\]</span> avec <span class="math inline">\(i \in \{ \text{Les sous-risques de concentration relatifs aux differents groupes d’emetteurs.}\}\)</span></p>
+<p>Pour chaque groupe d’émetteurs, l’exigence de capital relative au risque de concentration egale à <span class="math inline">\(X\%\)</span> de l’écart positif constaté entre le montant des placements de l’entreprise d’assurances et de réassurance, autres que les valeurs de l’Etat ou celles jouissant de sa garantie, relatifs à l’ensemble d’émetteurs appartenant au groupe précité et <span class="math inline">\(X\%\)</span> du total de ses placements.</p>
+</section>
+<section id="exigence-de-capital-relative-au-risque-de-souscription-vie-_souscriptioncsr_vie" class="level4" data-number="6.1.4">
+<h4 data-number="6.1.4" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-souscription-vie-_souscriptioncsr_vie"><span class="header-section-number">6.1.4</span> Exigence de capital relative au risque de souscription vie (<span class="math inline">\(_{souscription}CSR_{vie}\)</span>)</h4>
+<p>L’exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques. <span class="math display">\[
+_{souscription}CSR_{vie} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
+\]</span> avec : <span class="math inline">\(i,j \in \{\text{mortalite, longevite, rachat, frais  catastrophe} \}\)</span></p>
+<section id="exigence-de-capital-pour-risque-de-mortalité-csr_mortalite" class="level5" data-number="6.1.4.1">
+<h5 data-number="6.1.4.1" class="anchored" data-anchor-id="exigence-de-capital-pour-risque-de-mortalité-csr_mortalite"><span class="header-section-number">6.1.4.1</span> Exigence de capital pour risque de mortalité (<span class="math inline">\(CSR_{mortalite}\)</span>)</h5>
+<p>L’exigence de capital pour risque de mortalité correspond à la perte de fonds propres due à la hausse de <span class="math inline">\(X\%\)</span> des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.</p>
+<p>La hausse des taux de mortalité précitée ne s’applique qu’aux contrats d’assurance pour lesquels une hausse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles.</p>
+<p><span class="math display">\[
+CSR_{mortalite} = BE^{hausse} - BE
+\]</span></p>
+</section>
+<section id="exigence-de-capital-pour-risque-de-longévité-csr_longévité" class="level5" data-number="6.1.4.2">
+<h5 data-number="6.1.4.2" class="anchored" data-anchor-id="exigence-de-capital-pour-risque-de-longévité-csr_longévité"><span class="header-section-number">6.1.4.2</span> Exigence de capital pour risque de longévité (<span class="math inline">\(CSR_{longévité}\)</span>)</h5>
+<p>L’exigence de capital pour risque de longévité correspond à la perte de fonds propres qui résulterait de la baisse de <span class="math inline">\(X\%\)</span> des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.</p>
+<p>La baisse des taux de mortalité précitée ne s’applique qu’aux contrats d’assurance pour lesquels une baisse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles. <span class="math display">\[
+CSR_{longévité} = BE^{baisse} - BE
+\]</span></p>
+</section>
+<section id="exigence-de-capital-pour-risque-de-rachat-csr_rachat" class="level5" data-number="6.1.4.3">
+<h5 data-number="6.1.4.3" class="anchored" data-anchor-id="exigence-de-capital-pour-risque-de-rachat-csr_rachat"><span class="header-section-number">6.1.4.3</span> Exigence de capital pour risque de rachat (<span class="math inline">\(CSR_{rachat}\)</span>)</h5>
+<p>L’exigence de capital pour risque de rachat est correspond au maximun entre les exigences de capitaux suivantes:</p>
+<ul>
+<li>L’exigence de capital pour risque de hausse des taux de rachat : cette exigence signifie la perte de fonds propre qui résulterait d’une revalorisation des provisions techniques prudentielles suite à une hausse de <span class="math inline">\(X\%\)</span> des taux de rachat retenus, en montant et en nombre. Toutefois, les taux de rachat augmentés de la hausse précitée ne doivent pas dépasser <span class="math inline">\(X\%\)</span>.</li>
+</ul>
+<p>La hausse des taux de rachat précitée ne s’applique qu’aux contrats d’assurance pour lesquels une hausse des taux de rachat entraîne une augmentation des provisions techniques prudentielles.</p>
+<ul>
+<li>L’exigence de capital pour risque de baisse des taux de rachat : cette exigence correspond à la perte de fonds propre qui résulterait d’une revalorisation des provisions technique prudentielles due à une baisse de X% des taux de rachat retenus, en montant et en nombre.</li>
+</ul>
+<p>La baisse des taux de rachat précitée ne s’applique qu’aux contrats d’assurance pour lesquels une baisse des taux de rachat entraîne une augmentation des provisions techniques prudentielles.</p>
+<p><span class="math display">\[
+CSR_{rachat} = max(CSR_{rachat}^{\text{hausse taux}}; CSR_{rachat}^{\text{baisse taux}})
+\]</span> avec : <span class="math display">\[
+CSR_{rachat}^{\text{hausse taux}} = BE_{rachat}^{\text{hausse taux}} - BE
+\]</span> <span class="math display">\[
+CSR_{rachat}^{\text{baisse taux}} = BE_{rachat}^{\text{baisse taux}} - BE
+\]</span></p>
+</section>
+<section id="exigence-de-capital-relative-au-risque-de-frais-csr_frais" class="level5" data-number="6.1.4.4">
+<h5 data-number="6.1.4.4" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-frais-csr_frais"><span class="header-section-number">6.1.4.4</span> Exigence de capital relative au risque de frais (<span class="math inline">\(CSR_{frais}\)</span>)</h5>
+<p>L’exigence de capital relative au risque de frais correspond à la perte de fonds propres due à des augmentations combinées de :</p>
+<ul>
+<li><span class="math inline">\(X%\)</span> du montant de frais de gestion unitaire moyen retenu pour le calcul des provisions techniques prudentielles des opérations d’assurance vie, décès ou de capitalisation et des rentes découlant des opérations non-vie et ce, par sous-catégorie;</li>
+<li><span class="math inline">\(X%\)</span> par année de projection du montant de frais de gestion unitaire moyen précité. <span class="math display">\[
+CSR_{frais} = BE_{frais}^{\text{chocé}} - BE_{frais}
+\]</span></li>
+</ul>
+</section>
+<section id="exigence-de-capital-relative-au-risque-de-catastrophe-csr_catastrophe" class="level5" data-number="6.1.4.5">
+<h5 data-number="6.1.4.5" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-catastrophe-csr_catastrophe"><span class="header-section-number">6.1.4.5</span> Exigence de capital relative au risque de catastrophe (<span class="math inline">\(CSR_{catastrophe}\)</span>)</h5>
+<p>L’exigence de capital relative au risque de catastrophe vie correspond à l’application d’un coefficient de <span class="math inline">\(X\%\)</span> aux montants des capitaux sous risque relatifs aux garanties en cas de décès nets de réassurance.</p>
+</section>
+</section>
+<section id="exigence-de-capital-relative-au-risque-de-souscription-non-vie-_souscriptioncsr_non-vie" class="level4" data-number="6.1.5">
+<h4 data-number="6.1.5" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-souscription-non-vie-_souscriptioncsr_non-vie"><span class="header-section-number">6.1.5</span> Exigence de capital relative au risque de souscription non vie (<span class="math inline">\(_{souscription}CSR_{non-vie}\)</span>)</h4>
+<p>L’exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux , une fois les coefficients de corrélation appliqués..</p>
+<p><span class="math display">\[
+_{souscription}CSR_{non-vie} = \sqrt{\sum_{i,j} ( \rho_{i,j} \times CSR_i \times CSR_j)}
+\]</span></p>
+<p>avec : <span class="math inline">\(i,j \in \{ \text{primes, provisions, catastrophe} \}\)</span> et <span class="math inline">\(\rho\)</span> es le coefficient de corrélation.</p>
+<section id="exigence-de-capital-relative-au-sous-risque-de-primes-csr_primes" class="level5" data-number="6.1.5.1">
+<h5 data-number="6.1.5.1" class="anchored" data-anchor-id="exigence-de-capital-relative-au-sous-risque-de-primes-csr_primes"><span class="header-section-number">6.1.5.1</span> Exigence de capital relative au sous-risque de primes (<span class="math inline">\(CSR_{primes}\)</span>)</h5>
+<p>L’exigence de capital relative au sous-risque de primes est le montant total des exigences de capitaux relatives aux sous-risques de primes par sous-catégorie et ce, après application des coefficients de corrélations. <span class="math display">\[
+CSR_{primes} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
+\]</span> avec : <span class="math inline">\(i,j \in \{ \text{Les sous-risques de primes par sous-categorie }\}\)</span> et <span class="math inline">\(\rho\)</span> es le coefficient de corrélation entre les sous-catégories des sous-risques de primes.</p>
+<p>Pour chaque sous-catégorie, l’exigence de capital afférente au sous risque de primes est égale à X fois le produit de l’écart-type de primes et du montant des primes acquises augmenté de la provision pour primes non-acquises nettes de réassurance au titre de l’exercice inventorié. <span class="math display">\[
+CSR_{sous-categorie}^{primes} = X * \sigma_{primes} * BE_{primes}
+\]</span></p>
+<p>avec : &nbsp; <span class="math inline">\(BE_{primes} = Primes_{acquises}^{nettes} + Provision_{primes_{non-acquise}}^{nettes}\)</span></p>
+</section>
+<section id="exigence-de-capital-relative-au-sous-risque-de-provisions-csr_provisions" class="level5" data-number="6.1.5.2">
+<h5 data-number="6.1.5.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-sous-risque-de-provisions-csr_provisions"><span class="header-section-number">6.1.5.2</span> Exigence de capital relative au sous-risque de provisions (<span class="math inline">\(CSR_{provisions}\)</span>)</h5>
+<p>L’exigence de capital relative au sous-risque de provisions est la somme total des exigences de capitaux relatives aux sous-risques de provision par sous-catégorie, on prenant on considration les coefficients de correlation entre les sous-risques. <span class="math display">\[
+CSR_{provisions} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
+\]</span> avec : <span class="math inline">\(i,j \in \{ Les sous-risques de provisions par sous-categorie \}\)</span> et <span class="math inline">\(\rho\)</span> es le coefficient de corrélation entre les sous-catégories des sous-risques de provisions.</p>
+<p>Pour chaque sous-catégorie, l’exigence de capital afférente au sous risque de provision est égale à X fois le produit de l’écart-type de provisions et du montant de la meilleure estimation des engagements pour sinistres nette de réassurance. <span class="math display">\[
+CSR_{sous-categorie}^{provisions} = X * \sigma_{provisions} * BE_{engagements}
+\]</span></p>
+</section>
+<section id="exigence-de-capital-relative-au-risque-de-catastrophe-non-vie" class="level5" data-number="6.1.5.3">
+<h5 data-number="6.1.5.3" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-catastrophe-non-vie"><span class="header-section-number">6.1.5.3</span> Exigence de capital relative au risque de catastrophe non-vie</h5>
+<p>L’exigence de capital relative au risque de catastrophe non-vie correspond au racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de catastrophe non-vie des garanties suivantes :</p>
+<ul>
+<li>Individuelles accidents et Invalidité ;</li>
+<li>Maladie;</li>
+<li>Accidents du travail et maladies professionnelles ;</li>
+<li>Responsabilité civile automobile des véhicules terrestres à moteur;</li>
+<li>Responsabilité civile (autre que la responsabilité civile automobile et la responsabilité civile résultant de l’emploi de véhicules fluviaux ou maritimes ou de l’emploi des aéronefs) ;</li>
+<li>Incendie ;</li>
+<li>Maritime corps, facultés et responsabilité civile résultant de l’emploi de véhicules fluviaux et maritimes ;</li>
+<li>Aviation corps et responsabilité civile résultant de l’emploi des aéronefs ;</li>
+<li>Marchandises transportées par voie terrestre ;</li>
+<li>Assurance récolte, grêle ou gelée et éléments naturels ;</li>
+<li>Crédit et caution</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="exigence-de-capital-relative-au-risque-opérationnel-csr_opérationnel" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-opérationnel-csr_opérationnel"><span class="header-section-number">6.2</span> Exigence de capital relative au risque opérationnel (<span class="math inline">\(CSR_{opérationnel}\)</span>)</h3>
+<p>L’exigence de capital relative au risque opérationnel correspond à X% du capital de solvabilité requis de base. <span class="math display">\[
+CSR_{opérationnel} = X\% * CSR_{base}
+\]</span></p>
+</section>
+<section id="ajustement-du-capital-de-solvabilité-requis" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="ajustement-du-capital-de-solvabilité-requis"><span class="header-section-number">6.3</span> Ajustement du capital de solvabilité requis</h3>
+<section id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-assurés-adj_assurespertes" class="level4" data-number="6.3.1">
+<h4 data-number="6.3.1" class="anchored" data-anchor-id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-assurés-adj_assurespertes"><span class="header-section-number">6.3.1</span> Ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés (<span class="math inline">\(Adj_{assures}^{Pertes}\)</span>)</h4>
+<p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés egale au minimum de l’écart entre le capital de solvabilité requis de base calculées brutes et nettes d’absorption par les assurés, d’une part, et le montant des bénéfices discrétionnaires futures d’autre part. <span class="math display">\[
+Adj_{assures}^{Pertes} = min (CSR_{base}^{nettes}-CSR_{base}^{brutes};BDF)
+\]</span></p>
+</section>
+<section id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-impôts-différés-ajt_textimpots-differespertes" class="level4" data-number="6.3.2">
+<h4 data-number="6.3.2" class="anchored" data-anchor-id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-impôts-différés-ajt_textimpots-differespertes"><span class="header-section-number">6.3.2</span> Ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés (<span class="math inline">\(Ajt_{\text{impots differes}}^{Pertes}\)</span>)</h4>
+<p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés correspond au produit du taux d’impôts et le minimum de la somme du capital de solvabilité requis de base et l’exigence de capital relative au risque opérationnel diminuée de l’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés, d’une part, et l’écart positif entre les impôts différés-passif et les impôts différés-actif, d’autre part. <span class="math display">\[
+Ajt_{\text{impots differes}}^{Pertes} = Tx_{impots} \times
+\]</span> <span class="math display">\[
+\times min(CSR_{base} + CSR{operationnel} - Adj_{assures}^{Pertes} ; Impots_{passif}^{differes} - Impots_{actif}^{differes})
+\]</span></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Remarque</strong></p>
+<p>Dans le cas où l’écart entre les impôts différés-passif et les impôts différés-actif est négatif, l’ajustement précité est nul.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
@@ -432,6 +989,7 @@ S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
 <li id="fn1"><p>https://www.acaps.ma/fr/l-acaps/missions<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Alonso Peña, Ph.D, C++ For Quantitative Finance<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Un contrat d’assurance mixte à prime unique sur <span class="math inline">\(N\)</span> années est un type de contrat d’assurance-vie qui permet de financer l’assurance-vie en une seule fois. Cela signifie que vous payez une prime unique pour couvrir toute la durée du contrat. Ce type de contrat est destiné aux personnes qui disposent d’un capital et souhaitent diversifier leurs placements tout en protégeant leurs proches. Dans sa variante « mixte », elle permet de réaliser un placement rémunérateur tout en assurant une couverture financière à ses proches.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->
