@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -38,6 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="Rapport PFE_files/libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="Rapport PFE_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -51,6 +115,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">1</span>  Introduction</a></li>
   <li><a href="#cadre-réglementaire-marocain" id="toc-cadre-réglementaire-marocain" class="nav-link" data-scroll-target="#cadre-réglementaire-marocain"><span class="toc-section-number">2</span>  Cadre réglementaire marocain</a></li>
+  <li><a href="#modélisation-du-prix-des-actions" id="toc-modélisation-du-prix-des-actions" class="nav-link" data-scroll-target="#modélisation-du-prix-des-actions"><span class="toc-section-number">3</span>  Modélisation du prix des actions</a></li>
   </ul>
 </nav>
 </div>
@@ -81,9 +146,9 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
-<p>Suite aux crises multiples qui ont secoué le monde de la finance et de l’assurance notamment celle de 2008, les autorités se sont rendu compte de l’insuffisance la supervision prudentielle. Cette dernière s’est montré très chétive lors de la crise d’où la nécessité de mettre en place de nouvelles dispositions prudentielles beaucoup plus robuste pour prévenir de potentielles.</p>
-<p>C’est dans ce contexte, à l’image de Bale 2 pour la finance, que la Solvabilté 2 voit le jour dans le milieu de l’assurance. Cette réforme réglementaire européenne vient renforcer la précédente en adaptant au mieux les exigences de fonds propres des compagnies d’assurances et de réassurances aux risques qu’elles encourent.</p>
-<p>Les insuffisances évoquées n’ont pas épargné le cadre prudentiel marocain. C’est ainsi que l’Autorité de Contrôle des Assurances et de la Prévoyance Sociale (ACAPS<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) a adopter la norme de Solvabilité Basé sur les Risques (SBR) afin de tenir compte de la diversités des risques encourues par les compagnies d’assurances et de réassurances marocaines. La SBR s’articule autour de trois pilliers :</p>
+<p>Suite aux crises multiples qui ont secoué le monde de la finance et de l’assurance notamment celle de 2008, les autorités se sont rendu compte de l’insuffisance de la supervision prudentielle. Cette dernière s’est montré très chétive lors de la crise d’où la nécessité de mettre en place de nouvelles dispositions prudentielles plus robustes.</p>
+<p>C’est dans ce contexte, à l’image de <em>Bale 2</em> pour la finance, que la <em>Solvabilté 2</em> voit le jour dans le milieu de l’assurance. Cette réforme réglementaire européenne vient renforcer la précédente en adaptant au mieux les exigences de fonds propres des compagnies d’assurances et de réassurances aux risques qu’elles encourent.</p>
+<p>Les insuffisances évoquées n’ont pas épargné le cadre prudentiel marocain. C’est ainsi que l’Autorité de Contrôle des Assurances et de la Prévoyance Sociale (ACAPS<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) a adopter la norme de Solvabilité Basé sur les Risques (SBR) afin de tenir compte de la diversités des risques encourues par les compagnies d’assurances et de réassurances marocaines. La SBR s’articule autour de trois piliers :</p>
 <ul>
 <li><em>Le pilier I</em> regroupe les <em>exigences quantitatives</em>, à savoir les règles de valorisation des actifs et des passifs ainsi que les exigences de capital et leur mode de calcul;</li>
 <li><em>Le pilier II</em> porte sur les <em>exigences qualitatives</em> et définit les règles de gouvernance et de gestion des risques, en l’occurrence l’évaluation interne des risques de la solvabilité;</li>
@@ -92,30 +157,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="cadre-réglementaire-marocain" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="cadre-réglementaire-marocain"><span class="header-section-number">2</span> Cadre réglementaire marocain</h2>
-<p>Le maroc est l’un des acteurs majeurs de l’assurance en Afrique. Ses compagnies ne cessent de gagner du terrain dans les marchés de la sous-région notamment en Afrique de l’ouest. Selon un rapport de l’<a href="https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays">Atlas Mag</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, le Maroc est classé <strong>2ème</strong> en arfique et <strong>49ème</strong> modial avec un <strong>chiffre d’affaire de 5 343 millions USD</strong> en 2021</p>
+<p>Le Maroc est l’un des acteurs majeurs de l’assurance en Afrique. Ses compagnies ne cessent de gagner du terrain dans les marchés de la sous-région notamment en Afrique de l’ouest. Selon un rapport de l’<a href="https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays">Atlas Mag</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, le Maroc est classé <strong>2ème</strong> en arfique et <strong>49ème</strong> modial avec un <strong>chiffre d’affaire de 5 343 millions USD</strong> en 2021.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: rvest</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:kableExtra':
-
-    group_rows</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="tbl-classement" class="anchored">
 
@@ -264,6 +307,122 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div>
 </div>
+<p>Le royaume doit ce succès à la rigueur de sont dispositif prudentiel qui se consolide de plus en plus. La SBR vient en ce sens renforcer cette dynamique. Elle s’établi sur trois piliers :</p>
+<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Rapport%20PFE_files/piliers.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Les 3 piliers de la SBR</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="modélisation-du-prix-des-actions" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="modélisation-du-prix-des-actions"><span class="header-section-number">3</span> Modélisation du prix des actions</h2>
+<p>Le prix d’une action ou plus communément appelé cours d’une action représente le prix auquel elle est acheté ou vendue sur un marché boursier. Ce prix fluctue en fonction de l’offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l’entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l’action représente la valeur perçue de l’entreprise par les investisseurs à un moment.</p>
+<p>Ainsi, si la valeur présente de l’action est une donnée du marché, sa valeur future quant à elle est aléatoire d’où la nécessité de sa modélisation.</p>
+<section id="modèle-de-black-scholes" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="modèle-de-black-scholes"><span class="header-section-number">3.1</span> Modèle de Black-Scholes</h3>
+<p>Le modèle de Black-Scholes modèle a été développé en 1973 par <em>Fischer Black</em>, <em>Robert Merton</em> et <em>Myron Scholes</em>, qui ont reçu le prix Nobel d’économie en 1997 pour leurs travaux. Ce modèle est l’un des concepts les plus importants dans la théorie de la finance modèle. Il permet dévaluer le prix d’une option européenne en fnction de son type et du prix de l’actif sous-jacent. Le modèle repose sur plusieurs hypothèses dont l’une d’entre elle est que le cours de l’actif sous jacent suit un mouvement géométrique avec une volatilité constante.</p>
+<p>En termes mathématiques, le prix d’une action peut donc être représenté comme une fonction scalaire du temps actuel <span class="math inline">\(t\)</span>. Nous noterons cette fonction <span class="math inline">\(S(t)\)</span>. Notons qu’en termes techniques, <span class="math inline">\(S(t)\)</span> est une série temporelle, qui bien qu’apparemment continue (avec continuité <span class="math inline">\(C[0]\)</span>), est en réalité discontinue (sujette de sauts). De plus, ce n’est pas une fonction dont la dérivée première n’existe pas.</p>
+<p>Nous allons modéliser <span class="math inline">\(S(t)\)</span> comme une variable stochastique. Dans cette situation, nous sommes tenus de ne pas utiliser les outils standards de calcul (tels que les séries de Taylor, les dérivées, l’intégrale de Riemann), mais sont plutôt contraints d’utiliser les outils de calculs stochastiques (tels que le lemme d’Ito, la dérivée de Radon-Nykodym, Riemann -Stieltjes intégrale) pour faire avancer notre modélisation.</p>
+<p>Dans ce contexte, le comportement de la variable <span class="math inline">\(S(t)\)</span> peut être décrit pour une <em>Equation Différentielle Stochastique</em> (<span class="math inline">\(EDS\)</span>). Dans le cas des actions, l’<span class="math inline">\(EDS\)</span> standard utilisée pour modéliser la trajectoire du cours est appelé <em>Mouvement Brownien Géométrique</em> (<span class="math inline">\(GBM\)</span> : Geometric Brownian Motion). Sous la mesure de probabilité dite réelle <span class="math inline">\(P\)</span>, le mouvement brownien géométrique (<span class="math inline">\(GBM\)</span>) est formellement représenté en temps continu de la manière suivante : <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><span id="eq-gbmp"><span class="math display">\[
+dS_t = \mu S_t dt + \sigma S_t dW^P_t
+  \tag{1}\]</span></span></p>
+<p>où <span class="math inline">\(\mu\)</span> représente le drift, <span class="math inline">\(\sigma\)</span> la volatilité et <span class="math inline">\(W^P\)</span> est mouvement brownien standard sous la probabilité <span class="math inline">\(P\)</span>.</p>
+<p>Cependant, dans la littérature, cette représentation n’est pas utilisée pour la valorisation des produit dérivés. Il est remplacé par la représentation suivante sous la mesure de probabilité neutre au risque <span class="math inline">\(\mathbb{Q}\)</span>:</p>
+<p><span id="eq-gbmq"><span class="math display">\[
+dS_t = r S_t dt + \sigma S_t dW^\mathbb{Q}_t
+  \tag{2}\]</span></span></p>
+<p>Dans l’<a href="#eq-gbmq">Equation&nbsp;2</a> précédente, nous avons remplacé <span class="math inline">\(\mu\)</span> par le taux d’intérêt sans risque <span class="math inline">\(r\)</span>, <span class="math inline">\(\sigma\)</span> est la volatilité et <span class="math inline">\(dW\)</span> est l’incrément d’un processus de Wiener. L’équation 2 peut en outre être représentée comme suit :</p>
+<p><span class="math display">\[
+\frac{dS_t}{S_t} = r dt + \sigma  dW^\mathbb{Q}_t
+\]</span></p>
+<p>Dans cette dernière équation, nous pouvons identifier le terme <span class="math inline">\(\frac{dS_t}{S_t}\)</span> du côté gauche de l’équation comme le rendement des capitaux propres. Ainsi, les deux termes du côté droit de l’équation sont un « terme de dérive » et un « terme de volatilité ». Chacun de ces termes est « mis à l’échelle » par les paramètres μ et σ , qui sont calibrés sur les prix actuels du marché des instruments négociés, tels que les options d’achat et de vente.</p>
+<p>Intéressons nous aux solutions <span class="math inline">\((S_t)_{t\geq 0}\)</span> de l’EDS <a href="#eq-gbmq">Equation&nbsp;2</a> qui peut être réécrite comme suit :</p>
+<p><span id="eq-intEDS"><span class="math display">\[
+S_t = x_0 + \int_{0}^{t}S_s(\mu dt + \sigma  dW^\mathbb{P}_s)\;;\;\;avec\; S_0=x_0
+\tag{3}\]</span></span></p>
+<p>Puisque <span class="math inline">\(\mu\)</span> et <span class="math inline">\(\sigma\)</span> sont positifs, cela signifie que l’on cherche un processus adapté <span class="math inline">\((S_t)_{t\geq 0 }\)</span> tel que les intégrales <span class="math inline">\(\int_0^t S_s\)</span> et <span class="math inline">\(\int_0^t S_s dW^\mathbb{P}_s\)</span> aient un sens, et qui vérifie l’<a href="#eq-intEDS">Equation&nbsp;3</a>, pour chaque <span class="math inline">\(t\)</span>.</p>
+<p>Commençons par un calcul formel en posant <span class="math inline">\(Y_t = log(S_t)\)</span> où <span class="math inline">\(S_t\)</span> est une solution de l’<a href="#eq-intEDS">Equation&nbsp;3</a>. <span class="math inline">\(S_t\)</span> est un processus d’Itô avec <span class="math inline">\(K_s = \mu S_s\)</span> et <span class="math inline">\(H_s = \sigma S_s\)</span>. Appliquons la formule d’Itô à <span class="math inline">\(f(x) = log(x)\)</span>. On obtient, en supposant <span class="math inline">\(S_t\)</span> positif:</p>
+<p><span class="math display">\[
+log(S_t) = log(S_0) + \int_{0}^{t} \frac{dS_s}{S_s}+\frac{1}{2} \int_{0}^{t}\frac{-1}{S_s^2}\sigma^2S_s^2 ds
+\]</span> soit, en utilsant <a href="#eq-gbmp">Equation&nbsp;1</a></p>
+<p><span class="math display">\[
+Y_t = Y_0 + \int_0^t (\mu - \frac{\sigma^2}{2})ds + \int_0^t\sigma dW_s
+\]</span>,</p>
+<p>puis</p>
+<p><span class="math display">\[
+Y_t = log(S_t) =  log(S_0)+  (\mu - \frac{\sigma^2}{2})t + \sigma W_t
+\]</span> ainsi :</p>
+<p><span id="eq-solBS"><span class="math display">\[
+S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
+\tag{4}\]</span></span> est solution de l’EDS.</p>
+<div class="cell" data-label="fig-gbmPlot">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>SBM <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">t0 =</span> <span class="dv">0</span>,<span class="at">T_ =</span> <span class="dv">1</span>,<span class="at">N =</span> <span class="dv">10000</span>,<span class="at">nsim =</span> <span class="dv">100</span>){</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">Map</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x) {<span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">rnorm</span>(<span class="at">n=</span> N,<span class="at">mean =</span> <span class="dv">0</span>,<span class="at">sd =</span> <span class="fu">sqrt</span>((T_ <span class="sc">-</span>t0)<span class="sc">/</span>N))) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cumsum</span>()},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(N,nsim))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_cols</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">names&lt;-</span><span class="st">`</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>,<span class="dv">1</span><span class="sc">:</span>nsim))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">t=</span><span class="fu">seq</span>(t0,T_,<span class="at">length.out =</span> N <span class="sc">+</span><span class="dv">1</span>) ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">relocate</span>(t)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  plt <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    reshape2<span class="sc">::</span><span class="fu">melt</span>(<span class="at">id=</span><span class="st">"t"</span>,<span class="at">value.name =</span> <span class="st">"Brownian"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>t, <span class="at">y=</span>Brownian, <span class="at">colour=</span>variable)) <span class="sc">+</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Brownian motion"</span>)<span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    hrbrthemes<span class="sc">::</span><span class="fu">theme_ipsum</span>(<span class="at">grid =</span> <span class="st">""</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">data =</span> X,<span class="at">plots =</span>plt )</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometric</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>GBM <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">S0=</span><span class="dv">100</span>,<span class="at">mu =</span> .<span class="dv">05</span>,<span class="at">sigma =</span>.<span class="dv">4</span>,<span class="at">t0=</span><span class="dv">0</span>,<span class="at">T_=</span> <span class="dv">1</span>,<span class="at">N =</span> <span class="dv">10000</span>,<span class="at">nsim =</span> <span class="dv">100</span>){</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  sbm <span class="ot">&lt;-</span> <span class="fu">SBM</span>(<span class="at">t0 =</span> t0,<span class="at">T_ =</span> T_,<span class="at">N =</span> N,<span class="at">nsim =</span> nsim)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> sbm<span class="sc">$</span>data<span class="sc">$</span>t</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  listSBM <span class="ot">&lt;-</span>  <span class="fu">as.list</span>(sbm<span class="sc">$</span>data[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">=</span> <span class="fu">Map</span>(<span class="cf">function</span>(x){</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    S0<span class="sc">*</span><span class="fu">exp</span>(t<span class="sc">*</span>(mu<span class="fl">-0.5</span><span class="sc">*</span>sigma<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span>sigma<span class="sc">*</span>listSBM[[x]])</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  },<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>nsim) <span class="sc">%&gt;%</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_cols</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">names&lt;-</span><span class="st">`</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>,<span class="dv">1</span><span class="sc">:</span>nsim)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">t=</span>t) <span class="sc">%&gt;%</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">relocate</span>(t)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  plt <span class="ot">&lt;-</span> S <span class="sc">%&gt;%</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    reshape2<span class="sc">::</span><span class="fu">melt</span>(<span class="at">id=</span><span class="st">"t"</span>,<span class="at">value.name =</span> <span class="st">"GBM"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>t, <span class="at">y=</span>GBM, <span class="at">colour=</span>variable)) <span class="sc">+</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Geometric Brownian Motion"</span>)<span class="sc">+</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    hrbrthemes<span class="sc">::</span><span class="fu">theme_ipsum</span>(<span class="at">grid =</span> <span class="st">"XY"</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  mean_path <span class="ot">=</span> <span class="fu">apply</span>(S[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">1</span>,mean)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  ST <span class="ot">=</span> mean_path[<span class="fu">length</span>(mean_path)]</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  plt_mean <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>,<span class="fu">aes</span>(<span class="at">x=</span>t, <span class="at">y=</span>mean_path,<span class="at">color =</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Mean price"</span>)<span class="sc">+</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    hrbrthemes<span class="sc">::</span><span class="fu">theme_ipsum</span>(<span class="at">grid =</span> <span class="st">"XY"</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">data =</span> S,<span class="at">plots =</span>plt ,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>       <span class="at">mean_path =</span> mean_path,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>       <span class="at">ST =</span> ST,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>       <span class="at">plt_mean =</span> plt_mean)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>GBM_Sim <span class="ot">=</span> <span class="fu">GBM</span>()</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>GBM_Sim<span class="sc">$</span>plt_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Rapport-PFE_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Simulation de la trajectoire du prix de l’action X par la méthode de Monte Carlo en utilsant le modèle de Black and Scholes</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </section>
 
 
@@ -272,6 +431,7 @@ Attaching package: 'dplyr'</code></pre>
 <ol>
 <li id="fn1"><p>https://www.acaps.ma/fr/l-acaps/missions<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Alonso Peña, Ph.D, C++ For Quantitative Finance<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->

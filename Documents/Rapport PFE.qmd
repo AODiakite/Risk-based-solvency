@@ -38,12 +38,13 @@ Le Maroc est l'un des acteurs majeurs de l'assurance en Afrique. Ses compagnies 
 ```{r echo=FALSE, warning=FALSE,message=FALSE}
 #| label: tbl-classement
 #| tbl-cap: Marché africain de l'assurance en 2021
-require(rvest)
+library(rvest)
 library(kableExtra)
 library(dplyr)
 
 link = "https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays"
-table <- read_html(link) %>%
+
+table <- read_html(link,options = "NOERROR") %>%
   html_nodes("table") %>%
   .[[1]] %>%
   html_table()
@@ -63,6 +64,135 @@ table %>%
 Le royaume doit ce succès à la rigueur de sont dispositif prudentiel qui se consolide de plus en plus. La SBR vient en ce sens renforcer cette dynamique. Elle s'établi sur trois piliers :
 
 ![Les 3 piliers de la SBR](Rapport PFE_files/piliers.png){#fig-piliers}
+
+## Modélisation du prix des actions
+
+Le prix d'une action ou plus communément appelé cours d'une action représente le prix auquel elle est acheté ou vendue sur un marché boursier. Ce prix fluctue en fonction de l'offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l'entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l'action représente la valeur perçue de l'entreprise par les investisseurs à un moment.
+
+Ainsi, si la valeur présente de l'action est une donnée du marché, sa valeur future quant à elle est aléatoire d'où la nécessité de sa modélisation.
+
+### Modèle de Black-Scholes
+
+ Le modèle de Black-Scholes modèle a été développé en 1973 par _Fischer Black_, _Robert Merton_ et _Myron Scholes_, qui ont reçu le prix Nobel d'économie en 1997 pour leurs travaux. Ce modèle est l'un des concepts les plus importants dans la théorie de la finance modèle. Il permet dévaluer le prix d'une option européenne en fnction de son type et du prix de l'actif sous-jacent. Le modèle repose sur plusieurs hypothèses dont l'une d'entre elle est que le cours de l'actif sous jacent suit un mouvement géométrique avec une volatilité constante.
+ 
+ En termes mathématiques, le prix d'une action peut donc être représenté comme une fonction scalaire du temps actuel $t$. Nous noterons cette fonction $S(t)$. Notons qu'en termes techniques, $S(t)$ est une série temporelle, qui bien qu'apparemment continue (avec continuité $C[0]$), est en réalité discontinue (sujette de sauts). De plus, ce n'est pas une fonction dont la dérivée première n'existe pas.
+ 
+ Nous allons modéliser $S(t)$ comme une variable stochastique. Dans cette situation, nous sommes tenus de ne pas utiliser les outils standards de calcul (tels que les séries de Taylor, les dérivées, l'intégrale de Riemann), mais sont plutôt contraints d'utiliser les outils de calculs stochastiques (tels que le lemme d'Ito, la dérivée de Radon-Nykodym, Riemann -Stieltjes intégrale) pour faire avancer notre modélisation.
+ 
+ Dans ce contexte, le comportement de la variable $S(t)$ peut être décrit pour une *Equation Différentielle Stochastique* ($EDS$). Dans le cas des actions, l'$EDS$ standard utilisée pour modéliser la trajectoire du cours est appelé *Mouvement Brownien Géométrique* ($GBM$ : Geometric Brownian Motion). Sous la mesure de probabilité dite réelle $P$, le mouvement brownien géométrique ($GBM$) est formellement représenté en temps continu de la manière suivante : ^[Alonso Peña, Ph.D, C++ For Quantitative Finance]
+ 
+ $$
+ dS_t = \mu S_t dt + \sigma S_t dW^P_t
+ $${#eq-gbmp}
+ 
+ où $\mu$ représente le drift, $\sigma$ la volatilité et $W^P$ est mouvement brownien standard sous la probabilité $P$.
+ 
+ Cependant, dans la littérature, cette représentation n'est pas utilisée pour la valorisation des produit dérivés. Il est remplacé par la représentation suivante sous la mesure de probabilité neutre au risque $\mathbb{Q}$:
+ 
+ $$
+ dS_t = r S_t dt + \sigma S_t dW^\mathbb{Q}_t
+ $${#eq-gbmq}
+
+Dans l'@eq-gbmq précédente, nous avons remplacé $\mu$ par le taux d'intérêt sans risque $r$, $\sigma$ est la volatilité et $dW$ est l'incrément d'un processus de Wiener. L'équation 2 peut en outre être représentée comme suit :
+
+$$
+ \frac{dS_t}{S_t} = r dt + \sigma  dW^\mathbb{Q}_t
+$$
+
+Dans cette dernière équation, nous pouvons identifier le terme $\frac{dS_t}{S_t}$ du côté gauche de l'équation comme le rendement des capitaux propres. Ainsi, les deux termes du côté droit de l'équation sont un « terme de dérive » et un « terme de volatilité ». Chacun de ces termes est « mis à l'échelle » par les paramètres μ et σ , qui sont calibrés sur les prix actuels du marché des instruments négociés, tels que les options d'achat et de vente.
+
+Intéressons nous aux solutions $(S_t)_{t\geq 0}$ de l'EDS @eq-gbmq qui peut être réécrite comme suit :
+
+$$
+S_t = x_0 + \int_{0}^{t}S_s(\mu dt + \sigma  dW^\mathbb{P}_s)\;;\;\;avec\; S_0=x_0
+$${#eq-intEDS}
+
+Puisque $\mu$ et $\sigma$ sont positifs, cela signifie que l'on cherche un processus adapté $(S_t)_{t\geq 0 }$ tel que les intégrales $\int_0^t S_s$ et  $\int_0^t S_s  dW^\mathbb{P}_s$ aient un sens, et qui vérifie l'@eq-intEDS, pour chaque $t$.
+
+Commençons par un calcul formel en posant $Y_t = log(S_t)$ où $S_t$ est une solution de l'@eq-intEDS. $S_t$ est un processus d'Itô avec $K_s = \mu S_s$ et $H_s = \sigma S_s$. Appliquons la formule d'Itô à $f(x) = log(x)$. On obtient, en supposant $S_t$ positif:
+
+$$
+log(S_t) = log(S_0) + \int_{0}^{t} \frac{dS_s}{S_s}+\frac{1}{2} \int_{0}^{t}\frac{-1}{S_s^2}\sigma^2S_s^2 ds
+$$
+soit, en utilsant @eq-gbmp
+
+$$
+Y_t = Y_0 + \int_0^t (\mu - \frac{\sigma^2}{2})ds + \int_0^t\sigma dW_s 
+$$,
+
+puis
+
+$$
+Y_t = log(S_t) =  log(S_0)+  (\mu - \frac{\sigma^2}{2})t + \sigma W_t
+$$
+ainsi :
+
+$$
+S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
+$${#eq-solBS}
+est solution de l'EDS.
+
+```{r echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#| Label: fig-gbmPlot
+#| fig-cap: "Simulation de la trajectoire du prix de l'action X par la méthode de Monte Carlo en utilsant le modèle de Black and Scholes"
+library(ggplot2)
+SBM <- function(t0 = 0,T_ = 1,N = 10000,nsim = 100){
+  X <- Map(
+    function(x) {c(0,rnorm(n= N,mean = 0,sd = sqrt((T_ -t0)/N))) %>%
+        cumsum()},
+    x = as.list(rep(N,nsim))
+  ) %>%
+    bind_cols() %>%
+    `names<-`(paste0("X",1:nsim))
+  X <- X %>%
+    mutate(t=seq(t0,T_,length.out = N +1) ) %>%
+    relocate(t)
+
+  plt <- X %>%
+    reshape2::melt(id="t",value.name = "Brownian") %>%
+    ggplot(aes(x=t, y=Brownian, colour=variable)) +
+    geom_line(show.legend = F) +
+    ylab("Brownian motion")+
+    hrbrthemes::theme_ipsum(grid = "")
+
+  list(data = X,plots =plt )
+
+}
+# Geometric
+GBM <- function(S0=100,mu = .05,sigma =.4,t0=0,T_= 1,N = 10000,nsim = 100){
+  sbm <- SBM(t0 = t0,T_ = T_,N = N,nsim = nsim)
+  t <- sbm$data$t
+  listSBM <-  as.list(sbm$data[,-1])
+  S = Map(function(x){
+    S0*exp(t*(mu-0.5*sigma^2)+sigma*listSBM[[x]])
+  },x=1:nsim) %>%
+    bind_cols() %>%
+    `names<-`(paste0("X",1:nsim)) %>%
+    mutate(t=t) %>%
+    relocate(t)
+  plt <- S %>%
+    reshape2::melt(id="t",value.name = "GBM") %>%
+    ggplot(aes(x=t, y=GBM, colour=variable)) +
+    geom_line(show.legend = F) +
+    ylab("Geometric Brownian Motion")+
+    hrbrthemes::theme_ipsum(grid = "XY")
+  mean_path = apply(S[,-1],1,mean)
+  ST = mean_path[length(mean_path)]
+  plt_mean <- ggplot(data = NULL,aes(x=t, y=mean_path,color = "red")) +
+    geom_line(show.legend = F) +
+    ylab("Mean price")+
+    hrbrthemes::theme_ipsum(grid = "XY")
+  list(data = S,plots =plt ,
+       mean_path = mean_path,
+       ST = ST,
+       plt_mean = plt_mean)
+}
+
+GBM_Sim = GBM()
+GBM_Sim$plt_mean
+```
+
+
 
 
 
