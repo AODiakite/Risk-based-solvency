@@ -52,9 +52,9 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">1</span>  Introduction</a></li>
   <li><a href="#cadre-réglementaire-marocain" id="toc-cadre-réglementaire-marocain" class="nav-link" data-scroll-target="#cadre-réglementaire-marocain"><span class="toc-section-number">2</span>  Cadre réglementaire marocain</a></li>
-  <li><a href="#modélisation-du-prix-des-actions" id="toc-modélisation-du-prix-des-actions" class="nav-link" data-scroll-target="#modélisation-du-prix-des-actions"><span class="toc-section-number">3</span>  Modélisation du prix des actions</a></li>
+  <li><a href="#valorisation-de-lactif" id="toc-valorisation-de-lactif" class="nav-link" data-scroll-target="#valorisation-de-lactif"><span class="toc-section-number">3</span>  Valorisation de l’actif</a></li>
   <li><a href="#la-construction-de-la-courbe-des-taux-zéro-coupon" id="toc-la-construction-de-la-courbe-des-taux-zéro-coupon" class="nav-link" data-scroll-target="#la-construction-de-la-courbe-des-taux-zéro-coupon"><span class="toc-section-number">4</span>  La construction de la courbe des taux zéro-coupon :</a></li>
-  <li><a href="#valorisation-des-provisions-techniques-prudentielles" id="toc-valorisation-des-provisions-techniques-prudentielles" class="nav-link" data-scroll-target="#valorisation-des-provisions-techniques-prudentielles"><span class="toc-section-number">5</span>  VALORISATION DES PROVISIONS TECHNIQUES PRUDENTIELLES:</a></li>
+  <li><a href="#valorisation-des-provisions-techniques-prudentielles" id="toc-valorisation-des-provisions-techniques-prudentielles" class="nav-link" data-scroll-target="#valorisation-des-provisions-techniques-prudentielles"><span class="toc-section-number">5</span>  Valorisation des provisions techniques prudentielles</a></li>
   <li><a href="#capital-de-solvabilité-requis" id="toc-capital-de-solvabilité-requis" class="nav-link" data-scroll-target="#capital-de-solvabilité-requis"><span class="toc-section-number">6</span>  Capital de Solvabilité Requis :</a></li>
   </ul>
 </nav>
@@ -86,8 +86,6 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
-<p>Pendant longtemps, l’assurance au Maroc n’a pas été toujours une culture de nos ancêtres. Cette notion a été considérée comme immorale car elle développait la négligence et l’idee de pari. L’assurance aussi a été inacceptable par le système juridique islamique,En excluant les besoins de la croissance économique. Ainsi que, Le faible pouvoir d’achat de la plupart des couches de la population qui considèrent l’assurance comme un produit de luxe, réservé seulement aux marocains issus de la classe à revenu élevé, constituait en partie un véritable handicap au développement naturel de ce secteur. Pour toutes ces raisons, l’assurance, toutes branches confondues, totalement étrangère à la tradition juridique du pays, n’a pu voir le jour qu’après l’avènement du protectorat.</p>
-<p>Au fil du temps, cette pratique a réussi à se tisser une place dans la société marocaine. Les premières compagnies d’assurances étaient des compagnies étrangères travaillant dans le domaine de l’assurance maritime, et ce n’est qu’après, que cette activité a pu se généraliser pour toucher d’autres secteurs avec notamment l’arrivée de nouveaux besoins (santé, automobile, biens divers…).</p>
 <p>Suite aux crises multiples qui ont secoué le monde de la finance et de l’assurance notamment celle de 2008, les autorités se sont rendu compte de l’insuffisance de la supervision prudentielle. Cette dernière s’est montré très chétive lors de la crise d’où la nécessité de mettre en place de nouvelles dispositions prudentielles plus robustes.</p>
 <p>C’est dans ce contexte, à l’image de <em>Bale 2</em> pour la finance, que la <em>Solvabilté 2</em> voit le jour dans le milieu de l’assurance. Cette réforme réglementaire européenne vient renforcer la précédente en adaptant au mieux les exigences de fonds propres des compagnies d’assurances et de réassurances aux risques qu’elles encourent.</p>
 <p>Les insuffisances évoquées n’ont pas épargné le cadre prudentiel marocain. C’est ainsi que l’Autorité de Contrôle des Assurances et de la Prévoyance Sociale (ACAPS<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) a adopter la norme de Solvabilité Basé sur les Risques (SBR) afin de tenir compte de la diversités des risques encourues par les compagnies d’assurances et de réassurances marocaines. La SBR s’articule autour de trois piliers :</p>
@@ -257,12 +255,21 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="modélisation-du-prix-des-actions" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="modélisation-du-prix-des-actions"><span class="header-section-number">3</span> Modélisation du prix des actions</h2>
+<section id="valorisation-de-lactif" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="valorisation-de-lactif"><span class="header-section-number">3</span> Valorisation de l’actif</h2>
+<section id="actions-cotées-à-la-bourse" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="actions-cotées-à-la-bourse"><span class="header-section-number">3.1</span> Actions cotées à la bourse</h3>
+<p>Les actions cotées à la bourse de Casablanca sont valorisées conformément à la <em>Spécification technique 7</em> de la <em>Section 2</em> de la circulaire de l’ACAPS comme suit :</p>
+<ul>
+<li>Dernier coté avant la date d’inventaire</li>
+<li>Moyenne des cours côtés des trois derniers mois précédant la date d’inventaire si le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d’inventaire sont inférieurs aux seuils fixés par autorité</li>
+</ul>
+<section id="modélisation-du-prix-des-actions" class="level4" data-number="3.1.1">
+<h4 data-number="3.1.1" class="anchored" data-anchor-id="modélisation-du-prix-des-actions"><span class="header-section-number">3.1.1</span> Modélisation du prix des actions</h4>
 <p>Le prix d’une action ou plus communément appelé cours d’une action représente le prix auquel elle est acheté ou vendue sur un marché boursier. Ce prix fluctue en fonction de l’offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l’entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l’action représente la valeur perçue de l’entreprise par les investisseurs à un moment.</p>
 <p>Ainsi, si la valeur présente de l’action est une donnée du marché, sa valeur future quant à elle est aléatoire d’où la nécessité de sa modélisation.</p>
-<section id="modèle-de-black-scholes" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="modèle-de-black-scholes"><span class="header-section-number">3.1</span> Modèle de Black-Scholes</h3>
+<section id="modèle-de-black-scholes" class="level5" data-number="3.1.1.1">
+<h5 data-number="3.1.1.1" class="anchored" data-anchor-id="modèle-de-black-scholes"><span class="header-section-number">3.1.1.1</span> Modèle de Black-Scholes</h5>
 <p>Le modèle de Black-Scholes modèle a été développé en 1973 par <em>Fischer Black</em>, <em>Robert Merton</em> et <em>Myron Scholes</em>, qui ont reçu le prix Nobel d’économie en 1997 pour leurs travaux. Ce modèle est l’un des concepts les plus importants dans la théorie de la finance modèle. Il permet dévaluer le prix d’une option européenne en fnction de son type et du prix de l’actif sous-jacent. Le modèle repose sur plusieurs hypothèses dont l’une d’entre elle est que le cours de l’actif sous jacent suit un mouvement géométrique avec une volatilité constante.</p>
 <p>En termes mathématiques, le prix d’une action peut donc être représenté comme une fonction scalaire du temps actuel <span class="math inline">\(t\)</span>. Nous noterons cette fonction <span class="math inline">\(S(t)\)</span>. Notons qu’en termes techniques, <span class="math inline">\(S(t)\)</span> est une série temporelle, qui bien qu’apparemment continue (avec continuité <span class="math inline">\(C[0]\)</span>), est en réalité discontinue (sujette de sauts). De plus, ce n’est pas une fonction dont la dérivée première n’existe pas.</p>
 <p>Nous allons modéliser <span class="math inline">\(S(t)\)</span> comme une variable stochastique. Dans cette situation, nous sommes tenus de ne pas utiliser les outils standards de calcul (tels que les séries de Taylor, les dérivées, l’intégrale de Riemann), mais sont plutôt contraints d’utiliser les outils de calculs stochastiques (tels que le lemme d’Ito, la dérivée de Radon-Nykodym, Riemann -Stieltjes intégrale) pour faire avancer notre modélisation.</p>
@@ -311,6 +318,8 @@ S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
 </div>
 </section>
 </section>
+</section>
+</section>
 <section id="la-construction-de-la-courbe-des-taux-zéro-coupon" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="la-construction-de-la-courbe-des-taux-zéro-coupon"><span class="header-section-number">4</span> La construction de la courbe des taux zéro-coupon :</h2>
 <p>Dans cette partie nous nous intéressons à la construction de la courbe des taux zéro-coupon dont nous avons besoin dans le reste de ce travaille afin d’actualiser les flux futurs entrant dans le calcul des différentes BEST ESTIMATE. Les taux Zéro Coupons sont extraite à partir des taux moyens pondérés des transactions des bons de trésor publiées par BANK AL MAGHRIB. Ces taux en fait, sont des taux monétaires pour les maturités inférieures ou égales à un an, alors qu’il représente un taux actuariel pour les maturités supérieures à un an, de plus ils ne sont disponibles que pour certaines maturités (Remarque : Insérant une figure).</p>
@@ -324,7 +333,7 @@ S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
 <section id="transformation-des-taux-monétaires-en-taux-actuariels" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="transformation-des-taux-monétaires-en-taux-actuariels"><span class="header-section-number">4.1</span> Transformation des taux monétaires en taux actuariels :</h3>
 <p>Cette étape consiste à transformer les taux monétaires à des taux actuariels en utilisant la relation suivante : <span class="math display">\[
-T_a=(1+\frac{n}{360}*T_m )^{\frac{365}{n}}-1
+T_a=(1+\frac{n}{365}*T_m )^{\frac{365}{n}}-1
 \]</span> Avec :</p>
 <p><span class="math inline">\(T_a\)</span> : Le taux actuariel.</p>
 <p><span class="math inline">\(T_m\)</span> : Le taux monétaire.</p>
@@ -335,8 +344,9 @@ T_a=(1+\frac{n}{360}*T_m )^{\frac{365}{n}}-1
 <section id="interpolation-linéaire-de-la-courbe-des-taux-actuariels" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="interpolation-linéaire-de-la-courbe-des-taux-actuariels"><span class="header-section-number">4.2</span> Interpolation linéaire de la courbe des taux actuariels :</h3>
 <p>En réalité nous disposons que des taux actuariels des maturités ayant des valeurs décimales, le but de cette étape est donc la détermination des taux actuariels avec des maturités pleines en utilisant une interpolation linéaire.</p>
-<p>Cette opération consiste à déterminer Le DPL qui correspond au dernier point liquide. Il est déterminé de sorte que le volume cumulé des obligations dont les échéances sont supérieures au DPL est inférieur à 6% du volume total des transactions prises en compte pour la construction de la courbe des taux zéro-coupon. Il correspond aussi à dernière maturité observable.</p>
-<p>La formule d’interpolation pour toute maturité j allant de 1, 2, . . ., DPL est la suivante : <span class="math display">\[
+<p>Cette opération consiste à déterminer le <span class="math inline">\(DPL\)</span> qui correspond au dernier point liquide. Il est déterminé de sorte que le volume cumulé des obligations dont les échéances sont supérieures au DPL est inférieur à <span class="math inline">\(6\%\)</span> du volume total des transactions prises en compte pour la construction de la courbe des taux zéro-coupon. Il correspond aussi à dernière maturité observable.</p>
+<p>La formule d’interpolation pour toute maturité <span class="math inline">\(j\)</span> allant de <span class="math inline">\(1, 2,\dots, DPL\)</span> est la suivante :</p>
+<p><span class="math display">\[
 t_j=t_i+\frac{t_{i+1 }-t_i}{n_{i+1 }-n_i} *(j-n_i )
 \]</span></p>
 <p>Avec :</p>
@@ -354,7 +364,22 @@ t_j=t_i+\frac{t_{i+1 }-t_i}{n_{i+1 }-n_i} *(j-n_i )
 <li><strong>Pour une maturité supérieure à un an</strong> :</li>
 </ul>
 <p>Le taux zéro-coupon est calculé par la formule suivante : <span class="math display">\[
-R_n =  ^{n}\sqrt{\frac{1+t_n}{1-t_n + \sum_{i=1}^{n} \frac{1}{(1+R_i)^{i}}}} - 1
+R_n =  \sqrt[n]{\frac{1+t_n}{1-t_n \times \sum_{i=1}^{n-1} \frac{1}{(1+R_i)^{i}}}} - 1
+\]</span></p>
+<p>En effet, on a supposé que le prix théorique d’une obligation correspond à la somme de ses flux futures actualisés aux taux zéro-coupon de l’échéance de chaque flux: <span class="math display">\[
+P = \frac{t_n * N }{(1+R_1)} + \frac{t_n * N }{(1+R_2)^2}+ \dots + \frac{N +t_n * N }{(1+R_n)^n}
+\]</span></p>
+<p>-<span class="math inline">\(P\)</span> : Prix d’émission du bon de trésor.</p>
+<p>-<span class="math inline">\(N\)</span> : Valeur Nominale du bon de trésor.</p>
+<p>Et puisque on a supposé que les prix des obligations des Bons du trésor sont émises au pair, c’est-à-dire que le prix d’émission des obligations des bons du trésor et leur valeur nominale sont égaux (P= N), on trouve:</p>
+<p><span class="math display">\[
+1 = \frac{t_n  }{(1+R_1)} + \frac{t_n }{(1+R_2)^2}+ \dots + \frac{1+ t_n }{(1+R_n)^n}
+\]</span> <span class="math display">\[
+\implies \frac{1+ t_n }{(1+R_n)^n} = 1- t_n * \sum_{i=1}^{n-1} \frac{1}{(1+R_i)^i}
+\]</span> <span class="math display">\[
+\implies  (1+R_n)^n = \frac{1+ t_n}{1- t_n * \sum_{i=1}^{n-1} \frac{1}{(1+R_i)^i}}
+\]</span> Ce qui preuve que : <span class="math display">\[
+R_n = \sqrt[n]{\frac{1+t_n}{1-t_n * \sum_{i=1}^{n-1} \frac{1}{(1+R_i)^{i}}}} - 1
 \]</span></p>
 </section>
 <section id="extrapolation-de-la-courbe-des-taux-zéro-coupon-méthode-de-smith-wilson" class="level3" data-number="4.4">
@@ -367,42 +392,53 @@ R_n =  ^{n}\sqrt{\frac{1+t_n}{1-t_n + \sum_{i=1}^{n} \frac{1}{(1+R_i)^{i}}}} - 1
 <li>le UFR (Ultimate Forward Rate)</li>
 <li><span class="math inline">\(\alpha\)</span> la vitesse de convergence vers le UFR.</li>
 </ul>
-<p>En fait, sur le marché on observe les prix zéro-coupons de différentes maturités <span class="math inline">\(u_1, u_2, . . . , u_N\)</span> alors Smith-Wilson suppose que le facteur d’actualisation $P() $ est déterminé par: <span class="math display">\[
+<p>En fait, sur le marché on observe les prix zéro-coupons de différentes maturités <span class="math inline">\(u_1, u_2,\dots., u_N\)</span> alors Smith-Wilson suppose que le facteur d’actualisation $P() $ est déterminé par:</p>
+<p><span class="math display">\[
 P(\tau) = e^{-UFR * \tau} + \sum_{j=1}^N \gamma_j * W(\tau , \mu_j)
 \]</span></p>
-<p>Où: <span class="math display">\[
+<p>Où:</p>
+<p><span class="math display">\[
 W(\tau , \mu_j) =  e^{-UFR * (\tau + \mu_j )} * [ \alpha * min(\tau , \mu_j) - 0,5 *e^{-\alpha*max(\tau , \mu_j)}*(e^{\alpha*min(\tau , \mu_j)}- e^{-\alpha*max(\tau , \mu_j)} ) ]
 \]</span></p>
-<p>Avec : - <span class="math inline">\(W\)</span> représente un ensemble de fonctions à noyau pour chaque prix d’obligation observable d’entrée. - <span class="math inline">\(\alpha\)</span> : la vitesse de convergence vers le UFR. - <span class="math inline">\(N\)</span>: le nombre d’obligations ZC dont le prix est observésur le marché. - <span class="math inline">\(u_j\)</span>: la j-ème maturité disponible. . - <span class="math inline">\(\gamma_j\)</span> : les inconnus à ajuster par rapport à la courbe des taux zéro-coupon disponible avant extrapolation.</p>
+<p>Avec :</p>
+<ul>
+<li><span class="math inline">\(W\)</span> représente un ensemble de fonctions à noyau pour chaque prix d’obligation observable d’entrée.</li>
+<li><span class="math inline">\(\alpha\)</span> : la vitesse de convergence vers le UFR.</li>
+<li><span class="math inline">\(N\)</span>: le nombre d’obligations ZC dont le prix est observésur le marché.</li>
+<li><span class="math inline">\(u_j\)</span>: la j-ème maturité disponible. .</li>
+<li><span class="math inline">\(\gamma_j\)</span> : les inconnus à ajuster par rapport à la courbe des taux zéro-coupon disponible avant extrapolation.</li>
+</ul>
 <p>Pour déterminer ces inconnus, on fixe d’abord <span class="math inline">\(UFR\)</span> et <span class="math inline">\(\alpha\)</span>,le vecteur <span class="math inline">\(\gamma\)</span> s’obtient comme solution d’un système d’équations linéaires définies par l’expression du prix de chaque obligation ZC considérée.</p>
-<p>Soit : <span class="math display">\[
+<p>Soit :</p>
+<p><span class="math display">\[
 m_j = P(\mu_j) = e^{-UFR * \mu_j} + \sum_{j=1}^N \gamma_j * W(\tau , \mu_j)
 \]</span></p>
-<p>Sous forme matricielle : <span class="math display">\[
+<p>Sous forme matricielle :</p>
+<p><span class="math display">\[
 m = P = µ + γ ∗ W ⇒ γ = W^{−1}(P − µ)
 \]</span></p>
 <p>Avec:</p>
-<p><span class="math inline">\(m = (m_1, m_2, . . . , m_N)^T\)</span></p>
-<p><span class="math inline">\(P = (P(u_1) , P(u_2), . . . , P(u_N))^T\)</span></p>
-<p><span class="math inline">\(µ = (e^{−UFR∗u_1}, e^{−UFR∗u_2}, . . .,e^{-UFR*u_N})^T\)</span></p>
+<p><span class="math inline">\(m = (m_1, m_2,\dots, m_N)^T\)</span></p>
+<p><span class="math inline">\(P = (P(u_1) , P(u_2),\dots, P(u_N))^T\)</span></p>
+<p><span class="math inline">\(µ = (e^{−UFR∗u_1}, e^{−UFR∗u_2},\dots,e^{-UFR*u_N})^T\)</span></p>
 $$ W =
 <span class="math display">\[\begin{bmatrix}
-W_{11} \; \; \;. . . &amp;W_{1N} \\
+W_{11} \; \; \;\dots &amp;W_{1N} \\
 \; \; \; . . . . . ..... \\
-W_{N1} \; \; \;. . . &amp;W_{NN}
+W_{N1} \; \; \;\dots &amp;W_{NN}
 
 
 
 \end{bmatrix}\]</span>
 <p><span class="math display">\[
-\]</span> W{ij} = W (u_i, u_j) : i = 1 . . . N ;et ;j = 1 . . . N $$</p>
+\]</span> W{ij} = W (u_i, u_j) : i = 1 ,, N ;et ;j = 1 . . . N $$</p>
 <p>Aprés la détermination des inconnus, on passe au calcul des prix zéro-coupon correspondants aux maturités pleines, et finalemet deduire les taux zéro-coupon correspondants à ces maturités par la relation suivante : <span class="math display">\[
 R(t) = (\frac{1}{P(t)})^{\frac{1}{t}} - 1
 \]</span></p>
 </section>
 </section>
 <section id="valorisation-des-provisions-techniques-prudentielles" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="valorisation-des-provisions-techniques-prudentielles"><span class="header-section-number">5</span> VALORISATION DES PROVISIONS TECHNIQUES PRUDENTIELLES:</h2>
+<h2 data-number="5" class="anchored" data-anchor-id="valorisation-des-provisions-techniques-prudentielles"><span class="header-section-number">5</span> Valorisation des provisions techniques prudentielles</h2>
 <p>Les provisions techniques prudentielles sont valorisées brutes de réassurance en considérant les contrats dont l’engagement de l’entreprise est en cours à la date d’inventaire. Les contrats d’assurance non-vie à tacite reconduction dont la date d’effet intervient postérieurement à la date d’inventaire et dont le préavis de résiliation a expiré à cette date sans qu’il y ait une demande de résiliation sont également pris en considération.</p>
 <p>Elles sont évaluées comme suit : <span class="math display">\[
 PT = BE_{engagement} + BE_{fraisGestion} + MargeRisque
@@ -841,7 +877,7 @@ CSR_{contrepartie}^{type2} = CSR_{contrepartie}^{Assures} + CSR_{contrepartie}^{
 <h4 data-number="6.1.3" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-concentration-csr_concentration"><span class="header-section-number">6.1.3</span> Exigence de capital relative au risque de concentration (<span class="math inline">\(CSR_{concentration}\)</span>)</h4>
 <p>L’exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d’émetteurs appartenant aux mêmes groupes. Elle correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d’émetteurs. <span class="math display">\[
 CSR_{concentration} = \sqrt{\sum_i CSR_i^2}
-\]</span> avec <span class="math inline">\(i \in \{ \text{Les sous-risques de concentration relatifs aux differents groupes d’emetteurs.}\}\)</span></p>
+\]</span> avec <span class="math inline">\(i \in \{ \text{Les sous-risques de concentration relatifs aux differents groupes d'emetteurs.}\}\)</span></p>
 <p>Pour chaque groupe d’émetteurs, l’exigence de capital relative au risque de concentration egale à <span class="math inline">\(X\%\)</span> de l’écart positif constaté entre le montant des placements de l’entreprise d’assurances et de réassurance, autres que les valeurs de l’Etat ou celles jouissant de sa garantie, relatifs à l’ensemble d’émetteurs appartenant au groupe précité et <span class="math inline">\(X\%\)</span> du total de ses placements.</p>
 </section>
 <section id="exigence-de-capital-relative-au-risque-de-souscription-vie-_souscriptioncsr_vie" class="level4" data-number="6.1.4">
@@ -959,10 +995,9 @@ Adj_{assures}^{Pertes} = min (CSR_{base}^{nettes}-CSR_{base}^{brutes};BDF)
 </section>
 <section id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-impôts-différés-ajt_textimpots-differespertes" class="level4" data-number="6.3.2">
 <h4 data-number="6.3.2" class="anchored" data-anchor-id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-impôts-différés-ajt_textimpots-differespertes"><span class="header-section-number">6.3.2</span> Ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés (<span class="math inline">\(Ajt_{\text{impots differes}}^{Pertes}\)</span>)</h4>
-<p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés correspond au produit du taux d’impôts et le minimum de la somme du capital de solvabilité requis de base et l’exigence de capital relative au risque opérationnel diminuée de l’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés, d’une part, et l’écart positif entre les impôts différés-passif et les impôts différés-actif, d’autre part. <span class="math display">\[
-Ajt_{\text{impots differes}}^{Pertes} = Tx_{impots} \times
-\]</span> <span class="math display">\[
-\times min(CSR_{base} + CSR{operationnel} - Adj_{assures}^{Pertes} ; Impots_{passif}^{differes} - Impots_{actif}^{differes})
+<p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés correspond au produit du taux d’impôts et le minimum de la somme du capital de solvabilité requis de base et l’exigence de capital relative au risque opérationnel diminuée de l’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés, d’une part, et l’écart positif entre les impôts différés-passif et les impôts différés-actif, d’autre part.</p>
+<p><span class="math display">\[
+Ajt_{\text{impots differes}}^{Pertes} = Tx_{impots} \times min(CSR_{base} + CSR{operationnel} - Adj_{assures}^{Pertes} ; Impots_{passif}^{differes} - Impots_{actif}^{differes})
 \]</span></p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -970,11 +1005,10 @@ Ajt_{\text{impots differes}}^{Pertes} = Tx_{impots} \times
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Tip
+Remarque
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Remarque</strong></p>
 <p>Dans le cas où l’écart entre les impôts différés-passif et les impôts différés-actif est négatif, l’ajustement précité est nul.</p>
 </div>
 </div>
