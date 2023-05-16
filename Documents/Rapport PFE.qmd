@@ -20,10 +20,6 @@ format:
 
 ## Introduction
 
-Pendant longtemps, l'assurance au Maroc n'a pas été toujours une culture de nos ancêtres. Cette notion  a été considérée comme immorale car elle développait la négligence et l'idee de pari. L'assurance aussi a été inacceptable par le système juridique islamique,En excluant les besoins de la croissance économique.
-Ainsi que, Le faible pouvoir d'achat de la plupart des couches de la population qui considèrent l'assurance comme un produit de luxe, réservé seulement aux marocains issus de la classe à revenu élevé, constituait en partie un véritable handicap au développement naturel de ce secteur. Pour toutes ces raisons, l'assurance, toutes branches confondues, totalement étrangère à la tradition juridique du pays, n'a pu voir le jour qu'après l'avènement du protectorat.
-
-Au fil du temps, cette pratique a réussi à se tisser une place dans la société marocaine. Les premières compagnies d'assurances étaient des compagnies étrangères travaillant dans le domaine de l'assurance maritime, et ce n'est qu'après, que cette activité a pu se généraliser pour toucher d'autres secteurs avec notamment l’arrivée de nouveaux besoins (santé, automobile, biens divers…).
 
 Suite aux crises multiples qui ont secoué le monde de la finance et de l'assurance notamment celle de 2008, les autorités se sont rendu compte de l'insuffisance de la supervision prudentielle. Cette dernière s'est montré très chétive lors de la crise d'où la nécessité de mettre en place de nouvelles dispositions prudentielles plus robustes.
 
@@ -69,13 +65,22 @@ Le royaume doit ce succès à la rigueur de sont dispositif prudentiel qui se co
 
 ![Les 3 piliers de la SBR](Rapport PFE_files/piliers.png){#fig-piliers}
 
-## Modélisation du prix des actions
+## Valorisation  de l'actif
+
+### Actions cotées à la bourse
+
+Les actions cotées à la bourse de Casablanca sont valorisées conformément à la _Spécification technique 7_ de la _Section 2_ de la circulaire de l'ACAPS comme suit :
+
+- Dernier coté avant la date d'inventaire
+- Moyenne des cours côtés des trois derniers mois précédant la date d'inventaire si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par autorité
+
+#### Modélisation du prix des actions
 
 Le prix d'une action ou plus communément appelé cours d'une action représente le prix auquel elle est acheté ou vendue sur un marché boursier. Ce prix fluctue en fonction de l'offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l'entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l'action représente la valeur perçue de l'entreprise par les investisseurs à un moment.
 
 Ainsi, si la valeur présente de l'action est une donnée du marché, sa valeur future quant à elle est aléatoire d'où la nécessité de sa modélisation.
 
-### Modèle de Black-Scholes
+##### Modèle de Black-Scholes
 
  Le modèle de Black-Scholes modèle a été développé en 1973 par _Fischer Black_, _Robert Merton_ et _Myron Scholes_, qui ont reçu le prix Nobel d'économie en 1997 pour leurs travaux. Ce modèle est l'un des concepts les plus importants dans la théorie de la finance modèle. Il permet dévaluer le prix d'une option européenne en fnction de son type et du prix de l'actif sous-jacent. Le modèle repose sur plusieurs hypothèses dont l'une d'entre elle est que le cours de l'actif sous jacent suit un mouvement géométrique avec une volatilité constante.
  
@@ -197,19 +202,19 @@ GBM_Sim$plt_mean
 ```
 
 ## La construction de la courbe des taux zéro-coupon :
-Dans cette partie nous nous intéressons à la construction de la courbe des taux zéro-coupon dont nous avons besoin dans le reste de ce travaille afin d’actualiser les flux futurs entrant dans le calcul des différentes BEST ESTIMATE. Les taux Zéro Coupons sont extraite à partir des taux moyens pondérés des transactions des bons de trésor publiées par BANK AL MAGHRIB. Ces taux en fait, sont des taux monétaires pour les maturités inférieures ou égales à un an, alors qu’il représente un taux actuariel pour les maturités supérieures à un an, de plus ils ne sont disponibles que pour certaines maturités (Remarque : Insérant une figure).
+Dans cette partie nous nous intéressons à la construction de la courbe des taux zéro-coupon dont nous avons besoin dans le reste de ce travaille afin d'actualiser les flux futurs entrant dans le calcul des différentes BEST ESTIMATE. Les taux Zéro Coupons sont extraite à partir des taux moyens pondérés des transactions des bons de trésor publiées par BANK AL MAGHRIB. Ces taux en fait, sont des taux monétaires pour les maturités inférieures ou égales à un an, alors qu'il représente un taux actuariel pour les maturités supérieures à un an, de plus ils ne sont disponibles que pour certaines maturités (Remarque : Insérant une figure).
 
 Pour cette raison on va suivre les étapes suivantes pour la construction de la courbe des taux zéro-coupon :
 
 - 1ere étape : Transformation des taux monétaires en taux actuariels.
-- 2eme étape :  Interpolation linéaire afin d’obtenir des taux actuariels pour des maturités pleines.
+- 2eme étape :  Interpolation linéaire afin d'obtenir des taux actuariels pour des maturités pleines.
 -	3eme étape : Calcule des taux zéro coupons à partir des taux actuariels des maturités pleines par la Méthode du Bootstrap.
 -	4eme étape : Extrapolation de la courbe des taux zéro-coupon pour des maturités non observées lointaines par la méthode de Smith-Wilson
 
 ### Transformation des taux monétaires en taux actuariels :
 Cette étape consiste à transformer les taux monétaires à des taux actuariels en utilisant la relation suivante :
 $$
-T_a=(1+\frac{n}{360}*T_m )^{\frac{365}{n}}-1
+T_a=(1+\frac{n}{365}*T_m )^{\frac{365}{n}}-1
 $$
 Avec :
 
@@ -217,18 +222,21 @@ $T_a$ : Le taux actuariel.
 
 $T_m$  : Le taux monétaire.
 
-$n$ :  Le nombre de jours entre la date de valeur et la date d’échéance.
+$n$ :  Le nombre de jours entre la date de valeur et la date d'échéance.
 
 $\frac{365}{n}$  : La maturité
 
-Après l’application de cette formule sur Les données de marché marocain (publie par la BAM), nous avons obtenu les résultats situés dans le tableau suivant : (Remarque insertions des résultats obtenu par l’application)
+Après l'application de cette formule sur Les données de marché marocain (publie par la BAM), nous avons obtenu les résultats situés dans le tableau suivant : (Remarque insertions des résultats obtenu par l'application)
 
 ### Interpolation linéaire de la courbe des taux actuariels :
+
 En réalité nous disposons que des taux actuariels des maturités ayant des valeurs décimales, le but de cette étape est donc la détermination des taux actuariels avec des maturités pleines en utilisant une interpolation linéaire.
 
-Cette opération consiste à déterminer Le DPL qui correspond au dernier point liquide. Il est déterminé de sorte que le volume cumulé des obligations dont les échéances sont supérieures au DPL est inférieur à 6% du volume total des transactions prises en compte pour la construction de la courbe des taux zéro-coupon. Il correspond aussi à dernière maturité observable.
+Cette opération consiste à déterminer le $DPL$ qui correspond au dernier point liquide. Il est déterminé de sorte que le volume cumulé des obligations dont les échéances sont supérieures au DPL est inférieur à $6\%$ du volume total des transactions prises en compte pour la construction de la courbe des taux zéro-coupon. Il correspond aussi à dernière maturité observable.
 
-La formule d’interpolation pour toute maturité j allant de 1, 2, . . ., DPL est la suivante : $$
+La formule d'interpolation pour toute maturité $j$ allant de $1, 2,\dots, DPL$ est la suivante : 
+
+$$
 t_j=t_i+\frac{t_{i+1 }-t_i}{n_{i+1 }-n_i} *(j-n_i )
 $$
 
@@ -240,17 +248,17 @@ $t_i$ : Taux actuariels de maturités n_i.
 
 ### la méthode de Bootstrap:
 
-Le Bootstrap est une technique de reconstitution de la courbe zéro-coupon pas à pas, en déterminant les taux zéro-coupon à partir des taux actuariels, en faisant l'hypothèse que le prix théorique d'une obligation correspond à la somme de ses flux futures actualisés aux taux zéro-coupon de l'échéance de chaque flux. Ainsi, on suppose que les prix des obligations des Bons du trésor sont au pair, c’est-à-dire que le prix d’émission des obligations des bons du trésor et leur valeur nominale sont égaux.
+Le Bootstrap est une technique de reconstitution de la courbe zéro-coupon pas à pas, en déterminant les taux zéro-coupon à partir des taux actuariels, en faisant l'hypothèse que le prix théorique d'une obligation correspond à la somme de ses flux futures actualisés aux taux zéro-coupon de l'échéance de chaque flux. Ainsi, on suppose que les prix des obligations des Bons du trésor sont au pair, c'est-à-dire que le prix d'émission des obligations des bons du trésor et leur valeur nominale sont égaux.
 
 -	**Pour une maturité inferieure ou égale a un an** :
 
-Le taux zéro-coupon est donc le taux actuariel de même maturité. Car aucun coupon n’est payé avant l’échéance.
+Le taux zéro-coupon est donc le taux actuariel de même maturité. Car aucun coupon n'est payé avant l'échéance.
 
 -	**Pour une maturité supérieure à un an** :
 
 Le taux zéro-coupon est calculé par la formule suivante : 
 $$
-R_n =  ^{n}\sqrt{\frac{1+t_n}{1-t_n + \sum_{i=1}^{n} \frac{1}{(1+R_i)^{i}}}} - 1
+R_n =  \sqrt[n]{\frac{1+t_n}{1-t_n \times \sum_{i=1}^{n-1} \frac{1}{(1+R_i)^{i}}}} - 1
 $$
 
 
@@ -259,64 +267,69 @@ La méthode Smith-Wilson est une méthode d'extrapolation de la courbe des taux 
 
 Une fois que la fonction de Smith-Wilson a été ajustée à la courbe des taux, elle peut être utilisée pour extrapoler les taux pour des maturités plus longues que celles disponibles sur le marché. Cette extrapolation est possible car la fonction de Smith-Wilson est conçue pour s'adapter de manière continue à la fois à la partie courte et à la partie longue de la courbe des taux.
 
-dans ce modèle le taux à terme à long terme est un paramètre d’entrée fixe qui ne varie pas dans le temps à mesure qu’évoluent les prix des obligations. Elle permet aux taux à terme à long terme de converger vers le taux « infini »(Ultimate Forward Rate) choisi et elle offre une base solide pour couvrir le risque de taux d’intérêt à long terme.
+dans ce modèle le taux à terme à long terme est un paramètre d'entrée fixe qui ne varie pas dans le temps à mesure qu'évoluent les prix des obligations. Elle permet aux taux à terme à long terme de converger vers le taux « infini »(Ultimate Forward Rate) choisi et elle offre une base solide pour couvrir le risque de taux d'intérêt à long terme.
 
-Les paramètres d’entrée sont les suivants :
+Les paramètres d'entrée sont les suivants :
 
 - le UFR (Ultimate Forward Rate)
 - $\alpha$ la vitesse de convergence vers le UFR.
 
 En fait, sur le marché on observe les prix zéro-coupons de différentes maturités
-$u_1, u_2, . . . , u_N$ alors Smith-Wilson suppose que le facteur d’actualisation $P(\tau) $ est  déterminé par:
+$u_1, u_2,\dots., u_N$ alors Smith-Wilson suppose que le facteur d'actualisation $P(\tau) $ est  déterminé par:
+
 $$
 P(\tau) = e^{-UFR * \tau} + \sum_{j=1}^N \gamma_j * W(\tau , \mu_j)
 $$
 
 Où: 
+
 $$
 W(\tau , \mu_j) =  e^{-UFR * (\tau + \mu_j )} * [ \alpha * min(\tau , \mu_j) - 0,5 *e^{-\alpha*max(\tau , \mu_j)}*(e^{\alpha*min(\tau , \mu_j)}- e^{-\alpha*max(\tau , \mu_j)} ) ] 
 $$
 
-Avec : 
-- $W$ représente un ensemble de fonctions à noyau pour chaque prix d’obligation observable d’entrée.
+Avec :
+
+- $W$ représente un ensemble de fonctions à noyau pour chaque prix d'obligation observable d'entrée.
 - $\alpha$ : la vitesse de convergence vers le UFR.
-- $N$: le nombre  d’obligations ZC dont le prix est observésur le marché.
+- $N$: le nombre  d'obligations ZC dont le prix est observésur le marché.
 - $u_j$: la j-ème  maturité disponible. .
 - $\gamma_j$ : les inconnus à ajuster par rapport à la courbe des taux zéro-coupon disponible avant extrapolation.
 
-Pour déterminer ces inconnus, on fixe d’abord $UFR$ et $\alpha$,le vecteur $\gamma$ s’obtient comme solution d’un système d’équations linéaires définies par l’expression du prix de chaque obligation ZC considérée.
+Pour déterminer ces inconnus, on fixe d'abord $UFR$ et $\alpha$,le vecteur $\gamma$ s'obtient comme solution d'un système d'équations linéaires définies par l'expression du prix de chaque obligation ZC considérée.
 
 Soit :
+
 $$
 m_j = P(\mu_j) = e^{-UFR * \mu_j} + \sum_{j=1}^N \gamma_j * W(\tau , \mu_j)
 $$
 
 Sous forme matricielle :
+
 $$
 m = P = µ + γ ∗ W ⇒ γ = W^{−1}(P − µ)
 $$
 
 Avec: 
 
-$m = (m_1, m_2, . . . , m_N)^T$ 
+$m = (m_1, m_2,\dots, m_N)^T$ 
 
-$P = (P(u_1) , P(u_2), . . . , P(u_N))^T$
+$P = (P(u_1) , P(u_2),\dots, P(u_N))^T$
 
-$µ = (e^{−UFR∗u_1}, e^{−UFR∗u_2}, . . .,e^{-UFR*u_N})^T$
+$µ = (e^{−UFR∗u_1}, e^{−UFR∗u_2},\dots,e^{-UFR*u_N})^T$
 
 $$
 W = 
 \begin{bmatrix}
-W_{11} \; \; \;. . . &W_{1N} \\
+W_{11} \; \; \;\dots &W_{1N} \\
 \; \; \; . . . . . ..... \\
-W_{N1} \; \; \;. . . &W_{NN}
+W_{N1} \; \; \;\dots &W_{NN}
 
 
 
 \end{bmatrix}
 $$
 $$
-W{ij} = W (u_i, u_j) : i = 1 . . . N \;et \;j = 1 . . . N
+W{ij} = W (u_i, u_j) : i = 1 ,\dots, N \;et \;j = 1 . . . N
 $$
 
 Aprés la détermination des inconnus, on passe au calcul des prix zéro-coupon correspondants aux maturités pleines, et finalemet deduire les taux zéro-coupon correspondants à ces maturités par la relation suivante :
@@ -324,8 +337,8 @@ $$
 R(t) = (\frac{1}{P(t)})^{\frac{1}{t}} - 1
 $$ 
 
-## VALORISATION DES PROVISIONS TECHNIQUES PRUDENTIELLES:
-Les provisions techniques prudentielles sont valorisées brutes de réassurance en considérant les contrats dont l’engagement de l’entreprise est en cours à la date d’inventaire. Les contrats d’assurance non-vie à tacite reconduction dont la date d’effet intervient postérieurement à la date d’inventaire et dont le préavis de résiliation a expiré à cette date sans qu’il y ait une demande de résiliation sont également pris en considération.
+## Valorisation des provisions techniques prudentielles
+Les provisions techniques prudentielles sont valorisées brutes de réassurance en considérant les contrats dont l'engagement de l'entreprise est en cours à la date d'inventaire. Les contrats d'assurance non-vie à tacite reconduction dont la date d'effet intervient postérieurement à la date d'inventaire et dont le préavis de résiliation a expiré à cette date sans qu'il y ait une demande de résiliation sont également pris en considération.
 
 Elles sont évaluées comme suit :
 $$
@@ -344,7 +357,7 @@ Avec :
 
 ### Opérations d'assurance vie, décès ou capitalisation:
 #### Meilleure estimations des engagements ($BE_{engagement}$):
-Pour les opérations d’assurance vie, décès ou de capitalisation hors unités de compte, la meilleure estimation des engagements comprend la meilleure estimation des garanties probabilisées et les bénéfices discrétionnaires futurs.
+Pour les opérations d'assurance vie, décès ou de capitalisation hors unités de compte, la meilleure estimation des engagements comprend la meilleure estimation des garanties probabilisées et les bénéfices discrétionnaires futurs.
 $$
 _{vie}BE^{engagement} = BE_{garantie}^{prob} + BDF
 $$
@@ -374,7 +387,7 @@ Avec :
 
 **Remarque:**
 
-Les flux de trésorerie futurs probabilisés précités sont déterminés en considérant un horizon de projection suffisant pour la couverture de l’ensemble de la durée de vie des engagements à la date d’inventaire.
+Les flux de trésorerie futurs probabilisés précités sont déterminés en considérant un horizon de projection suffisant pour la couverture de l'ensemble de la durée de vie des engagements à la date d'inventaire.
 
 **Exemple** :
 
@@ -419,9 +432,9 @@ $$
 BE_{fraisGestion} = \sum\limits_{t = 1}^{N} \frac{FG_t}{(1+r_t)^t}
 $$
 
-Les frais de gestion futurs sont estimés sur la base d’une projection effectuée en considérant un
+Les frais de gestion futurs sont estimés sur la base d'une projection effectuée en considérant un
 horizon de projection suffisant pour la couverture de la durée de vie des engagements à la date
-d’inventaire. Ils sont déterminés pour chaque année de projection en multipliant le nombre de
+d'inventaire. Ils sont déterminés pour chaque année de projection en multipliant le nombre de
 contrats par le montant de frais de gestion unitaire moyen.
 $$
 FG_t = NbContrat_t \times \bar{FG}^{unitaire}_{t}
@@ -442,7 +455,7 @@ $$
 
 
 ### Rentes découlants des opérations non-vie:
-La meilleure estimation des engagements pour les rentes découlant des opérations d’assurance non vie correspond à la meilleure estimation des garanties probabilisées déterminée avant.
+La meilleure estimation des engagements pour les rentes découlant des opérations d'assurance non vie correspond à la meilleure estimation des garanties probabilisées déterminée avant.
 $$
 BE_{rnv} = BE_{garantie}^{prob}
 $$
@@ -452,7 +465,7 @@ Avec :
 - $BE_{rnv}$ : la meilleure estimation rentes découlant des opérations d'assurance non vie.
 - $BE_{garantie}^{prob}$ : la meilleure estimation des garanties probabilisées.
 
-La meilleure estimation des frais de gestion, pour les rentes découlant des opérations d’assurance non vie est déterminée de la meme façon comme avant.
+La meilleure estimation des frais de gestion, pour les rentes découlant des opérations d'assurance non vie est déterminée de la meme façon comme avant.
 
 ### Opérations d'assurance non vie hors rentes:
 #### La meilleure estimation des engagements:
@@ -526,7 +539,7 @@ $$
 
 et:
 
-- $Tx_{frais gestion_{moy}}$ : Le taux de frais de gestion moyen,il est estimé, par sous-catégories d’opérations d’assurance, en considérant la moyenne sur les trois derniers exercices clos des taux de frais de gestion.
+- $Tx_{frais gestion_{moy}}$ : Le taux de frais de gestion moyen,il est estimé, par sous-catégories d'opérations d'assurance, en considérant la moyenne sur les trois derniers exercices clos des taux de frais de gestion.
 
 Donc:
 
@@ -541,7 +554,7 @@ Tx_{frais gestion_{t}} = \frac{FG}{_{nvhr}BE_{sinistres}^{eng}+ Reglements_{Clos
 $$
 
 - $FG$: le montant frais de gestion.
-- $Reglements_{Clos}$ : les règlements au titre de l’exercice clos.
+- $Reglements_{Clos}$ : les règlements au titre de l'exercice clos.
 
 
 ### Part des cessionnaires dans les provisions techniques prudentielles:
@@ -554,8 +567,8 @@ $$
 #### La meilleure estimation des engagements cédés ($BE_{cedes}^{eng}$):
 ##### Les opérations d'assurance vie, décès ou de capitalisation {-}
 la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des
-engagements par le rapport entre d’une part, la part des cessionnaires dans les provisions
-mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d’autre part, la
+engagements par le rapport entre d'une part, la part des cessionnaires dans les provisions
+mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la
 somme des provisions mathématiques , des provisions pour capitaux, rentes et rachats à payer bruts
 de réassurance.
 
@@ -585,9 +598,9 @@ L'ajustement pour défaut de contrepartie est déterminé en actualisant les flu
 Les flux d'ajustement futurs sont déterminés conformément à la méthode, telle que décrite à **l'annexe N°6** de la circulaire de l'ACAPS.
 
 ## Capital de Solvabilité Requis :
-Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d’assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont exposés.  Le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c'est-à-dire à une seule occurrence tous les 200 ans.   
+Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d'assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont exposés.  Le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c'est-à-dire à une seule occurrence tous les 200 ans.   
 
-Commençons d’abord par la définition des différents risques dans les secteurs d’assurance et de réassurance :
+Commençons d'abord par la définition des différents risques dans les secteurs d'assurance et de réassurance :
 
 - **Risque de souscription** : le risque de perte ou de changement défavorable de la situation financière, en
 raison d'hypothèses inadéquates en matière de sinistralité, de tarification et de provisionnement.  
@@ -598,28 +611,28 @@ passifs et des instruments financiers.
 
 - **Risque de spread** (marge de crédit) : le risque de perte ou de changement défavorable de la situation
 financière résultant des changements touchant les marges additionnelles par rapport aux taux de
-référence exigée par les investisseurs sur les emprunts émis par des entités autres que l’Etat.
+référence exigée par les investisseurs sur les emprunts émis par des entités autres que l'Etat.
 
 - **Risque de contrepartie** : le risque de perte ou de changement défavorable de la situation financière
-résultant d’un défaut de paiement d’une contrepartie ou d’une dégradation de sa qualité de crédit.
+résultant d'un défaut de paiement d'une contrepartie ou d'une dégradation de sa qualité de crédit.
 
 - **Risque opérationnel** : le risque de perte ou de changement défavorable de la situation financière
 résultant de procédures internes, de membres du personnel, de systèmes inadéquats ou défaillants,
 ou d'événements extérieurs.
 
 - **Risque de concentration** : le risque de perte ou de changement défavorable de la situation financière
-résultant d’un manque de diversité des émetteurs auxquels l’entreprise d’assurances et de
+résultant d'un manque de diversité des émetteurs auxquels l'entreprise d'assurances et de
 réassurance est exposée.
 
-Selon le circulaire de l’ACAPS (l’Autorité de Contrôle des Assurances et de la Prévoyance Sociale) publié le premier Janvier 2020, Le capital de solvabilité requis est constitué de la somme des éléments suivants :
+Selon le circulaire de l'ACAPS (l'Autorité de Contrôle des Assurances et de la Prévoyance Sociale) publié le premier Janvier 2020, Le capital de solvabilité requis est constitué de la somme des éléments suivants :
 
 - Le capital de solvabilité requis de base.  
 
-- L’exigence de capital relative au risque opérationnel.
+- L'exigence de capital relative au risque opérationnel.
 
-- L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés.
+- L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés.
 
-- L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés.
+- L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés.
 
 ### Le capital de solvabilité requis de base $CSR_{base}$
 Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de *marché*, de *concentration*, de *contrepartie*, de *souscription* vie et de *souscription non-vie* et ce, après application des coefficients de corrélations.
@@ -643,7 +656,7 @@ avec la matrice de corrélations suivante:
 |Sousc. non-vie | x     |    x        |   x        |   x      |  1           |
 
 #### EXIGENCE DE CAPITAL RELATIVE AUX RISQUES DE MARCHE $CSR_{marche}$
-L’exigence de capital relative au risque de marché est le montant total des exigences de capitaux relatives aux sous-risques action, taux, immobilier, écart de taux et change et ce, après application des coefficients de corrélations.
+L'exigence de capital relative au risque de marché est le montant total des exigences de capitaux relatives aux sous-risques action, taux, immobilier, écart de taux et change et ce, après application des coefficients de corrélations.
 $$
 CSR_{marche} = \sqrt{\sum_{i,j\in RM }(\rho_{i,j} * CSR_{i} * CSR_{j})} 
 $$
@@ -653,10 +666,10 @@ avec :
 
 - $\rho$ : Coefficients de corrélations.
 
-##### L’exigence de capital relative au risque action ($CSR_{action}$)
-L’exigence de capital relative au risque action est le montant de la perte de fonds propres résultant des baisses simultanées des valeurs des actions.
+##### L'exigence de capital relative au risque action ($CSR_{action}$)
+L'exigence de capital relative au risque action est le montant de la perte de fonds propres résultant des baisses simultanées des valeurs des actions.
 
-Les taux de baisse à appliquer pour le calcul de l’exigence précitée sont fixés pour les catégories d’actions suivantes:
+Les taux de baisse à appliquer pour le calcul de l'exigence précitée sont fixés pour les catégories d'actions suivantes:
 
 • Actions cotées à long terme
 
@@ -666,40 +679,40 @@ Les taux de baisse à appliquer pour le calcul de l’exigence précitée sont f
 
 • Autres actions non cotées
 
-• Entités d’infrastructures
+• Entités d'infrastructures
 
 $$
 CSR_{action} = VM_{action}^{\text{cas de baisse}} - VM_{action} 
 $$
 
-##### L’exigence de capital relative au risque de taux ($CSR_{taux}$)
-L’exigence de capital relative au risque de taux, est le montant de la perte maximale de fonds propres qui résulterait de l’application de coefficients à la baisse ou à la hausse à la courbe des taux sur tout actif ou passif.
+##### L'exigence de capital relative au risque de taux ($CSR_{taux}$)
+L'exigence de capital relative au risque de taux, est le montant de la perte maximale de fonds propres qui résulterait de l'application de coefficients à la baisse ou à la hausse à la courbe des taux sur tout actif ou passif.
 
 $$
 CSR_{taux} = max (CSR_{taux-hausse}; CSR_{taux-baisse})
 $$
 avec : &nbsp; $CSR_{taux-i} = BE^{scénario-i} - BE$     <span style="display:inline-block;width:2cm;"></span>  $i \in \{ hausse,baisse \}$
 
-##### L’exigence de capital relative au risque immobilier ($CSR_{immobilier}$)
-L’exigence de capital relative au risque immobilier est la perte de fonds propres due à une baisse de X% de la valeur des actifs immobiliers.
+##### L'exigence de capital relative au risque immobilier ($CSR_{immobilier}$)
+L'exigence de capital relative au risque immobilier est la perte de fonds propres due à une baisse de X% de la valeur des actifs immobiliers.
 $$
 CSR_{immobilier} = BE_{eng}^{\text{baisse actifs immobiliers}} - BE_{eng}
 $$
 
-##### L’exigence de capital relative au risque d’écart ($CSR_{\text{Ecart_taux}}$)
-L’exigence de capital relative au risque d’écart de taux est la perte de fonds propres due à l’application des taux de baisse à la valeur des titres de créances non émis ou non garantis par l’Etat.
+##### L'exigence de capital relative au risque d'écart ($CSR_{\text{Ecart_taux}}$)
+L'exigence de capital relative au risque d'écart de taux est la perte de fonds propres due à l'application des taux de baisse à la valeur des titres de créances non émis ou non garantis par l'Etat.
 
-Les taux de baisse à appliquer sont calculés en fonction de la duration et de la prime de risque à l’émission.
+Les taux de baisse à appliquer sont calculés en fonction de la duration et de la prime de risque à l'émission.
 
-##### L’exigence de capital relative au sous-risque de change ($CSR_{change}$)
-L’exigence de capital relative au sous-risque de change correspond à la somme des exigences de capitaux pour risque de change pour chaque devise étrangère.
+##### L'exigence de capital relative au sous-risque de change ($CSR_{change}$)
+L'exigence de capital relative au sous-risque de change correspond à la somme des exigences de capitaux pour risque de change pour chaque devise étrangère.
 
 L'exigence de capital pour risque de change pour chaque devise étrangère correspond à la plus élevée des exigences de capitaux suivantes:
 
 - l'exigence de capital pour risque d'augmentation de la valeur de la devise étrangère par rapport au dirham.
 - l'exigence de capital pour risque de diminution de la valeur de la devise étrangère par rapport au dirham.
 
-L'exigence de capital pour risques d'augmentation ou de diminution de la valeur de la devise étrangère par rapport au dirham est egale  à la perte de fonds propres qui résulterait des scénarios d’augmentation ou de diminution, respectivement de $X\%$ et $X\%$, de la valeur de la devise étrangère par rapport au dirham.
+L'exigence de capital pour risques d'augmentation ou de diminution de la valeur de la devise étrangère par rapport au dirham est egale  à la perte de fonds propres qui résulterait des scénarios d'augmentation ou de diminution, respectivement de $X\%$ et $X\%$, de la valeur de la devise étrangère par rapport au dirham.
 
 $$
 CSR_{change} = \sum_{i\in RC} CSR^{change}_{i}
@@ -715,14 +728,14 @@ $$
 tel que: &nbsp; $CSR^{j}_{i} = BE^{\text{scénario j}} - BE$ <span style="display:inline-block;width:2cm;"></span> $j \in \{ augmentation ; diminution\}$ 
   
 #### Exigence de capital relative au risque de contrepartie ($CSR_{contrepartie}$)
-L’exigence de capital relative au risque de contrepartie est le montant total des exigences de capitaux relatives aux sous-risques de contrepartie de *type 1* et de *type 2*   , une fois les coefficients de corrélation appliqués.
+L'exigence de capital relative au risque de contrepartie est le montant total des exigences de capitaux relatives aux sous-risques de contrepartie de *type 1* et de *type 2*   , une fois les coefficients de corrélation appliqués.
 $$
 CSR_{contrepartie} = \sqrt{\sum_{i,j\in type}(\rho_{i,j}\times CSR_{contrepartie}^{i}\times CSR_{contrepartie}^{j})}
 $$
 avec : $type \in \{type 1 ; type 2\}$
 
 ##### Exigence de capital relative au risque de contrepartie de type 1:
-L’exigence de capital relative au risque de contrepartie de type 1 est calculé en fonction des montants
+L'exigence de capital relative au risque de contrepartie de type 1 est calculé en fonction des montants
 de pertes en cas de défaut des cessionnaires, des cédantes et des organismes dépositaires, selon la
 méthode suivante: ** voir l'annexe 9**
 
@@ -738,9 +751,9 @@ Où :
 - $BE_{cédée_{i}}$ : La meilleure estimation des engagements cédés au cessionnaire ;
 - $LGD_{i}$ : la perte en cas de défaut du cessionnaire i ;
 - $\text{Depot en espèces ou en valeur}$ : le montant des dépôts en espèces ou en valeurs du cessionnaire i ;
-- $AR_i$ : le montant d’atténuation du risque via les différents contrats de réassurance conclus avec le cessionnaire i. Il correspond à la différence entre les montants d’exigences de capital pour les risques de souscription vie et non-vie calculés compte non tenu de la réassurance et compte tenu de la réassurance.
+- $AR_i$ : le montant d'atténuation du risque via les différents contrats de réassurance conclus avec le cessionnaire i. Il correspond à la différence entre les montants d'exigences de capital pour les risques de souscription vie et non-vie calculés compte non tenu de la réassurance et compte tenu de la réassurance.
 
-- Pour un contrat d’acceptation:
+- Pour un contrat d'acceptation:
 $$
 LGD_{i} = max (\text{Dépôts en espèces aupret de la cédante }_i + \text{Créance sur la cédante}_i - \text{Provision techniques}_i;0  )
 $$
@@ -750,7 +763,7 @@ Où :
 - $\text{Dépôts en espèces aupret de la cédante }_i$ : le montant des dépôts en espèces déposés chez la cédante i ;
 - $\text{Provision techniques}_i$ : le montant des provisions techniques acceptées avec la cédante i
 
-- Pour un avoir auprès d’un organisme dépositaire :
+- Pour un avoir auprès d'un organisme dépositaire :
 $$
 LGD_{i} = max (\text{Avoirs en banque}_i;0)
 $$
@@ -774,7 +787,7 @@ V_{inter} = \sum_{j} \frac{X* PD_j * (1-PD_j)}{X - PD_j} * \sum_{PD_j} LGD_{i}^{
 $$
 Où :
 
-- $PD_j$ et$PD_k$: probabilités de défaut des contreparties j et k, établies conformément au tableau prévu au 2) de l’annexe n°12.
+- $PD_j$ et$PD_k$: probabilités de défaut des contreparties j et k, établies conformément au tableau prévu au 2) de l'annexe n°12.
 - $TLGD_j$ et $TLGD_k$ : somme des pertes en cas de défaut pour les contreparties dont la probabilité de défaut est, respectivement, de $PD_j$ et$PD_k$.
 - $\sum_{PD_j} LGD_{i}^{2}$ : somme couvrant toutes les expositions dont la probabilité de défaut est de $PD_j$.
 
@@ -788,7 +801,7 @@ X * \sqrt{V_{inter} + V_{intra}}; \; & \text{si} \; x1 \leq\frac{\sqrt{V_{inter}
 $$
 
 ##### Exigence de capital relative au risque de contrepartie de type 2:
-L’exigence de capital relative au risque de contrepartie de type 2 est le montant total des
+L'exigence de capital relative au risque de contrepartie de type 2 est le montant total des
 exigences de capitaux relatives aux risque de contrepartie des assurés, des intermédiaires et des
 autres contreparties :
 $$
@@ -796,30 +809,30 @@ CSR_{contrepartie}^{type2} = CSR_{contrepartie}^{Assures} + CSR_{contrepartie}^{
 $$
 avec :
 
-1) L’exigence de capital relative au risque de contrepartie des assurés correspond à $X\%$ des créances relatives aux primes ou cotisations qui demeurent impayées six (06) mois après la date de leur émission. Les créances précitées s’entendent nettes de provisions.
+1) L'exigence de capital relative au risque de contrepartie des assurés correspond à $X\%$ des créances relatives aux primes ou cotisations qui demeurent impayées six (06) mois après la date de leur émission. Les créances précitées s'entendent nettes de provisions.
 
-2) L’exigence de capital relative au risque de contrepartie des intermédiaires correspond à $X\%$ des créances sur les intermédiaires d’assurances nettes de provisions.
+2) L'exigence de capital relative au risque de contrepartie des intermédiaires correspond à $X\%$ des créances sur les intermédiaires d'assurances nettes de provisions.
 
-3) L’exigence de capital relative au risque lié aux autres contreparties correspond à $X\%$ de la somme des créances de l’actif circulant, autres que les créances vis-à-vis de l’Etat des contreparties visées aux 1) et 2) ci-dessus et les montants des chèques et valeurs à encaisser, nettes de provisions et qui demeurent impayées pendant une période supérieure à six (06) mois.
+3) L'exigence de capital relative au risque lié aux autres contreparties correspond à $X\%$ de la somme des créances de l'actif circulant, autres que les créances vis-à-vis de l'Etat des contreparties visées aux 1) et 2) ci-dessus et les montants des chèques et valeurs à encaisser, nettes de provisions et qui demeurent impayées pendant une période supérieure à six (06) mois.
 
 #### Exigence de capital relative au risque de concentration ($CSR_{concentration}$)
-L’exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d’émetteurs appartenant aux mêmes groupes. Elle correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d’émetteurs.
+L'exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d'émetteurs appartenant aux mêmes groupes. Elle correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d'émetteurs.
 $$
 CSR_{concentration} = \sqrt{\sum_i CSR_i^2}
 $$
-avec $i \in \{ \text{Les sous-risques de concentration relatifs aux differents groupes d’emetteurs.}\}$ 
+avec $i \in \{ \text{Les sous-risques de concentration relatifs aux differents groupes d'emetteurs.}\}$ 
 
-Pour chaque groupe d’émetteurs, l’exigence de capital relative au risque de concentration egale à $X\%$ de l’écart positif constaté entre le montant des placements de l’entreprise d’assurances et de réassurance, autres que les valeurs de l’Etat ou celles jouissant de sa garantie, relatifs à l’ensemble d’émetteurs appartenant au groupe précité et $X\%$ du total de ses placements.
+Pour chaque groupe d'émetteurs, l'exigence de capital relative au risque de concentration egale à $X\%$ de l'écart positif constaté entre le montant des placements de l'entreprise d'assurances et de réassurance, autres que les valeurs de l'Etat ou celles jouissant de sa garantie, relatifs à l'ensemble d'émetteurs appartenant au groupe précité et $X\%$ du total de ses placements.
 
 #### Exigence de capital relative au risque de souscription vie ($_{souscription}CSR_{vie}$)
-L’exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques.
+L'exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques.
 $$
 _{souscription}CSR_{vie} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
 $$
 avec : $i,j \in \{\text{mortalite, longevite, rachat, frais  catastrophe} \}$
 
 ##### Exigence de capital pour risque de mortalité ($CSR_{mortalite}$)
-L’exigence de capital pour risque de mortalité correspond à la perte de fonds propres due à la hausse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
+L'exigence de capital pour risque de mortalité correspond à la perte de fonds propres due à la hausse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
 
 La hausse des taux de mortalité précitée ne s'applique qu'aux contrats d'assurance pour lesquels une
 hausse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles.
@@ -829,7 +842,7 @@ CSR_{mortalite} = BE^{hausse} - BE
 $$
 
 ##### Exigence de capital pour risque de longévité ($CSR_{longévité}$)
-L’exigence de capital pour risque de longévité correspond à la perte de fonds propres qui résulterait de la baisse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
+L'exigence de capital pour risque de longévité correspond à la perte de fonds propres qui résulterait de la baisse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
 
 La baisse des taux de mortalité précitée ne s'applique qu'aux contrats d'assurance pour lesquels une
 baisse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles.
@@ -838,13 +851,13 @@ CSR_{longévité} = BE^{baisse} - BE
 $$
 
 ##### Exigence de capital pour risque de rachat ($CSR_{rachat}$)
-L’exigence de capital pour risque de rachat est correspond au maximun entre les exigences de capitaux suivantes:
+L'exigence de capital pour risque de rachat est correspond au maximun entre les exigences de capitaux suivantes:
 
-- L’exigence de capital pour risque de hausse des taux de rachat : cette exigence signifie la perte de fonds propre qui résulterait d’une revalorisation des provisions techniques prudentielles suite à une hausse de $X\%$ des taux de rachat retenus, en montant et en nombre. Toutefois, les taux de rachat augmentés de la hausse précitée ne doivent pas dépasser $X\%$.
+- L'exigence de capital pour risque de hausse des taux de rachat : cette exigence signifie la perte de fonds propre qui résulterait d'une revalorisation des provisions techniques prudentielles suite à une hausse de $X\%$ des taux de rachat retenus, en montant et en nombre. Toutefois, les taux de rachat augmentés de la hausse précitée ne doivent pas dépasser $X\%$.
 
 La hausse des taux de rachat précitée ne s'applique qu'aux contrats d'assurance pour lesquels une hausse des taux de rachat entraîne une augmentation des provisions techniques prudentielles.
 
-- L’exigence de capital pour risque de baisse des taux de rachat : cette exigence correspond à la perte de fonds propre qui résulterait d’une revalorisation des provisions technique prudentielles due à une baisse de X\% des taux de rachat retenus, en montant et en nombre.
+- L'exigence de capital pour risque de baisse des taux de rachat : cette exigence correspond à la perte de fonds propre qui résulterait d'une revalorisation des provisions technique prudentielles due à une baisse de X\% des taux de rachat retenus, en montant et en nombre.
 
 La baisse des taux de rachat précitée ne s'applique qu'aux contrats d'assurance pour lesquels une baisse des taux de rachat entraîne une augmentation des provisions techniques prudentielles.
 
@@ -860,9 +873,9 @@ CSR_{rachat}^{\text{baisse taux}} = BE_{rachat}^{\text{baisse taux}} - BE
 $$
 
 ##### Exigence de capital relative au risque de frais ($CSR_{frais}$)
-L’exigence de capital relative au risque de frais correspond à la perte de fonds propres due à des augmentations combinées de :
+L'exigence de capital relative au risque de frais correspond à la perte de fonds propres due à des augmentations combinées de :
 
-- $X%$ du montant de frais de gestion unitaire moyen retenu pour le calcul des provisions techniques prudentielles des opérations d’assurance vie, décès ou de capitalisation et des rentes découlant des opérations non-vie et ce, par sous-catégorie;
+- $X%$ du montant de frais de gestion unitaire moyen retenu pour le calcul des provisions techniques prudentielles des opérations d'assurance vie, décès ou de capitalisation et des rentes découlant des opérations non-vie et ce, par sous-catégorie;
 - $X%$ par année de projection du montant de frais de gestion unitaire moyen précité.
 $$
 CSR_{frais} = BE_{frais}^{\text{chocé}} - BE_{frais}
@@ -870,10 +883,10 @@ $$
 
 ##### Exigence de capital relative au risque de catastrophe ($CSR_{catastrophe}$)
 
-L’exigence de capital relative au risque de catastrophe vie correspond à l’application d’un coefficient de $X\%$ aux montants des capitaux sous risque relatifs aux garanties en cas de décès nets de réassurance.
+L'exigence de capital relative au risque de catastrophe vie correspond à l'application d'un coefficient de $X\%$ aux montants des capitaux sous risque relatifs aux garanties en cas de décès nets de réassurance.
 
 #### Exigence de capital relative au risque de souscription non vie ($_{souscription}CSR_{non-vie}$)
-L’exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux \textbf{sous-risques de primes, de provisions et de catastrophe non-vie}, une fois les coefficients de corrélation appliqués..
+L'exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux \textbf{sous-risques de primes, de provisions et de catastrophe non-vie}, une fois les coefficients de corrélation appliqués..
 
 $$
 _{souscription}CSR_{non-vie} = \sqrt{\sum_{i,j} ( \rho_{i,j} \times CSR_i \times CSR_j)}
@@ -883,14 +896,14 @@ avec : $i,j \in \{ \text{primes, provisions, catastrophe} \}$
 et $\rho$ es le coefficient de corrélation.
 
 ##### Exigence de capital relative au sous-risque de primes ($CSR_{primes}$)
-L’exigence de capital relative au sous-risque de primes est le montant total  des exigences de capitaux relatives aux sous-risques de primes par sous-catégorie et ce, après application des coefficients de corrélations.
+L'exigence de capital relative au sous-risque de primes est le montant total  des exigences de capitaux relatives aux sous-risques de primes par sous-catégorie et ce, après application des coefficients de corrélations.
 $$
 CSR_{primes} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
 $$
 avec : $i,j \in \{ \text{Les sous-risques de primes par sous-categorie }\}$
 et $\rho$ es le coefficient de corrélation entre les sous-catégories des sous-risques de primes.
 
-Pour chaque sous-catégorie, l’exigence de capital afférente au sous risque de primes est égale à X fois le produit de l’écart-type de primes et du montant des primes acquises augmenté de la provision pour primes non-acquises nettes de réassurance au titre de l’exercice inventorié.
+Pour chaque sous-catégorie, l'exigence de capital afférente au sous risque de primes est égale à X fois le produit de l'écart-type de primes et du montant des primes acquises augmenté de la provision pour primes non-acquises nettes de réassurance au titre de l'exercice inventorié.
 $$
 CSR_{sous-categorie}^{primes} = X * \sigma_{primes} * BE_{primes}
 $$
@@ -898,20 +911,20 @@ $$
 avec : &nbsp; $BE_{primes} = Primes_{acquises}^{nettes} + Provision_{primes_{non-acquise}}^{nettes}$
 
 ##### Exigence de capital relative au sous-risque de provisions ($CSR_{provisions}$)
-L’exigence de capital relative au sous-risque de provisions est la somme total des exigences de capitaux relatives aux sous-risques de provision par sous-catégorie, on prenant on considration les coefficients de correlation entre les sous-risques.
+L'exigence de capital relative au sous-risque de provisions est la somme total des exigences de capitaux relatives aux sous-risques de provision par sous-catégorie, on prenant on considration les coefficients de correlation entre les sous-risques.
 $$
 CSR_{provisions} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
 $$
 avec : $i,j \in \{ Les sous-risques de provisions par sous-categorie \}$
 et $\rho$ es le coefficient de corrélation entre les sous-catégories des sous-risques de provisions.
 
-Pour chaque sous-catégorie, l’exigence de capital afférente au sous risque de provision est égale à X fois le produit de l’écart-type de provisions et du montant de la meilleure estimation des engagements pour sinistres nette de réassurance.
+Pour chaque sous-catégorie, l'exigence de capital afférente au sous risque de provision est égale à X fois le produit de l'écart-type de provisions et du montant de la meilleure estimation des engagements pour sinistres nette de réassurance.
 $$
 CSR_{sous-categorie}^{provisions} = X * \sigma_{provisions} * BE_{engagements}
 $$
 
 ##### Exigence de capital relative au risque de catastrophe non-vie
-L’exigence de capital relative au risque de catastrophe non-vie correspond au racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de catastrophe non-vie des garanties suivantes :
+L'exigence de capital relative au risque de catastrophe non-vie correspond au racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de catastrophe non-vie des garanties suivantes :
 
 - Individuelles accidents et Invalidité ;
 - Maladie;
@@ -927,34 +940,33 @@ L’exigence de capital relative au risque de catastrophe non-vie correspond au 
 
 ### Exigence de capital relative au risque opérationnel ($CSR_{opérationnel}$)
 
-L’exigence de capital relative au risque opérationnel correspond à X\% du capital de solvabilité requis de base.
+L'exigence de capital relative au risque opérationnel correspond à X\% du capital de solvabilité requis de base.
 $$
 CSR_{opérationnel} = X\% * CSR_{base}
 $$
 
 ### Ajustement du capital de solvabilité requis
 
-#### Ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés ($Adj_{assures}^{Pertes}$)
+#### Ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés ($Adj_{assures}^{Pertes}$)
 
-L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés egale au minimum de l’écart entre le capital de solvabilité requis de base calculées brutes et nettes d’absorption par les assurés, d’une part, et le montant des bénéfices discrétionnaires futures d’autre part.
+L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés egale au minimum de l'écart entre le capital de solvabilité requis de base calculées brutes et nettes d'absorption par les assurés, d'une part, et le montant des bénéfices discrétionnaires futures d'autre part.
 $$
 Adj_{assures}^{Pertes} = min (CSR_{base}^{nettes}-CSR_{base}^{brutes};BDF)
 $$
 
-#### Ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés ($Ajt_{\text{impots differes}}^{Pertes}$)
+#### Ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés ($Ajt_{\text{impots differes}}^{Pertes}$)
 
-L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés correspond au produit du taux d’impôts et le minimum de la somme du capital de solvabilité requis de base et l’exigence de capital relative au risque opérationnel diminuée de l’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés, d’une part, et l’écart positif entre les impôts différés-passif et les impôts différés-actif, d’autre part.
+L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés correspond au produit du taux d'impôts et le minimum de la somme du capital de solvabilité requis de base et l'exigence de capital relative au risque opérationnel diminuée de l'ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés, d'une part, et l'écart positif entre les impôts différés-passif et les impôts différés-actif, d'autre part.
+
 $$
-Ajt_{\text{impots differes}}^{Pertes} = Tx_{impots} \times 
-$$
-$$
-\times min(CSR_{base} + CSR{operationnel} - Adj_{assures}^{Pertes} ; Impots_{passif}^{differes} - Impots_{actif}^{differes})
+Ajt_{\text{impots differes}}^{Pertes} = Tx_{impots} \times min(CSR_{base} + CSR{operationnel} - Adj_{assures}^{Pertes} ; Impots_{passif}^{differes} - Impots_{actif}^{differes})
 $$
 
 :::{.callout-tip}
-**Remarque**
+## Remarque
 
-Dans le cas où l’écart entre les impôts différés-passif et les impôts différés-actif est négatif, l’ajustement précité est nul.
+Dans le cas où l'écart entre les impôts différés-passif et les impôts différés-actif est négatif, l'ajustement précité est nul.
+
 :::
 
 
