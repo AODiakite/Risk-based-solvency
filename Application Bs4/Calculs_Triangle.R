@@ -4,6 +4,21 @@ names(TriangleRgleAT)[1] <- "Annee"
 TriangleRgleAT = TriangleRgleAT[,-1]
 TriangleRgleAT = as.matrix(TriangleRgleAT)
 
+cumulTriangle = t(apply(TriangleRgleAT,1,cumsum))
+
+# Triangle superieur -----
+Triangulariser <- function(TriangleRgleAT){
+  triangle0 = matrix(nrow = nrow(TriangleRgleAT), ncol = ncol(TriangleRgleAT))
+  for (i in 1:n) {
+    for (j in 1:(n-i+1)) {
+      triangle0[i,j] = TriangleRgleAT[i,j]
+    }
+
+  }
+  triangle0
+}
+
+triangle = Triangulariser(as.matrix(TriangleRgleAT))
 # Calcul des facteurs de développement individuels ----
 
 # Définir une fonction qui calcule les facteurs de développement individuels à partir d'un triangle de règlement
@@ -81,6 +96,19 @@ PSAP = sum(c_hat[,n] - Diag,na.rm = TRUE)
 
 # Constitution du triangle des règlements décumulés futurs par année de survenance :
 
+matriceGlobal <- function(triangle, c_hat){
+  n = nrow(triangle)
+  cumul = triangle
+  triangleGLobal = matrix(nrow = n, ncol = n)
+  decumul = matrix(nrow = n, ncol = n)
+  for (i in 1:n) {
+    for (j in 1:n) {
+      triangleGLobal[i,j] = sum(c(cumul[i,j], c_hat[i,j]),na.rm = TRUE)
+    }
+  }
+  triangleGLobal
+}
+
 # Triangle decumulé
 decumul_tri <- function(triangle, c_hat){
   n = nrow(triangle)
@@ -117,6 +145,6 @@ R_hat <- function(decumul){
 r_hat = R_hat(decumul)
 
 # La meilleure estimation des engagements pour sinistres nets -----
-BE_Sinistre = sum(r_hat/((1+TZC$`Taux zéro coupon`[1:length(r_hat)])^(1:length(r_hat))))
+BE_Sinistre = sum(r_hat/((1+TZC_31_12_2021$`Taux zéro coupon`[1:length(r_hat)])^(1:length(r_hat))))
 
 
