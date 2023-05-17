@@ -63,6 +63,7 @@ calculer_fdc <- function(triangle){
   # Renvoyer la matrice des facteurs de développement individuels
   return(fdc)
 }
+
 fdc = calculer_fdc(triangle)
 #  Les règlements cumulés futurs estimés
 C_hat <- function(triangle,fdc){
@@ -145,6 +146,23 @@ R_hat <- function(decumul){
 r_hat = R_hat(decumul)
 
 # La meilleure estimation des engagements pour sinistres nets -----
-BE_Sinistre = sum(r_hat/((1+TZC_31_12_2021$`Taux zéro coupon`[1:length(r_hat)])^(1:length(r_hat))))
+BE_Sinistre_nv = function(r_hat, ZC = TZC_31_12_2021$`Taux zéro coupon`){
+  sum(r_hat/((1+ZC[1:length(r_hat)])^(1:length(r_hat))))
+}
+
+# La meilleure estimation des engagements pour primes ------
+
+# flux de règlements futurs probabilisés nets de recours relatifs aux sinistres non encore survenus
+
+FRFP_hat <- function(cad_liq,RS,PPNA,PFP){ cad_liq*RS*(PPNA+PFP) }
+BE_Prime_nv <- function(frfp_hat,ZC,PFPA){
+  sum(frfp_hat/((1+ZC[1:length(frfp_hat)])^(1:length(frfp_hat)))) - PFPA
+}
+
+# La meilleure estimation des frais de gestion ----
+
+BE_FG <- function(be_sinistre, be_prime, tx_FG) { tx_FG*(be_sinistre + be_prime) }
+
+
 
 
