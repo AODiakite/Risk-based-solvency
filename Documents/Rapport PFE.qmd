@@ -794,8 +794,8 @@ Bien que la méthode de Chain Ladder soit celle préconisée par l'ACAPS dans le
 
 ##### Méthode des cadences avec inflation
 
-Cette variante de la méthode des cadences tient compte de l’inflation de façon explicite.
-On calcule les paiements annuels en faisant la différence entre les colonnes successives du triangle des paiements cumulés. On ajuste ces paiements annuels en devises (MAD par exemple) constants en utilisant un indice d’inflation, puis on les cumule pour obtenir un triangle de montants cumulés en francs constants.
+Cette variante de la méthode des cadences tient compte de l'inflation de façon explicite.
+On calcule les paiements annuels en faisant la différence entre les colonnes successives du triangle des paiements cumulés. On ajuste ces paiements annuels en devises (MAD par exemple) constants en utilisant un indice d'inflation, puis on les cumule pour obtenir un triangle de montants cumulés en francs constants.
 On applique ensuite la méthode des cadences.
 
 ##### La méthode du ratio de paiement
@@ -810,7 +810,7 @@ $$
 
 La méthode de Bornhuetter-Ferguson^[The Actuary and IBNR publié en 1972] est une méthode de provisionnement qui repose sur l'idée que les pertes finales, attendues pour une année de survenance sont connues a priori et que le rythme des paiements est stable d'une année à l'autre. Elle combine les caractéristiques de la méthode des cadences et de la méthode du ratio de sinistralité attendu. Elle utilise des facteurs de développement pour estimer le pourcentage de pertes rapportées ou payées et ajoute les pertes attendues multipliées par le pourcentage de pertes non rapportées ou non payées. Elle est surtout utilisée quand les pertes sont de faible fréquence mais de forte gravité.
 
-En résumé, elle suppose que l’on dispose d’une information externe sur la valeur probable finale du coût total des sinistres, que l’on appelle $A$, et que l’on connaisse la proportion de sinistres attendus.^[CNAM 2002-2003, Mathématiques actuarielles fondamentales (assurance non vie), Eléments de cours – 24 mars 2003 – liquidation des sinistres]
+En résumé, elle suppose que l'on dispose d'une information externe sur la valeur probable finale du coût total des sinistres, que l'on appelle $A$, et que l'on connaisse la proportion de sinistres attendus.^[CNAM 2002-2003, Mathématiques actuarielles fondamentales (assurance non vie), Eléments de cours – 24 mars 2003 – liquidation des sinistres]
 Cette méthode se formule comme suit :
 
 $$
@@ -830,18 +830,18 @@ avec :
 
 Imaginons que le tarif ait été fixé en prévoyant une sinistralité totale de $90$, que la part des sinistres connus au premier bilan soit habituellement de $40\%$ et que la sinistralité observée au premier bilan soit de $36$.
 
-Si l’on pense que le tarif était bien établi, il n’y a pas lieu de changer la sinistralité totale et le montant des tardifs à provisionner est de $90-36 = 54$.
+Si l'on pense que le tarif était bien établi, il n'y a pas lieu de changer la sinistralité totale et le montant des tardifs à provisionner est de $90-36 = 54$.
 
-Si l’on pense que la part des sinistres connus au premier bilan est un indicateur fiable, il y a lieu de considérer que la sinistralité totale sera de $36/40\% = 90$ et de provisionner 54 de tardifs.
+Si l'on pense que la part des sinistres connus au premier bilan est un indicateur fiable, il y a lieu de considérer que la sinistralité totale sera de $36/40\% = 90$ et de provisionner 54 de tardifs.
 
-L’application de la méthode Bornhuetter-Ferguson donne un résultat intermédiaire calculé ainsi :
+L'application de la méthode Bornhuetter-Ferguson donne un résultat intermédiaire calculé ainsi :
 
 $L = 90 \times 40\% + 90 \times 60\% = 90$, soit un volume de tardifs attendu de $54$.
 
 :::
 
 
-Plusieurs auteurs ont exprimé l’opinion que cette méthode est plus performante que la méthode des cadences de développement, en début de développement.
+Plusieurs auteurs ont exprimé l'opinion que cette méthode est plus performante que la méthode des cadences de développement, en début de développement.
 
 #### La meilleure estimation des frais de gestion:
 la meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs liés aux contrats.
@@ -885,6 +885,7 @@ $$
 
 #### La meilleure estimation des engagements cédés ($BE_{cedes}^{eng}$):
 ##### Les opérations d'assurance vie, décès ou de capitalisation {-}
+
 la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des
 engagements par le rapport entre d'une part, la part des cessionnaires dans les provisions
 mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la
@@ -900,7 +901,9 @@ Avec :
 
 
 ##### Les opérations non vie{-}
+
 Pour les opérations non vie, la meilleure estimation des engagements cédés correspond à la somme de la meilleure estimation des engagements pour sinistres cédés et de la meilleure estimation des engagements pour primes cédés.
+
 $$
 _{nvie}BE_{cedes}^{eng} =\; _{sinsitres}BE_{cedes}^{eng} + \; _{primes}BE_{cedes}^{eng}
 $$
@@ -912,9 +915,74 @@ Avec :
 
 #### L'ajustement pour défaut de contrepartie:
 
-L'ajustement pour défaut de contrepartie est déterminé en actualisant les flux d'ajustement futurs sur la base de la courbe des taux fixée par l'Autorité.
+L'ajustement pour défaut de contrepartie est déterminé en actualisant les flux d'ajustement futurs sur la base de la courbe des taux fixée par l'Autorité. Il correspond à la perte anticipée résultant de la défaillance probable du cessionnaire
 
-Les flux d'ajustement futurs sont déterminés conformément à la méthode, telle que décrite à **l'annexe N°6** de la circulaire de l'ACAPS.
+Les flux d'ajustement futurs sont déterminés conformément à la méthode, telle que décrite à **l'annexe N°6** de la circulaire de l'ACAPS que nous décrirons ci-après.
+
+::: {.callout-note}
+## Etape Nº1: Calcul des meilleures estimations cédées projetées
+> Pour les opérations d'assurance non-vie hors rentes
+
+Posons $(F_t)_{t>0}$ étant les flux  de règlements futurs probabilisés. La meilleure estimation des engagements cédés au titre de l'année de projection $ME_{engagements\;cédès\;i}$ est calculée comme suit :
+
+$$
+ME_{engagements\;cédès\;i} = (ME_{sinsitres\;i} \times ratio_{sinistres\;0} + ME_{primes\;i} \times ratio_{primes\;0})
+$$
+
+Où:
+
+- $ME_{sinsitres\;i} = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité.
+- $ME_{primes\;i}$: correspond à la meilleure estimation des engagements pour primes projetée à la date i.
+- Les termes $ratio_{sinistres\;0}$ et $ratio_{primes\;0}$ correspondent aux ratios de passage utilisés pour le calcul de la meilleure estimation des engagements pour sinistres cédés et pour primes cédés respectivement à la date d'inventaire.
+
+> Pour les opérations d’assurance vie, décès ou de capitalisation
+
+ La meilleure estimation des engagements cédès est déterminée par la formule suivante :
+ 
+ $$
+ ME_{engagements\;cédès\;i} = (MEGP_i + BDF_i)\times ratio_0
+ $$
+ 
+Où :
+- $MEGP_i = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité et $(F_t)_{t>0}$ les flux de trésorerie futurs probabilisés.
+- $BDF_i = \frac{MEGP_i}{MEGP_0}\times BDF_0 \times (1+r_i)^i$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité.
+- $BDF_0$ correspond aux bénéfices discrétionnaires futurs à la date d’inventaire.
+- Le terme $ratio_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d’inventaire.
+
+> Pour les rentes découlant des opérations non-vie
+
+La meilleure estimation des engagements cédès au titre de l’année de projection correspond à :
+
+$$
+ ME_{engagements\;cédès\;i} = MEGP_i\times ratio_0
+$$
+
+Où :
+- $MEGP_i = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité et $(F_t)_{t>0}$ les flux de trésorerie futurs probabilisés.
+- Le terme $ratio_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d’inventaire.
+
+:::
+
+::: {.callout-note}
+## Etape Nº2: Calcul des flux d’ajustement projetés
+
+Au titre de l'année de projection $i$, le flux d'ajustement est calculé ainsi :
+
+$$
+Adj_i = \frac{1}{2}\times \max( ME_{engagements\;cédès\;i} - dépôt\; en \; espèces\; et\; en\; valeurs_1+ solde\; de \; réassurance_1;0)\times PD \times (1-PD)^{i-1}
+$$
+La probabilité de défaut annuelle "PD" du cessionnaire est établie conformément au tableau prévu au 2) de l’annexe n°12 de la  circulaire qui correspond au premier Annexe de ce rapport.
+:::
+
+::: {.callout-note}
+## Etape Nº3: Calcul de l’ajustement pour défaut de contrepartie
+
+$$
+Ajustement_{defaut} = \sum\limits_{i>0} \frac{Adj_i}{(1+r_i)^i}
+$$
+avec $(r_i)$ calculés à partir de la courbe des taux fixée par l'Autorité
+
+:::
 
 ## Capital de Solvabilité Requis :
 Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d'assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont exposés.  Le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c'est-à-dire à une seule occurrence tous les 200 ans.   
@@ -1291,5 +1359,5 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 
 
 
-
+## ANNEXE Nº1 : CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
 
