@@ -41,6 +41,7 @@ Le Maroc est l'un des acteurs majeurs de l'assurance en Afrique. Ses compagnies 
 library(rvest)
 library(kableExtra)
 library(dplyr)
+library(xml2)
 
 link = "https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays"
 
@@ -214,10 +215,13 @@ Dans cette partie nous nous intéressons à la construction de la courbe des tau
 library(tidyverse)
 library(glue)
 library(rvest)
+library(xml2)
 ```
 
 
 ```{r message=FALSE,warning=FALSE,error=FALSE,echo=FALSE}
+library(xml2)
+library(rvest)
 get_taux_BAM2 <- function(DATE = "2021-12-30"){
 
   DATE = ymd(DATE)
@@ -250,7 +254,7 @@ TR = get_taux_BAM2(DATE = "2021-12-30")
 #| label: tbl-taux_ref
 #| tbl-cap: "Taux de référence des bons du Trésor du 30/12/2022"
 library(kableExtra)
-TR %>% 
+TR[1:10,] %>% 
   kbl() %>% 
   kable_material(c("striped"))
 
@@ -298,7 +302,7 @@ get_taux_act2 <- function(taux_BAM){
 
 library(kableExtra)
 TAC = get_taux_act2(taux_BAM = TR)
-TAC %>% 
+TAC[1:10,] %>% 
   kbl() %>% 
   kable_material(c("striped"))
 
@@ -345,7 +349,7 @@ interpolation2 <- function(TA){
 
 library(kableExtra)
 INTER = interpolation2(TA = TAC)
-INTER %>% 
+INTER[1:10,] %>% 
   kbl() %>% 
   kable_material(c("striped"))
 
@@ -417,7 +421,7 @@ boostrapping2 <- function(T_INTER){
 
 library(kableExtra)
 BOOST = boostrapping2(T_INTER = INTER)
-BOOST %>% 
+BOOST[1:10,] %>% 
   kbl() %>% 
   kable_material(c("striped"))
 
@@ -1371,7 +1375,8 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 
 L’échelle de notation à retenir correspond à la notation financière la plus récente délivrée, durant les dix-huit (18) derniers mois, par l’une des agences de notation citées ci-dessous et ce, conformément au tableau de correspondance suivant :
 
-```{r}
+```{r echo=FALSE}
+library(kableExtra)
 Ligne1 = c("Echelle de notation","S&P", "FITCH RATING","AM BEST")
 Ligne2 = c("1", "Supérieure ou égale à AA", "Supérieure ou égale à AA", "Supérieure ou égale à AA")
 Ligne3 = c("2", "Inférieure à AA et supérieure ou égale à A","Inférieure à AA et supérieure ou égale à A","Inféieure à AA et supérieure ou égale à A")
@@ -1379,13 +1384,20 @@ Ligne4 = c("3", "Inférieure A et supérieure ou égale à BBB","Inférieure A e
 Ligne5 = c("4","Inférieure à BBB et supérieure ou égale à BB","Inférieure à BBB et supérieure ou égale à BB","Inférieure à BBB et supérieure ou égale à BB")
 Ligne6 = c("5"," Inférieure à BB","Inférieure à BB", "Inférieure à BB")
 tableau1 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
-tableau1
+tableau1 <- t(tableau1)
+colnames(tableau1) = tableau1[1,]
+tableau1 = tableau1[-1,]
+rownames(tableau1) = NULL
+tableau1 %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
 ```
 
 
 En l’absence de notation financière délivrée, durant les dix-huit (18) derniers mois, par l’une des agences de notation financière précitées et en l’absence d’une notation financière équivalente justifiée, durant la même période, l’échelle de notation est retenue en fonction du ratio de solvabilité du cessionnaire ou de la cédante concerné et ce, conformément au tableau de correspondance suivant :
 
-```{r}
+```{r echo=FALSE}
+library(kableExtra)
 Ligne1 = c("Echelle de notation","Ratio de solvabilité")
 Ligne2 = c("1","Supérieur à 175%")
 Ligne3 = c("2","]122% ; 175%]")
@@ -1393,7 +1405,13 @@ Ligne4 = c("3","]95% ; 122%]")
 Ligne5 = c("4","]75% ; 95%]")
 Ligne6 = c("5","Inférieur ou égale à 75%")
 tableau2 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
-tableau2
+tableau2 <- t(tableau2)
+colnames(tableau2) = tableau2[1,]
+tableau2 = tableau2[-1,]
+rownames(tableau2) = NULL
+tableau2 %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
 ```
 
 Dans les autres cas, l’échelle de notation la plus faible est retenue.
@@ -1403,7 +1421,8 @@ Dans les autres cas, l’échelle de notation la plus faible est retenue.
 L’échelle de notation à retenir correspond à la notation financière la plus récente délivrée, durant les
 dix-huit (18) derniers mois, par l’une des agences de notation citées ci-dessous et ce, conformément au tableau de correspondance suivant :
 
-```{r}
+```{r echo=FALSE}
+library(kableExtra)
 Ligne1 = c("Echelle de notation","S&P", "FITCH RATINGS","MOODY’S")
 Ligne2 = c("1","Supérieure ou égale à AA","Supérieure ou égale à AA","Supérieure ou égale à Aa")
 Ligne3 = c("2","Inférieure à AA et supérieure ou égale à A", "Inférieure à AA et supérieure ou égale à A", "Inférieure à Aa et supérieure ou égale à A")
@@ -1411,13 +1430,20 @@ Ligne4 = c("3","Inférieure A et supérieure ou égale à BBB", "Inférieure A e
 Ligne5 = c("4","Inférieure à BBB et supérieure ou égale à BB", "Inférieure à BBB et supérieure ou égale à BB", "Inférieure à Baa et supérieure ou égale à Ba")
 Ligne6 = c("5","Inférieure à BB", "Inférieure à BB", "Inférieure à Ba")
 tableau3 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
-tableau3
+tableau3 <- t(tableau3)
+colnames(tableau3) = tableau3[1,]
+tableau3 = tableau3[-1,]
+rownames(tableau3) = NULL
+tableau3 %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
 
 ```
 
 En l’absence de notation financière délivrée, durant les dix-huit (18) derniers mois, par l’une des agences de notation financière précitées et en l’absence d’une notation financière équivalente justifiée, durant la même période, l’échelle de notation est retenue en fonction du ratio de solvabilité de l’organisme dépositaire concerné et ce, conformément au tableau de correspondance suivant :
 
-```{r}
+```{r echo=FALSE}
+library(kableExtra)
 Ligne1 = c("Echelle de notation","Ratio de solvabilité")
 Ligne2 = c("1","Supérieur à 21%")
 Ligne3 = c("2","]14,6% ; 21%]")
@@ -1425,7 +1451,13 @@ Ligne4 = c("3","]11,4% ; 14,6%]")
 Ligne5 = c("4","]9% ; 11,4%]")
 Ligne6 = c("5","Inférieur ou égale à 9%")
 tableau4 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
-tableau4
+tableau4 <- t(tableau4)
+colnames(tableau4) = tableau4[1,]
+tableau4 = tableau4[-1,]
+rownames(tableau4) = NULL
+tableau4 %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
 ```
 Dans les autres cas, l’échelle de notation la plus faible est retenue.
 
@@ -1433,10 +1465,16 @@ Dans les autres cas, l’échelle de notation la plus faible est retenue.
 
 La probabilité de défaut annuelle est établie en fonction de l’échelle de notation retenue en
 application des dispositions du 1) ci-dessus et ce, conformément au tableau de correspondance ciaprès :
-```{r}
+```{r echo=FALSE}
+library(kableExtra)
 Ligne1 = c("Echelle de notation","1","2","3","4","5")
 Ligne2 = c("Probabilité de défaut annuelle","0,010%","0,050%", "0,240%", "1,200%", "4,200%")
-tableau5 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
-tableau5
+tableau5 <- data.frame(Ligne1, Ligne2)
+colnames(tableau5) = tableau5[1,]
+tableau5 = tableau5[-1,]
+rownames(tableau5) = NULL
+tableau5 %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
 ```
 
