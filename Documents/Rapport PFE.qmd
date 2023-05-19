@@ -1383,8 +1383,8 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 :::
 
 
-## ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT
-### Echelles de notation:
+## ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
+### Echelles de notation{-}
 
 - Pour les cessionnaires et les cédantes :
 
@@ -1476,7 +1476,7 @@ tableau4 %>%
 ```
 Dans les autres cas, l’échelle de notation la plus faible est retenue.
 
-### Probabilités de défaut
+### Probabilités de défaut{-}
 
 La probabilité de défaut annuelle est établie en fonction de l’échelle de notation retenue en
 application des dispositions du 1) ci-dessus et ce, conformément au tableau de correspondance ciaprès :
