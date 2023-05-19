@@ -62,14 +62,30 @@ table %>%
   column_spec(7, width = "2cm")
 ```
 
-Le Royaume doit ce succès à la rigueur de sont dispositif prudentiel qui se consolide de plus en plus. La SBR vient en ce sens renforcer cette dynamique. Elle s'établit sur trois piliers :
+Le Royaume doit ce succès à la rigueur de sont dispositif prudentiel qui se consolide de plus en plus.
+La SBR (Solvabilité basée sur les risques) est une réforme prudentielle qui vient en ce sens renforcer cette dynamique. elle vise à conoslider la résilience des compagnies d'assurances face aux différents risques qu'elles encourent. Elle repose sur trois piliers : le pilier quantitatif, le pilier qualitatif et le pilier informatif^[solvabilité basée sur les risques assurances maroc Acaps].
+
+Le pilier quantitatif définit de nouvelles règles pour calculer le niveau de fonds propres minimum que les assureurs doivent détenir, en fonction de l'ensemble de leur activité et des risques associés. Il introduit également un bilan prudentiel, basé sur la valeur de marché des actifs et des passifs, et une classification des fonds propres éligibles^[https://fnh.ma/article/actualite-financiere-maroc/assurances-solvabilite-basee-sur-les-risques-les-seuils-minimums-fixes-en-janvier-2019].
+
+Le pilier qualitatif concerne la gouvernance et le contrôle interne des assureurs, ainsi que la gestion des risques. Il impose aux assureurs de mettre en place des fonctions clés, comme la fonction actuarielle ou la fonction de conformité, et de réaliser une évaluation interne des risques et de la solvabilité (*ORSA*^[ORSA Own Risk and Solvency Assessment]). Il applique aussi le principe de « personne prudente » pour la politique d’investissement des assureurs. 
+:::{.callout-tip}
+## Le principe de « personne prudente »
+
+Le principe de « personne prudente » est un principe qui s’applique à la politique d’investissement des entreprises d’assurance et de réassurance. Il signifie que les assureurs ne doivent investir que dans des actifs dont ils peuvent correctement identifier, mesurer, suivre, gérer, contrôler et déclarer les risques. Ce principe remplace les limitations d’actif qui existaient auparavant dans le cadre réglementaire. Il vise à garantir l’adéquation des actifs aux engagements envers les assurés, en tenant compte des critères de sécurité, qualité, liquidité et rentabilité.
+
+:::
+
+
+Le pilier informatif porte sur le reporting et la publication d'information par les assureurs. Il vise à renforcer la transparence et la discipline de marché, en imposant aux assureurs de communiquer au régulateur et au public des informations sur leur situation financière, leur profil de risque et leur système de gouvernance².
+
+La réforme SBR est entrée en vigueur progressivement au Maroc depuis 2019. Le régulateur du secteur, l'ACAPS (Autorité de contrôle des assurances et de la prévoyance sociale), a élaboré plusieurs textes réglementaires pour accompagner sa mise œuvre. Le dernier projet de circulaire en date concerne le second pilier relatif à la gouvernance^[[Ciculaire en préparation concernant le second pilier relatif à la gouvernance](https://fnh.ma/article/actualite-financiere-maroc/assurances-sbr-un-projet-de-circulaire-en-preparation)].
 
 ![Les 3 piliers de la SBR](Rapport PFE_files/piliers.png){#fig-piliers}
 
 ## Piliers 1: Exigences quantitatives
 
- Sur les trois piliers de lq normes SBR, notre rapport de stage porte essentiellement sur le pilier 1. Ce dernier spécifie toutes les dipositions réglementaires afin de satisfaire les exigences quantitatives de la norme.
- La détermination du capital de solvabilité requis ($CSR$) et la fixation des Fonds propres nécessite l'établissement annuel d'un bilan prudentiel.
+ Sur les trois piliers de la normes SBR, notre rapport de stage se concentre essentiellement sur le pilier 1. Ce dernier spécifie toutes les dipositions réglementaires afin de satisfaire les exigences quantitatives de la norme.
+ La détermination du capital de solvabilité requis ($CSR$) et la fixation des Fonds propres ($FP$) nécessite l'établissement annuel d'un bilan prudentiel.
 
 ## Valorisation  de l'actif
 
@@ -1095,7 +1111,8 @@ $$
 CSR_{immobilier} = BE_{eng}^{\text{baisse actifs immobiliers}} - BE_{eng}
 $$
 
-##### L'exigence de capital relative au risque d'écart ($CSR_{\text{Ecart_taux}}$)
+##### L'exigence de capital relative au risque d'écart ($CSR_{Ecart\;taux}$)
+
 L'exigence de capital relative au risque d'écart de taux est la perte de fonds propres due à l'application des taux de baisse à la valeur des titres de créances non émis ou non garantis par l'Etat.
 
 Les taux de baisse à appliquer sont calculés en fonction de la duration et de la prime de risque à l'émission.
