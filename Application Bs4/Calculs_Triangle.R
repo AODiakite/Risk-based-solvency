@@ -1,3 +1,4 @@
+library(readxl)
 # Importation du triangle de reglement A.T
 TriangleRgleAT <- read_excel("Data/TriangleRgle.xlsx")
 names(TriangleRgleAT)[1] <- "Annee"
