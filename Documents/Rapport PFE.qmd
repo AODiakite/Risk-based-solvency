@@ -1365,4 +1365,78 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 
 
 ## ANNEXE Nº1 : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
+### Echelles de notation:
+
+- Pour les cessionnaires et les cédantes :
+
+L’échelle de notation à retenir correspond à la notation financière la plus récente délivrée, durant les dix-huit (18) derniers mois, par l’une des agences de notation citées ci-dessous et ce, conformément au tableau de correspondance suivant :
+
+```{r}
+Ligne1 = c("Echelle de notation","S&P", "FITCH RATING","AM BEST")
+Ligne2 = c("1", "Supérieure ou égale à AA", "Supérieure ou égale à AA", "Supérieure ou égale à AA")
+Ligne3 = c("2", "Inférieure à AA et supérieure ou égale à A","Inférieure à AA et supérieure ou égale à A","Inféieure à AA et supérieure ou égale à A")
+Ligne4 = c("3", "Inférieure A et supérieure ou égale à BBB","Inférieure A et supérieure ou égale à BBB","Inférieure à A et supérieure ou égale à BBB")
+Ligne5 = c("4","Inférieure à BBB et supérieure ou égale à BB","Inférieure à BBB et supérieure ou égale à BB","Inférieure à BBB et supérieure ou égale à BB")
+Ligne6 = c("5"," Inférieure à BB","Inférieure à BB", "Inférieure à BB")
+tableau1 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
+tableau1
+```
+
+
+En l’absence de notation financière délivrée, durant les dix-huit (18) derniers mois, par l’une des agences de notation financière précitées et en l’absence d’une notation financière équivalente justifiée, durant la même période, l’échelle de notation est retenue en fonction du ratio de solvabilité du cessionnaire ou de la cédante concerné et ce, conformément au tableau de correspondance suivant :
+
+```{r}
+Ligne1 = c("Echelle de notation","Ratio de solvabilité")
+Ligne2 = c("1","Supérieur à 175%")
+Ligne3 = c("2","]122% ; 175%]")
+Ligne4 = c("3","]95% ; 122%]")
+Ligne5 = c("4","]75% ; 95%]")
+Ligne6 = c("5","Inférieur ou égale à 75%")
+tableau2 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
+tableau2
+```
+
+Dans les autres cas, l’échelle de notation la plus faible est retenue.
+
+- Pour les organismes dépositaires :
+
+L’échelle de notation à retenir correspond à la notation financière la plus récente délivrée, durant les
+dix-huit (18) derniers mois, par l’une des agences de notation citées ci-dessous et ce, conformément au tableau de correspondance suivant :
+
+```{r}
+Ligne1 = c("Echelle de notation","S&P", "FITCH RATINGS","MOODY’S")
+Ligne2 = c("1","Supérieure ou égale à AA","Supérieure ou égale à AA","Supérieure ou égale à Aa")
+Ligne3 = c("2","Inférieure à AA et supérieure ou égale à A", "Inférieure à AA et supérieure ou égale à A", "Inférieure à Aa et supérieure ou égale à A")
+Ligne4 = c("3","Inférieure A et supérieure ou égale à BBB", "Inférieure A et supérieure ou égale à BBB","Inférieure A et supérieure ou égale à Baa")
+Ligne5 = c("4","Inférieure à BBB et supérieure ou égale à BB", "Inférieure à BBB et supérieure ou égale à BB", "Inférieure à Baa et supérieure ou égale à Ba")
+Ligne6 = c("5","Inférieure à BB", "Inférieure à BB", "Inférieure à Ba")
+tableau3 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
+tableau3
+
+```
+
+En l’absence de notation financière délivrée, durant les dix-huit (18) derniers mois, par l’une des agences de notation financière précitées et en l’absence d’une notation financière équivalente justifiée, durant la même période, l’échelle de notation est retenue en fonction du ratio de solvabilité de l’organisme dépositaire concerné et ce, conformément au tableau de correspondance suivant :
+
+```{r}
+Ligne1 = c("Echelle de notation","Ratio de solvabilité")
+Ligne2 = c("1","Supérieur à 21%")
+Ligne3 = c("2","]14,6% ; 21%]")
+Ligne4 = c("3","]11,4% ; 14,6%]")
+Ligne5 = c("4","]9% ; 11,4%]")
+Ligne6 = c("5","Inférieur ou égale à 9%")
+tableau4 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
+tableau4
+```
+Dans les autres cas, l’échelle de notation la plus faible est retenue.
+
+### Probabilités de défaut
+
+La probabilité de défaut annuelle est établie en fonction de l’échelle de notation retenue en
+application des dispositions du 1) ci-dessus et ce, conformément au tableau de correspondance ciaprès :
+```{r}
+Ligne1 = c("Echelle de notation","1","2","3","4","5")
+Ligne2 = c("Probabilité de défaut annuelle","0,010%","0,050%", "0,240%", "1,200%", "4,200%")
+tableau5 <- data.frame(Ligne1, Ligne2, Ligne3, Ligne4, Ligne5, Ligne6)
+tableau5
+```
 
