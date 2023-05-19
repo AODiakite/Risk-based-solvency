@@ -1364,5 +1364,5 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 
 
 
-## ANNEXE Nº1 : CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
+## ANNEXE Nº1 : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
 
