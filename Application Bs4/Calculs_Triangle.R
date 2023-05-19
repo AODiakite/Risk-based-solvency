@@ -1,9 +1,9 @@
 # Importation du triangle de reglement A.T
-TriangleRgleAT <- read_excel("Data/TriangleRgle.xlsx")
+TriangleRgleAT <- readxl::read_excel("Data/TriangleRgle.xlsx")
 names(TriangleRgleAT)[1] <- "Annee"
 TriangleRgleAT = TriangleRgleAT[,-1]
 TriangleRgleAT = as.matrix(TriangleRgleAT)
-
+#TriangleRgleAT = TriangleRgleAT[,1:11]
 cumulTriangle = t(apply(TriangleRgleAT,1,cumsum))
 
 # Triangle superieur -----
@@ -19,6 +19,7 @@ Triangulariser <- function(TriangleRgleAT){
 }
 
 triangle = Triangulariser(as.matrix(TriangleRgleAT))
+cumulTriangle = Triangulariser(cumulTriangle)
 # Calcul des facteurs de développement individuels ----
 
 # Définir une fonction qui calcule les facteurs de développement individuels à partir d'un triangle de règlement
@@ -155,6 +156,7 @@ BE_Sinistre_nv = function(r_hat, ZC = TZC_31_12_2021$`Taux zéro coupon`){
 # flux de règlements futurs probabilisés nets de recours relatifs aux sinistres non encore survenus
 
 FRFP_hat <- function(cad_liq,RS,PPNA,PFP){ cad_liq*RS*(PPNA+PFP) }
+
 BE_Prime_nv <- function(frfp_hat,ZC,PFPA){
   sum(frfp_hat/((1+ZC[1:length(frfp_hat)])^(1:length(frfp_hat)))) - PFPA
 }
