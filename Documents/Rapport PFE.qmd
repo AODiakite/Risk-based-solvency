@@ -68,6 +68,7 @@ La SBR (Solvabilité basée sur les risques) est une réforme prudentielle qui v
 Le pilier quantitatif définit de nouvelles règles pour calculer le niveau de fonds propres minimum que les assureurs doivent détenir, en fonction de l'ensemble de leur activité et des risques associés. Il introduit également un bilan prudentiel, basé sur la valeur de marché des actifs et des passifs, et une classification des fonds propres éligibles^[https://fnh.ma/article/actualite-financiere-maroc/assurances-solvabilite-basee-sur-les-risques-les-seuils-minimums-fixes-en-janvier-2019].
 
 Le pilier qualitatif concerne la gouvernance et le contrôle interne des assureurs, ainsi que la gestion des risques. Il impose aux assureurs de mettre en place des fonctions clés, comme la fonction actuarielle ou la fonction de conformité, et de réaliser une évaluation interne des risques et de la solvabilité (*ORSA*^[ORSA Own Risk and Solvency Assessment]). Il applique aussi le principe de « personne prudente » pour la politique d’investissement des assureurs. 
+
 :::{.callout-tip}
 ## Le principe de « personne prudente »
 
@@ -80,13 +81,68 @@ Le pilier informatif porte sur le reporting et la publication d'information par 
 
 La réforme SBR est entrée en vigueur progressivement au Maroc depuis 2019. Le régulateur du secteur, l'ACAPS (Autorité de contrôle des assurances et de la prévoyance sociale), a élaboré plusieurs textes réglementaires pour accompagner sa mise œuvre. Le dernier projet de circulaire en date concerne le second pilier relatif à la gouvernance^[[Ciculaire en préparation concernant le second pilier relatif à la gouvernance](https://fnh.ma/article/actualite-financiere-maroc/assurances-sbr-un-projet-de-circulaire-en-preparation)].
 
-![Les 3 piliers de la SBR](Rapport PFE_files/piliers.png){#fig-piliers}
+![Les 3 piliers de la SBR](Rapport-PFE_files/figure-html/piliers.png){#fig-piliers}
 
 ## Piliers 1: Exigences quantitatives
 
  Sur les trois piliers de la normes SBR, notre rapport de stage se concentre essentiellement sur le pilier 1. Ce dernier spécifie toutes les dipositions réglementaires afin de satisfaire les exigences quantitatives de la norme.
- La détermination du capital de solvabilité requis ($CSR$) et la fixation des Fonds propres ($FP$) nécessite une analyse économique annuel du bilan prudentiel.
- 
+ La détermination du capital de solvabilité requis ($CSR$) et la fixation des Fonds propres ($FP$) nécessite une analyse économique annuel du bilan prudentiel. L’organisme d'assurance ou de réassurance doit disposer d’une richesse nette suffisante pour faire face à ses risques dans $X\%$^[La métrique de risque n’est pas encore défini
+dans le projet marocain $SBR$] des situations possibles. Cela implique que sa richesse nette soit supérieure ou égale à l’exigence de solvabilité.
+Le bilan prudentiel SBR est un bilan qui reflète la situation économique des assureurs, et non pas uniquement leur situation comptable. Il se base sur une valorisation des actifs à leur prix de marché, c'est-à-dire le prix auquel ils pourraient être vendus ou transférés.
+Les passifs sont constitués essentiellement de dettes et des provisions techniques, qui représentent le coût estimé des engagements pris par les assureurs envers les assurés. Les provisions techniques se décomposent en deux éléments :
+
+- Le Best Estimate, qui n'est rien d'aute que la valeur actualisée des flux futurs attendus liés aux contrats en cours. L'actualisation se fait en utilisant une courbe de taux sans risque de référence, qui reflète les conditions du marché.
+
+- La marge de risque, qui correspond au coût du capital nécessaire pour couvrir les risques liés aux passifs jusqu'à leur extinction. Le coût du capital est calculé en appliquant un taux fixe aux exigences de fonds propres futures.
+
+Le montant des provisions techniques a une influence importante sur la solvabilité des assureurs et sur leurs fonds propres. Plus les provisions techniques sont élevées, plus les assureurs doivent avoir de fonds propres pour couvrir leurs risques.
+
+![Structure d'un bilan](Rapport-PFE_files/figure-html/Bilan.png){#fig-bilan}
+
+Le calcul du capital de solvabilité requis (SCR) se fait selon une formule standard qui prend en compte les différents types de risques auxquels les assureurs sont exposés. Il s'agit d'une méthode qui part du niveau le plus bas (les risques individuels) et qui remonte au niveau le plus haut (le risque global).
+
+Les risques quantifiables sont regroupés en quatre catégories : les risques de marché, les risques de souscription, les risques de défaut et les risques opérationnels. Pour chaque catégorie, il existe deux façons de mesurer l'impact des risques sur les fonds propres des assureurs :
+
+- *L'approche par scénario*, qui consiste à appliquer des chocs soudains et extrêmes sur les actifs et les passifs des assureurs, et à observer la variation de leur valeur nette. Par exemple, on peut simuler une baisse des actions, une baisse des taux d'intérêt, un choc de mortalité, une hausse de la sinistralité, etc.
+
+- *L'approche par facteurs*, qui consiste à appliquer une formule mathématique qui détermine la charge en capital en fonction de paramètres prédéfinis. Par exemple, on peut utiliser un pourcentage des primes ou des provisions pour calculer le risque de souscription.
+
+Les risques ne sont pas indépendants les uns des autres. Il faut donc tenir compte de la diversification entre les risques, c'est-à-dire du fait que certains risques peuvent se compenser ou s'atténuer mutuellement. Pour cela, on utilise des matrices de corrélation qui permettent d'agréger le SCR de chaque module et de chaque sous-module.
+
+La réassurance est un moyen pour les assureurs de transférer une partie de leurs risques à un autre assureur. Elle réduit donc le SCR des assureurs cédants. Mais elle crée aussi un risque de contrepartie, c'est-à-dire le risque que l'assureur réassureur ne puisse pas honorer ses engagements en cas de sinistre. Il faut donc prendre en compte la réassurance dans la variation des fonds propres après choc.
+
+Les assureurs peuvent aussi mettre en œuvre des actions de gestion pour limiter l'impact des chocs sur leurs passifs. Par exemple, ils peuvent modifier la tarification ou la distribution de leurs produits, ou ajuster leurs garanties ou leurs options. Ces actions de gestion sont prises en compte dans le calcul des provisions techniques après choc.
+
+Enfin, les assureurs peuvent bénéficier d'un ajustement pour capacité d'absorption des pertes par les impôts différés. Cela signifie qu'en cas de perte, ils peuvent réduire leur base imposable et donc leur impôt à payer. Cet ajustement diminue le SCR des assureurs.
+
+
+L'évaluation des provisions techniques est une étape importante du bilan prudentiel, car elle détermine le coût estimé des engagements pris par les assureurs envers les assurés. Il faut donc que cette évaluation soit encadrée par des règles et des principes, qui garantissent sa fiabilité et sa cohérence. Parmi ces règles et principes, on peut citer :
+
+- L'approche réglementaire vs la liberté de modélisation : il s'agit du choix entre utiliser une méthode standardisée définie par le régulateur, ou utiliser une méthode propre à l'assureur, qui doit être validée par le régulateur.
+- La qualité des données et la segmentation : il s'agit de s'assurer que les données utilisées pour l'évaluation sont complètes, exactes et pertinentes, et qu'elles permettent de distinguer les différents types de contrats et de risques.
+- La cohérence des hypothèses avec l'expérience et la situation propre de l'institution : il s'agit de vérifier que les hypothèses retenues pour l'évaluation sont basées sur les données historiques et les caractéristiques spécifiques de l'assureur, et qu'elles sont sensibles aux variations des paramètres.
+- La possibilité de recourir aux "dires d'experts" : il s'agit de la possibilité d'utiliser le jugement professionnel des experts actuariels pour compléter ou ajuster les données ou les hypothèses, en cas de manque d'information ou d'incertitude.
+- La modélisation des frais récurrents en adéquation avec les frontières des contrats : il s'agit de prendre en compte les frais liés à la gestion des contrats, en fonction de leur durée et de leur contenu.
+- L'intégration des "management actions" dans l'évaluation des risques Vie : il s'agit de prendre en compte les actions que l'assureur peut mettre en œuvre pour limiter l'impact des chocs sur ses passifs, comme par exemple modifier la tarification ou la distribution de ses produits, ou ajuster ses garanties ou ses options.
+- La difficulté de contrôler les approches stochastiques : il s'agit de la difficulté à vérifier la pertinence et la robustesse des méthodes qui utilisent des simulations aléatoires pour évaluer les provisions techniques, notamment en ce qui concerne le générateur de scénarios économiques, l'estimation des paramètres, etc.
+
+L'évaluation des risques financiers est aussi une étape importante du bilan prudentiel, car elle détermine la valeur de marché des actifs détenus par les assureurs. Ainsi, cette évalution repose sur un certains nombre de principes parmi lesquels nous pouvons citer :
+
+- La valorisation de l'immobilier et du non coté : il s'agit de déterminer le prix auquel les actifs immobiliers ou non cotés en bourse pourraient être vendus ou transférés sur le marché.
+- La mise en transparence des OPCVM : connaître la composition détaillée des organismes de placement collectif en valeurs mobilières (OPCVM), qui sont des fonds d'investissement regroupant plusieurs actifs financiers.
+- L'ajustement des chocs en fonction de la situation du marché financier et de la géographie du capital : il s'agit d'adapter l'intensité des chocs appliqués aux actifs financiers en fonction du contexte économique et du lieu où ils sont investis.
+- La problématique des notations externes : il s'agit du problème lié à l'utilisation des notations attribuées par les agences externes pour évaluer le risque de défaut des actifs financiers, qui peuvent être biaisées ou imprécises.
+- La définition des "groupes" et actifs "stratégiques" : il s'agit de définir quels sont les groupes ou les actifs financiers qui ont une importance particulière pour l'assureur, et qui doivent donc être traités différemment.
+
+L'évaluation des impôts différés est également une étape importante du bilan prudentiel, car elle détermine le montant d'impôt que l'assureur peut économiser ou payer en cas de perte ou de bénéfice. L'évalution aps par un test de recouvrabilité et la capacité d'absorption des pertes par les impôts différés. L'objecif est de vérifier que l'assureur dispose d'un bénéfice futur suffisant pour utiliser ses impôts différés actifs, c'est-à-dire le montant d'impôt qu'il peut économiser grâce à ses pertes passées ou présentes. Par contraposée, cela revient aussi de vérifier que l'assureur peut bénéficier d'un ajustement pour capacité d'absorption des pertes par les impôts différés, c'est-à-dire le montant d'impôt qu'il peut économiser grâce à ses pertes futures.
+
+L'évaluation du capital de solvabilité requis (SCR) est la dernière étape du bilan prudentiel, car elle détermine le montant minimum de fonds propres que l'assureur doit avoir pour couvrir ses risques. Il existe deux approches possibles pour calculer le SCR :
+
+- La formule standard, qui est une méthode standardisée définie par le régulateur, qui prend en compte les différents types de risques auxquels les assureurs sont exposés, et qui utilise des paramètres prédéfinis.
+
+- Le modèle interne, qui est une méthode propre à l'assureur, qui prend en compte les spécificités de son profil de risque, et qui utilise ses propres paramètres. Le modèle interne doit être validé par le régulateur.
+
+
 
 ## Valorisation  de l'actif
 
@@ -166,7 +222,8 @@ est solution de l'EDS.
 
 ```{r echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 #| Label: fig-gbmPlot
-#| fig-cap: "Simulation de la trajectoire du prix de l'action X par la méthode de Monte Carlo en utilsant le modèle de Black and Scholes"
+#| fig-cap: Simulation de la trajectoire du prix de l'action X par la méthode de Monte Carlo en utilsant le modèle de Black and Scholes
+
 library(ggplot2)
 SBM <- function(t0 = 0,T_ = 1,N = 10000,nsim = 100){
   X <- Map(
@@ -570,11 +627,17 @@ Avec :
 
 - **Un taux de sortie en rente**.
 
-**Remarque:**
+:::{.callout-tip}
+## Remarque
+
 
 Les flux de trésorerie futurs probabilisés précités sont déterminés en considérant un horizon de projection suffisant pour la couverture de l'ensemble de la durée de vie des engagements à la date d'inventaire.
 
-**Exemple** :
+:::
+
+:::{.callout-tip}
+## Exemple
+
 
 Si on prend l'exemple d'un contrat d'assurance-vie mixte^[Un contrat d'assurance mixte à prime unique sur $N$ années est un type de contrat d'assurance-vie qui permet de financer l'assurance-vie en une seule fois. Cela signifie que vous payez une prime unique pour couvrir toute la durée du contrat. Ce type de contrat est destiné aux personnes qui disposent d'un capital et souhaitent diversifier leurs placements tout en protégeant leurs proches. Dans sa variante « mixte », elle permet de réaliser un placement rémunérateur tout en assurant une couverture financière à ses proches.] de capital en cas de vie égale au capital en cas de décès $K$.
 Soit $q_{x+t}$ la probabilité qu'un individu d'âge $x$ lors de la souscription décéde entre $x+t$ et $x+t+1$. On note $NbPolice_t$ le nombre de police en début de période $t$ et $r_s$ le taux ZC.
@@ -582,6 +645,9 @@ La prestation correspondante à ce contrat en date t :
 $$
 _{décès}CF^{Déc}_{t} = K  \times  NbPolice_t \times q_{x+t} \times (1+r_t)^t
 $$
+
+:::
+
 
 ##### Bénéfices discrétionnaires futurs:
 Les bénéfices discrétionnaires futurs sont évalués pour chaque ensemble homogène de contrats.
@@ -1292,7 +1358,7 @@ L'exigence de capital relative au risque de frais correspond à la perte de fond
 - $X%$ du montant de frais de gestion unitaire moyen retenu pour le calcul des provisions techniques prudentielles des opérations d'assurance vie, décès ou de capitalisation et des rentes découlant des opérations non-vie et ce, par sous-catégorie;
 - $X%$ par année de projection du montant de frais de gestion unitaire moyen précité.
 $$
-CSR_{frais} = BE_{frais}^{\text{chocé}} - BE_{frais}
+CSR_{frais} = BE_{frais}^{\text{choqueé}} - BE_{frais}
 $$
 
 ##### Exigence de capital relative au risque de catastrophe ($CSR_{catastrophe}$)
@@ -1384,7 +1450,7 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 :::
 
 
-## ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
+## ANNEXE :  CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
 ### Echelles de notation{-}
 
 - Pour les cessionnaires et les cédantes :
