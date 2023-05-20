@@ -85,7 +85,8 @@ La réforme SBR est entrée en vigueur progressivement au Maroc depuis 2019. Le 
 ## Piliers 1: Exigences quantitatives
 
  Sur les trois piliers de la normes SBR, notre rapport de stage se concentre essentiellement sur le pilier 1. Ce dernier spécifie toutes les dipositions réglementaires afin de satisfaire les exigences quantitatives de la norme.
- La détermination du capital de solvabilité requis ($CSR$) et la fixation des Fonds propres ($FP$) nécessite l'établissement annuel d'un bilan prudentiel.
+ La détermination du capital de solvabilité requis ($CSR$) et la fixation des Fonds propres ($FP$) nécessite une analyse économique annuel du bilan prudentiel.
+ 
 
 ## Valorisation  de l'actif
 
