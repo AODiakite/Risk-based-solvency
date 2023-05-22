@@ -57,7 +57,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#la-construction-de-la-courbe-des-taux-zéro-coupon" id="toc-la-construction-de-la-courbe-des-taux-zéro-coupon" class="nav-link" data-scroll-target="#la-construction-de-la-courbe-des-taux-zéro-coupon"><span class="toc-section-number">5</span>  La construction de la courbe des taux zéro-coupon :</a></li>
   <li><a href="#valorisation-des-provisions-techniques-prudentielles" id="toc-valorisation-des-provisions-techniques-prudentielles" class="nav-link" data-scroll-target="#valorisation-des-provisions-techniques-prudentielles"><span class="toc-section-number">6</span>  Valorisation des provisions techniques prudentielles</a></li>
   <li><a href="#capital-de-solvabilité-requis" id="toc-capital-de-solvabilité-requis" class="nav-link" data-scroll-target="#capital-de-solvabilité-requis"><span class="toc-section-number">7</span>  Capital de Solvabilité Requis :</a></li>
-  <li><a href="#annexe-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut" id="toc-annexe-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut" class="nav-link" data-scroll-target="#annexe-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut">ANNEXE : CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT</a></li>
+  <li><a href="#annexe-correspondance-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut" id="toc-annexe-correspondance-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut" class="nav-link" data-scroll-target="#annexe-correspondance-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut">ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT</a></li>
   </ul>
 </nav>
 </div>
@@ -1378,9 +1378,14 @@ Ajustement_{defaut} = \sum\limits_{i&gt;0} \frac{Adj_i}{(1+r_i)^i}
 <li><p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés.</p></li>
 <li><p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés.</p></li>
 </ul>
+<p><span class="math display">\[
+CSR = CSR_{base} + CSR_{opérationnel} + Adj
+\]</span></p>
 <section id="le-capital-de-solvabilité-requis-de-base-csr_base" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="le-capital-de-solvabilité-requis-de-base-csr_base"><span class="header-section-number">7.1</span> Le capital de solvabilité requis de base <span class="math inline">\(CSR_{base}\)</span></h3>
-<p>Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de <em>marché</em>, de <em>concentration</em>, de <em>contrepartie</em>, de <em>souscription</em> vie et de <em>souscription non-vie</em> et ce, après application des coefficients de corrélations. <span class="math display">\[
+<p>Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de <strong>marché</strong>, de <strong>concentration</strong>, de <strong>contrepartie</strong>, de <strong>souscription vie</strong> et de <strong>souscription non-vie</strong> et ce, après application des coefficients de corrélations.</p>
+<p>En d’autres termes, il s’agit du montant total des capitaux nécessaires pour faire face à ces divers types de risques. les exigences de capitaux sont évaluées individuellement pour chaque catégorie de risque, puis agrégées en appliquant les coefficients de corrélations, pour déterminer le capital de solvabilité requis de base. Cela permet aux compagnies d’assurance d’évaluer de manière précise les montants de capitaux nécessaires pour couvrir leurs risques spécifiques et d’assurer une solvabilité adéquate.</p>
+<p>Le capital de solvabilité requis de base peut être écrit mathématiquement comme suit: <span class="math display">\[
 CSR_{base} = \sqrt{\sum_{i,j\in Risk }(\rho_{i,j} * CSR_{i} * CSR_{j})}
 \]</span> avec :</p>
 <ul>
@@ -1452,7 +1457,8 @@ CSR_{base} = \sqrt{\sum_{i,j\in Risk }(\rho_{i,j} * CSR_{i} * CSR_{j})}
 </table>
 <section id="exigence-de-capital-relative-aux-risques-de-marche-csr_marche" class="level4" data-number="7.1.1">
 <h4 data-number="7.1.1" class="anchored" data-anchor-id="exigence-de-capital-relative-aux-risques-de-marche-csr_marche"><span class="header-section-number">7.1.1</span> EXIGENCE DE CAPITAL RELATIVE AUX RISQUES DE MARCHE <span class="math inline">\(CSR_{marche}\)</span></h4>
-<p>L’exigence de capital relative au risque de marché est le montant total des exigences de capitaux relatives aux sous-risques action, taux, immobilier, écart de taux et change et ce, après application des coefficients de corrélations. <span class="math display">\[
+<p>Pour l’exigence de capital relative au risque de marché, il est important de prendre en compte plusieurs sous-risques telle que, les sous-risques action, taux, immobilier, écart de taux et change. Chacun de ces sous-risques présente des caractéristiques uniques et nécessite une évaluation distincte. Une fois que les exigences de capitaux sont déterminées pour chaque sous-risque, elles sont agrégées pour obtenir l’exigence de capital total relative au risque de marché et ce, après application des coefficients de corrélations appropriés, ce qui permet de tenir compte des interdépendances et des corrélations entre ces différents sous-risques.</p>
+<p>Mathématiquement l’exigence de capital relative au risque de marché peut être représentée comme suit <span class="math display">\[
 CSR_{marche} = \sqrt{\sum_{i,j\in RM }(\rho_{i,j} * CSR_{i} * CSR_{j})}
 \]</span> avec :</p>
 <ul>
@@ -1461,7 +1467,7 @@ CSR_{marche} = \sqrt{\sum_{i,j\in RM }(\rho_{i,j} * CSR_{i} * CSR_{j})}
 </ul>
 <section id="lexigence-de-capital-relative-au-risque-action-csr_action" class="level5" data-number="7.1.1.1">
 <h5 data-number="7.1.1.1" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-risque-action-csr_action"><span class="header-section-number">7.1.1.1</span> L’exigence de capital relative au risque action (<span class="math inline">\(CSR_{action}\)</span>)</h5>
-<p>L’exigence de capital relative au risque action est le montant de la perte de fonds propres résultant des baisses simultanées des valeurs des actions.</p>
+<p>Lorsqu’on parle de l’exigence de capital relative au risque action, il s’agit du montant de perte potentiel des fonds propres d’une institution financière résultant de baisses simultanées des valeurs des actions. Ce type de risque est lié à la volatilité et à la corrélation entre les différentes actions détenues dans le portefeuille d’action.</p>
 <p>Les taux de baisse à appliquer pour le calcul de l’exigence précitée sont fixés pour les catégories d’actions suivantes:</p>
 <p>• Actions cotées à long terme</p>
 <p>• Autres actions cotées</p>
@@ -1474,14 +1480,16 @@ CSR_{action} = VM_{action}^{\text{cas de baisse}} - VM_{action}
 </section>
 <section id="lexigence-de-capital-relative-au-risque-de-taux-csr_taux" class="level5" data-number="7.1.1.2">
 <h5 data-number="7.1.1.2" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-risque-de-taux-csr_taux"><span class="header-section-number">7.1.1.2</span> L’exigence de capital relative au risque de taux (<span class="math inline">\(CSR_{taux}\)</span>)</h5>
-<p>L’exigence de capital relative au risque de taux, est le montant de la perte maximale de fonds propres qui résulterait de l’application de coefficients à la baisse ou à la hausse à la courbe des taux sur tout actif ou passif.</p>
-<p><span class="math display">\[
+<p>L’exigence de capital relative au risque de taux représente le montant estimé de la perte maximale en fonds propres subir en raison de variations à la baisse ou à la hausse des taux d’intérêt appliquées à l’ensemble de ses actifs et passifs.</p>
+<p>l’exigence de capital relative au risque de taux est une mesure essentielle pour évaluer et gérer les risques liés aux fluctuations des taux d’intérêt. Elle contribue à assurer la stabilité financière en prévoyant une réserve adéquate pour faire face aux pertes potentielles résultant de ces variations.</p>
+<p>La formule mathématique peut s’écrire comme suit: <span class="math display">\[
 CSR_{taux} = max (CSR_{taux-hausse}; CSR_{taux-baisse})
 \]</span> avec : &nbsp; <span class="math inline">\(CSR_{taux-i} = BE^{scénario-i} - BE\)</span> <span style="display:inline-block;width:2cm;"></span> <span class="math inline">\(i \in \{ hausse,baisse \}\)</span></p>
 </section>
 <section id="lexigence-de-capital-relative-au-risque-immobilier-csr_immobilier" class="level5" data-number="7.1.1.3">
 <h5 data-number="7.1.1.3" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-risque-immobilier-csr_immobilier"><span class="header-section-number">7.1.1.3</span> L’exigence de capital relative au risque immobilier (<span class="math inline">\(CSR_{immobilier}\)</span>)</h5>
-<p>L’exigence de capital relative au risque immobilier est la perte de fonds propres due à une baisse de X% de la valeur des actifs immobiliers. <span class="math display">\[
+<p>L’exigence de capital relative au risque immobilier est la perte de fonds propres due à une baisse de X% de la valeur des actifs immobiliers.</p>
+<p>Cette exigence est établie pour évaluer les réserves financières nécessaires face à une potentielle baisse de valeur des biens immobiliers pour minimiser les risques. <span class="math display">\[
 CSR_{immobilier} = BE_{eng}^{\text{baisse actifs immobiliers}} - BE_{eng}
 \]</span></p>
 </section>
@@ -1574,14 +1582,19 @@ CSR_{contrepartie}^{type2} = CSR_{contrepartie}^{Assures} + CSR_{contrepartie}^{
 </section>
 <section id="exigence-de-capital-relative-au-risque-de-concentration-csr_concentration" class="level4" data-number="7.1.3">
 <h4 data-number="7.1.3" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-concentration-csr_concentration"><span class="header-section-number">7.1.3</span> Exigence de capital relative au risque de concentration (<span class="math inline">\(CSR_{concentration}\)</span>)</h4>
-<p>L’exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d’émetteurs appartenant aux mêmes groupes. Elle correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d’émetteurs. <span class="math display">\[
+<p>L’exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d’émetteurs appartenant aux mêmes groupes.</p>
+<p>Lorsque des émetteurs appartenant à des groupes spécifiques présentent des liens étroits et partagent des caractéristiques similaires, une baisse de la valeur de leurs actifs peut avoir un impact très important. Par conséquent, il est essentiel de prendre en compte cette concentration de risques lors de l’évaluation des réserves de capital requises.</p>
+<p>Mathématiquement l’exigence de capital relative au risque de concentration correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d’émetteurs. <span class="math display">\[
 CSR_{concentration} = \sqrt{\sum_i CSR_i^2}
 \]</span> avec <span class="math inline">\(i \in \{ \text{Les sous-risques de concentration relatifs aux differents groupes d'emetteurs.}\}\)</span></p>
 <p>Pour chaque groupe d’émetteurs, l’exigence de capital relative au risque de concentration egale à <span class="math inline">\(X\%\)</span> de l’écart positif constaté entre le montant des placements de l’entreprise d’assurances et de réassurance, autres que les valeurs de l’Etat ou celles jouissant de sa garantie, relatifs à l’ensemble d’émetteurs appartenant au groupe précité et <span class="math inline">\(X\%\)</span> du total de ses placements.</p>
 </section>
 <section id="exigence-de-capital-relative-au-risque-de-souscription-vie-_souscriptioncsr_vie" class="level4" data-number="7.1.4">
 <h4 data-number="7.1.4" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-souscription-vie-_souscriptioncsr_vie"><span class="header-section-number">7.1.4</span> Exigence de capital relative au risque de souscription vie (<span class="math inline">\(_{souscription}CSR_{vie}\)</span>)</h4>
-<p>L’exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques. <span class="math display">\[
+<p>L’exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques.</p>
+<p>Le sous-risque de mortalité concerne les pertes potentielles découlant de décès prématurés d’un assuré, tandis que le sous-risque de longévité se rapporte aux pertes potentielles résultant d’une durée de vie plus longue que prévue. Le sous-risque de rachat concerne les pertes potentielles liées aux retraits anticipés des contrats d’assurance-vie, aussi le sous-risque de frais porte sur les pertes potentielles engendrées par les coûts administratifs associés aux contrats. Et le sous-risque de catastrophe concerne les pertes potentielles résultant d’événements extrêmes tels que des catastrophes naturelles.</p>
+<p>L’exigence de capital relative au risque de souscription vie permet de tenir compte des interdépendances entre ces différents sous-risques par l’applications des coefficients des corrélations entre ces eux, et de quantifier les réserves financières nécessaires aux compagnies d’assurance pour faire face aux pertes potentielles résultant des variations des facteurs liés à la mortalité, à la longévité, aux rachats, aux frais et aux catastrophes.</p>
+<p><span class="math display">\[
 _{souscription}CSR_{vie} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
 \]</span> avec : <span class="math inline">\(i,j \in \{\text{mortalite, longevite, rachat, frais  catastrophe} \}\)</span></p>
 <section id="exigence-de-capital-pour-risque-de-mortalité-csr_mortalite" class="level5" data-number="7.1.4.1">
@@ -1601,6 +1614,10 @@ CSR_{longévité} = BE^{baisse} - BE
 </section>
 <section id="exigence-de-capital-pour-risque-de-rachat-csr_rachat" class="level5" data-number="7.1.4.3">
 <h5 data-number="7.1.4.3" class="anchored" data-anchor-id="exigence-de-capital-pour-risque-de-rachat-csr_rachat"><span class="header-section-number">7.1.4.3</span> Exigence de capital pour risque de rachat (<span class="math inline">\(CSR_{rachat}\)</span>)</h5>
+<p>Commençons d’abord par la définition de quoi un rachaten assurance vie?</p>
+<p>un rachat en assurance vie est un retrait. L’épargne placée sur ce contrat est disponible : les fonds ne sont pas bloqués et les assures peuvent les récupérer intégralement, ou en partie, à tout moment. On distingue :</p>
+<p>• <strong>Le rachat partiel</strong> : les assures peuvent récupérer une fraction de la valeur du contrat – qui sera constituée d’une part de capital et d’une part d’intérêts capitalisés – s’ils ont par exemple besoin de liquidités pour un projet précis. Le rachat partiel permet de ne pas mettre un terme au contrat et de ne pas perdre l’antériorité fiscale.</p>
+<p>• <strong>Le rachat total</strong> : les assures peuvent récupérer l’intégralité de la valeur de rachat de leur assurance vie, et leur contrat prend fin, entrainant la perte de l’antériorité fiscale.</p>
 <p>L’exigence de capital pour risque de rachat est correspond au maximun entre les exigences de capitaux suivantes:</p>
 <ul>
 <li>L’exigence de capital pour risque de hausse des taux de rachat : cette exigence signifie la perte de fonds propre qui résulterait d’une revalorisation des provisions techniques prudentielles suite à une hausse de <span class="math inline">\(X\%\)</span> des taux de rachat retenus, en montant et en nombre. Toutefois, les taux de rachat augmentés de la hausse précitée ne doivent pas dépasser <span class="math inline">\(X\%\)</span>.</li>
@@ -1624,7 +1641,7 @@ CSR_{rachat}^{\text{baisse taux}} = BE_{rachat}^{\text{baisse taux}} - BE
 <ul>
 <li><span class="math inline">\(X%\)</span> du montant de frais de gestion unitaire moyen retenu pour le calcul des provisions techniques prudentielles des opérations d’assurance vie, décès ou de capitalisation et des rentes découlant des opérations non-vie et ce, par sous-catégorie;</li>
 <li><span class="math inline">\(X%\)</span> par année de projection du montant de frais de gestion unitaire moyen précité. <span class="math display">\[
-CSR_{frais} = BE_{frais}^{\text{choqueé}} - BE_{frais}
+CSR_{frais} = BE_{frais}^{\text{chocé}} - BE_{frais}
 \]</span></li>
 </ul>
 </section>
@@ -1635,7 +1652,7 @@ CSR_{frais} = BE_{frais}^{\text{choqueé}} - BE_{frais}
 </section>
 <section id="exigence-de-capital-relative-au-risque-de-souscription-non-vie-_souscriptioncsr_non-vie" class="level4" data-number="7.1.5">
 <h4 data-number="7.1.5" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-souscription-non-vie-_souscriptioncsr_non-vie"><span class="header-section-number">7.1.5</span> Exigence de capital relative au risque de souscription non vie (<span class="math inline">\(_{souscription}CSR_{non-vie}\)</span>)</h4>
-<p>L’exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux , une fois les coefficients de corrélation appliqués..</p>
+<p>L’exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux , une fois les coefficients de corrélation appliqués.</p>
 <p><span class="math display">\[
 _{souscription}CSR_{non-vie} = \sqrt{\sum_{i,j} ( \rho_{i,j} \times CSR_i \times CSR_j)}
 \]</span></p>
@@ -1654,7 +1671,7 @@ CSR_{sous-categorie}^{primes} = X * \sigma_{primes} * BE_{primes}
 <h5 data-number="7.1.5.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-sous-risque-de-provisions-csr_provisions"><span class="header-section-number">7.1.5.2</span> Exigence de capital relative au sous-risque de provisions (<span class="math inline">\(CSR_{provisions}\)</span>)</h5>
 <p>L’exigence de capital relative au sous-risque de provisions est la somme total des exigences de capitaux relatives aux sous-risques de provision par sous-catégorie, on prenant on considration les coefficients de correlation entre les sous-risques. <span class="math display">\[
 CSR_{provisions} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
-\]</span> avec : <span class="math inline">\(i,j \in \{ Les sous-risques de provisions par sous-categorie \}\)</span> et <span class="math inline">\(\rho\)</span> es le coefficient de corrélation entre les sous-catégories des sous-risques de provisions.</p>
+\]</span> avec : <span class="math inline">\(i,j \in \{\text{Les sous-risques de provisions par sous-categorie} \}\)</span> et <span class="math inline">\(\rho\)</span> es le coefficient de corrélation entre les sous-catégories des sous-risques de provisions.</p>
 <p>Pour chaque sous-catégorie, l’exigence de capital afférente au sous risque de provision est égale à X fois le produit de l’écart-type de provisions et du montant de la meilleure estimation des engagements pour sinistres nette de réassurance. <span class="math display">\[
 CSR_{sous-categorie}^{provisions} = X * \sigma_{provisions} * BE_{engagements}
 \]</span></p>
@@ -1714,8 +1731,8 @@ Remarque
 </section>
 </section>
 </section>
-<section id="annexe-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="annexe-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut">ANNEXE : CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT</h2>
+<section id="annexe-correspondance-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="annexe-correspondance-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut">ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT</h2>
 <section id="echelles-de-notation" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="echelles-de-notation">Echelles de notation</h3>
 <ul>

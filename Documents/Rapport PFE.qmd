@@ -1077,7 +1077,8 @@ avec $(r_i)$ calculés à partir de la courbe des taux fixée par l'Autorité
 :::
 
 ## Capital de Solvabilité Requis :
-Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d'assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont exposés.  Le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c'est-à-dire à une seule occurrence tous les 200 ans.   
+Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d'assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont
+exposés.  Le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c'est-à-dire à une seule occurrence tous les 200 ans.   
 
 Commençons d'abord par la définition des différents risques dans les secteurs d'assurance et de réassurance :
 
@@ -1113,8 +1114,16 @@ Selon le circulaire de l'ACAPS (l'Autorité de Contrôle des Assurances et de la
 
 - L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés.
 
+$$
+CSR = CSR_{base} + CSR_{opérationnel} + Adj
+$$
+
 ### Le capital de solvabilité requis de base $CSR_{base}$
-Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de *marché*, de *concentration*, de *contrepartie*, de *souscription* vie et de *souscription non-vie* et ce, après application des coefficients de corrélations.
+Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de **marché**, de **concentration**, de **contrepartie**, de **souscription vie** et de **souscription non-vie** et ce, après application des coefficients de corrélations.
+
+En d'autres termes, il s'agit du montant total des capitaux nécessaires pour faire face à ces divers types de risques. les exigences de capitaux sont évaluées individuellement pour chaque catégorie de risque, puis agrégées en appliquant les coefficients de corrélations, pour déterminer le capital de solvabilité requis de base. Cela permet aux compagnies d’assurance d’évaluer de manière précise les montants de capitaux nécessaires pour couvrir leurs risques spécifiques et d'assurer une solvabilité adéquate.
+
+Le capital de solvabilité requis de base peut être écrit mathématiquement comme suit:
 $$
 CSR_{base} = \sqrt{\sum_{i,j\in Risk }(\rho_{i,j} * CSR_{i} * CSR_{j})}
 $$
@@ -1135,7 +1144,9 @@ avec la matrice de corrélations suivante:
 |Sousc. non-vie | x     |    x        |   x        |   x      |  1           |
 
 #### EXIGENCE DE CAPITAL RELATIVE AUX RISQUES DE MARCHE $CSR_{marche}$
-L'exigence de capital relative au risque de marché est le montant total des exigences de capitaux relatives aux sous-risques action, taux, immobilier, écart de taux et change et ce, après application des coefficients de corrélations.
+Pour l'exigence de capital relative au risque de marché, il est important de prendre en compte plusieurs sous-risques telle que, les sous-risques action, taux, immobilier, écart de taux et change. Chacun de ces sous-risques présente des caractéristiques uniques et nécessite une évaluation distincte. Une fois que les exigences de capitaux sont déterminées pour chaque sous-risque, elles sont agrégées pour obtenir l'exigence de capital total relative au risque de marché et ce, après application des coefficients de corrélations appropriés, ce qui permet de tenir compte des interdépendances et des corrélations entre ces différents sous-risques.
+
+Mathématiquement l'exigence de capital relative au risque de marché peut être représentée  comme suit
 $$
 CSR_{marche} = \sqrt{\sum_{i,j\in RM }(\rho_{i,j} * CSR_{i} * CSR_{j})} 
 $$
@@ -1146,7 +1157,7 @@ avec :
 - $\rho$ : Coefficients de corrélations.
 
 ##### L'exigence de capital relative au risque action ($CSR_{action}$)
-L'exigence de capital relative au risque action est le montant de la perte de fonds propres résultant des baisses simultanées des valeurs des actions.
+Lorsqu'on parle de l'exigence de capital relative au risque action, il s'agit du montant de perte potentiel des fonds propres d'une institution financière résultant de baisses simultanées des valeurs des actions. Ce type de risque est lié à la volatilité et à la corrélation entre les différentes actions détenues dans le portefeuille d’action.
 
 Les taux de baisse à appliquer pour le calcul de l'exigence précitée sont fixés pour les catégories d'actions suivantes:
 
@@ -1165,8 +1176,11 @@ CSR_{action} = VM_{action}^{\text{cas de baisse}} - VM_{action}
 $$
 
 ##### L'exigence de capital relative au risque de taux ($CSR_{taux}$)
-L'exigence de capital relative au risque de taux, est le montant de la perte maximale de fonds propres qui résulterait de l'application de coefficients à la baisse ou à la hausse à la courbe des taux sur tout actif ou passif.
+L'exigence de capital relative au risque de taux représente le montant estimé de la perte maximale en fonds propres subir en raison de variations à la baisse ou à la hausse des taux d'intérêt appliquées à l'ensemble de ses actifs et passifs.
 
+l'exigence de capital relative au risque de taux est une mesure essentielle pour évaluer et gérer les risques liés aux fluctuations des taux d'intérêt. Elle contribue à assurer la stabilité financière en prévoyant une réserve adéquate pour faire face aux pertes potentielles résultant de ces variations.
+
+La formule mathématique peut s'écrire comme suit:
 $$
 CSR_{taux} = max (CSR_{taux-hausse}; CSR_{taux-baisse})
 $$
@@ -1174,6 +1188,8 @@ avec : &nbsp; $CSR_{taux-i} = BE^{scénario-i} - BE$     <span style="display:in
 
 ##### L'exigence de capital relative au risque immobilier ($CSR_{immobilier}$)
 L'exigence de capital relative au risque immobilier est la perte de fonds propres due à une baisse de X% de la valeur des actifs immobiliers.
+
+Cette exigence est établie pour évaluer les réserves financières nécessaires face à une potentielle baisse de valeur des biens immobiliers pour minimiser les risques.
 $$
 CSR_{immobilier} = BE_{eng}^{\text{baisse actifs immobiliers}} - BE_{eng}
 $$
@@ -1296,7 +1312,11 @@ avec :
 3) L'exigence de capital relative au risque lié aux autres contreparties correspond à $X\%$ de la somme des créances de l'actif circulant, autres que les créances vis-à-vis de l'Etat des contreparties visées aux 1) et 2) ci-dessus et les montants des chèques et valeurs à encaisser, nettes de provisions et qui demeurent impayées pendant une période supérieure à six (06) mois.
 
 #### Exigence de capital relative au risque de concentration ($CSR_{concentration}$)
-L'exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d'émetteurs appartenant aux mêmes groupes. Elle correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d'émetteurs.
+L'exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d'émetteurs appartenant aux mêmes groupes. 
+
+Lorsque des émetteurs appartenant à des groupes spécifiques présentent des liens étroits et partagent des caractéristiques similaires, une baisse de la valeur de leurs actifs peut avoir un impact très important. Par conséquent, il est essentiel de prendre en compte cette concentration de risques lors de l'évaluation des réserves de capital requises.
+
+Mathématiquement l’exigence de capital relative au risque de concentration correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d'émetteurs.
 $$
 CSR_{concentration} = \sqrt{\sum_i CSR_i^2}
 $$
@@ -1306,6 +1326,11 @@ Pour chaque groupe d'émetteurs, l'exigence de capital relative au risque de con
 
 #### Exigence de capital relative au risque de souscription vie ($_{souscription}CSR_{vie}$)
 L'exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques.
+
+Le sous-risque de mortalité concerne les pertes potentielles découlant de décès prématurés d’un assuré, tandis que le sous-risque de longévité se rapporte aux pertes potentielles résultant d'une durée de vie plus longue que prévue. Le sous-risque de rachat concerne les pertes potentielles liées aux retraits anticipés des contrats d'assurance-vie, aussi le sous-risque de frais porte sur les pertes potentielles engendrées par les coûts administratifs associés aux contrats. Et le sous-risque de catastrophe concerne les pertes potentielles résultant d'événements extrêmes tels que des catastrophes naturelles.
+
+L'exigence de capital relative au risque de souscription vie permet de tenir compte des interdépendances entre ces différents sous-risques par l’applications des coefficients des corrélations entre ces eux, et de quantifier les réserves financières nécessaires aux compagnies d’assurance pour faire face aux pertes potentielles résultant des variations des facteurs liés à la mortalité, à la longévité, aux rachats, aux frais et aux catastrophes.
+
 $$
 _{souscription}CSR_{vie} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
 $$
@@ -1331,6 +1356,14 @@ CSR_{longévité} = BE^{baisse} - BE
 $$
 
 ##### Exigence de capital pour risque de rachat ($CSR_{rachat}$)
+Commençons d’abord par la définition de quoi un rachaten assurance vie?
+
+un rachat en assurance vie est un retrait. L’épargne placée sur ce contrat est disponible : les fonds ne sont pas bloqués et les assures peuvent les récupérer intégralement, ou en partie, à tout moment. On distingue :
+
+•	**Le rachat partiel** : les assures peuvent récupérer une fraction de la valeur du contrat – qui sera constituée d’une part de capital et d’une part d’intérêts capitalisés – s’ils ont par exemple besoin de liquidités pour un projet précis. Le rachat partiel permet de ne pas mettre un terme au contrat et de ne pas perdre l’antériorité fiscale.
+
+•	**Le rachat total** : les assures peuvent récupérer l’intégralité de la valeur de rachat de leur assurance vie, et leur contrat prend fin, entrainant la perte de l’antériorité fiscale.
+
 L'exigence de capital pour risque de rachat est correspond au maximun entre les exigences de capitaux suivantes:
 
 - L'exigence de capital pour risque de hausse des taux de rachat : cette exigence signifie la perte de fonds propre qui résulterait d'une revalorisation des provisions techniques prudentielles suite à une hausse de $X\%$ des taux de rachat retenus, en montant et en nombre. Toutefois, les taux de rachat augmentés de la hausse précitée ne doivent pas dépasser $X\%$.
@@ -1358,7 +1391,7 @@ L'exigence de capital relative au risque de frais correspond à la perte de fond
 - $X%$ du montant de frais de gestion unitaire moyen retenu pour le calcul des provisions techniques prudentielles des opérations d'assurance vie, décès ou de capitalisation et des rentes découlant des opérations non-vie et ce, par sous-catégorie;
 - $X%$ par année de projection du montant de frais de gestion unitaire moyen précité.
 $$
-CSR_{frais} = BE_{frais}^{\text{choqueé}} - BE_{frais}
+CSR_{frais} = BE_{frais}^{\text{chocé}} - BE_{frais}
 $$
 
 ##### Exigence de capital relative au risque de catastrophe ($CSR_{catastrophe}$)
@@ -1366,7 +1399,7 @@ $$
 L'exigence de capital relative au risque de catastrophe vie correspond à l'application d'un coefficient de $X\%$ aux montants des capitaux sous risque relatifs aux garanties en cas de décès nets de réassurance.
 
 #### Exigence de capital relative au risque de souscription non vie ($_{souscription}CSR_{non-vie}$)
-L'exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux \textbf{sous-risques de primes, de provisions et de catastrophe non-vie}, une fois les coefficients de corrélation appliqués..
+L'exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux \textbf{sous-risques de primes, de provisions et de catastrophe non-vie}, une fois les coefficients de corrélation appliqués.
 
 $$
 _{souscription}CSR_{non-vie} = \sqrt{\sum_{i,j} ( \rho_{i,j} \times CSR_i \times CSR_j)}
@@ -1395,7 +1428,7 @@ L'exigence de capital relative au sous-risque de provisions est la somme total d
 $$
 CSR_{provisions} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
 $$
-avec : $i,j \in \{ Les sous-risques de provisions par sous-categorie \}$
+avec : $i,j \in \{\text{Les sous-risques de provisions par sous-categorie} \}$
 et $\rho$ es le coefficient de corrélation entre les sous-catégories des sous-risques de provisions.
 
 Pour chaque sous-catégorie, l'exigence de capital afférente au sous risque de provision est égale à X fois le produit de l'écart-type de provisions et du montant de la meilleure estimation des engagements pour sinistres nette de réassurance.
@@ -1450,7 +1483,7 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 :::
 
 
-## ANNEXE :  CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
+## ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
 ### Echelles de notation{-}
 
 - Pour les cessionnaires et les cédantes :
@@ -1559,4 +1592,6 @@ tableau5 %>%
   kbl() %>% 
   kable_material(c("striped"))
 ```
+
+
 
