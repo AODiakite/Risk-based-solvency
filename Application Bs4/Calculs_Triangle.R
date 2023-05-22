@@ -155,6 +155,9 @@ BE_Sinistre_nv = function(r_hat, ZC = TZC_31_12_2021$`Taux zéro coupon`){
 # La meilleure estimation des engagements pour primes ------
 
 # flux de règlements futurs probabilisés nets de recours relatifs aux sinistres non encore survenus
+CU = apply(decumul,1,sum)
+rglts = apply(decumul,2,sum)
+cad_liq = rglts/sum(CU)
 
 FRFP_hat <- function(cad_liq,RS,PPNA,PFP){ cad_liq*RS*(PPNA+PFP) }
 
