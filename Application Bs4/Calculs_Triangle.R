@@ -10,6 +10,7 @@ cumulTriangle = t(apply(TriangleRgleAT,1,cumsum))
 # Triangle superieur -----
 Triangulariser <- function(TriangleRgleAT){
   triangle0 = matrix(nrow = nrow(TriangleRgleAT), ncol = ncol(TriangleRgleAT))
+  n = nrow(TriangleRgleAT)
   for (i in 1:n) {
     for (j in 1:(n-i+1)) {
       triangle0[i,j] = TriangleRgleAT[i,j]
@@ -20,7 +21,6 @@ Triangulariser <- function(TriangleRgleAT){
 }
 
 triangle = Triangulariser(as.matrix(TriangleRgleAT))
-cumulTriangle = Triangulariser(cumulTriangle)
 # Calcul des facteurs de développement individuels ----
 
 # Définir une fonction qui calcule les facteurs de développement individuels à partir d'un triangle de règlement
@@ -43,7 +43,7 @@ calculer_fdi <- function(triangle){
   # Renvoyer la matrice des facteurs de développement individuels
   return(fdi)
 }
-
+fdi = calculer_fdi(triangle)
 # Calcul des facteurs de développement communs ------
 
 calculer_fdc <- function(triangle){
@@ -73,6 +73,7 @@ C_hat <- function(triangle,fdc){
   if (!is.matrix(triangle) || nrow(triangle) != ncol(triangle)) {
     stop("Le triangle doit être une matrice carrée")
   }
+  n = nrow(triangle)
   # Initialiser la matrice de sortie
   n = nrow(triangle)
   # Calculer les montants cumulés des sinistres réglés par année de développement
@@ -91,9 +92,10 @@ C_hat <- function(triangle,fdc){
 
 }
 
+
 Diag = diag(apply(triangle,1,rev))
 c_hat <- C_hat(triangle = triangle,fdc = fdc)
-PSAP = sum(c_hat[,n] - Diag,na.rm = TRUE)
+PSAP =  sum(c_hat[,ncol(c_hat)] - Diag,na.rm = TRUE)
 
 
 
