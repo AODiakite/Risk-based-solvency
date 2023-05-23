@@ -1077,8 +1077,7 @@ avec $(r_i)$ calculés à partir de la courbe des taux fixée par l'Autorité
 :::
 
 ## Capital de Solvabilité Requis :
-Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d'assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont
-exposés.  Le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c'est-à-dire à une seule occurrence tous les 200 ans.   
+Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d'assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont exposés.  Le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c'est-à-dire à une seule occurrence tous les 200 ans.   
 
 Commençons d'abord par la définition des différents risques dans les secteurs d'assurance et de réassurance :
 
@@ -1104,6 +1103,10 @@ ou d'événements extérieurs.
 résultant d'un manque de diversité des émetteurs auxquels l'entreprise d'assurances et de
 réassurance est exposée.
 
+Tous les risques supportés par le capital de solvabilité requis, on peut les résumer dans le schéma suivant : 
+
+![Présentation des risques  ](Rapport-PFE_files/figure-html/Risques.png){#fig-piliers}
+
 Selon le circulaire de l'ACAPS (l'Autorité de Contrôle des Assurances et de la Prévoyance Sociale) publié le premier Janvier 2020, Le capital de solvabilité requis est constitué de la somme des éléments suivants :
 
 - Le capital de solvabilité requis de base.  
@@ -1117,6 +1120,9 @@ Selon le circulaire de l'ACAPS (l'Autorité de Contrôle des Assurances et de la
 $$
 CSR = CSR_{base} + CSR_{opérationnel} + Adj
 $$
+
+
+
 
 ### Le capital de solvabilité requis de base $CSR_{base}$
 Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de **marché**, de **concentration**, de **contrepartie**, de **souscription vie** et de **souscription non-vie** et ce, après application des coefficients de corrélations.
@@ -1194,7 +1200,7 @@ $$
 CSR_{immobilier} = BE_{eng}^{\text{baisse actifs immobiliers}} - BE_{eng}
 $$
 
-##### L'exigence de capital relative au risque d'écart ($CSR_{Ecart\;taux}$)
+##### L'exigence de capital relative au risque d'écart de taux ($CSR_{Ecart\;taux}$)
 
 L'exigence de capital relative au risque d'écart de taux est la perte de fonds propres due à l'application des taux de baisse à la valeur des titres de créances non émis ou non garantis par l'Etat.
 
@@ -1356,7 +1362,7 @@ CSR_{longévité} = BE^{baisse} - BE
 $$
 
 ##### Exigence de capital pour risque de rachat ($CSR_{rachat}$)
-Commençons d’abord par la définition de quoi un rachaten assurance vie?
+Commençons d’abord par la définition de quoi un rachat en assurance vie ?
 
 un rachat en assurance vie est un retrait. L’épargne placée sur ce contrat est disponible : les fonds ne sont pas bloqués et les assures peuvent les récupérer intégralement, ou en partie, à tout moment. On distingue :
 
