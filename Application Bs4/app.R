@@ -291,7 +291,7 @@ server <- function(input, output) {
     decumul = decumul_tri(triangleAT(),c_hat())
     CU = apply(decumul,1,sum)
     nn = length(CU)
-    parametrage()$Sum_PA/sum(CU[(nn-3):nn])
+    sum(CU[(nn-3):nn])/parametrage()[["Sum_PA"]]
   })
   # BE sinistre
   BE_Sin_nv <- reactive({
@@ -299,12 +299,9 @@ server <- function(input, output) {
   })
   # BE prime
   BE_Prime <- reactive({
-    BE_Prime_nv(frfp_hat = FRFP_hat(cad_liq = cadence(),
-                                    RS = RS(),PPNA = parametrage()[["PPNA"]],
-                                    PFP = parametrage()[["Prime_Futur"]]),
-                ZC = TZC()[["Taux zéro coupon"]],
-                PFPA = parametrage()[["Prime_Futur"]]*parametrage()[["tx_acq"]]
-                )
+    BE_Prime_nv(cad_liq = cadence(),RS = 0.7,
+                PPNA = parametrage()[["PPNA"]],PFP = parametrage()[["Prime_Futur"]],
+                ZC = TZC()[["Taux zéro coupon"]],taux_acquistion =  parametrage()[["tx_acq"]])
   })
   PSAP = reactive({
     Diag = diag(apply(triangleAT(),1,rev))
