@@ -309,35 +309,57 @@ server <- function(input, output) {
     psap =  sum(c_hat[,ncol(c_hat)] - Diag,na.rm = TRUE)
     psap
   })
+  # BE frais de gestion
+  BE_Frais_NV <- reactive({
+    parametrage()[["tx_FG_Moy"]]*(BE_Sin_nv()+BE_Prime())
+  })
   output$valueBoxs <- renderUI(
     fluidRow(
       column(
-        4,
+        3,
         valueBox(
-          value =  tags$h3(round(BE_Sin_nv(),3)),
+          value =  tags$h3(
+            formatC(BE_Sin_nv(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+            ),
           subtitle  = tags$h5("BE Sinistre"),
           icon = icon("car-burst"),
-          width = 12,color = "lightblue",gradient = TRUE,
-          footer = div("Meilleure estimation des engagements pour sinistres")
+          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          footer = div("BE des engagements pour sinistres")
         )
       ),
       column(
-        4,
+        3,
         valueBox(
-          value =  tags$h3(round(BE_Prime(),3)),
+          value =  tags$h3(
+            formatC(BE_Prime(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+            ),
           subtitle  = tags$h5("BE Prime"),
           icon = icon("sack-dollar"),
-          width = 12,color = "lightblue",gradient = TRUE,
-          footer = div("Meilleure estimation des engagements pour prime")
+          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          footer = div("BE des engagements pour prime")
         )
       ),
       column(
-        4,
+        3,
         valueBox(
-          value =  tags$h3(round(PSAP(),3)),
+          value =  tags$h3(
+            formatC(BE_Frais_NV(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+            ),
+          subtitle  = tags$h5("BE FG"),
+          icon = icon("money-check-dollar"),
+          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          footer = div("BE des frais de gestion")
+        )
+      ),
+      column(
+        3,
+        valueBox(
+          value =  tags$h3(
+            formatC(PSAP(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          ),
           subtitle  = tags$h5("PSAP"),
           icon = icon("hand-holding-dollar"),
-          width = 12,color = "lightblue",gradient = TRUE,
+          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
           footer = div("Provision pour sinistre à payer")
         )
       )

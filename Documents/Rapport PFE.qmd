@@ -978,11 +978,7 @@ $$
 #### La meilleure estimation des engagements cédés ($BE_{cedes}^{eng}$):
 ##### Les opérations d'assurance vie, décès ou de capitalisation {-}
 
-la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des
-engagements par le rapport entre d'une part, la part des cessionnaires dans les provisions
-mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la
-somme des provisions mathématiques , des provisions pour capitaux, rentes et rachats à payer bruts
-de réassurance.
+la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des engagements par le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques , des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
 
 $$
 _{vie}BE_{cedes}^{eng} = taux_c \times _{vie}BE^{eng}
@@ -1001,15 +997,17 @@ _{nvie}BE_{cedes}^{eng} =\; _{sinsitres}BE_{cedes}^{eng} + \; _{primes}BE_{cedes
 $$
 Avec :
 
-> $_{sinsitres}BE_{cedes}^{eng} = taux_s \times BE_{sinsitres}^{eng}$ : La meilleure estimation des engagements pour sinistres cédés visée à la spécification technique 33 ci- dessus est évaluée en multipliant la meilleure estimation des engagements pour sinistres nets de recours visée à par ($taux_s$) le rapport entre la part des cessionnaires dans les provisions pour sinistres à payer et la provision pour sinistres à payer brute de réassurance.
+> $_{sinsitres}BE_{cedes}^{eng} = taux_s \times BE_{sinsitres}^{eng}$ : La meilleure estimation des engagements pour sinistres cédés visée à la spécification technique 33 est évaluée en multipliant la meilleure estimation des engagements pour sinistres nets de recours par ($taux_s$) le rapport entre la part des cessionnaires dans les provisions pour sinistres à payer et la provision pour sinistres à payer brute de réassurance.
 
-> $_{primes}BE_{cedes}^{eng} = r^{primes}_{cession} \times BE_{primes}^{eng}$ : La meilleure estimation des engagements pour primes cédés visée est évaluée en multipliant la meilleure estimation des engagements pour primes visée par le taux de cession de primes. Le taux de cession ($r^{primes}_{cession}$) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l'exercice.
+> $_{primes}BE_{cedes}^{eng} = r^{primes}_{cession} \times BE_{primes}^{eng}$ : La meilleure estimation des engagements pour primes cédés est évaluée en multipliant la meilleure estimation des engagements pour primes par le taux de cession de primes. Le taux de cession ($r^{primes}_{cession}$) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l'exercice.
 
 #### L'ajustement pour défaut de contrepartie:
 
-L'ajustement pour défaut de contrepartie est déterminé en actualisant les flux d'ajustement futurs sur la base de la courbe des taux fixée par l'Autorité. Il correspond à la perte anticipée résultant de la défaillance probable du cessionnaire
+En cas de réassuarance, la compagnie d'assurance se confronte à un nouveau risque, celui de défaut de contrepartie. En effet, il se pourrait que les risques cédés par l'assureur ne soient pas supportés par le réassureur. Il est ainsi primordial de tenir en compte ce risque dans le calcul des meilleures estimations en effectuant un ajustement.
+L'ajustement pour défaut de contrepartie est déterminé en actualisant les flux d'ajustement futurs sur la base de la courbe des taux fixée par l'Autorité. Il correspond à la perte anticipée résultant de la défaillance probable du cessionnaire.
 
-Les flux d'ajustement futurs sont déterminés conformément à la méthode, telle que décrite à **l'annexe N°6** de la circulaire de l'ACAPS que nous décrirons ci-après.
+L'*ACAPS* propose une méthode de détermination des  flux d'ajustement futurs décrite à **l'annexe N°6** de la circulaire. Cette méthode suit un certain nombre d'étapes que nous décrivons ci-après
+
 
 ::: {.callout-note}
 ## Etape Nº1: Calcul des meilleures estimations cédées projetées
@@ -1076,10 +1074,13 @@ avec $(r_i)$ calculés à partir de la courbe des taux fixée par l'Autorité
 
 :::
 
-## Capital de Solvabilité Requis :
-Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d'assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont exposés.  Le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c'est-à-dire à une seule occurrence tous les 200 ans.   
+## Capital de Solvabilité Requis 
 
-Commençons d'abord par la définition des différents risques dans les secteurs d'assurance et de réassurance :
+Au cours de son existence, la compagnie d'assurance ou de réassurance fait face à plusieurs engagements dont la plus part sont risqués. Ce tas de risques encourus demande donc des préventions afin d'éviter ou de supporter leur avénement. Subséquemment, il est tout naturel de se demandait quel montant la compagnie devrait avoir à l'instant $t$ pour se couvrir des risques éventuels d'où l'introduction de la notion de *Capital de Solvabilité Requis* ($CSR$).
+
+Comme son nom l'indique, le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine.   
+
+Commençons d'abord par la définition des différents risques dans les secteurs d'assurance et de réassurance pris en compte dans le projet *SBR* :
 
 - **Risque de souscription** : le risque de perte ou de changement défavorable de la situation financière, en
 raison d'hypothèses inadéquates en matière de sinistralité, de tarification et de provisionnement.  
