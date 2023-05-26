@@ -56,7 +56,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#valorisation-de-lactif" id="toc-valorisation-de-lactif" class="nav-link" data-scroll-target="#valorisation-de-lactif"><span class="toc-section-number">4</span>  Valorisation de l’actif</a></li>
   <li><a href="#la-construction-de-la-courbe-des-taux-zéro-coupon" id="toc-la-construction-de-la-courbe-des-taux-zéro-coupon" class="nav-link" data-scroll-target="#la-construction-de-la-courbe-des-taux-zéro-coupon"><span class="toc-section-number">5</span>  La construction de la courbe des taux zéro-coupon :</a></li>
   <li><a href="#valorisation-des-provisions-techniques-prudentielles" id="toc-valorisation-des-provisions-techniques-prudentielles" class="nav-link" data-scroll-target="#valorisation-des-provisions-techniques-prudentielles"><span class="toc-section-number">6</span>  Valorisation des provisions techniques prudentielles</a></li>
-  <li><a href="#capital-de-solvabilité-requis" id="toc-capital-de-solvabilité-requis" class="nav-link" data-scroll-target="#capital-de-solvabilité-requis"><span class="toc-section-number">7</span>  Capital de Solvabilité Requis :</a></li>
+  <li><a href="#capital-de-solvabilité-requis" id="toc-capital-de-solvabilité-requis" class="nav-link" data-scroll-target="#capital-de-solvabilité-requis"><span class="toc-section-number">7</span>  Capital de Solvabilité Requis</a></li>
   <li><a href="#annexe-correspondance-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut" id="toc-annexe-correspondance-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut" class="nav-link" data-scroll-target="#annexe-correspondance-correspondance-entre-echelle-de-notation-et-probabilite-de-defaut">ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT</a></li>
   </ul>
 </nav>
@@ -1273,17 +1273,17 @@ _{vie}BE_{cedes}^{eng} = taux_c \times _{vie}BE^{eng}
 _{nvie}BE_{cedes}^{eng} =\; _{sinsitres}BE_{cedes}^{eng} + \; _{primes}BE_{cedes}^{eng}
 \]</span> Avec :</p>
 <blockquote class="blockquote">
-<p><span class="math inline">\(_{sinsitres}BE_{cedes}^{eng} = taux_s \times BE_{sinsitres}^{eng}\)</span> : La meilleure estimation des engagements pour sinistres cédés visée à la spécification technique 33 ci- dessus est évaluée en multipliant la meilleure estimation des engagements pour sinistres nets de recours visée à par (<span class="math inline">\(taux_s\)</span>) le rapport entre la part des cessionnaires dans les provisions pour sinistres à payer et la provision pour sinistres à payer brute de réassurance.</p>
+<p><span class="math inline">\(_{sinsitres}BE_{cedes}^{eng} = taux_s \times BE_{sinsitres}^{eng}\)</span> : La meilleure estimation des engagements pour sinistres cédés visée à la spécification technique 33 est évaluée en multipliant la meilleure estimation des engagements pour sinistres nets de recours par (<span class="math inline">\(taux_s\)</span>) le rapport entre la part des cessionnaires dans les provisions pour sinistres à payer et la provision pour sinistres à payer brute de réassurance.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><span class="math inline">\(_{primes}BE_{cedes}^{eng} = r^{primes}_{cession} \times BE_{primes}^{eng}\)</span> : La meilleure estimation des engagements pour primes cédés visée est évaluée en multipliant la meilleure estimation des engagements pour primes visée par le taux de cession de primes. Le taux de cession (<span class="math inline">\(r^{primes}_{cession}\)</span>) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l’exercice.</p>
+<p><span class="math inline">\(_{primes}BE_{cedes}^{eng} = r^{primes}_{cession} \times BE_{primes}^{eng}\)</span> : La meilleure estimation des engagements pour primes cédés est évaluée en multipliant la meilleure estimation des engagements pour primes par le taux de cession de primes. Le taux de cession (<span class="math inline">\(r^{primes}_{cession}\)</span>) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l’exercice.</p>
 </blockquote>
 </section>
 </section>
 <section id="lajustement-pour-défaut-de-contrepartie" class="level4" data-number="6.4.2">
 <h4 data-number="6.4.2" class="anchored" data-anchor-id="lajustement-pour-défaut-de-contrepartie"><span class="header-section-number">6.4.2</span> L’ajustement pour défaut de contrepartie:</h4>
-<p>L’ajustement pour défaut de contrepartie est déterminé en actualisant les flux d’ajustement futurs sur la base de la courbe des taux fixée par l’Autorité. Il correspond à la perte anticipée résultant de la défaillance probable du cessionnaire</p>
-<p>Les flux d’ajustement futurs sont déterminés conformément à la méthode, telle que décrite à <strong>l’annexe N°6</strong> de la circulaire de l’ACAPS que nous décrirons ci-après.</p>
+<p>En cas de réassuarance, la compagnie d’assurance se confronte à un nouveau risque, celui de défaut de contrepartie. En effet, il se pourrait que les risques cédés par l’assureur ne soient pas supportés par le réassureur. Il est ainsi primordial de tenir en compte ce risque dans le calcul des meilleures estimations en effectuant un ajustement. L’ajustement pour défaut de contrepartie est déterminé en actualisant les flux d’ajustement futurs sur la base de la courbe des taux fixée par l’Autorité. Il correspond à la perte anticipée résultant de la défaillance probable du cessionnaire.</p>
+<p>L’<em>ACAPS</em> propose une méthode de détermination des flux d’ajustement futurs décrite à <strong>l’annexe N°6</strong> de la circulaire. Cette méthode suit un certain nombre d’étapes que nous décrivons ci-après</p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1360,9 +1360,10 @@ Ajustement_{defaut} = \sum\limits_{i&gt;0} \frac{Adj_i}{(1+r_i)^i}
 </section>
 </section>
 <section id="capital-de-solvabilité-requis" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="capital-de-solvabilité-requis"><span class="header-section-number">7</span> Capital de Solvabilité Requis :</h2>
-<p>Le Capital de Solvabilité Requis (CSR) est une notion très importante dans les domaines d’assurance et de réassurance, il permet la garantie de tous les risques quantifiables auxquels les entreprises de ces domaines sont exposés. Le CSR correspond au capital dont a besoin une entreprise d’assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine à 0,5%, c’est-à-dire à une seule occurrence tous les 200 ans.</p>
-<p>Commençons d’abord par la définition des différents risques dans les secteurs d’assurance et de réassurance :</p>
+<h2 data-number="7" class="anchored" data-anchor-id="capital-de-solvabilité-requis"><span class="header-section-number">7</span> Capital de Solvabilité Requis</h2>
+<p>Au cours de son existence, la compagnie d’assurance ou de réassurance fait face à plusieurs engagements dont la plus part sont risqués. Ce tas de risques encourus demande donc des préventions afin d’éviter ou de supporter leur avénement. Subséquemment, il est tout naturel de se demandait quel montant la compagnie devrait avoir à l’instant <span class="math inline">\(t\)</span> pour se couvrir des risques éventuels d’où l’introduction de la notion de <em>Capital de Solvabilité Requis</em> (<span class="math inline">\(CSR\)</span>).</p>
+<p>Comme son nom l’indique, le CSR correspond au capital dont a besoin une entreprise d’assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine.</p>
+<p>Commençons d’abord par la définition des différents risques dans les secteurs d’assurance et de réassurance pris en compte dans le projet <em>SBR</em> :</p>
 <ul>
 <li><p><strong>Risque de souscription</strong> : le risque de perte ou de changement défavorable de la situation financière, en raison d’hypothèses inadéquates en matière de sinistralité, de tarification et de provisionnement.</p></li>
 <li><p><strong>Risque de marché</strong> : le risque de perte ou de changement défavorable de la situation financière résultant, directement ou indirectement, de fluctuations affectant le niveau de la valeur des actifs, des passifs et des instruments financiers.</p></li>
