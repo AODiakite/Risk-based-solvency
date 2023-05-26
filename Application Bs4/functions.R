@@ -1,20 +1,5 @@
-library(tidyverse)
-library(bslib)
-library(readxl)
-library(bsicons)
-library(glue)
-library(rvest)
-library(scales)
 options(warn = -1)
-library(bs4Dash)
-library(shiny)
-library(shinybusy)
-library(shinyalert)
-library(argonDash)
-library(argonR)
-library(thematic)
-library(plotly)
-library(thematic)
+source("installation packages.R")
 # Taux de référence des bons de trésor -------
 
 get_taux_BAM <- function(DATE = "2021-12-30"){
@@ -38,8 +23,8 @@ get_taux_BAM <- function(DATE = "2021-12-30"){
         ) %>%
         relocate(`Taux moyen pondéré (%)`,.after = `Taux moyen pondéré`) %>%
         na.omit()
-      Message = c("Ok !", "Téléchargement effectuer avec succès !","success")
-      shinyalert(Message[1], Message[2] , type = Message[3])
+      Message = c("OK !", "Téléchargement effectuer avec succès !","success")
+      shinyalert(Message[1], Message[2] , type = Message[3],timer = 2500)
 
     TRBT
     },
@@ -206,7 +191,13 @@ decumul_tri <- function(triangle, c_hat){
   decumul
 }
 
-# Cash flows
+# Cash flows : -------
+#' Fonction de calcul les flux de règlements futurs probabilisés nets de recours relatifs aux sinistres survenus
+#'
+#' @param decumul triangle de réglement décumulé
+#'
+#' @return vecteur des Cash flows
+
 R_hat <- function(decumul){
   # On renverse la matrice decumuler pour faciliter l'obtention des diags secondaires
   rev_decumul =  apply(decumul,1,rev)
@@ -221,15 +212,31 @@ R_hat <- function(decumul){
 # BE Prime Non Vie-hors rente -----
 #'La somme actualisée des flux de règlements futurs probabilisés nets
 #' de recours relatifs aux sinistres non encore survenus
+#'
+#' @param cad_liq Cadence de liquidation
+#' @param RS Ratio de sinistralite
+#' @param PPNA Provision pour primes non acquises
+#' @param PFP Le montant des primes futures probabilisé.
+#' @param ZC Vecteur de taux ZC
+#' @param taux_acquistion
 
 
 BE_Prime_nv <- function(cad_liq,RS,PPNA,PFP,ZC, taux_acquistion){
   cad_actualiser = cad_liq[-1]/((1+ZC[1:length(cad_liq[-1])])^(1:length(cad_liq[-1])))
+
   (RS*(PPNA+PFP)*sum(cad_actualiser)) - (1-taux_acquistion)*PFP
 
 }
 
 # La meilleure estimation des engagements pour sinistres nets -----
+#' Title
+#'
+#' @param r_hat les flux de règlements futurs probabilisés nets de
+#'              recours relatifs aux sinistres survenus
+#' @param ZC Vecteur de taux ZC
+#'
+#' @return BE Sinistre non vie
+
 BE_Sinistre_nv = function(r_hat, ZC ){
   sum(r_hat/((1+ZC[1:length(r_hat)])^(1:length(r_hat))))
 }

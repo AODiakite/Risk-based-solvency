@@ -403,7 +403,7 @@ server <- function(input, output) {
   }) %>%
     bindEvent(input$tgl_btn)
   observeEvent(input$tgl_btn,
-               shinyalert::shinyalert("OK !", "Lecture du triangle confirmée avec succès" ,"success")
+               shinyalert::shinyalert("OK !", "Lecture du triangle confirmée avec succès" ,"success",timer = 2500)
                )
 
 
