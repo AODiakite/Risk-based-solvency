@@ -277,7 +277,7 @@ server <- function(input, output) {
   parametrage <- reactive(
     {
       list(
-        Sum_PA = sum(c(input$pa0,input$pa1,input$pa2),na.rm = TRUE),
+        Sum_PA = input$pa0 + input$pa1+ input$pa2,
         PPNA = input$ppna,
         Prime_Futur = input$pfp,
         tx_acq = input$taux_acq,
@@ -291,7 +291,9 @@ server <- function(input, output) {
     decumul = decumul_tri(triangleAT(),c_hat())
     CU = apply(decumul,1,sum)
     nn = length(CU)
-    sum(CU[(nn-3):nn])/parametrage()[["Sum_PA"]]
+    rs =  sum(CU[(nn-2):nn])/parametrage()[["Sum_PA"]]
+    assign("rs",rs,envir = .GlobalEnv)
+    rs
   })
   # BE sinistre
   BE_Sin_nv <- reactive({
@@ -299,7 +301,7 @@ server <- function(input, output) {
   })
   # BE prime
   BE_Prime <- reactive({
-    BE_Prime_nv(cad_liq = cadence(),RS = 0.7,
+    BE_Prime_nv(cad_liq = cadence(),RS = RS(),
                 PPNA = parametrage()[["PPNA"]],PFP = parametrage()[["Prime_Futur"]],
                 ZC = TZC()[["Taux zéro coupon"]],taux_acquistion =  parametrage()[["tx_acq"]])
   })

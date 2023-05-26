@@ -222,7 +222,6 @@ R_hat <- function(decumul){
 #'La somme actualisée des flux de règlements futurs probabilisés nets
 #' de recours relatifs aux sinistres non encore survenus
 
-FRFP_hat <- function(cad_liq,RS,PPNA,PFP){ cad_liq[-1]*RS*(PPNA+PFP) }
 
 BE_Prime_nv <- function(cad_liq,RS,PPNA,PFP,ZC, taux_acquistion){
   cad_actualiser = cad_liq[-1]/((1+ZC[1:length(cad_liq[-1])])^(1:length(cad_liq[-1])))
@@ -231,7 +230,7 @@ BE_Prime_nv <- function(cad_liq,RS,PPNA,PFP,ZC, taux_acquistion){
 }
 
 # La meilleure estimation des engagements pour sinistres nets -----
-BE_Sinistre_nv = function(r_hat, ZC = TZC_31_12_2021$`Taux zéro coupon`){
+BE_Sinistre_nv = function(r_hat, ZC ){
   sum(r_hat/((1+ZC[1:length(r_hat)])^(1:length(r_hat))))
 }
 
