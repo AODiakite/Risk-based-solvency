@@ -281,6 +281,56 @@ GBM_Sim = GBM()
 GBM_Sim$plt_mean
 ```
 
+#### Réseaux de neurones récurrents:
+Dans cette partie on va s’intéressé à l’entrainement d’un module de réseaux de neurones récurrents, spécifiquement le module LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index) afin de préparer un module efficace pour la prédiction des cours journaliers de MASI aux futures.
+
+D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques, … 
+
+Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur "mémoire" car ils prennent des informations d'entrées précédentes pour influencer l'entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d'une séquence donnée.
+
+Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau. Alors que les réseaux feedforward « des réseaux de neurones artificiels qui traitent les informations dans une seule direction » ont des poids différents sur chaque nœud, les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
+
+<div style="text-align:center">
+![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/RNN_shema.jpg){#fig-piliers}
+</div>
+
+Un inconvénient des RNN standard est le problème du gradient de fuite, dans lequel les performances du réseau de neurones souffrent car il ne peut pas être formé correctement. Cela se produit avec des réseaux de neurones en couches profondes, qui sont utilisés pour traiter des données complexes.
+
+Les RNN standard qui utilisent une méthode d'apprentissage basée sur le gradient se dégradent à mesure qu'ils grandissent et deviennent plus complexes. Le réglage efficace des paramètres aux premières couches devient trop long et coûteux en calculs.
+
+Une solution au problème s'appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau. Cela permet également aux RNN de déterminer quelles données peuvent être oubliées.
+
+Dans notre cas, nous possédons d’une base de données historiques de l’indice MASI pour une durée de 5000 jours et contienne 6 colonnes, telle que la signification de chaque variable est la suivante :
+
+-	Date : la date d’observation. 
+-	Dernier : le cours de clôture de la journée.
+-	Ouverture : le cours d’ouverture de la journée.
+-	PlusHaut : la valeur de cours la plus grand dans la journée.
+-	PlusBas : la valeur de cours la plus bas dans la journée.
+-	Variation : la variation des cours entre deux dates successives.
+
+<div style="text-align:center">
+![les cours historiques de l'indice MASI](Rapport-PFE_files/figure-html/donnees.png){#fig-piliers}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## La construction de la courbe des taux zéro-coupon :
 
 Dans cette partie nous nous intéressons à la construction de la courbe des taux zéro-coupon dont nous avons besoin dans le reste de ce travaille afin d'actualiser les flux futurs entrant dans le calcul des différentes BEST ESTIMATE. Les taux Zéro Coupons sont extraite à partir des taux moyens pondérés des transactions des bons de trésor publiées par [BANK AL MAGHRIB](https://www.bkam.ma/Marches/Principaux-indicateurs/Marche-obligataire/Marche-des-bons-de-tresor/Marche-secondaire/Taux-de-reference-des-bons-du-tresor?date=23%2F03%2F2023&block=e1d6b9bbf87f86f8ba53e8518e882982#address-c3367fcefc5f524397748201aee5dab8-e1d6b9bbf87f86f8ba53e8518e882982). Ces taux en fait, sont des taux monétaires pour les maturités inférieures ou égales à un an, alors qu'il représente un taux actuariel pour les maturités supérieures à un an, de plus ils ne sont disponibles que pour certaines maturités.
@@ -1105,8 +1155,9 @@ résultant d'un manque de diversité des émetteurs auxquels l'entreprise d'assu
 réassurance est exposée.
 
 Tous les risques supportés par le capital de solvabilité requis, on peut les résumer dans le schéma suivant : 
-
+<div style="text-align:center">
 ![Présentation des risques  ](Rapport-PFE_files/figure-html/Risques.png){#fig-piliers}
+</div>
 
 Selon le circulaire de l'ACAPS (l'Autorité de Contrôle des Assurances et de la Prévoyance Sociale) publié le premier Janvier 2020, Le capital de solvabilité requis est constitué de la somme des éléments suivants :
 

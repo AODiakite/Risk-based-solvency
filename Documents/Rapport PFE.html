@@ -383,6 +383,41 @@ S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
 </div>
 </section>
 </section>
+<section id="réseaux-de-neurones-récurrents" class="level4" data-number="4.1.2">
+<h4 data-number="4.1.2" class="anchored" data-anchor-id="réseaux-de-neurones-récurrents"><span class="header-section-number">4.1.2</span> Réseaux de neurones récurrents:</h4>
+<p>Dans cette partie on va s’intéressé à l’entrainement d’un module de réseaux de neurones récurrents, spécifiquement le module LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index) afin de préparer un module efficace pour la prédiction des cours journaliers de MASI aux futures.</p>
+<p>D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d’apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d’images, la prédiction des séries chronologiques, …</p>
+<p>Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur “mémoire” car ils prennent des informations d’entrées précédentes pour influencer l’entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d’une séquence donnée.</p>
+<p>Une autre caractéristique distinctive des réseaux récurrents est qu’ils partagent des paramètres à travers chaque couche du réseau. Alors que les réseaux feedforward « des réseaux de neurones artificiels qui traitent les informations dans une seule direction » ont des poids différents sur chaque nœud, les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l’apprentissage par renforcement.</p>
+<div style="text-align:center">
+<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Rapport-PFE_files/figure-html/RNN_shema.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Fonctionnement des réseaux de neurones récurrents</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>Un inconvénient des RNN standard est le problème du gradient de fuite, dans lequel les performances du réseau de neurones souffrent car il ne peut pas être formé correctement. Cela se produit avec des réseaux de neurones en couches profondes, qui sont utilisés pour traiter des données complexes.</p>
+<p>Les RNN standard qui utilisent une méthode d’apprentissage basée sur le gradient se dégradent à mesure qu’ils grandissent et deviennent plus complexes. Le réglage efficace des paramètres aux premières couches devient trop long et coûteux en calculs.</p>
+<p>Une solution au problème s’appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau. Cela permet également aux RNN de déterminer quelles données peuvent être oubliées.</p>
+<p>Dans notre cas, nous possédons d’une base de données historiques de l’indice MASI pour une durée de 5000 jours et contienne 6 colonnes, telle que la signification de chaque variable est la suivante :</p>
+<ul>
+<li>Date : la date d’observation.</li>
+<li>Dernier : le cours de clôture de la journée.</li>
+<li>Ouverture : le cours d’ouverture de la journée.</li>
+<li>PlusHaut : la valeur de cours la plus grand dans la journée.</li>
+<li>PlusBas : la valeur de cours la plus bas dans la journée.</li>
+<li>Variation : la variation des cours entre deux dates successives.</li>
+</ul>
+<div style="text-align:center">
+<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Rapport-PFE_files/figure-html/donnees.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Fonctionnement des réseaux de neurones récurrents</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section id="la-construction-de-la-courbe-des-taux-zéro-coupon" class="level2" data-number="5">
@@ -1372,12 +1407,14 @@ Ajustement_{defaut} = \sum\limits_{i&gt;0} \frac{Adj_i}{(1+r_i)^i}
 <li><p><strong>Risque opérationnel</strong> : le risque de perte ou de changement défavorable de la situation financière résultant de procédures internes, de membres du personnel, de systèmes inadéquats ou défaillants, ou d’événements extérieurs.</p></li>
 <li><p><strong>Risque de concentration</strong> : le risque de perte ou de changement défavorable de la situation financière résultant d’un manque de diversité des émetteurs auxquels l’entreprise d’assurances et de réassurance est exposée.</p></li>
 </ul>
-<p>Tous les risques supportés par le capital de solvabilité requis, on peut les résumer dans le schéma suivant :</p>
+Tous les risques supportés par le capital de solvabilité requis, on peut les résumer dans le schéma suivant :
+<div style="text-align:center">
 <div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="Rapport-PFE_files/figure-html/Risques.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Présentation des risques</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Présentation des risques</figcaption><p></p>
 </figure>
+</div>
 </div>
 <p>Selon le circulaire de l’ACAPS (l’Autorité de Contrôle des Assurances et de la Prévoyance Sociale) publié le premier Janvier 2020, Le capital de solvabilité requis est constitué de la somme des éléments suivants :</p>
 <ul>
