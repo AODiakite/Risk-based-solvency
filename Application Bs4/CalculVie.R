@@ -102,6 +102,33 @@ mat_tpx = cbind(1,mat_tpx[,-ncol(mat_tpx)])
 
 mat_tpx_cumul = t(apply(mat_tpx,1,cumprod))
 
+# Matrice de projection des capitaux
 proj_cap = mat_tqx*df_capitaux*mat_tpx_cumul
 
+#' Somme des capitaux projetés pour chaque année
+#'
+#' @param proj_cap Matrice de projection des capitaux
+#'
+#' @return Vector
+
+projection_cap <- function(proj_cap){
+  apply(proj_cap,2,sum)
+}
+
+#' BE des garanties probabilisées
+#'
+#' @param proj_cap_vect vecteur de capitaux projetés
+#' @param ZC vecteur de taux ZC
+#'
+#' @return BEGP
+
+BEGP_vie <- function(proj_cap_vect, ZC){
+  nn = length(proj_cap_vect)
+  denom = (1+ZC[1:nn])^(1:nn)
+  sum(proj_cap_vect/denom)
+}
+
+
+NB_contrat = Mat_tPx(mat_ages)
+NB_contrat = t(apply(NB_contrat,1,cumprod))
 
