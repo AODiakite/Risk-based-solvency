@@ -95,16 +95,21 @@ df_res
 df_capitaux = Matrice_Capitaux(deces_deg_unique$`Année d'effet`,
                                deces_deg_unique$Dur_e_de_contrat,deces_deg_unique$Capital_d_c_s_initial)
 
-mat_ages = Mat_Ages(Duree_contrat_rest,ages)
-mat_tqx = Mat_tQx(mat_ages)
-mat_tpx = Mat_tPx(mat_ages)
-mat_tpx = cbind(1,mat_tpx[,-ncol(mat_tpx)])
+Mat_Proj_Cap <- function(Duree_contrat_rest,ages,choc = 0){
+  mat_ages = Mat_Ages(Duree_contrat_rest,ages)
+  mat_tqx =(1+choc) * Mat_tQx(mat_ages)
+  mat_tpx = 1 -  mat_tqx
+  mat_tpx = cbind(1,mat_tpx[,-ncol(mat_tpx)])
 
-mat_tpx_cumul = t(apply(mat_tpx,1,cumprod))
+  mat_tpx_cumul = t(apply(mat_tpx,1,cumprod))
 
-# Matrice de projection des capitaux
-proj_cap = mat_tqx*df_capitaux*mat_tpx_cumul
+  # Matrice de projection des capitaux
+  mat_tqx*df_capitaux*mat_tpx_cumul
+}
 
+proj_cap = Mat_Proj_Cap(Duree_contrat_rest,ages,choc = 0)
+proj_cap_choc_003 = Mat_Proj_Cap(Duree_contrat_rest,ages,choc = 0.3)
+proj_cap_choc_002 = Mat_Proj_Cap(Duree_contrat_rest,ages,choc = 0.2)
 #' Somme des capitaux projetés pour chaque année
 #'
 #' @param proj_cap Matrice de projection des capitaux
@@ -114,6 +119,9 @@ proj_cap = mat_tqx*df_capitaux*mat_tpx_cumul
 projection_cap <- function(proj_cap){
   apply(proj_cap,2,sum)
 }
+proj_cap_vect = projection_cap(proj_cap)
+proj_cap_vect_003 = projection_cap(proj_cap_choc_003)
+proj_cap_vect_002 = projection_cap(proj_cap_choc_002)
 
 #' BE des garanties probabilisées
 #'
@@ -128,7 +136,47 @@ BEGP_vie <- function(proj_cap_vect, ZC){
   sum(proj_cap_vect/denom)
 }
 
+BEGP = BEGP_vie(proj_cap_vect,ZC)
+BEGP_Choc_003 = BEGP_vie(proj_cap_vect_003,ZC)
+BEGP_Choc_002 = BEGP_vie(proj_cap_vect_002,ZC)
+
+# Nombre de contrat
+#' Parametre FG_moyen
+#' Parametre Augmentation_X augmentation de X% des FG la premiere année
+#' Parametre majoration de X% chaque année
+FG_moyen = 100
+Augmentation_X = 0.14
+Majoration_X = 0.015
 
 NB_contrat = Mat_tPx(mat_ages)
 NB_contrat = t(apply(NB_contrat,1,cumprod))
+max_duree_rest = max(Duree_contrat_rest)
+mat_duree = Map(\(x){
+  c(rep(1,x),rep(0,max_duree_rest-x))
+}, x = Duree_contrat_rest)
+mat_duree = as.data.frame(mat_duree)
+mat_duree = t(mat_duree)
+rownames(mat_duree) = NULL
+
+NB_contrat = NB_contrat*mat_duree
+NB_contrat = apply(NB_contrat,2,sum)
+FG_t = FG_moyen*NB_contrat # FG_t Avant Choque
+## FG_t après choque
+vect_choque_FG = 1+c(Augmentation_X,rep(Majoration_X,max_duree_rest-1))
+FG_t_Choque = FG_moyen * cumprod(vect_choque_FG)
+FG_t_Choque = FG_t_Choque * NB_contrat
+
+# BEFG
+BEFG = \(FG_t,ZC){
+  n_max = length(FG_t)
+  denom = (1 + ZC[1:n_max])^(1:n_max)
+  sum(FG_t/denom)
+}
+BEFG_vie = BEFG(FG_t,ZC)
+BEFG_vie_Choque = BEFG(FG_t_Choque,ZC)
+
+
+
+
+
 
