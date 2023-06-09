@@ -21,9 +21,10 @@ format:
 ## Liste des abréviations: 
 ```{r echo=FALSE}
 library(kableExtra)
-Ligne1 = c("Abréviation","SBR","ACAPS","AT","RNN","LSTM","MASI","CSR","BE","PPNA","PSAP","BAM","CSRB","CSRO","MR","EDS","GBM")
+Ligne1 = c("Abréviation","SBR","ACAPS","AT","RNN","LSTM","MASI","CSR","BE","PPNA","PSAP","BAM","CSRB","CSRO","MR","EDS","GBM","OPCVM","OPCI","OPCC","FPCT")
 
-Ligne2 = c("Désignation","Solvabilité Basée sur les risques","Autorité de contrôle des Assurances et de la Prévoyance Sociale","Accident de travail", "Réseaux de neurones récurrents", "Long short-term memory", "Moroccan All Shares index","Capital de Solvabilité Requis","Best Estimate","Provision pour primes non Acquises","Provision pour Sinistre à Payer","Bank Al Maghrib","Capital de solvabilité requis de base","Capital de solvabilité requis de base relative au risque Operationnel","Marge de Risque","Equation Différentielle Stochastique","Geometric Brownian Motion")
+Ligne2 = c("Désignation","Solvabilité Basée sur les risques","Autorité de contrôle des Assurances et de la Prévoyance Sociale","Accident de travail", "Réseaux de neurones récurrents", "Long short-term memory", "Moroccan All Shares index","Capital de Solvabilité Requis","Best Estimate","Provision pour primes non Acquises","Provision pour Sinistre à Payer","Bank Al Maghrib","Capital de solvabilité requis de base","Capital de solvabilité requis de base relative au risque Operationnel","Marge de Risque","Equation Différentielle Stochastique","Geometric Brownian Motion","Organisme de Placement Collectif en Valeurs Mobilières","Organisme de Placement Collectif Immobilier","Organismes de Placement Collectif en Capital","Fonds de Placement Collectifs en Titrisation")
+
 tableau5 <- data.frame(Ligne1, Ligne2)
 colnames(tableau5) = tableau5[1,]
 tableau5 = tableau5[-1,]
@@ -157,16 +158,27 @@ L'évaluation du capital de solvabilité requis (SCR) est la dernière étape du
 - Le modèle interne, qui est une méthode propre à l'assureur, qui prend en compte les spécificités de son profil de risque, et qui utilise ses propres paramètres. Le modèle interne doit être validé par le régulateur.
 
 
-## Valorisation  de l'actif
+## Valorisation  de l'actif:
+Selon les directions de l’autorité de contrôle des Assurances et de la Prévoyance Sociale, les actifs doivent être évaluer comme suit :
 
-### Actions cotées à la bourse
+- Titres OPCVM et OPCI : Dernière valeur liquidative.
+- Titres OPCC et FPCT : Dernière valeur connue.
+- Titres de créances négociables, obligations et bons : Valeur de marché.
+- Immobilisations corporelles : Valeur comptable.
+- Autres créances : Valeur comptable.
+- Immobilisations en non-valeur : Valeur nulle.
+- Immobilisations incorporelles : Valeur nulle.
+- Actifs immobiliers hors OPCI : Valeur de transaction (sinon valeur comptable).
+- Autres actifs : Valeur d’expert (sinon valeur comptable)
 
-Les actions cotées à la bourse de Casablanca sont valorisées conformément à la _Spécification technique 7_ de la _Section 2_ de la circulaire de l'ACAPS comme suit :
+Pour les actions cotées à la bourse de Casablanca,ils sont valorisées à leur dernier cours coté avant la date d'inventaire, ou le moyenne des cours côtés des trois derniers mois précédant la date d'inventaire, si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par L'ACAPS.
 
-- Dernier coté avant la date d'inventaire
-- Moyenne des cours côtés des trois derniers mois précédant la date d'inventaire si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par autorité
+### Actions cotées à la bourse:
+Dans ce qui suit, on va on va présente les méthodes qu'on a utilisées pour la valorisation des actions cotées à la bourse de Casablanca. La première méthode était le modèle classique de Black & Scholes.
 
-#### Modélisation du prix des actions
+Pour la deuxième méthode, on a choisi d'entraîner un module de réseaux de neurones récurrents, plus précisément le module LSTM, avec des données historiques afin de prédire les cours futurs.
+
+#### Modélisation du prix des actions:
 
 Le prix d'une action ou plus communément appelé cours d'une action représente le prix auquel elle est acheté ou vendue sur un marché boursier. Ce prix fluctue en fonction de l'offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l'entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l'action représente la valeur perçue de l'entreprise par les investisseurs à un moment.
 
@@ -295,7 +307,7 @@ GBM_Sim$plt_mean
 ```
 
 #### Réseaux de neurones récurrents:
-Dans cette partie on va s’intéressé à l’entrainement d’un module de réseaux de neurones récurrents, spécifiquement le module LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index) afin de préparer un module efficace pour la prédiction des cours journaliers de MASI aux futures.
+Dans cette partie on va s’intéressé à l’entrainement d’un module de réseaux de neurones récurrents, spécifiquement le module LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index) afin de préparer un module efficace pour la prédiction des cours journaliers futures.
 
 D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques, … 
 
@@ -304,7 +316,7 @@ Les réseaux de neurones récurrents utilisent des données de formation pour ap
 Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau. Alors que les réseaux feedforward « des réseaux de neurones artificiels qui traitent les informations dans une seule direction » ont des poids différents sur chaque nœud, les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
 
 <div style="text-align:center">
-![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/RNN_shema.jpg){#fig-piliers}
+![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/Shema_RNN.png){#fig-piliers}
 </div>
 
 Un inconvénient des RNN standard est le problème du gradient de fuite, dans lequel les performances du réseau de neurones souffrent car il ne peut pas être formé correctement. Cela se produit avec des réseaux de neurones en couches profondes, qui sont utilisés pour traiter des données complexes.
@@ -322,15 +334,39 @@ Dans notre cas, nous possédons d’une base de données historiques de l’indi
 -	PlusBas : la valeur de cours la plus bas dans la journée.
 -	Variation : la variation des cours entre deux dates successives.
 
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+library(readxl)
+library(kableExtra)
+masi <- read_excel("C:/Users/LENOVO/Desktop/Risk-based-solvency/Application Bs4/Data/masi.xlsx")
+#masi%>% 
+  #kbl() %>% 
+  #kable_material(c("striped"))
+#head(masi,20)
+```
+
+Apres le nettoyage des donnes qu’on a collectées, nous avons présenté premièrement le cours historique de clôture « Dernier » en fonction de temps, afin de voir le développement de cours par le temps, aussi prendre une idée sur la variation à long terme et à court terme pour cet indice.
+
 <div style="text-align:center">
-![les cours historiques de l'indice MASI](Rapport-PFE_files/figure-html/donnees.png){#fig-piliers}
+![Le cours Historiques de Clôture pour l’indice MASI](Rapport-PFE_files/figure-html/Cloture_masi.png){#fig-piliers}
 </div>
 
+Une fois les données sont préparées, nous avons effectué une normalisation des valeurs numériques pour les mettre à l'échelle.
+Deuxièmement, nous les avons transformées en tenseurs, qui sont des tableaux multidimensionnels. Cette étape est cruciale lors de l'entraînement d'un module LSTM, Pour cela, chaque séquence de données doit être découpée en fenêtres temporelles, où chaque fenêtre contient un certain nombre de pas de temps. Chaque pas de temps représente une observation individuelle dans la séquence.
 
+Ensuite, on a divisé les données en deux ensembles, une pour l’entraînement, et la deuxième pour le test. L'ensemble d'entraînement est utilisé pour entrainer et ajuster les poids du module LSTM, tandis que l'ensemble de test permet d'évaluer les performances finales du modèle sur des données inconnues.
+Une fois qu’on a terminé ces étapes, les données sont utilisées pour entraîner notre module LSTM, qui va nous permettre de prédire des cours futures.
 
+Les représentations graphiques suivantes montrent les états d'entraînement et de test de notre module. On remarque donc une cohérence entre les résultats de prédiction et les valeurs réelles. De plus, le RMSE (racine de l'erreur quadratique moyenne) de notre module est de 27, tandis que les valeurs estimées se situent autour de dix milliers. La chose qui preuve l'efficacité de notre module LSTM.
 
+<div style="text-align:center">
+![Courbes de cours entraîné et cours réel](Rapport-PFE_files/figure-html/entrainement.png){#fig-piliers}
+</div>
 
+<div style="text-align:center">
+![Courbes de cours prédit et cours réel](Rapport-PFE_files/figure-html/predection.png){#fig-piliers}
+</div>
 
+ 
 
 
 
