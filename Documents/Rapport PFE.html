@@ -496,9 +496,9 @@ S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
 <section id="réseaux-de-neurones-récurrents" class="level4" data-number="5.1.2">
 <h4 data-number="5.1.2" class="anchored" data-anchor-id="réseaux-de-neurones-récurrents"><span class="header-section-number">5.1.2</span> Réseaux de neurones récurrents:</h4>
 <p>Dans cette partie on va s’intéressé à l’entrainement d’un module de réseaux de neurones récurrents, spécifiquement le module LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index) afin de préparer un module efficace pour la prédiction des cours journaliers futures.</p>
-<p>D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d’apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d’images, la prédiction des séries chronologiques, …</p>
+<p>D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d’apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d’images, la prédiction des séries chronologiques,<span class="math inline">\(\dots\)</span></p>
 <p>Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur “mémoire” car ils prennent des informations d’entrées précédentes pour influencer l’entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d’une séquence donnée.</p>
-<p>Une autre caractéristique distinctive des réseaux récurrents est qu’ils partagent des paramètres à travers chaque couche du réseau. Alors que les réseaux feedforward « des réseaux de neurones artificiels qui traitent les informations dans une seule direction » ont des poids différents sur chaque nœud, les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l’apprentissage par renforcement.</p>
+<p>Une autre caractéristique distinctive des réseaux récurrents est qu’ils partagent des paramètres à travers chaque couche du réseau, alors que les réseaux feedforward (des réseaux de neurones artificiels qui traitent les informations dans une seule direction) ont des poids différents sur chaque nœud. Les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l’apprentissage par renforcement.</p>
 <div style="text-align:center">
 <div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -510,40 +510,88 @@ S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t)
 <p>Un inconvénient des RNN standard est le problème du gradient de fuite, dans lequel les performances du réseau de neurones souffrent car il ne peut pas être formé correctement. Cela se produit avec des réseaux de neurones en couches profondes, qui sont utilisés pour traiter des données complexes.</p>
 <p>Les RNN standard qui utilisent une méthode d’apprentissage basée sur le gradient se dégradent à mesure qu’ils grandissent et deviennent plus complexes. Le réglage efficace des paramètres aux premières couches devient trop long et coûteux en calculs.</p>
 <p>Une solution au problème s’appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau. Cela permet également aux RNN de déterminer quelles données peuvent être oubliées.</p>
-<p>Dans notre cas, nous possédons d’une base de données historiques de l’indice MASI pour une durée de 5000 jours et contienne 6 colonnes, telle que la signification de chaque variable est la suivante :</p>
-<ul>
-<li>Date : la date d’observation.</li>
-<li>Dernier : le cours de clôture de la journée.</li>
-<li>Ouverture : le cours d’ouverture de la journée.</li>
-<li>PlusHaut : la valeur de cours la plus grand dans la journée.</li>
-<li>PlusBas : la valeur de cours la plus bas dans la journée.</li>
-<li>Variation : la variation des cours entre deux dates successives.</li>
-</ul>
+<p>Dans notre cas, Nous nous sommes focalisés sur l’application de modèle LSTM sur les données de l’indice MASI. Notre échantillon contenu 5000 observations journalière du cours d’ouverture, cours Dernier, le cours le plus bas, le cours plus haut et la variation du cours entre deux dates successives.</p>
 <div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-material lightable-striped" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Date </th>
+   <th style="text-align:right;"> Dernier </th>
+   <th style="text-align:right;"> Ouverture </th>
+   <th style="text-align:right;"> PlusHaut </th>
+   <th style="text-align:right;"> PlusBas </th>
+   <th style="text-align:right;"> variation </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2022-01-24 </td>
+   <td style="text-align:right;"> 13753.50 </td>
+   <td style="text-align:right;"> 13783.81 </td>
+   <td style="text-align:right;"> 13815.59 </td>
+   <td style="text-align:right;"> 13753.05 </td>
+   <td style="text-align:right;"> -0.0022 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2022-01-21 </td>
+   <td style="text-align:right;"> 13783.81 </td>
+   <td style="text-align:right;"> 13777.59 </td>
+   <td style="text-align:right;"> 13812.43 </td>
+   <td style="text-align:right;"> 13769.84 </td>
+   <td style="text-align:right;"> 0.0005 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2022-01-20 </td>
+   <td style="text-align:right;"> 13777.59 </td>
+   <td style="text-align:right;"> 13737.71 </td>
+   <td style="text-align:right;"> 13814.82 </td>
+   <td style="text-align:right;"> 13734.73 </td>
+   <td style="text-align:right;"> 0.0029 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2022-01-19 </td>
+   <td style="text-align:right;"> 13737.71 </td>
+   <td style="text-align:right;"> 13768.05 </td>
+   <td style="text-align:right;"> 13817.94 </td>
+   <td style="text-align:right;"> 13734.76 </td>
+   <td style="text-align:right;"> -0.0022 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2022-01-18 </td>
+   <td style="text-align:right;"> 13768.05 </td>
+   <td style="text-align:right;"> 13770.78 </td>
+   <td style="text-align:right;"> 13815.37 </td>
+   <td style="text-align:right;"> 13767.98 </td>
+   <td style="text-align:right;"> -0.0002 </td>
+  </tr>
+</tbody>
+</table>
 
 </div>
-<p>Apres le nettoyage des donnes qu’on a collectées, nous avons présenté premièrement le cours historique de clôture « Dernier » en fonction de temps, afin de voir le développement de cours par le temps, aussi prendre une idée sur la variation à long terme et à court terme pour cet indice.</p>
+</div>
+<p>La figure suivante donne un aperçu de Dernier cours de cet indice entre les années 2002 et 2022.</p>
 <div style="text-align:center">
 <div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Rapport-PFE_files/figure-html/Cloture_masi.png" class="img-fluid figure-img"></p>
+<p><img src="Rapport-PFE_files/figure-html/Derniere.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;4: Le cours Historiques de Clôture pour l’indice MASI</figcaption><p></p>
 </figure>
 </div>
 </div>
-<p>Une fois les données sont préparées, nous avons effectué une normalisation des valeurs numériques pour les mettre à l’échelle. Deuxièmement, nous les avons transformées en tenseurs, qui sont des tableaux multidimensionnels. Cette étape est cruciale lors de l’entraînement d’un module LSTM, Pour cela, chaque séquence de données doit être découpée en fenêtres temporelles, où chaque fenêtre contient un certain nombre de pas de temps. Chaque pas de temps représente une observation individuelle dans la séquence.</p>
-<p>Ensuite, on a divisé les données en deux ensembles, une pour l’entraînement, et la deuxième pour le test. L’ensemble d’entraînement est utilisé pour entrainer et ajuster les poids du module LSTM, tandis que l’ensemble de test permet d’évaluer les performances finales du modèle sur des données inconnues. Une fois qu’on a terminé ces étapes, les données sont utilisées pour entraîner notre module LSTM, qui va nous permettre de prédire des cours futures.</p>
-<p>Les représentations graphiques suivantes montrent les états d’entraînement et de test de notre module. On remarque donc une cohérence entre les résultats de prédiction et les valeurs réelles. De plus, le RMSE (racine de l’erreur quadratique moyenne) de notre module est de 27, tandis que les valeurs estimées se situent autour de dix milliers. La chose qui preuve l’efficacité de notre module LSTM.</p>
-<div style="display: flex; justify-content: space-between;">
-<div style="flex-basis: 45%;">
-<pre><code>&lt;p align="center"&gt;&lt;strong&gt;Image 1&lt;/strong&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img src="Rapport-PFE_files/figure-html/Cloture_masi.png" alt="Image 1" width="100%" /&gt;&lt;/p&gt;</code></pre>
-</div>
-<div style="flex-basis: 45%;">
-<pre><code>&lt;p align="center"&gt;&lt;strong&gt;Image 2&lt;/strong&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;img src="Rapport-PFE_files/figure-html/Cloture_masi.png" alt="Image 2" width="100%" /&gt;&lt;/p&gt;</code></pre>
+<p>Les réseaux de neurones récurrents sont réputés être plus performants comparer aux autres méthodes. Ainsi, il est tout naturelle de s’attendre à un excellent score lord d’une application du modèle LSTM, nous allons voir plus de détails sur la méthode de ce modèle sur le langage python la section Application<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>.</p>
+<p>Le graphique suivant est une représentation conjointe du dernier cours observe (en bleu) et le cours prédit (en orange) sur la même période.</p>
+<div style="text-align:center">
+<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Rapport-PFE_files/figure-html/Prediction.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Courbe de cours prédit et de cours observé</figcaption><p></p>
+</figure>
 </div>
 </div>
+<p>Une remarque flagrante est que les deux courbes sont presque confondus, ce constat s’explique par la faiblesse de la valeur de RMSE qui veut 29,44.</p>
+<p>La racine de l’erreur quadratique moyenne (en anglais, root-mean-square error ou RMSE) est une mesure de l’écart type des résidus, ça veut dire il mesure la différence entre les valeurs prédites par le modèle et les valeurs observées. Tous ces raisons, prouve l’efficacité du modèle LSTM comparé à celui de Black&amp;sholes.</p>
 </section>
 </section>
 </section>
@@ -1042,7 +1090,7 @@ Exemple
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Si on prend l’exemple d’un contrat d’assurance-vie mixte<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> de capital en cas de vie égale au capital en cas de décès <span class="math inline">\(K\)</span>. Soit <span class="math inline">\(q_{x+t}\)</span> la probabilité qu’un individu d’âge <span class="math inline">\(x\)</span> lors de la souscription décéde entre <span class="math inline">\(x+t\)</span> et <span class="math inline">\(x+t+1\)</span>. On note <span class="math inline">\(NbP_t\)</span> le nombre de police en début de période <span class="math inline">\(t\)</span> et <span class="math inline">\(r_s\)</span> le taux ZC. La prestation correspondante à ce contrat en date t : <span class="math display">\[
+<p>Si on prend l’exemple d’un contrat d’assurance-vie mixte<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> de capital en cas de vie égale au capital en cas de décès <span class="math inline">\(K\)</span>. Soit <span class="math inline">\(q_{x+t}\)</span> la probabilité qu’un individu d’âge <span class="math inline">\(x\)</span> lors de la souscription décéde entre <span class="math inline">\(x+t\)</span> et <span class="math inline">\(x+t+1\)</span>. On note <span class="math inline">\(NbP_t\)</span> le nombre de police en début de période <span class="math inline">\(t\)</span> et <span class="math inline">\(r_s\)</span> le taux ZC. La prestation correspondante à ce contrat en date t : <span class="math display">\[
 Dec_{t} = K  \times  NbP_t \times q_{x+t} \times (1+r_t)^t
 \]</span></p>
 </div>
@@ -1348,8 +1396,8 @@ FRFP = \hat R_p = \sum\limits_{i = p+1}^{n} \hat R_{i,n-i+p+1} \;\; avec \;\; 1 
 </section>
 <section id="la-méthode-du-ratio-de-paiement-1" class="level5" data-number="7.3.1.7">
 <h5 data-number="7.3.1.7" class="anchored" data-anchor-id="la-méthode-du-ratio-de-paiement-1"><span class="header-section-number">7.3.1.7</span> La méthode du ratio de paiement</h5>
-<p>La méthode de Bornhuetter-Ferguson<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> est une méthode de provisionnement qui repose sur l’idée que les pertes finales, attendues pour une année de survenance sont connues a priori et que le rythme des paiements est stable d’une année à l’autre. Elle combine les caractéristiques de la méthode des cadences et de la méthode du ratio de sinistralité attendu. Elle utilise des facteurs de développement pour estimer le pourcentage de pertes rapportées ou payées et ajoute les pertes attendues multipliées par le pourcentage de pertes non rapportées ou non payées. Elle est surtout utilisée quand les pertes sont de faible fréquence mais de forte gravité.</p>
-<p>En résumé, elle suppose que l’on dispose d’une information externe sur la valeur probable finale du coût total des sinistres, que l’on appelle <span class="math inline">\(A\)</span>, et que l’on connaisse la proportion de sinistres attendus.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> Cette méthode se formule comme suit :</p>
+<p>La méthode de Bornhuetter-Ferguson<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> est une méthode de provisionnement qui repose sur l’idée que les pertes finales, attendues pour une année de survenance sont connues a priori et que le rythme des paiements est stable d’une année à l’autre. Elle combine les caractéristiques de la méthode des cadences et de la méthode du ratio de sinistralité attendu. Elle utilise des facteurs de développement pour estimer le pourcentage de pertes rapportées ou payées et ajoute les pertes attendues multipliées par le pourcentage de pertes non rapportées ou non payées. Elle est surtout utilisée quand les pertes sont de faible fréquence mais de forte gravité.</p>
+<p>En résumé, elle suppose que l’on dispose d’une information externe sur la valeur probable finale du coût total des sinistres, que l’on appelle <span class="math inline">\(A\)</span>, et que l’on connaisse la proportion de sinistres attendus.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> Cette méthode se formule comme suit :</p>
 <p><span class="math display">\[
 L = D\times\frac{1}{LDF} + A(1- \frac{1}{LDF})
 \]</span></p>
@@ -1543,7 +1591,7 @@ Tous les risques supportés par le capital de solvabilité requis, on peut les r
 <div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="Rapport-PFE_files/figure-html/Risques.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: Présentation des risques</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Présentation des risques</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -2146,9 +2194,10 @@ Remarque
 <li id="fn6"><p><a href="https://fnh.ma/article/actualite-financiere-maroc/assurances-sbr-un-projet-de-circulaire-en-preparation">Ciculaire en préparation concernant le second pilier relatif à la gouvernance</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>La métrique de risque n’est pas encore défini dans le projet marocain <span class="math inline">\(SBR\)</span><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p>Alonso Peña, Ph.D, C++ For Quantitative Finance<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>Un contrat d’assurance mixte à prime unique sur <span class="math inline">\(N\)</span> années est un type de contrat d’assurance-vie qui permet de financer l’assurance-vie en une seule fois. Cela signifie que vous payez une prime unique pour couvrir toute la durée du contrat. Ce type de contrat est destiné aux personnes qui disposent d’un capital et souhaitent diversifier leurs placements tout en protégeant leurs proches. Dans sa variante « mixte », elle permet de réaliser un placement rémunérateur tout en assurant une couverture financière à ses proches.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>The Actuary and IBNR publié en 1972<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>CNAM 2002-2003, Mathématiques actuarielles fondamentales (assurance non vie), Eléments de cours – 24 mars 2003 – liquidation des sinistres<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a href="">CHapitre Application</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Un contrat d’assurance mixte à prime unique sur <span class="math inline">\(N\)</span> années est un type de contrat d’assurance-vie qui permet de financer l’assurance-vie en une seule fois. Cela signifie que vous payez une prime unique pour couvrir toute la durée du contrat. Ce type de contrat est destiné aux personnes qui disposent d’un capital et souhaitent diversifier leurs placements tout en protégeant leurs proches. Dans sa variante « mixte », elle permet de réaliser un placement rémunérateur tout en assurant une couverture financière à ses proches.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>The Actuary and IBNR publié en 1972<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>CNAM 2002-2003, Mathématiques actuarielles fondamentales (assurance non vie), Eléments de cours – 24 mars 2003 – liquidation des sinistres<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->

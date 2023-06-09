@@ -18,23 +18,8 @@ format:
     toc-depth: 2
 ---
 
-## Liste des abréviations: 
-```{r echo=FALSE}
-library(kableExtra)
-Ligne1 = c("Abréviation","SBR","ACAPS","AT","RNN","LSTM","MASI","CSR","BE","PPNA","PSAP","BAM","CSRB","CSRO","MR","EDS","GBM","OPCVM","OPCI","OPCC","FPCT")
+## Introduction
 
-Ligne2 = c("Désignation","Solvabilité Basée sur les risques","Autorité de contrôle des Assurances et de la Prévoyance Sociale","Accident de travail", "Réseaux de neurones récurrents", "Long short-term memory", "Moroccan All Shares index","Capital de Solvabilité Requis","Best Estimate","Provision pour primes non Acquises","Provision pour Sinistre à Payer","Bank Al Maghrib","Capital de solvabilité requis de base","Capital de solvabilité requis de base relative au risque Operationnel","Marge de Risque","Equation Différentielle Stochastique","Geometric Brownian Motion","Organisme de Placement Collectif en Valeurs Mobilières","Organisme de Placement Collectif Immobilier","Organismes de Placement Collectif en Capital","Fonds de Placement Collectifs en Titrisation")
-
-tableau5 <- data.frame(Ligne1, Ligne2)
-colnames(tableau5) = tableau5[1,]
-tableau5 = tableau5[-1,]
-rownames(tableau5) = NULL
-tableau5 %>% 
-  kbl() %>% 
-  kable_material(c("striped"))
-```
-
-## Introduction:
 
 Suite aux crises multiples qui ont secoué le monde de la finance et de l'assurance notamment celle de 2008, les autorités se sont rendu compte de l'insuffisance de la supervision prudentielle. Cette dernière s'est montré très chétive lors de la crise d'où la nécessité de mettre en place de nouvelles dispositions prudentielles plus robustes.
 
@@ -158,27 +143,17 @@ L'évaluation du capital de solvabilité requis (SCR) est la dernière étape du
 - Le modèle interne, qui est une méthode propre à l'assureur, qui prend en compte les spécificités de son profil de risque, et qui utilise ses propres paramètres. Le modèle interne doit être validé par le régulateur.
 
 
-## Valorisation  de l'actif:
-Selon les directions de l’autorité de contrôle des Assurances et de la Prévoyance Sociale, les actifs doivent être évaluer comme suit :
 
-- Titres OPCVM et OPCI : Dernière valeur liquidative.
-- Titres OPCC et FPCT : Dernière valeur connue.
-- Titres de créances négociables, obligations et bons : Valeur de marché.
-- Immobilisations corporelles : Valeur comptable.
-- Autres créances : Valeur comptable.
-- Immobilisations en non-valeur : Valeur nulle.
-- Immobilisations incorporelles : Valeur nulle.
-- Actifs immobiliers hors OPCI : Valeur de transaction (sinon valeur comptable).
-- Autres actifs : Valeur d’expert (sinon valeur comptable)
+## Valorisation  de l'actif
 
-Pour les actions cotées à la bourse de Casablanca,ils sont valorisées à leur dernier cours coté avant la date d'inventaire, ou le moyenne des cours côtés des trois derniers mois précédant la date d'inventaire, si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par L'ACAPS.
+### Actions cotées à la bourse
 
-### Actions cotées à la bourse:
-Dans ce qui suit, on va on va présente les méthodes qu'on a utilisées pour la valorisation des actions cotées à la bourse de Casablanca. La première méthode était le modèle classique de Black & Scholes.
+Les actions cotées à la bourse de Casablanca sont valorisées conformément à la _Spécification technique 7_ de la _Section 2_ de la circulaire de l'ACAPS comme suit :
 
-Pour la deuxième méthode, on a choisi d'entraîner un module de réseaux de neurones récurrents, plus précisément le module LSTM, avec des données historiques afin de prédire les cours futurs.
+- Dernier coté avant la date d'inventaire
+- Moyenne des cours côtés des trois derniers mois précédant la date d'inventaire si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par autorité
 
-#### Modélisation du prix des actions:
+#### Modélisation du prix des actions
 
 Le prix d'une action ou plus communément appelé cours d'une action représente le prix auquel elle est acheté ou vendue sur un marché boursier. Ce prix fluctue en fonction de l'offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l'entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l'action représente la valeur perçue de l'entreprise par les investisseurs à un moment.
 
@@ -306,18 +281,17 @@ GBM_Sim = GBM()
 GBM_Sim$plt_mean
 ```
 
-
 #### Réseaux de neurones récurrents:
-Dans cette partie on va s’intéressé à l’entrainement d’un module de réseaux de neurones récurrents, spécifiquement le module LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index) afin de préparer un module efficace pour la prédiction des cours journaliers futures.
+Dans cette partie on va s’intéressé à l’entrainement d’un module de réseaux de neurones récurrents, spécifiquement le module LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index) afin de préparer un module efficace pour la prédiction des cours journaliers de MASI aux futures.
 
-D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques,$\dots$
+D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques, … 
 
 Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur "mémoire" car ils prennent des informations d'entrées précédentes pour influencer l'entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d'une séquence donnée.
 
-Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau, alors que les réseaux feedforward (des réseaux de neurones artificiels qui traitent les informations dans une seule direction) ont des poids différents sur chaque nœud. Les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
+Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau. Alors que les réseaux feedforward « des réseaux de neurones artificiels qui traitent les informations dans une seule direction » ont des poids différents sur chaque nœud, les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
 
 <div style="text-align:center">
-![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/Shema_RNN.png){#fig-piliers}
+![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/RNN_shema.jpg){#fig-piliers}
 </div>
 
 Un inconvénient des RNN standard est le problème du gradient de fuite, dans lequel les performances du réseau de neurones souffrent car il ne peut pas être formé correctement. Cela se produit avec des réseaux de neurones en couches profondes, qui sont utilisés pour traiter des données complexes.
@@ -326,39 +300,39 @@ Les RNN standard qui utilisent une méthode d'apprentissage basée sur le gradie
 
 Une solution au problème s'appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau. Cela permet également aux RNN de déterminer quelles données peuvent être oubliées.
 
-Dans notre cas, Nous nous sommes focalisés sur l'application de modèle LSTM sur les données de l’indice MASI. Notre échantillon contenu 5000 observations journalière du cours d’ouverture, cours Dernier, le cours le plus bas, le cours plus haut et la variation du cours entre deux dates successives.
+Dans notre cas, nous possédons d’une base de données historiques de l’indice MASI pour une durée de 5000 jours et contienne 6 colonnes, telle que la signification de chaque variable est la suivante :
 
-```{r echo=FALSE, warning=FALSE,message=FALSE}
-library(readxl)
-library(kableExtra)
-masi <- read_excel("C:/Users/LENOVO/Desktop/Risk-based-solvency/Application Bs4/Data/masi.xlsx")
-head(masi,15)%>% 
-  kbl() %>% 
-  kable_material(c("striped"))
-
-```
-La figure suivante donne un aperçu de Dernier cours de cet indice entre les années 2002 et 2022.
+-	Date : la date d’observation. 
+-	Dernier : le cours de clôture de la journée.
+-	Ouverture : le cours d’ouverture de la journée.
+-	PlusHaut : la valeur de cours la plus grand dans la journée.
+-	PlusBas : la valeur de cours la plus bas dans la journée.
+-	Variation : la variation des cours entre deux dates successives.
 
 <div style="text-align:center">
-![Le cours Historiques de Clôture pour l’indice MASI](Rapport-PFE_files/figure-html/Derniere.png){#fig-piliers}
+![les cours historiques de l'indice MASI](Rapport-PFE_files/figure-html/donnees.png){#fig-piliers}
 </div>
 
-Les réseaux de neurones récurrents sont réputés être plus performants comparer aux autres méthodes. Ainsi, il est tout naturelle de s’attendre à un excellent score lord d’une application du modèle LSTM, nous allons voir plus de détails sur la méthode de ce modèle sur le langage python la section Application^[[CHapitre Application ]()].
 
-Le graphique suivant est une représentation conjointe du dernier cours observe (en bleu) et le cours prédit (en orange) sur la même période.
 
-<div style="text-align:center">
-![Courbe de cours prédit et de cours observé](Rapport-PFE_files/figure-html/Prediction.png){#fig-piliers}
-</div>
 
-Une remarque flagrante est que les deux courbes sont presque confondus, ce constat s’explique par la faiblesse de la valeur de RMSE qui veut 29,44.
 
-La racine de l'erreur quadratique moyenne (en anglais, root-mean-square error ou RMSE) est une mesure de l'écart type des résidus, ça veut dire il mesure la différence entre les valeurs prédites par le modèle et les valeurs observées.
-Tous ces raisons, prouve l’efficacité du modèle LSTM comparé à celui de Black&sholes.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 ## La construction de la courbe des taux zéro-coupon :
+
 Dans cette partie nous nous intéressons à la construction de la courbe des taux zéro-coupon dont nous avons besoin dans le reste de ce travaille afin d'actualiser les flux futurs entrant dans le calcul des différentes BEST ESTIMATE. Les taux Zéro Coupons sont extraite à partir des taux moyens pondérés des transactions des bons de trésor publiées par [BANK AL MAGHRIB](https://www.bkam.ma/Marches/Principaux-indicateurs/Marche-obligataire/Marche-des-bons-de-tresor/Marche-secondaire/Taux-de-reference-des-bons-du-tresor?date=23%2F03%2F2023&block=e1d6b9bbf87f86f8ba53e8518e882982#address-c3367fcefc5f524397748201aee5dab8-e1d6b9bbf87f86f8ba53e8518e882982). Ces taux en fait, sont des taux monétaires pour les maturités inférieures ou égales à un an, alors qu'il représente un taux actuariel pour les maturités supérieures à un an, de plus ils ne sont disponibles que pour certaines maturités.
 
 ```{r message=FALSE,warning=FALSE,error=FALSE,echo=FALSE}
@@ -372,7 +346,7 @@ library(xml2)
 ```{r message=FALSE,warning=FALSE,error=FALSE,echo=FALSE}
 library(xml2)
 library(rvest)
-get_taux_BAM2 <- function(DATE = "2022-12-30"){
+get_taux_BAM2 <- function(DATE = "2021-12-30"){
 
   DATE = ymd(DATE)
   d = day(DATE)
@@ -397,7 +371,7 @@ get_taux_BAM2 <- function(DATE = "2022-12-30"){
 
 }
 
-TR = get_taux_BAM2(DATE = "2022-12-30")
+TR = get_taux_BAM2(DATE = "2021-12-30")
 ```
 
 ```{r echo=FALSE,message=FALSE,warning=FALSE,error=FALSE}
@@ -660,40 +634,40 @@ Les provisions techniques prudentielles sont valorisées brutes de réassurance 
 
 Elles sont évaluées comme suit :
 $$
-PT = BE_{eng} + BEFG + MR
+PT = BE_{engagement} + BE_{fraisGestion} + MargeRisque
 $$
 
 Avec :
 
 - *$PT$* : la provision technique
 
-- *$BE_{eng}$* : La meilleure estimation des engagements correspond à la somme probabilisée et actualisée de flux de trésorerie futurs afférents aux engagements de l'entreprise d'assurances et de réassurance au titre des contrats souscrits et déterminée, selon la nature des opérations d'assurance
+- *$BE_{engagement}$* : La meilleure estimation des engagements correspond à la somme probabilisée et actualisée de flux de trésorerie futurs afférents aux engagements de l'entreprise d'assurances et de réassurance au titre des contrats souscrits et déterminée, selon la nature des opérations d'assurance
 
-- *$BEFG$* : La meilleure estimation des frais de gestion correspond à la somme probabilisée et actualisée des flux de frais de gestion des contrats et déterminée, selon la nature des opérations d'assurance.
+- *$BE_{fraisGestion}$* : La meilleure estimation des frais de gestion correspond à la somme probabilisée et actualisée des flux de frais de gestion des contrats et déterminée, selon la nature des opérations d'assurance.
 
-- *$MR$* : La marge de risque correspond au coût d'immobilisation du capital de solvabilité requis afférent aux engagements garantis. Elle est calculée, séparément pour les engagements des opérations d'assurances vie et rentes découlant des opérations non vie ainsi que pour les engagements des opérations non vie.
+- *$MargeRisque$* : La marge de risque correspond au coût d'immobilisation du capital de solvabilité requis afférent aux engagements garantis. Elle est calculée, séparément pour les engagements des opérations d'assurances vie et rentes découlant des opérations non vie ainsi que pour les engagements des opérations non vie.
 
 ### Opérations d'assurance vie, décès ou capitalisation:
-#### Meilleure estimations des engagements ($BE_{eng}$):
+#### Meilleure estimations des engagements ($BE_{engagement}$):
 Pour les opérations d'assurance vie, décès ou de capitalisation hors unités de compte, la meilleure estimation des engagements comprend la meilleure estimation des garanties probabilisées et les bénéfices discrétionnaires futurs.
 $$
-BE_{eng} = BEGP + BDF
+_{vie}BE^{engagement} = BE_{garantie}^{prob} + BDF
 $$
 
 Avec :
 
-- $BEGP$: la meilleure estimation des garanties probabilisées.
+- $BE_{garantie}^{prob}$: la meilleure estimation des garanties probabilisées.
 - $BDF$: les bénéfices discrétionnaires futurs.
 
 ##### Meilleure estimation des garanties probabilisées: {#sec-MEGP}
 La meilleure estimation des garanties probabilisées est calculée garantie par garantie et tête par tête, en actualisant les flux de trésorerie futurs probabilisés, afférents aux engagements garantis à la date d'inventaire. Toutefois, l'entreprise d'assurances et de réassurance peut procéder à une agrégation en retenant des critères homogènes, notamment l'âge et ce, après accord de l'Autorité.
 $$
-BEGP = \sum\limits_{t=0}^{t=N}\frac{(Dec_{t}-Enc_{t})}{(1+r_t)^t}
+BE_{garantie}^{prob} = \sum\limits_{t=0}^{t=N}\frac{(CF^{Dec}_{t}-CF^{Enc}_{t})}{(1+r_t)^t}
 $$
 Avec :
 
-- $Enc_{t}$: Les encaissements à la date $t$ qui correspondent aux engagements des assurés.
-- $Dec_{t}$: Les décaissements à la date $t$. qui correspondent aux règlements de toutes prestations garanties au titre des contrats, y compris les rachats. Ils sont déterminés en tenant compte des engagements contractuels et en utilisant, le cas échéant, les bases techniques suivantes :
+- $CF^{Enc}_{t}$: Les encaissements à la date $t$ qui correspondent aux engagements des assurés.
+- $CF^{Déc}_{t}$: Les décaissements à la date $t$. qui correspondent aux règlements de toutes prestations garanties au titre des contrats, y compris les rachats. Ils sont déterminés en tenant compte des engagements contractuels et en utilisant, le cas échéant, les bases techniques suivantes :
 
 - **La table de mortalité**: La table de mortalité TV 88-90 pour les assurances en cas de vie ou la table de mortalité TD 88-90 pour les assurances en cas de décès (prévues à l'annexe), auxquelles l'entreprise d'assurances et de réassurance peut substituer une table de mortalité d'expérience, matérialisant la mortalité propre à la population de ses assurés et ce, après accord de l'Autorité ;
 
@@ -716,10 +690,10 @@ Les flux de trésorerie futurs probabilisés précités sont déterminés en con
 
 
 Si on prend l'exemple d'un contrat d'assurance-vie mixte^[Un contrat d'assurance mixte à prime unique sur $N$ années est un type de contrat d'assurance-vie qui permet de financer l'assurance-vie en une seule fois. Cela signifie que vous payez une prime unique pour couvrir toute la durée du contrat. Ce type de contrat est destiné aux personnes qui disposent d'un capital et souhaitent diversifier leurs placements tout en protégeant leurs proches. Dans sa variante « mixte », elle permet de réaliser un placement rémunérateur tout en assurant une couverture financière à ses proches.] de capital en cas de vie égale au capital en cas de décès $K$.
-Soit $q_{x+t}$ la probabilité qu'un individu d'âge $x$ lors de la souscription décéde entre $x+t$ et $x+t+1$. On note $NbP_t$ le nombre de police en début de période $t$ et $r_s$ le taux ZC.
+Soit $q_{x+t}$ la probabilité qu'un individu d'âge $x$ lors de la souscription décéde entre $x+t$ et $x+t+1$. On note $NbPolice_t$ le nombre de police en début de période $t$ et $r_s$ le taux ZC.
 La prestation correspondante à ce contrat en date t :
 $$
-Dec_{t} = K  \times  NbP_t \times q_{x+t} \times (1+r_t)^t
+_{décès}CF^{Déc}_{t} = K  \times  NbPolice_t \times q_{x+t} \times (1+r_t)^t
 $$
 
 :::
@@ -729,33 +703,34 @@ $$
 Les bénéfices discrétionnaires futurs sont évalués pour chaque ensemble homogène de contrats.
 
 $$
-BDF = PPB +\overline{TPB} \times (ST + SF)\times\mathbf{1}_{(ST + SF) > 0}
+BDF = PPB +\bar{r}^{PB}(SoldeT + SoldeF)\times\mathbf{1}_{(SoldeT + SoldeF) > 0}
 $$
 Avec :
 
 - **$PPB$** : Le montant de la provision pour participation aux bénéfices, évaluée à la valeur comptable;
 
-- **$ST$** : Somme des soldes techniques.
+- **$SoldeT$** : Somme des soldes techniques.
 
-- **$\overline{TPB}$** : Le taux de participation aux bénéfices moyen servi aux assurés.
+- **$SoldeF$** : Somme des soldes Financiers.
+- **$\bar{r}^{PB}$** : Le taux de participation aux bénéfices moyen servi aux assurés.
 
 **Le taux de participation aux bénéfices moyen servi aux assurés** est calculé en considérant le rapport entre la somme des dotations au titre, des trois derniers exercices clos au moins, affectées à la provision pour participation aux bénéfices afférente aux opérations d'assurance vie, décès ou de capitalisation hors unités de compte et la somme des résultats techniques et financiers des dites opérations sur la même période.
 
 En notation mathématique ça donne :
 $$
-\overline{TPB} = \frac{Dot}{RT + RF}
+\bar{r}^{PB} = \frac{Dot_{\geq \text{3 exes clos} }}{RT + RF}
 $$
 
 Avec :
 
-- $Dot$ : somme des dotations au titre, des trois derniers exercices clos au moins.
+- $Dot_{\geq \text{3 exes clos} }$ : somme des dotations au titre, des trois derniers exercices clos au moins.
 - $RT$ :les résultats techniques.
 - $RF$ :les résultats financiers.
 
 #### Meilleure estimation des frais de gestions ($BE_{fraisGestion}$):
 La meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs probabilisés.
 $$
-BEFG = \sum\limits_{t = 1}^{N} \frac{FG_t}{(1+r_t)^t}
+BE_{fraisGestion} = \sum\limits_{t = 1}^{N} \frac{FG_t}{(1+r_t)^t}
 $$
 
 Les frais de gestion futurs sont estimés sur la base d'une projection effectuée en considérant un
@@ -763,33 +738,33 @@ horizon de projection suffisant pour la couverture de la durée de vie des engag
 d'inventaire. Ils sont déterminés pour chaque année de projection en multipliant le nombre de
 contrats par le montant de frais de gestion unitaire moyen.
 $$
-FG_t = NbC_t \times \overline{FGU_t}
+FG_t = NbContrat_t \times \bar{FG}^{unitaire}_{t}
 $$
 
 Avec :
 
-- $\bar{FGU}_{t}$ : Le montant de frais de gestion unitaire moyen est estimé en considérant la moyenne sur les trois derniers exercices clos des montants de frais de gestion unitaires.
-- $NbC_t$ : Le nombre de contrats précité est estimé par sous-catégories, compte tenu des bases techniques suivantes (La table de mortalité, La table de rachat en nombre, La table de résiliation)
+- $\bar{FG}^{unitaire}_{t}$ : Le montant de frais de gestion unitaire moyen est estimé en considérant la moyenne sur les trois derniers exercices clos des montants de frais de gestion unitaires.
+- $NbContrat_t$ : Le nombre de contrats précité est estimé par sous-catégories, compte tenu des bases techniques suivantes (La table de mortalité, La table de rachat en nombre, La table de résiliation)
 - $FG_t$ : Les frais de gestions.
 
 
 Le montant de frais de gestion unitaire au titre de chaque exercice clos, correspond au rapport entre le montant de frais de gestion déterminé par sous-catégories et le nombre de contrats ou d'adhérents pour les contrats d'assurance de groupe, à l'ouverture de l'exercice clos considéré.
 
 $$
-\overline{FGU_t} = \frac{\frac{FG_{t-1}}{NbC_{t-1}}+\frac{FG_{t-2}}{NbC_{t-2}}+\frac{FG_{t-3}}{NbC_{t-3}}}{3}
+\bar{FG}^{unitaire}_{t} = \frac{\overbrace{\frac{FG_{t-1}}{NbContrat_{t-1}}}^{\text{Frais de gestion unitaire en t-1}}+\frac{FG_{t-2}}{NbContrat_{t-2}}+\frac{FG_{t-3}}{NbContrat_{t-3}}}{3}
 $$
 
 
 ### Rentes découlants des opérations non-vie:
 La meilleure estimation des engagements pour les rentes découlant des opérations d'assurance non vie correspond à la meilleure estimation des garanties probabilisées déterminée avant.
 $$
-BE_{eng} = BEGP
+BE_{rnv} = BE_{garantie}^{prob}
 $$
 
 Avec :
 
-- $BE_{eng}$ : la meilleure estimation rentes découlant des opérations d'assurance non vie.
-- $BEGP$ : la meilleure estimation des garanties probabilisées.
+- $BE_{rnv}$ : la meilleure estimation rentes découlant des opérations d'assurance non vie.
+- $BE_{garantie}^{prob}$ : la meilleure estimation des garanties probabilisées.
 
 La meilleure estimation des frais de gestion, pour les rentes découlant des opérations d'assurance non vie est déterminée de la meme façon comme avant.
 
@@ -797,17 +772,17 @@ La meilleure estimation des frais de gestion, pour les rentes découlant des op�
 #### La meilleure estimation des engagements:
 la meilleure estimation des engagements comprend la meilleure estimation des engagements pour sinistres nets de recours et la meilleure estimation des engagements pour primes.
 $$
-BE_{eng}= BE_{eng}^{sinistres} + BE_{eng}^{primes}
+_{nvhr}BE_{engagement}= _{nvhr}BE_{sinistres}^{eng} + _{nvhr}BE_{primes}^{eng} 
 $$
 
-##### La meilleure estimation des engagements pour primes($_{nvhr}BE_{eng}^{primes}$):
+##### La meilleure estimation des engagements pour primes($_{nvhr}BE_{primes}^{eng}$):
 La meilleure estimation des engagements pour primes correspond à la différence entre :
 
 - La somme actualisée des flux de règlements futurs probabilisés nets de recours relatifs aux *sinistres non encore survenus* afférents aux contrats.
 - Le montant des primes futures probabilisé et actualisé à la date d'inventaire, net des frais d'acquisition, afférentes aux contrats.
 
 $$
-BE_{eng}^{primes} = \sum_{t \geq 1} \frac{\overline{FRFP_{t}}}{(1+ r_t)^t}- PFPA
+_{nvhr}BE_{primes}^{eng} = \sum_{t \geq 1} \frac{\overline{FRFP_{t}}}{(1+ r_t)^t}- PFPA
 $$
 
 avec:
@@ -817,15 +792,15 @@ avec:
 - $\overline{FRFP_{t}}$: La somme actualisée des flux de règlements futurs probabilisés nets de recours relatifs aux sinistres non encore survenus,telle que pour une année de projection donnée:
 
 $$
-\overline{FRFP_{t}} = TL * RSM * (PPNA + PFP)
+\overline{FRFP_{t}} = Tx_{liquidation} * RS_{moyen} * (PPNA + PFP)
 $$
 
 Où:
 
-- $TL$: le taux de liquidation,il est estimé en fonction de la cadence de liquidation des engagements pour sinistres survenus.
-- $RSM$: le ratio de sinistralité moyen telle que: 
+- $Tx_{liquidation}$: le taux de liquidation,il est estimé en fonction de la cadence de liquidation des engagements pour sinistres survenus.
+- $RS_{moyen}$: le ratio de sinistralité moyen telle que: 
 $$ 
-RSM_t= \frac{CU_{t} + CU_{t-1} + CU_{t-2}}{PA_{t} + PA_{t-1}+ PA_{t-2}}
+RS_{moyen_t} = \frac{CU_{t} + CU_{t-1} + CU_{t-2}}{PA_{t} + PA_{t-1}+ PA_{t-2}}
 $$
 
 - $CU$: [La charge ultime visée correspond, par exercice de survenance, à la somme des règlements cumulés et des règlements futurs au titre de l'année de survenance considérée.] représente la charge ultime.
@@ -834,20 +809,20 @@ $$
 Tell que :
 
 $$
-CU_t = RC_t + RF_t
+CU_t = RegCumules_t + RegFutures_t
 $$
 
-- $RC_t$ : les règlements cumulés 
-- $RF_t$: les règlements futurs
+- $RegCumules_t$ : les règlements cumulés 
+- $RegFutures_t$: les règlements futurs
 - $PPNA$: La provision pour primes non acquises.
 - $PFP$: Le montant des primes futures probabilisé.
 
-##### La meilleure estimation des engagements pour sinistres nets ($BE_{eng}^{sinistres}$):
+##### La meilleure estimation des engagements pour sinistres nets ($_{nvhr}BE_{sinistres}^{eng}$):
 
 La meilleure estimation des engagements pour sinistres nets de recours est déterminée en actualisant, les flux de règlements futurs probabilisés nets de recours relatifs aux sinistres survenus afférents aux contrats.
 
 $$ 
-BE_{eng}^{sinistres} = \sum_{t \geq 1} \frac{FRFP_{t}}{(1+ r_t)^t} 
+_{nvhr}BE_{sinistres}^{eng} = \sum_{t \geq 1} \frac{FRFP_{t}}{(1+ r_t)^t} 
 $$
 avec:
 
@@ -1013,41 +988,41 @@ Plusieurs auteurs ont exprimé l'opinion que cette méthode est plus performante
 #### La meilleure estimation des frais de gestion:
 la meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs liés aux contrats.
 $$
-BEFG= \sum_{t \geq 1} \frac{FFGF_t}{(1+r_t)^t}
+_{nvhr}BE_{fraisGestion}= \sum_{t \geq 1} \frac{FFGF_t}{(1+r_t)^t}
 $$
 
 avec: 
 
 - $FFGF$: les flux de frais de gestion futurs. telle que:
 $$
-FFGF = TFGM * (BE_{eng}^{sinistres} + BE_{eng}^{primes})
+FFGF = Tx_{fraisGestion_{moy}} * (_{nvhr}BE_{sinistres}^{eng} + _{nvhr}BE_{primes}^{eng})
 $$
 
 et:
 
-- $TFGM$ : Le taux de frais de gestion moyen,il est estimé, par sous-catégories d'opérations d'assurance, en considérant la moyenne sur les trois derniers exercices clos des taux de frais de gestion.
+- $Tx_{frais gestion_{moy}}$ : Le taux de frais de gestion moyen,il est estimé, par sous-catégories d'opérations d'assurance, en considérant la moyenne sur les trois derniers exercices clos des taux de frais de gestion.
 
 Donc:
 
 $$
-TFGM= \frac{TFG_{t} + TFG_{t-1} + TFG_{t-2}}{3}
+_{t}Tx_{fraisGestion_{moy}}= \frac{Tx_{fraisGestion_{t}} + Tx_{fraisGestion_{t-1}} + Tx_{fraisGestion_{t-2}}}{3}
 $$
 
 ainsi que :
 
 $$
-TFG_{t} = \frac{FG}{BE_{eng}^{sinistres}+ REC}
+Tx_{frais gestion_{t}} = \frac{FG}{_{nvhr}BE_{sinistres}^{eng}+ Reglements_{Clos}}
 $$
 
 - $FG$: le montant frais de gestion.
-- $REC$ : les règlements au titre de l'exercice clos.
+- $Reglements_{Clos}$ : les règlements au titre de l'exercice clos.
 
 
 ### Part des cessionnaires dans les provisions techniques prudentielles:
 La part des cessionnaires dans les provisions techniques prudentielles est évaluée en considérant la différence entre d'une part, la meilleure estimation des engagements cédés et d'autre part, l'ajustement pour défaut de contrepartie.
 
 $$
-PC = BE_{eng}^{cedes} - Adj
+Part_{cess} = BE_{cedes}^{eng} - Ajust_{DC}
 $$
 
 #### La meilleure estimation des engagements cédés ($BE_{cedes}^{eng}$):
@@ -1056,11 +1031,11 @@ $$
 la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des engagements par le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques , des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
 
 $$
-BE_{eng}^{cedes} = TC \times BE_{eng}
+_{vie}BE_{cedes}^{eng} = taux_c \times _{vie}BE^{eng}
 $$
 Avec :
 
-- $TC$ (taux de cession): le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques, des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
+- $taux_c$ (taux de cession): le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques, des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
 
 
 ##### Les opérations non vie{-}
@@ -1068,13 +1043,13 @@ Avec :
 Pour les opérations non vie, la meilleure estimation des engagements cédés correspond à la somme de la meilleure estimation des engagements pour sinistres cédés et de la meilleure estimation des engagements pour primes cédés.
 
 $$
-BE_{eng}^{cedes} =\; BE_{sinsitres}^{cedes} + \; BE_{primes}^{cedes}
+_{nvie}BE_{cedes}^{eng} =\; _{sinsitres}BE_{cedes}^{eng} + \; _{primes}BE_{cedes}^{eng}
 $$
 Avec :
 
-> $BE_{sinsitres}^{cedes} = TC_{sinsitres} \times BE_{eng}^{sinsitres}$ : La meilleure estimation des engagements pour sinistres cédés visée à la spécification technique 33 est évaluée en multipliant la meilleure estimation des engagements pour sinistres nets de recours par ($TC_{sinsitres}$) le rapport entre la part des cessionnaires dans les provisions pour sinistres à payer et la provision pour sinistres à payer brute de réassurance.
+> $_{sinsitres}BE_{cedes}^{eng} = taux_s \times BE_{sinsitres}^{eng}$ : La meilleure estimation des engagements pour sinistres cédés visée à la spécification technique 33 est évaluée en multipliant la meilleure estimation des engagements pour sinistres nets de recours par ($taux_s$) le rapport entre la part des cessionnaires dans les provisions pour sinistres à payer et la provision pour sinistres à payer brute de réassurance.
 
-> $BE_{primes}^{cedes} = TC_{primes} \times BE_{eng}^{primes}$ : La meilleure estimation des engagements pour primes cédés est évaluée en multipliant la meilleure estimation des engagements pour primes par le taux de cession de primes. Le taux de cession ($TC_{primes}$) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l'exercice.
+> $_{primes}BE_{cedes}^{eng} = r^{primes}_{cession} \times BE_{primes}^{eng}$ : La meilleure estimation des engagements pour primes cédés est évaluée en multipliant la meilleure estimation des engagements pour primes par le taux de cession de primes. Le taux de cession ($r^{primes}_{cession}$) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l'exercice.
 
 #### L'ajustement pour défaut de contrepartie:
 
@@ -1091,40 +1066,40 @@ L'*ACAPS* propose une méthode de détermination des  flux d'ajustement futurs d
 Posons $(F_t)_{t>0}$ étant les flux  de règlements futurs probabilisés. La meilleure estimation des engagements cédés au titre de l'année de projection $ME_{engagements\;cédès\;i}$ est calculée comme suit :
 
 $$
-BE_{eng\;i}^{\;cédès} = (BE_{eng\;i}^{sinsitres} \times RS_{0} + BE_{eng \;i}^{primes} \times RP_{0})
+ME_{engagements\;cédès\;i} = (ME_{sinsitres\;i} \times ratio_{sinistres\;0} + ME_{primes\;i} \times ratio_{primes\;0})
 $$
 
 Où:
 
-- $BE_{eng\;i}^{sinsitres} = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité.
-- $BE_{eng \;i}^{primes}$: correspond à la meilleure estimation des engagements pour primes projetée à la date i.
-- Les termes $RS_{0}$ et $RP_{0}$ correspondent aux ratios de passage utilisés pour le calcul de la meilleure estimation des engagements pour sinistres cédés et pour primes cédés respectivement à la date d'inventaire.
+- $ME_{sinsitres\;i} = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité.
+- $ME_{primes\;i}$: correspond à la meilleure estimation des engagements pour primes projetée à la date i.
+- Les termes $ratio_{sinistres\;0}$ et $ratio_{primes\;0}$ correspondent aux ratios de passage utilisés pour le calcul de la meilleure estimation des engagements pour sinistres cédés et pour primes cédés respectivement à la date d'inventaire.
 
 > Pour les opérations d’assurance vie, décès ou de capitalisation
 
  La meilleure estimation des engagements cédès est déterminée par la formule suivante :
  
  $$
- BE_{eng\;i}^{\;cédès} = (MEGP_i + BDF_i)\times R_0
+ ME_{engagements\;cédès\;i} = (MEGP_i + BDF_i)\times ratio_0
  $$
  
 Où :
 - $MEGP_i = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité et $(F_t)_{t>0}$ les flux de trésorerie futurs probabilisés.
 - $BDF_i = \frac{MEGP_i}{MEGP_0}\times BDF_0 \times (1+r_i)^i$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité.
 - $BDF_0$ correspond aux bénéfices discrétionnaires futurs à la date d’inventaire.
-- Le terme $R_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d’inventaire.
+- Le terme $ratio_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d’inventaire.
 
 > Pour les rentes découlant des opérations non-vie
 
 La meilleure estimation des engagements cédès au titre de l’année de projection correspond à :
 
 $$
- BE_{eng\;i}^{cédès} = MEGP_i\times R_0
+ ME_{engagements\;cédès\;i} = MEGP_i\times ratio_0
 $$
 
 Où :
 - $MEGP_i = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité et $(F_t)_{t>0}$ les flux de trésorerie futurs probabilisés.
-- Le terme $R_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d’inventaire.
+- Le terme $ratio_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d’inventaire.
 
 :::
 
@@ -1134,13 +1109,8 @@ Où :
 Au titre de l'année de projection $i$, le flux d'ajustement est calculé ainsi :
 
 $$
-Adj_i = \frac{1}{2}\times \max( BE_{eng\;i}^{cédès} - DEV + SDR;0)\times PD \times (1-PD)^{i-1}
+Adj_i = \frac{1}{2}\times \max( ME_{engagements\;cédès\;i} - dépôt\; en \; espèces\; et\; en\; valeurs_1+ solde\; de \; réassurance_1;0)\times PD \times (1-PD)^{i-1}
 $$
-avec: 
-
-- DEV :dépôtven espèces et en valeurs.
-- SDR :solde de réassurance
-
 La probabilité de défaut annuelle "PD" du cessionnaire est établie conformément au tableau prévu au 2) de l’annexe n°12 de la  circulaire qui correspond au premier Annexe de ce rapport.
 :::
 
@@ -1148,9 +1118,9 @@ La probabilité de défaut annuelle "PD" du cessionnaire est établie conformém
 ## Etape Nº3: Calcul de l’ajustement pour défaut de contrepartie
 
 $$
-Adj_D = \sum\limits_{i>0} \frac{Adj_i}{(1+r_i)^i}
+Ajustement_{defaut} = \sum\limits_{i>0} \frac{Adj_i}{(1+r_i)^i}
 $$
-avec $(r_i)$ calculés à partir de la courbe des taux fixée par l'Autorité.
+avec $(r_i)$ calculés à partir de la courbe des taux fixée par l'Autorité
 
 :::
 
@@ -1200,20 +1170,20 @@ Selon le circulaire de l'ACAPS (l'Autorité de Contrôle des Assurances et de la
 - L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés.
 
 $$
-CSR = CSRB + CSRO-max(Adj,0) 
+CSR = CSR_{base} + CSR_{opérationnel} + Adj
 $$
 
 
 
 
-### Le capital de solvabilité requis de base ($CSRB$):
+### Le capital de solvabilité requis de base $CSR_{base}$
 Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de **marché**, de **concentration**, de **contrepartie**, de **souscription vie** et de **souscription non-vie** et ce, après application des coefficients de corrélations.
 
 En d'autres termes, il s'agit du montant total des capitaux nécessaires pour faire face à ces divers types de risques. les exigences de capitaux sont évaluées individuellement pour chaque catégorie de risque, puis agrégées en appliquant les coefficients de corrélations, pour déterminer le capital de solvabilité requis de base. Cela permet aux compagnies d’assurance d’évaluer de manière précise les montants de capitaux nécessaires pour couvrir leurs risques spécifiques et d'assurer une solvabilité adéquate.
 
 Le capital de solvabilité requis de base peut être écrit mathématiquement comme suit:
 $$
-CSRB = \sqrt{\sum_{i,j\in Risk }(\rho_{i,j} * CSR_{i} * CSR_{j})}
+CSR_{base} = \sqrt{\sum_{i,j\in Risk }(\rho_{i,j} * CSR_{i} * CSR_{j})}
 $$
 avec : 
 
@@ -1225,13 +1195,13 @@ avec la matrice de corrélations suivante:
 
 |               |Marché |Concentration|Contrepartie|Sousc. vie|Sousc. non-vie|
 |---------------|-------|-------------|------------|----------|--------------|
-|Marché         |  1    |    x        |    x       |    x     |  x           |
-|Concentration  |  x    |    1        |    x       |    x     |  x           |
-|Contrepartie   |  x    |    x        |    1       |    x     |  x           |
-|Sousc. vie     |  x    |    x        |    x       |    1     |  x           |
-|Sousc. non-vie |  x    |    x        |    x       |    x     |  1           |
+|Marché         |   1   |  x          |    x       |      x   |  x           |
+|Concentration  | x     |     1       |   x        |    x     |  x           |
+|Contrepartie   |  x    |    x        |  1         |    x     | x            |
+|Sousc. vie     |  x    |    x        |   x        |   1      | x            |
+|Sousc. non-vie | x     |    x        |   x        |   x      |  1           |
 
-#### EXIGENCE DE CAPITAL RELATIVE AUX RISQUES DE MARCHE ($CSR_{marche}$)
+#### EXIGENCE DE CAPITAL RELATIVE AUX RISQUES DE MARCHE $CSR_{marche}$
 Pour l'exigence de capital relative au risque de marché, il est important de prendre en compte plusieurs sous-risques telle que, les sous-risques action, taux, immobilier, écart de taux et change. Chacun de ces sous-risques présente des caractéristiques uniques et nécessite une évaluation distincte. Une fois que les exigences de capitaux sont déterminées pour chaque sous-risque, elles sont agrégées pour obtenir l'exigence de capital total relative au risque de marché et ce, après application des coefficients de corrélations appropriés, ce qui permet de tenir compte des interdépendances et des corrélations entre ces différents sous-risques.
 
 Mathématiquement l'exigence de capital relative au risque de marché peut être représentée  comme suit
