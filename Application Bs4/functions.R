@@ -1,5 +1,205 @@
 options(warn = -1)
 source("installation packages.R")
+TD_88_90 <- read_excel("Data/TD-88-90.xlsx")
+
+# Proba de survie -----
+tPx <- function(x,TD = TD_88_90){
+  tryCatch(
+    ifelse(x+2 > 111 | TD[[2]][x+1] == 0,
+           0,
+           TD[[2]][x+2]/TD[[2]][x+1]),
+    error = function(e){
+      return(0)
+    }
+  )
+
+}
+
+# Proba de Deces -----
+tQx <- function(x,TD = TD_88_90){
+  1 - tPx(x,TD)
+}
+
+
+#' Mat ages
+#'
+#' @param Duree_contrat_rest Vecteur de durée des contrats restantes
+#' @param ages Vecteur d'age
+#' @param TD TD-88-90
+#'
+#' @return
+
+Mat_Ages <- function(Duree_contrat_rest,ages,TD = TD_88_90){
+  ncolMatrix = max(Duree_contrat_rest)
+  nrowMatrix = length(Duree_contrat_rest)
+  mat_tqx = matrix(rep(0:(ncolMatrix-1),nrowMatrix),ncol = ncolMatrix,byrow = TRUE)
+  mat_ages = rep(ages,each = ncolMatrix)
+  mat_ages = matrix(mat_ages,ncol = ncolMatrix,byrow = TRUE)
+  mat_ages = mat_ages+mat_tqx
+  mat_ages
+}
+
+Mat_tPx <- function(mat_ages){
+  tPx(mat_ages)
+}
+
+Mat_tQx <- function(mat_ages){
+  tQx(mat_ages)
+}
+
+tableau_amort = function(Annee,maturite,cap_initial,tx_interet = 0.04 ,annee_max_proj = 2042){
+  annuite = (cap_initial*tx_interet)*(1/(1-(1+tx_interet)^(-maturite)))
+  df = data.frame(Annee = Annee + 0:(maturite-1), CRP = 0,
+                  Interest = 0, Ammortissement = 0,
+                  Annuite = annuite)
+  df$CRP[1] = cap_initial
+  df$Interest[1] = cap_initial*tx_interet
+  df$Ammortissement[1] = annuite - df$Interest[1]
+  for (i in 2:maturite) {
+    df$CRP[i] = df$CRP[i-1] - df$Ammortissement[i-1]
+    df$Interest[i] = df$CRP[i]*tx_interet
+    df$Ammortissement[i] = annuite - df$Interest[i]
+  }
+  max_annee = max(df$Annee)
+  if(max_annee < annee_max_proj){
+    df0 = data.frame(Annee = (max_annee+1):annee_max_proj, CRP = 0,
+                     Interest = 0, Ammortissement = 0,
+                     Annuite = 0)
+    df = rbind(df,df0)
+  }
+  df
+}
+
+#' Title
+#'
+#' @param Annee vecteur des annees
+#' @param maturite vecteur
+#' @param cap_initial vecteur
+#' @param max_duree_rest vecteur
+#'
+
+Matrice_Capitaux <- function(Annee,maturite,cap_initial,
+                             max_duree_rest = max(Duree_contrat_rest),annee_max_proj = 2042){
+  result = Map(
+    function(x, y, z) {
+      T_AMORT = tableau_amort(x,y,z,annee_max_proj)
+      T_AMORT = tail(T_AMORT,max_duree_rest)
+      T_AMORT$CRP
+    },
+    x = Annee,
+    y= maturite,
+    z = cap_initial
+  )
+  df_result = as.data.frame(result)
+  df_result = t(df_result)
+  rownames(df_res) = NULL
+  df_res
+}
+
+Mat_Proj_Cap <- function(df_capitaux,Duree_contrat_rest,ages,choc = 0){
+  mat_ages = Mat_Ages(Duree_contrat_rest,ages)
+  mat_tqx =(1+choc) * Mat_tQx(mat_ages)
+  mat_tpx = 1 -  mat_tqx
+  mat_tpx = cbind(1,mat_tpx[,-ncol(mat_tpx)])
+
+  mat_tpx_cumul = t(apply(mat_tpx,1,cumprod))
+
+  # Matrice de projection des capitaux
+  mat_tqx*df_capitaux*mat_tpx_cumul
+}
+
+#' Somme des capitaux projetés pour chaque année
+#'
+#' @param proj_cap Matrice de projection des capitaux
+#'
+#' @return Vector
+
+projection_cap <- function(proj_cap){
+  apply(proj_cap,2,sum)
+}
+
+#' BE des garanties probabilisées
+#'
+#' @param proj_cap_vect vecteur de capitaux projetés
+#' @param ZC vecteur de taux ZC
+#'
+#' @return BEGP
+
+BEGP_vie <- function(proj_cap_vect, ZC){
+  nn = length(proj_cap_vect)
+  denom = (1+ZC[1:nn])^(1:nn)
+  sum(proj_cap_vect/denom)
+}
+
+# NB contrat
+
+NBContrat <- function(ages,Duree_contrat_rest,choc = 0){
+  mat_ages = Mat_Ages(Duree_contrat_rest,ages)
+  mat_tqx =(1+choc) * Mat_tQx(mat_ages)
+  NB_contrat = 1-mat_tqx
+  NB_contrat = t(apply(NB_contrat,1,cumprod))
+  max_duree_rest = max(Duree_contrat_rest)
+  mat_duree = Map(\(x){
+    c(rep(1,x),rep(0,max_duree_rest-x))
+  }, x = Duree_contrat_rest)
+  mat_duree = as.data.frame(mat_duree)
+  mat_duree = t(mat_duree)
+  rownames(mat_duree) = NULL
+
+  NB_contrat = NB_contrat*mat_duree
+  NB_contrat = apply(NB_contrat,2,sum)
+  NB_contrat
+}
+
+# BEFG
+BEFG = \(FG_t,ZC){
+  n_max = length(FG_t)
+  denom = (1 + ZC[1:n_max])^(1:n_max)
+  sum(FG_t/denom)
+}
+
+# Cession ------
+
+Ajustement_DC_Vie <- \(BEGPi,ZC,taux_cession,PD){
+  BEGPi_actualised = BEGPi/((1+ZC[1:length(BEGPi)])^(1:length(BEGPi)))
+  BEGP_cede = cumsum(rev(BEGPi_actualised))
+  BEGP_cede = rev(BEGP_cede)
+  BEGP_cede = BEGP_cede*taux_cession
+  Adj_i = Map(\(x,y){
+    0.5*max(x,0)*PD*(1-PD)^(y-1)
+  }, x = as.list(BEGP_cede), y = as.list(1:length(BEGP_cede)))
+  Adj_i = unlist(Adj_i)
+  Adj_act_i = Adj_i/((1+ZC[1:length(Adj_i)])^(1:length(Adj_i)))
+
+  sum(Adj_act_i)
+}
+
+# Opeération d'assurance vie
+
+Ajustement_DC_NVie <- \(r_hat,cad_liq,ZC,RS,PPNA,PFP,taux_acquistion,PD,tc_prime = 0.05 , tc_sinistre = 0.03){
+  cad_liq0 = cad_liq[-1]
+  cad_actualiser = cad_liq0/((1+ZC[1:length(cad_liq0)])^(1:length(cad_liq0)))
+  cad_actualiser_cumule = rev(cumsum(rev(cad_actualiser)))
+  PFP_Vect = c(PFP,rep(0,length(cad_liq0)-1))
+  PFPA = (1-taux_acquistion)*PFP_Vect
+  BEPrimes = RS*(PPNA+PFP_Vect)*cad_actualiser_cumule-PFPA
+  BEPrimes_Cede = tc_prime*BEPrimes
+
+  BESinistre = r_hat/((1+ZC[1:length(r_hat)])^(1:length(r_hat)))
+  BESinistre = rev(cumsum(rev(BESinistre)))
+  BESinistre_Cede = tc_sinistre*BESinistre
+
+  BE_ENG_Cede = BESinistre_Cede+BEPrimes_Cede
+
+  Adj_i = Map(\(x,y){
+    0.5*max(x,0)*PD*(1-PD)^(y-1)
+  }, x = as.list(BE_ENG_Cede), y = as.list(1:length(BE_ENG_Cede)))
+  Adj_i = unlist(Adj_i)
+  Adj_act_i = Adj_i/((1+ZC[1:length(Adj_i)])^(1:length(Adj_i)))
+  sum(Adj_act_i)
+}
+
+
 # Taux de référence des bons de trésor -------
 
 get_taux_BAM <- function(DATE = "2021-12-30"){

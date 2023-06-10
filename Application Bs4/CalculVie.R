@@ -75,10 +75,10 @@ tableau_amort = function(Annee,maturite,cap_initial,tx_interet = 0.04 ,annee_max
 #'
 
 Matrice_Capitaux <- function(Annee,maturite,cap_initial,
-                             max_duree_rest = max(Duree_contrat_rest)){
+                             max_duree_rest = max(Duree_contrat_rest),annee_max_proj = 2042){
   result = Map(
     function(x, y, z) {
-      T_AMORT = tableau_amort(x,y,z)
+      T_AMORT = tableau_amort(x,y,z,annee_max_proj)
       T_AMORT = tail(T_AMORT,max_duree_rest)
       T_AMORT$CRP
     },
@@ -92,10 +92,11 @@ rownames(df_res) = NULL
 df_res
 }
 
+# Calculs vie -------
 df_capitaux = Matrice_Capitaux(deces_deg_unique$`Année d'effet`,
                                deces_deg_unique$Dur_e_de_contrat,deces_deg_unique$Capital_d_c_s_initial)
 
-Mat_Proj_Cap <- function(Duree_contrat_rest,ages,choc = 0){
+Mat_Proj_Cap <- function(df_capitaux,Duree_contrat_rest,ages,choc = 0){
   mat_ages = Mat_Ages(Duree_contrat_rest,ages)
   mat_tqx =(1+choc) * Mat_tQx(mat_ages)
   mat_tpx = 1 -  mat_tqx
@@ -107,9 +108,9 @@ Mat_Proj_Cap <- function(Duree_contrat_rest,ages,choc = 0){
   mat_tqx*df_capitaux*mat_tpx_cumul
 }
 
-proj_cap = Mat_Proj_Cap(Duree_contrat_rest,ages,choc = 0)
-proj_cap_choc_003 = Mat_Proj_Cap(Duree_contrat_rest,ages,choc = 0.3)
-proj_cap_choc_002 = Mat_Proj_Cap(Duree_contrat_rest,ages,choc = 0.2)
+proj_cap = Mat_Proj_Cap(df_capitaux,Duree_contrat_rest,ages,choc = 0)
+proj_cap_choc_003 = Mat_Proj_Cap(df_capitaux,Duree_contrat_rest,ages,choc = 0.3)
+proj_cap_choc_002 = Mat_Proj_Cap(df_capitaux,Duree_contrat_rest,ages,choc = 0.2)
 #' Somme des capitaux projetés pour chaque année
 #'
 #' @param proj_cap Matrice de projection des capitaux
@@ -148,19 +149,28 @@ FG_moyen = 100
 Augmentation_X = 0.14
 Majoration_X = 0.015
 
-NB_contrat = Mat_tPx(mat_ages)
-NB_contrat = t(apply(NB_contrat,1,cumprod))
-max_duree_rest = max(Duree_contrat_rest)
-mat_duree = Map(\(x){
-  c(rep(1,x),rep(0,max_duree_rest-x))
-}, x = Duree_contrat_rest)
-mat_duree = as.data.frame(mat_duree)
-mat_duree = t(mat_duree)
-rownames(mat_duree) = NULL
+NB_contrat <- function(ages,Duree_contrat_rest,choc = 0){
+  mat_ages = Mat_Ages(Duree_contrat_rest,ages)
+  mat_tqx =(1+choc) * Mat_tQx(mat_ages)
+  NB_contrat = 1-mat_tqx
+  NB_contrat = t(apply(NB_contrat,1,cumprod))
+  max_duree_rest = max(Duree_contrat_rest)
+  mat_duree = Map(\(x){
+    c(rep(1,x),rep(0,max_duree_rest-x))
+  }, x = Duree_contrat_rest)
+  mat_duree = as.data.frame(mat_duree)
+  mat_duree = t(mat_duree)
+  rownames(mat_duree) = NULL
 
-NB_contrat = NB_contrat*mat_duree
-NB_contrat = apply(NB_contrat,2,sum)
+  NB_contrat = NB_contrat*mat_duree
+  NB_contrat = apply(NB_contrat,2,sum)
+  NB_contrat
+}
+NB_contrat = NBContrat(ages,Duree_contrat_rest,choc = 0.2)
+
+
 FG_t = FG_moyen*NB_contrat # FG_t Avant Choque
+
 ## FG_t après choque
 vect_choque_FG = 1+c(Augmentation_X,rep(Majoration_X,max_duree_rest-1))
 FG_t_Choque = FG_moyen * cumprod(vect_choque_FG)
