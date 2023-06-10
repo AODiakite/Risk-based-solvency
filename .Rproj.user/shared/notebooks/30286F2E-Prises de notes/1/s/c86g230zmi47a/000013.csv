@@ -1,0 +1,7 @@
+"0",""
+"0","library(rvest)"
+"0","link = ""https://www.bkam.ma/Marches/Principaux-indicateurs/Marche-obligataire/Marche-des-bons-de-tresor/Marche-secondaire/Taux-de-reference-des-bons-du-tresor?date=30%2F12%2F2022&block=e1d6b9bbf87f86f8ba53e8518e882982#address-c3367fcefc5f524397748201aee5dab8-e1d6b9bbf87f86f8ba53e8518e882982"""
+"0",""
+"0","TR = read_html(link) %>% "
+"0","  html_element(""table"") %>% "
+"0","  html_table()"

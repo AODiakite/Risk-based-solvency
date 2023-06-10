@@ -1,0 +1,69 @@
+# Charger les packages nécessaires
+library(rvest)
+library(dplyr)
+library(lubridate)
+
+# Définir l'URL du site à scraper
+url <- "https://fr.investing.com/indices/masi-historical-data"
+
+# Définir la période à scraper
+start_date <- ymd("2019-01-01")
+end_date <- today()
+
+# Créer une fonction pour scraper les données d'une page donnée
+scrape_page <- function(page) {
+  # Construire l'URL de la page avec le paramètre page
+  page_url <- paste0(url, "?page=", page)
+  
+  # Lire le contenu HTML de la page
+  page_html <- read_html("https://fr.investing.com/indices/masi-historical-data")
+  
+  # Extraire le tableau des données historiques de l'indice MASI
+  page_data <- page_html %>%
+    html_nodes(xpath = '//*[@id="curr_table"]/tbody') %>%
+    html_table() %>%
+    .[[1]]
+  
+  # Convertir les colonnes en format numérique et date
+  page_data <- page_data %>%
+    mutate(
+      Date = dmy(Date),
+      Ouverture = as.numeric(gsub(",", "", Ouverture)),
+      Plus.haut = as.numeric(gsub(",", "", Plus.haut)),
+      Plus.bas = as.numeric(gsub(",", "", Plus.bas)),
+      Clôture = as.numeric(gsub(",", "", Clôture)),
+      Variation = as.numeric(gsub("%", "", Variation)) / 100,
+      Volume = as.numeric(gsub(",", "", Volume))
+    )
+  
+  # Retourner le tableau des données
+  return(page_data)
+}
+
+# Initialiser un compteur de pages et un tableau vide pour stocker les données
+page <- 1
+masi_data <- NULL
+
+# Scrapper les données tant qu'on n'a pas atteint la date de début ou la dernière page
+while (TRUE) {
+  # Scrapper les données de la page courante
+  page_data <- scrape_page(page)
+  
+  # Ajouter les données au tableau global
+  masi_data <- rbind(masi_data, page_data)
+  
+  # Vérifier si on a atteint la date de début ou la dernière page
+  if (min(page_data$Date) <= start_date || nrow(page_data) < 25) {
+    break
+  }
+  
+  # Passer à la page suivante
+  page <- page + 1
+}
+
+# Filtrer les données selon la période souhaitée
+masi_data <- masi_data %>%
+  filter(Date >= start_date & Date <= end_date)
+
+# Afficher les premières lignes du tableau final
+head(masi_data)

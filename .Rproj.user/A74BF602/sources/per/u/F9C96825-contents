@@ -1,0 +1,59 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import pandas as pd
+
+def scrape_data(url, start_date, end_date, browser='Chrome'):
+    if browser == 'Chrome':
+        driver = webdriver.Chrome()
+    elif browser == 'Firefox':
+        driver = webdriver.Firefox()
+    else:
+        raise ValueError(f"Unsupported browser: {browser}")
+
+    driver.get(url)
+
+    # Sélectionner l'instrument financier "AFMA" dans la liste déroulante
+    instrument_select = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "HistoriqueNegociation1_HistValeur1_DDValeur"))
+    )
+    instrument_select.click()
+    instrument_option = driver.find_element(By.XPATH, "//option[text()='AFMA']")
+    instrument_option.click()
+
+    # Sélectionner la date de début
+    start_date_input = driver.find_element(By.ID, "HistoriqueNegociation1_HistValeur1_DateTimeControl1_TBCalendar")
+    start_date_input.clear()
+    start_date_input.send_keys(start_date)
+
+    # Sélectionner la date de fin
+    end_date_input = driver.find_element(By.ID, "HistoriqueNegociation1_HistValeur1_DateTimeControl2_TBCalendar")
+    end_date_input.clear()
+    end_date_input.send_keys(end_date)
+
+    # Cliquer sur le bouton "Rechercher"
+    search_button = driver.find_element(By.NAME, "HistoriqueNegociation1$HistValeur1$ImageButton1")
+    search_button.click()
+
+    # Récupérer les données de la table
+    table = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "HistoriqueNegociation1_HistValeur1_PnlResultat"))
+    )
+    data = []
+    for row in table.find_elements(By.TAG_NAME, "tr"):
+        data.append([cell.text for cell in row.find_elements(By.TAG_NAME, "td")])
+
+    # Créer une DataFrame Pandas à partir des données
+    df = pd.DataFrame(data[1:], columns=data[0])
+
+    driver.quit()
+    
+    return df
+
+# Exemple d'utilisation de la fonction scrape_data
+url = "https://www.casablanca-bourse.com/bourseweb/Negociation-Historique.aspx?Cat=24&IdLink=302"
+start_date = "01/01/2022"
+end_date = "01/01/2023"
+df = scrape_data(url, start_date, end_date)
+print(df)

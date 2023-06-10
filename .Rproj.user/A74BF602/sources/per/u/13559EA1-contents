@@ -1,0 +1,42 @@
+library(httr)
+library(rvest)
+library(lubridate)
+
+# Définir les dates de début et de fin
+end_date <- Sys.Date()
+start_date <- end_date %m-% months(6)
+
+# Convertir les dates en format pour le site web
+start_date_str <- format(start_date, "%d/%m/%Y")
+end_date_str <- format(end_date, "%d/%m/%Y")
+
+# Définir l'URL de base
+url_base <- "https://www.casablanca-bourse.com/bourseweb/Negociation-Historique.aspx?Cat=24&IdLink=302"
+
+# Lire la page pour obtenir les valeurs initiales des champs cachés
+page <- read_html(url_base)
+viewstate_value <- html_attr(html_node(page, '[name="__VIEWSTATE"]'), "value")
+viewstategenerator_value <- html_attr(html_node(page, '[name="__VIEWSTATEGENERATOR"]'), "value")
+
+# Définir les données du formulaire
+form_data <- list(
+  `__VIEWSTATE` = viewstate_value,
+  `__VIEWSTATEGENERATOR` = viewstategenerator_value,
+  `HistoriqueNegociation1$HistValeur1$DDValeur` = "AFMA",
+  `HistoriqueNegociation1$HistValeur1$DateTimeControl1$TBCalendar` = start_date_str,
+  `HistoriqueNegociation1$HistValeur1$DateTimeControl2$TBCalendar` = end_date_str,
+  `HistoriqueNegociation1$HistValeur1$ImageButton1.x` = 0,
+  `HistoriqueNegociation1$HistValeur1$ImageButton1.y` = 0
+)
+
+# Effectuer une requête HTTP POST à l'URL du formulaire
+response <- POST(url_base, body = form_data, encode = "form")
+
+# Vérifier le statut de la réponse
+stop_for_status(response)
+
+# Extraire les données de la table
+data <- html_table(content(response), fill = TRUE)[[1]]
+
+# Afficher les données
+data

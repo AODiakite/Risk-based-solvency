@@ -1,0 +1,27 @@
+{
+    "id": "AFB2BF4B",
+    "path": "~/Desktop/PFE/Risk based solvency/forecast.R",
+    "project_path": "forecast.R",
+    "type": "r_source",
+    "hash": "841536578",
+    "contents": "",
+    "dirty": false,
+    "created": 1684011008503.0,
+    "source_on_save": false,
+    "relative_order": 17,
+    "properties": {
+        "tempName": "Untitled11",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "42,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1684014894,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1684014894371,
+    "read_only": false,
+    "read_only_alternatives": []
+}
