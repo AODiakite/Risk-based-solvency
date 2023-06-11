@@ -205,7 +205,7 @@ Ainsi, si la valeur présente de l'action est une donnée du marché, sa valeur 
  Dans ce contexte, le comportement de la variable $S(t)$ peut être décrit pour une *Equation Différentielle Stochastique* ($EDS$). Dans le cas des actions, l'$EDS$ standard utilisée pour modéliser la trajectoire du cours est appelé *Mouvement Brownien Géométrique* ($GBM$ : Geometric Brownian Motion). Sous la mesure de probabilité dite réelle $P$, le mouvement brownien géométrique ($GBM$) est formellement représenté en temps continu de la manière suivante : ^[Alonso Peña, Ph.D, C++ For Quantitative Finance]
  
  $$
- dS_t = \mu S_t dt + \sigma S_t dW^P_t,
+ dS_t = \mu S_t dt + \sigma S_t dW^P_t \quad ,
  $${#eq-gbmp}
  
  où $\mu$ représente le drift, $\sigma$ la volatilité et $W^P$ est mouvement brownien standard sous la probabilité $P$.
@@ -432,8 +432,8 @@ Pour cette raison on va suivre les étapes suivantes pour la construction de la 
 
 Cette étape consiste à transformer les taux monétaires à des taux actuariels en utilisant la relation suivante :
 $$
-T_a=(1+\frac{n}{365}*T_m )^{\frac{365}{n}}-1 ,
-$$
+T_a=(1+\frac{n}{365}*T_m )^{\frac{365}{n}}-1 , 
+$${#eq-gbmp}
 avec :
 
 $T_a$ : Le taux actuariel.
@@ -477,8 +477,8 @@ Cette opération consiste à déterminer le $DPL$ qui correspond au dernier poin
 La formule d'interpolation pour toute maturité $j$ allant de $1, 2,\dots, DPL$ est la suivante : 
 
 $$
-t_j=t_i+\frac{t_{i+1 }-t_i}{n_{i+1 }-n_i} \times (j-n_i ),
-$$
+t_j=t_i+\frac{t_{i+1 }-t_i}{n_{i+1 }-n_i} \times (j-n_i ), 
+$${#eq-gbmp}
 
 avec :   
 
@@ -529,12 +529,12 @@ Le taux zéro-coupon est donc le taux actuariel de même maturité. Car aucun co
 Le taux zéro-coupon est calculé par la formule suivante : 
 $$
 R_n =  \sqrt[n]{\frac{1+t_n}{1-t_n \times \sum_{i=1}^{n-1} \frac{1}{(1+R_i)^{i}}}} - 1 \quad ,
-$$
+$${#eq-gbmp}
 
 En effet, on a supposé que le prix théorique d'une obligation correspond à la somme de ses flux futures actualisés aux taux zéro-coupon de l'échéance de chaque flux:
 $$
 P = \frac{t_n * N }{(1+R_1)} + \frac{t_n * N }{(1+R_2)^2}+ \dots + \frac{N +t_n * N }{(1+R_n)^n},
-$$
+$${#eq-gbmp}
 
 avec : 
 
@@ -608,7 +608,7 @@ $u_1, u_2,\dots., u_N$ alors Smith-Wilson suppose que le facteur d'actualisation
 
 $$
 P(\tau) = e^{-UFR * \tau} + \sum_{j=1}^N \gamma_j * W(\tau , \mu_j) \quad,
-$$
+$$ {#eq-gbmp}
 
 où: 
 
@@ -663,7 +663,7 @@ $$
 Après la détermination des inconnus, on passe au calcul des prix zéro-coupon correspondants aux maturités pleines, et finalement déduire les taux zéro-coupon correspondants à ces maturités par la relation suivante :
 $$
 R(t) = (\frac{1}{P(t)})^{\frac{1}{t}} - 1
-$$ 
+$${#eq-gbmp}
 
 ## Valorisation des provisions techniques prudentielles :
 Les provisions techniques prudentielles sont valorisées brutes de réassurance en considérant les contrats dont l'engagement de l'entreprise est en cours à la date d'inventaire. Les contrats d'assurance non-vie à tacite reconduction dont la date d'effet intervient postérieurement à la date d'inventaire et dont le préavis de résiliation a expiré à cette date sans qu'il y ait une demande de résiliation sont également pris en considération.
@@ -671,7 +671,7 @@ Les provisions techniques prudentielles sont valorisées brutes de réassurance 
 Elles sont évaluées comme suit :
 $$
 PT = BE_{eng} + BEFG + MR,
-$$
+$$ {#eq-gbmp}
 
 avec :
 
@@ -694,7 +694,7 @@ L'une des caractéristiques clés de l'assurance vie est sa nature flexible. Les
 Pour les opérations d'assurance vie, décès ou de capitalisation hors unités de compte, la meilleure estimation des engagements comprend la meilleure estimation des garanties probabilisées et les bénéfices discrétionnaires futurs.
 $$
 BE_{eng} = BEGP + BDF \quad ,
-$$
+$${#eq-gbmp}
 
 avec :
 
@@ -705,7 +705,7 @@ avec :
 La meilleure estimation des garanties probabilisées est calculée garantie par garantie et tête par tête, en actualisant les flux de trésorerie futurs probabilisés, afférents aux engagements garantis à la date d'inventaire. Toutefois, l'entreprise d'assurances et de réassurance peut procéder à une agrégation en retenant des critères homogènes, notamment l'âge et ce, après accord de l'Autorité.
 $$
 BEGP = \sum\limits_{t=0}^{t=N}\frac{(Dec_{t}-Enc_{t})}{(1+r_t)^t} \quad,
-$$
+$${#eq-gbmp}
 avec :
 
 - $Enc_{t}$: Les encaissements à la date $t$ qui correspondent aux engagements des assurés.
@@ -746,7 +746,7 @@ Les bénéfices discrétionnaires futurs sont évalués pour chaque ensemble hom
 
 $$
 BDF = PPB +\overline{TPB} \times (ST + SF)\times\mathbf{1}_{(ST + SF) > 0},
-$$
+$${#eq-gbmp}
 avec :
 
 - **$PPB$** : Le montant de la provision pour participation aux bénéfices, évaluée à la valeur comptable.
@@ -760,7 +760,7 @@ avec :
 En notation mathématique ça donne :
 $$
 \overline{TPB} = \frac{Dot}{RT + RF},
-$$
+$${#eq-gbmp}
 
 avec :
 
@@ -772,7 +772,7 @@ avec :
 La meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs probabilisés.
 $$
 BEFG = \sum\limits_{t = 1}^{N} \frac{FG_t}{(1+r_t)^t}
-$$
+$${#eq-gbmp}
 
 Les frais de gestion futurs sont estimés sur la base d'une projection effectuée en considérant un
 horizon de projection suffisant pour la couverture de la durée de vie des engagements à la date
@@ -780,7 +780,7 @@ d'inventaire. Ils sont déterminés pour chaque année de projection en multipli
 contrats par le montant de frais de gestion unitaire moyen.
 $$
 FG_t = NbC_t \times \overline{FGU_t} \quad,
-$$
+$${#eq-gbmp}
 
 avec :
 
@@ -793,14 +793,14 @@ Le montant de frais de gestion unitaire au titre de chaque exercice clos, corres
 
 $$
 \overline{FGU_t} = \frac{1}{3} \times  \big ( \frac{FG_{t-1}}{NbC_{t-1}}+\frac{FG_{t-2}}{NbC_{t-2}}+\frac{FG_{t-3}}{NbC_{t-3}}\big )
-$$
+$${#eq-gbmp}
 
 
 ### Rentes découlants des opérations non-vie:
 La meilleure estimation des engagements pour les rentes découlant des opérations d'assurance non vie correspond à la meilleure estimation des garanties probabilisées déterminée avant.
 $$
 BE_{eng} = BEGP \quad ,
-$$
+$${#eq-gbmp}
 
 avec :
 
@@ -820,7 +820,7 @@ L'assurance non-vie offre une grande variété de produits et de polices adapté
 la meilleure estimation des engagements comprend la meilleure estimation des engagements pour sinistres nets de recours et la meilleure estimation des engagements pour primes.
 $$
 BE_{eng}= BES + BEP 
-$$
+$${#eq-gbmp}
 
 ##### La meilleure estimation des engagements pour primes($BEP$):
 La meilleure estimation des engagements pour primes correspond à la différence entre :
@@ -830,7 +830,7 @@ La meilleure estimation des engagements pour primes correspond à la différence
 
 $$
 BEP= \sum_{t \geq 1} \frac{\overline{FRFP_{t}}}{(1+ r_t)^t}- PFPA \quad ,
-$$
+$${#eq-gbmp}
 
 avec:
 
@@ -840,7 +840,7 @@ avec:
 
 $$
 \overline{FRFP_{t}} = TL * \overline{RS} * (PPNA + PFP),
-$$
+$${#eq-gbmp}
 
 où:
 
@@ -848,7 +848,7 @@ où:
 - $\overline{RS}$: le ratio de sinistralité moyen telle que: 
 $$ 
 \overline{RS}_t= \frac{CU_{t} + CU_{t-1} + CU_{t-2}}{PA_{t} + PA_{t-1}+ PA_{t-2}} ,
-$$
+$${#eq-gbmp}
 
 avec :
 
@@ -859,7 +859,7 @@ Tell que :
 
 $$
 CU_t = RègC_t + RègF_t \quad ,
-$$
+$${#eq-gbmp}
 avec : 
 
 - $RègC_t$ : les règlements cumulés.
@@ -873,7 +873,7 @@ La meilleure estimation des engagements pour sinistres nets de recours est déte
 
 $$ 
 BES = \sum_{t \geq 1} \frac{FRFP_{t}}{(1+ r_t)^t} \quad ,
-$$
+$${#eq-gbmp}
 avec:
 
 - $FRFP_{t}$ : les flux de règlements futurs probabilisés nets de recours relatifs aux *sinistres survenus*, sont estimés sur la base d'un triangle de règlements par année de survenance net de recours conformément à la méthode  exigée parl'ACAPS.
@@ -984,13 +984,13 @@ $$
 
 Bien que la méthode de Chain Ladder soit celle préconisée par l'ACAPS dans le cadre de la $SBR$, il existe sur marché d'autres méthodes de calcul des flux de règlements futurs.
 
-##### Méthode des cadences avec inflation:
+##### Méthode des cadences avec inflation :
 
 Cette variante de la méthode des cadences tient compte de l'inflation de façon explicite.
 On calcule les paiements annuels en faisant la différence entre les colonnes successives du triangle des paiements cumulés. On ajuste ces paiements annuels en devises (MAD par exemple) constants en utilisant un indice d'inflation, puis on les cumule pour obtenir un triangle de montants cumulés en francs constants.
 On applique ensuite la méthode des cadences.
 
-##### La méthode du ratio de paiement:
+##### La méthode du ratio de paiement :
 
 Cette méthode a été à Sawkins 1975 est semblable à la méthode des cadences de développement avec inflation, sauf que les coefficients de passage $\hat f_j$ sont calculés comme une moyenne de ratios et non comme un ratio de moyennes :
 
@@ -998,7 +998,7 @@ $$
 \hat f_j = \frac{1}{n-j-1} \sum\limits_{i=0}^{n-j-1} \frac{C_{i,j+1}}{C_{i,j}}
 $$
 
-##### La méthode du ratio de paiement:
+##### La méthode du ratio de paiement :
 
 La méthode de Bornhuetter-Ferguson^[The Actuary and IBNR publié en 1972] est une méthode de provisionnement qui repose sur l'idée que les pertes finales, attendues pour une année de survenance sont connues a priori et que le rythme des paiements est stable d'une année à l'autre. Elle combine les caractéristiques de la méthode des cadences et de la méthode du ratio de sinistralité attendu. Elle utilise des facteurs de développement pour estimer le pourcentage de pertes rapportées ou payées et ajoute les pertes attendues multipliées par le pourcentage de pertes non rapportées ou non payées. Elle est surtout utilisée quand les pertes sont de faible fréquence mais de forte gravité.
 
@@ -1007,14 +1007,14 @@ Cette méthode se formule comme suit :
 
 $$
 L = D\times\frac{1}{LDF} + A \times (1- \frac{1}{LDF}) \quad ,
-$$
+$${#eq-gbmp}
 
 avec :
 
 - $L$ : coût total estimé par cette méthode.
 - $D$ : coût total estimé en fonction des sinistres connues.
 - $A$ : coût total (connus + tardifs) attendu a priori.
-- $LDF$ : proportion de la liquidation déjà constatée
+- $LDF$ : proportion de la liquidation déjà constatée.
 
 
 :::{.callout-tip appearance="simple"}
@@ -1035,18 +1035,18 @@ $L = 90 \times 40\% + 90 \times 60\% = 90$, soit un volume de tardifs attendu de
 
 Plusieurs auteurs ont exprimé l'opinion que cette méthode est plus performante que la méthode des cadences de développement, en début de développement.
 
-#### La meilleure estimation des frais de gestion:
+#### La meilleure estimation des frais de gestion :
 la meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs liés aux contrats.
 $$
 BEFG= \sum_{t \geq 1} \frac{FFGF_t}{(1+r_t)^t} \quad ,
-$$
+$${#eq-gbmp}
 
 avec: 
 
 - $FFGF$: les flux de frais de gestion futurs. telle que:
 $$
 FFGF = \overline{TFG} \times (BES + BEP) \quad ,
-$$
+$${#eq-gbmp}
 
 et:
 
@@ -1055,14 +1055,14 @@ et:
 Donc:
 
 $$
-\overline{TFG} = \frac{TFG_{t} + TFG_{t-1} + TFG_{t-2}}{3}
-$$
+\overline{TFG} = \frac{TFG_{t} + TFG_{t-1} + TFG_{t-2}}{3} \quad ,
+$${#eq-gbmp}
 
-Ainsi que :
+ainsi que :
 
 $$
 TFG_{t} = \frac{FG}{BES+ REC} \quad ,
-$$
+$${#eq-gbmp}
 
 avec :
 
@@ -1074,8 +1074,8 @@ avec :
 La part des cessionnaires dans les provisions techniques prudentielles est évaluée en considérant la différence entre d'une part, la meilleure estimation des engagements cédés et d'autre part, l'ajustement pour défaut de contrepartie.
 
 $$
-PC = BEC_{eng} - Adj
-$$
+PC = BEC - Adj
+$${#eq-gbmp}
 
 #### La meilleure estimation des engagements cédés ($BEC$) :
 ##### Les opérations d'assurance vie, décès ou de capitalisation : {-}
@@ -1083,8 +1083,8 @@ $$
 la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des engagements par le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques , des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
 
 $$
-BEC_{eng} = TC \times BE_{eng} \quad ,
-$$
+BEC = TC \times BE_{eng} \quad ,
+$${#eq-gbmp}
 avec :
 
 - $TC$ (taux de cession): le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques, des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
@@ -1096,31 +1096,31 @@ Pour les opérations non vie, la meilleure estimation des engagements cédés co
 
 $$
 BEC =\; BESC + \; BEPC \quad ,
-$$
+$${#eq-gbmp}
 avec :
 
 -  $BESC = TCS \times BES$ : La meilleure estimation des engagements pour sinistres cédés est évaluée en multipliant la meilleure estimation des engagements pour sinistres nets de recours par ($TCS}$), le rapport entre la part des cessionnaires dans les provisions pour sinistres à payer et la provision pour sinistres à payer brute de réassurance.
 
 -  $BEPC = TCP \times BEP$ : La meilleure estimation des engagements pour primes cédés est évaluée en multipliant la meilleure estimation des engagements pour primes par le taux de cession de primes. Le taux de cession ($TCP$) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l'exercice.
 
-#### L'ajustement pour défaut de contrepartie:
+#### L'ajustement pour défaut de contrepartie :
 
 En cas de réassuarance, la compagnie d'assurance se confronte à un nouveau risque, celui de défaut de contrepartie. En effet, il se pourrait que les risques cédés par l'assureur ne soient pas supportés par le réassureur. Il est ainsi primordial de tenir en compte ce risque dans le calcul des meilleures estimations en effectuant un ajustement.
 L'ajustement pour défaut de contrepartie est déterminé en actualisant les flux d'ajustement futurs sur la base de la courbe des taux fixée par l'Autorité. Il correspond à la perte anticipée résultant de la défaillance probable du cessionnaire.
 
-L'*ACAPS* propose une méthode de détermination des  flux d'ajustement futurs décrite à **l'annexe N°6** de la circulaire. Cette méthode suit un certain nombre d'étapes que nous décrivons ci-après
+L'*ACAPS* propose une méthode de détermination des flux d'ajustement futurs décrite à **l'annexe N°6** de la circulaire de l'ACAPS. Cette méthode suit un certain nombre d'étapes que nous décrivons ci-après
 
 
 ::: {.callout-note}
-## Etape Nº1: Calcul des meilleures estimations cédées projetées:
+## Etape Nº1: Calcul des meilleures estimations cédées projetées :
 
 > Pour les opérations d'assurance non-vie hors rentes:
 
 Posons $(F_t)_{t>0}$ étant les flux  de règlements futurs probabilisés. La meilleure estimation des engagements cédés au titre de l'année de projection $BEC_i$ est calculée comme suit :
 
 $$
-BEC_i = (BES_i \times RS_{0} + BEP_i \times RP_{0}),
-$$
+BEC_i = (BES_i \times RS_{0} + BEP_i \times RP_{0}) \quad,
+$${#eq-gbmp}
 
 où:
 
@@ -1134,7 +1134,7 @@ où:
  
  $$
  BEC_i = (BEGP_i + BDF_i)\times R_0 \quad ,
- $$
+ $${#eq-gbmp}
  
 où :
 - $MEGP_i = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité et $(F_t)_{t>0}$ les flux de trésorerie futurs probabilisés.
@@ -1148,7 +1148,7 @@ La meilleure estimation des engagements cédès au titre de l’année de projec
 
 $$
  BEC = BEGP_i\times R_0 \quad ,
-$$
+$${#eq-gbmp}
 
 où :
 
@@ -1165,7 +1165,7 @@ Au titre de l'année de projection $i$, le flux d'ajustement est calculé ainsi 
 
 $$
 Adj_i = \frac{1}{2}\times \max( BEC - DEV + SDR;0)\times PD \times (1-PD)^{i-1} \quad ,
-$$
+$${#eq-gbmp}
 avec: 
 
 - $DEV$ :dépôtven espèces et en valeurs.
@@ -1178,8 +1178,8 @@ La probabilité de défaut annuelle $PD$ du cessionnaire est établie conformém
 ## Etape Nº3: Calcul de l’ajustement pour défaut de contrepartie
 
 $$
-Adj_D = \sum\limits_{i>0} \frac{Adj_i}{(1+r_i)^i} \quad ,
-$$
+Adj = \sum\limits_{i>0} \frac{Adj_i}{(1+r_i)^i} \quad ,
+$${#eq-gbmp}
 avec $(r_i)$ calculés à partir de la courbe des taux fixée par l'Autorité.
 
 :::
@@ -1231,7 +1231,7 @@ Selon le circulaire de l'autorité de Contrôle des assurances et de la Prévoya
 
 $$
 CSR = CSRB + CSRO-max(Adj,0) 
-$$
+$${#eq-gbmp}
 
 
 
@@ -1244,7 +1244,7 @@ En d'autres termes, il s'agit du montant total des capitaux nécessaires pour fa
 Le capital de solvabilité requis de base peut  s'écrit mathématiquement comme suit:
 $$
 CSRB = \sqrt{\sum_{i,j\in Risk }(\rho_{i,j} * CSR_{i} * CSR_{j})} \quad ,
-$$
+$${#eq-gbmp}
 avec : 
 
 - Risk $\in$ \{Marché, Concentration, Contrepartie, Souscription Vie, Souscription Non - Vie\} 
@@ -1290,11 +1290,11 @@ Les taux de baisse à appliquer pour le calcul de l'exigence précitée sont fix
 • Entités d'infrastructures.
 
 $$
-CSR_A = BEC _{eng} - BE_{eng} \quad ,
+CSR_A = BE _{eng}(Choc) - BE_{eng} \quad ,
 $$
 avec : 
 
-$BEC _{eng}$ : Best estimant des engagements après le choque de la valeur du marché des action.
+$BEC _{eng}(Choc)$ : Best estimant des engagements après le choque de la valeur du marché des action.
 
 $BE_{eng}$: Best estimant des engagements.
 
@@ -1323,12 +1323,12 @@ L'exigence de capital relative au risque immobilier est la perte de fonds propre
 
 Cette exigence est établie pour évaluer les réserves financières nécessaires face à une potentielle baisse de valeur des biens immobiliers pour minimiser les risques.
 $$
-CSR_I = BEC_{eng} - BE_{eng} \quad ,
+CSR_I = BEC_{eng}(Choc) - BE_{eng} \quad ,
 $$
 avec : 
 
-$BEC_{eng}$ : La meilleure estimation des engagements choqué.
-$BEC_{eng}$ : La meilleure estimation des engagements avant choque.
+$BE_{eng}(Choc)$ : La meilleure estimation des engagements choqué.
+$BE_{eng}$ : La meilleure estimation des engagements avant choque.
 
 ##### L'exigence de capital relative au risque d'écart de taux ($CSR_ET$)
 
@@ -1344,10 +1344,10 @@ L'exigence de capital pour risque de change pour chaque devise étrangère corre
 - l'exigence de capital pour risque d'augmentation de la valeur de la devise étrangère par rapport au dirham.
 - l'exigence de capital pour risque de diminution de la valeur de la devise étrangère par rapport au dirham.
 
-L'exigence de capital pour risques d'augmentation ou de diminution de la valeur de la devise étrangère par rapport au dirham est egale  à la perte de fonds propres qui résulterait des scénarios d'augmentation ou de diminution, respectivement de $X\%$ et $X\%$, de la valeur de la devise étrangère par rapport au dirham.
+L'exigence de capital pour risques d'augmentation ou de diminution de la valeur de la devise étrangère par rapport au dirham est égale à la perte de fonds propres qui résulterait des scénarios d'augmentation ou de diminution, respectivement de $X\%$ et $X\%$, de la valeur de la devise étrangère par rapport au dirham.
 
 $$
-CSR_{Ch} = \sum_{i\in RC} CSR_{Ch_{i}}
+CSR_{Ch} = \sum_{i\in RC} CSR_{Ch_{i}} \quad ,
 $$
 avec : $RC$ = \{risque de change pour chaque devise étrangère \}
 
@@ -1358,12 +1358,12 @@ $$
 - augmentation : le risque d'augmentation de la valeur de la devise étrangère par rapport au dirham.
 - diminution : le risque de diminution de la valeur de la devise étrangère par rapport au dirham.
 
-tel que: &nbsp; $CSR^{j}_{i} = BE^{\text{scénario j}} - BE$ <span style="display:inline-block;width:2cm;"></span> $j \in \{ augmentation ; diminution\}$ 
+Tel que:  $$CSR^{j}_{i} = BE^{\text{scénario j}} - BE \qquad j \in \{ \text{augmentation} ; \text{diminution}\}$$  
   
-#### Exigence de capital relative au risque de contrepartie ($CSR_{contrepartie}$)
+#### Exigence de capital relative au risque de contrepartie ($CSR_{Cp}$)
 L'exigence de capital relative au risque de contrepartie est le montant total des exigences de capitaux relatives aux sous-risques de contrepartie de *type 1* et de *type 2*   , une fois les coefficients de corrélation appliqués.
 $$
-CSR_{contrepartie} = \sqrt{\sum_{i,j\in type}(\rho_{i,j}\times CSR_{contrepartie}^{i}\times CSR_{contrepartie}^{j})}
+CSR_{Cp} = \sqrt{\sum_{i,j\in type}(\rho_{i,j}\times CSR_{Cp}^{i}\times CSR_{Cp}^{j})}
 $$
 avec : $type \in \{type 1 ; type 2\}$
 
@@ -1448,20 +1448,20 @@ avec :
 
 3) L'exigence de capital relative au risque lié aux autres contreparties correspond à $X\%$ de la somme des créances de l'actif circulant, autres que les créances vis-à-vis de l'Etat des contreparties visées aux 1) et 2) ci-dessus et les montants des chèques et valeurs à encaisser, nettes de provisions et qui demeurent impayées pendant une période supérieure à six (06) mois.
 
-#### Exigence de capital relative au risque de concentration ($CSR_{concentration}$)
+#### Exigence de capital relative au risque de concentration ($CSR_{Ct}$)
 L'exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d'émetteurs appartenant aux mêmes groupes. 
 
 Lorsque des émetteurs appartenant à des groupes spécifiques présentent des liens étroits et partagent des caractéristiques similaires, une baisse de la valeur de leurs actifs peut avoir un impact très important. Par conséquent, il est essentiel de prendre en compte cette concentration de risques lors de l'évaluation des réserves de capital requises.
 
 Mathématiquement l’exigence de capital relative au risque de concentration correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d'émetteurs.
 $$
-CSR_{concentration} = \sqrt{\sum_i CSR_i^2}
+CSR_{Ct} = \sqrt{\sum_i CSR_i^2}
 $$
 avec $i \in \{ \text{Les sous-risques de concentration relatifs aux differents groupes d'emetteurs.}\}$ 
 
 Pour chaque groupe d'émetteurs, l'exigence de capital relative au risque de concentration egale à $X\%$ de l'écart positif constaté entre le montant des placements de l'entreprise d'assurances et de réassurance, autres que les valeurs de l'Etat ou celles jouissant de sa garantie, relatifs à l'ensemble d'émetteurs appartenant au groupe précité et $X\%$ du total de ses placements.
 
-#### Exigence de capital relative au risque de souscription vie ($_{souscription}CSR_{vie}$)
+#### Exigence de capital relative au risque de souscription vie ($CSR_{SV}$)
 L'exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques.
 
 Le sous-risque de mortalité concerne les pertes potentielles découlant de décès prématurés d’un assuré, tandis que le sous-risque de longévité se rapporte aux pertes potentielles résultant d'une durée de vie plus longue que prévue. Le sous-risque de rachat concerne les pertes potentielles liées aux retraits anticipés des contrats d'assurance-vie, aussi le sous-risque de frais porte sur les pertes potentielles engendrées par les coûts administratifs associés aux contrats. Et le sous-risque de catastrophe concerne les pertes potentielles résultant d'événements extrêmes tels que des catastrophes naturelles.
@@ -1469,31 +1469,48 @@ Le sous-risque de mortalité concerne les pertes potentielles découlant de déc
 L'exigence de capital relative au risque de souscription vie permet de tenir compte des interdépendances entre ces différents sous-risques par l’applications des coefficients des corrélations entre ces eux, et de quantifier les réserves financières nécessaires aux compagnies d’assurance pour faire face aux pertes potentielles résultant des variations des facteurs liés à la mortalité, à la longévité, aux rachats, aux frais et aux catastrophes.
 
 $$
-_{souscription}CSR_{vie} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
+CSR_{SV} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
 $$
-avec : $i,j \in \{\text{mortalite, longevite, rachat, frais  catastrophe} \}$
+avec : $i,j \in \{\text{Mortalite, Longevite, Rachat, Frais, catastrophe} \}$
 
-##### Exigence de capital pour risque de mortalité ($CSR_{mortalite}$)
+##### Exigence de capital pour risque de mortalité ($CSR_{Mor}$)
 L'exigence de capital pour risque de mortalité correspond à la perte de fonds propres due à la hausse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
 
 La hausse des taux de mortalité précitée ne s'applique qu'aux contrats d'assurance pour lesquels une
 hausse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles.
 
 $$
-CSR_{mortalite} = BE^{hausse} - BE
+CSR_{Mor} = BE(Choc) - BE \quad ,
 $$
+avec : 
+$$
+TM(Choc) = TM \times (1 + X\%) \quad ,
+$$
+telle que :
 
-##### Exigence de capital pour risque de longévité ($CSR_{longévité}$)
+$TM$ : Taux de Mortalité avant choc. 
+$TM(Choc)$ : Le taux de mortalité choqué par une hausse de X%.
+
+Selon l'Acaps, le taux de choc pour la mortalité est estimé à 30 %.
+
+##### Exigence de capital pour risque de longévité ($CSR_{Lon}$)
 L'exigence de capital pour risque de longévité correspond à la perte de fonds propres qui résulterait de la baisse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
 
 La baisse des taux de mortalité précitée ne s'applique qu'aux contrats d'assurance pour lesquels une
 baisse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles.
 $$
-CSR_{longévité} = BE^{baisse} - BE
+CSR_{Lon} = BE(Choc) - BE
 $$
+avec : 
+
+$$
+TM(Choc) = TM \times (1 - X \%) \quad ,
+$$
+$TM$ : Taux de Mortalité. 
+$TM(Choc)$ : Le taux de mortalité choqué par une hausse de X%.
 
 ##### Exigence de capital pour risque de rachat ($CSR_{R}$)
-Commençons d’abord par la définition de quoi un rachat en assurance vie ?
+d’abord c'est quoi un rachat en assurance vie ?
 
 un rachat en assurance vie est un retrait. L’épargne placée sur ce contrat est disponible : les fonds ne sont pas bloqués et les assures peuvent les récupérer intégralement, ou en partie, à tout moment. On distingue :
 
@@ -1512,7 +1529,7 @@ La hausse des taux de rachat précitée ne s'applique qu'aux contrats d'assuranc
 La baisse des taux de rachat précitée ne s'applique qu'aux contrats d'assurance pour lesquels une baisse des taux de rachat entraîne une augmentation des provisions techniques prudentielles.
 
 $$
-CSR_R = max(CSR_{RHT}; CSR_{RBT})
+CSR_R = max(CSR_{RHT}; CSR_{RBT}) \quad ,
 $$
 avec : 
 $$
@@ -1542,38 +1559,55 @@ $$
 _{souscription}CSR_{non-vie} = \sqrt{\sum_{i,j} ( \rho_{i,j} \times CSR_i \times CSR_j)} \quad ,
 $$
 
-avec : $i,j \in \{ \text{primes, provisions, catastrophe} \}$
-et $\rho$ es le coefficient de corrélation.
+avec : 
 
-##### Exigence de capital relative au sous-risque de primes ($CSR_{primes}$)
+$i,j \in \{ \text{Primes, Provisions, Catastrophe} \}$
+
+$\rho$ : le coefficient de corrélation.
+
+##### Exigence de capital relative au sous-risque de primes ($CSR_{P}$) :
 L'exigence de capital relative au sous-risque de primes est le montant total  des exigences de capitaux relatives aux sous-risques de primes par sous-catégorie et ce, après application des coefficients de corrélations.
 $$
-CSR_{primes} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
+CSR_{P} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
 $$
-avec : $i,j \in \{ \text{Les sous-risques de primes par sous-categorie }\}$
-et $\rho$ es le coefficient de corrélation entre les sous-catégories des sous-risques de primes.
+avec : 
+
+$i,j \in \{ \text{Les sous-risques de primes par sous-categorie }\}$
+
+$\rho$ : le coefficient de corrélation entre les sous-catégories des sous-risques de primes.
 
 Pour chaque sous-catégorie, l'exigence de capital afférente au sous risque de primes est égale à X fois le produit de l'écart-type de primes et du montant des primes acquises augmenté de la provision pour primes non-acquises nettes de réassurance au titre de l'exercice inventorié.
 $$
-CSR_{sous-categorie}^{primes} = X * \sigma_{primes} * BE_{primes}
+CSR_{P}(\text{sous-categorie}) = X \times \sigma_{P} \times P \quad ,
 $$
 
-avec : &nbsp; $BE_{primes} = Primes_{acquises}^{nettes} + Provision_{primes_{non-acquise}}^{nettes}$
+avec :  
+$$
+P = PA + PPNA \quad , 
+$$
+telle que :
+$P$: Primes.
+$PA$ : Primes acquises nettes.
+$PPNA$ : Provision pour primes non-acquises nettes.
 
-##### Exigence de capital relative au sous-risque de provisions ($CSR_{provisions}$):
+
+##### Exigence de capital relative au sous-risque de provisions ($CSR_{Pr}$) :
 L'exigence de capital relative au sous-risque de provisions est la somme total des exigences de capitaux relatives aux sous-risques de provision par sous-catégorie, on prenant on considration les coefficients de correlation entre les sous-risques.
 $$
-CSR_{provisions} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
+CSR_{Pr} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)} \quad ,
 $$
-avec : $i,j \in \{\text{Les sous-risques de provisions par sous-categorie} \}$
-et $\rho$ es le coefficient de corrélation entre les sous-catégories des sous-risques de provisions.
+avec : 
+
+$i,j \in \{\text{Les sous-risques de provisions par sous-categorie} \}$.
+
+$\rho$ : le coefficient de corrélation entre les sous-catégories des sous-risques de provisions.
 
 Pour chaque sous-catégorie, l'exigence de capital afférente au sous risque de provision est égale à X fois le produit de l'écart-type de provisions et du montant de la meilleure estimation des engagements pour sinistres nette de réassurance.
 $$
-CSR_{sous-categorie}^{provisions} = X * \sigma_{provisions} * BE_{engagements}
+CSR_{Pr} (\text{sous-categorie}) = X\% \times \sigma_{Pr} \times BE_{eng}
 $$
 
-##### Exigence de capital relative au risque de catastrophe non-vie:
+##### Exigence de capital relative au risque de catastrophe non-vie ($CSR_{Cat}$) :
 L'exigence de capital relative au risque de catastrophe non-vie correspond au racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de catastrophe non-vie des garanties suivantes :
 
 - Individuelles accidents et Invalidité ;
@@ -1586,31 +1620,44 @@ L'exigence de capital relative au risque de catastrophe non-vie correspond au ra
 - Aviation corps et responsabilité civile résultant de l'emploi des aéronefs ;
 - Marchandises transportées par voie terrestre ;
 - Assurance récolte, grêle ou gelée et éléments naturels ;
-- Crédit et caution
+- Crédit et caution;
 
-### Exigence de capital relative au risque opérationnel ($CSR_{opérationnel}$)
+$$
+CSR_{Cat} = \sqrt{\sum_{i}   CSR_{i}^2} \quad ,
+$$
+telle que, le $i$ Appartient à la liste des garanties ci-dessus.
+
+### Exigence de capital relative au risque opérationnel ($CSRO$) :
 
 L'exigence de capital relative au risque opérationnel correspond à X\% du capital de solvabilité requis de base.
 $$
-CSR_{opérationnel} = X\% * CSR_{base}
-$$
+CSRO = X\% * CSRB
+$${#eq-gbmp}
 
-### Ajustement du capital de solvabilité requis
+### Ajustement du capital de solvabilité requis :
 
-#### Ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés ($Adj_{assures}^{Pertes}$)
+#### Ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés ($Adj_{As}$) :
 
 L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés egale au minimum de l'écart entre le capital de solvabilité requis de base calculées brutes et nettes d'absorption par les assurés, d'une part, et le montant des bénéfices discrétionnaires futures d'autre part.
 $$
-Adj_{assures}^{Pertes} = min (CSR_{base}^{nettes}-CSR_{base}^{brutes};BDF)
-$$
+Adj_{As} = min (CSRB_{nette}-CSRB_{brute};BDF) \quad ,
+$${#eq-gbmp}
 
-#### Ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés ($Ajt_{\text{impots differes}}^{Pertes}$)
+avec : 
+$Adj_{As}$ : Ajustement pour tenir compte la capacité d'absorption des pertes par les assurés.
+
+#### Ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés ($Ajt_{ID}$)
 
 L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés correspond au produit du taux d'impôts et le minimum de la somme du capital de solvabilité requis de base et l'exigence de capital relative au risque opérationnel diminuée de l'ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés, d'une part, et l'écart positif entre les impôts différés-passif et les impôts différés-actif, d'autre part.
 
 $$
-Ajt_{\text{impots differes}}^{Pertes} = Tx_{impots} \times min(CSR_{base} + CSR{operationnel} - Adj_{assures}^{Pertes} ; Impots_{passif}^{differes} - Impots_{actif}^{differes})
-$$
+Ajt_{ID} = TI \times min(CSRB + CSRO - Adj_{As} \quad ; \quad ID_{p} - ID_{a})
+$${#eq-gbmp}
+avec :
+$Ajt_{ID}$ : Ajustement pour tenir compte de la capacité d'absorption des pertes par les impôts différés.
+$TI$ : aux d'Impôts.
+$ID_{a}$ : Les impôts différés-passif.
+$ID_{p}$ : Les impôts différés-actif.
 
 :::{.callout-tip}
 ## Remarque
