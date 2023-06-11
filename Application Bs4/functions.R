@@ -29,7 +29,7 @@ tQx <- function(x,TD = TD_88_90){
 #'
 #' @return
 
-Mat_Ages <- function(Duree_contrat_rest,ages,TD = TD_88_90){
+Mat_Ages <- function(Duree_contrat_rest,ages){
   ncolMatrix = max(Duree_contrat_rest)
   nrowMatrix = length(Duree_contrat_rest)
   mat_tqx = matrix(rep(0:(ncolMatrix-1),nrowMatrix),ncol = ncolMatrix,byrow = TRUE)
@@ -82,7 +82,7 @@ Matrice_Capitaux <- function(Annee,maturite,cap_initial,
                              max_duree_rest = max(Duree_contrat_rest),annee_max_proj = 2042){
   result = Map(
     function(x, y, z) {
-      T_AMORT = tableau_amort(x,y,z,annee_max_proj)
+      T_AMORT = tableau_amort(x,y,z,tx_interet = 0.04,annee_max_proj)
       T_AMORT = tail(T_AMORT,max_duree_rest)
       T_AMORT$CRP
     },
@@ -92,9 +92,13 @@ Matrice_Capitaux <- function(Annee,maturite,cap_initial,
   )
   df_result = as.data.frame(result)
   df_result = t(df_result)
-  rownames(df_res) = NULL
-  df_res
+  rownames(df_result) = NULL
+  df_result
 }
+# df_capitaux = Matrice_Capitaux(Annee = deces_deg_unique$`Année d'effet`,
+#                                maturite = deces_deg_unique$Dur_e_de_contrat,
+#                                deces_deg_unique$Capital_d_c_s_initial,
+#                                max(deces_deg_unique$`Durre contrat restante`))
 
 Mat_Proj_Cap <- function(df_capitaux,Duree_contrat_rest,ages,choc = 0){
   mat_ages = Mat_Ages(Duree_contrat_rest,ages)

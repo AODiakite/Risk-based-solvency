@@ -39,7 +39,47 @@ ui <- dashboardPage(
       # Parametres-------
       tabItem(
         tabName = "parametres",
-        tags$h2("Cet onglet contiendra les paramètres de l'application")
+        box(
+          status = "navy", solidHeader = T, width = 12,
+          title = "Pramètres généraux",
+          tags$caption("Les paramètres devant provenir de la réglementation"),
+          tags$hr(),
+          fluidRow(
+            column(
+              3,
+              numericInput("choc_mort","Choc de mortalité",value = 0.3,min = 0,max = 1)
+            ),
+            column(
+              3,
+              numericInput("choc_cata","Choc catastrophe",value = 0.2,min = 0,max = 1)
+            ),
+            column(
+              3,
+              numericInput("prob_def","Probabilité de défaut",value = 0.012,min = 0,max = 1)
+            ),
+            column(
+              3,
+              numericInput("tc_gp","Cession vie",value = 0.01,min = 0,max = 1)
+            ),
+            column(
+              3,
+              numericInput("tc_p","Cession primes non-vie",value = 0.05,min = 0,max = 1)
+            ),
+            column(
+              3,
+              numericInput("tc_s","Cession sinistres non-vie",value = 0.03,min = 0,max = 1)
+            ),
+            column(
+              3,
+              numericInput("aug_fg","Augmentation des FG",value = 0.14,min = 0,max = 1)
+            ),
+            column(
+              3,
+              numericInput("maj_fg","Majoration des FG",value = 0.015,min = 0,max = 1)
+            )
+          )
+
+        )
       ),
       # Courbe des taux ----------
       tabItem(
@@ -352,7 +392,12 @@ ui <- dashboardPage(
       tabItem(
         tabName = "cession_menu",
         uiOutput("cession_boxes")
+      ),
+      tabItem(
+        tabName = "scr_menu",
+        uiOutput("scr_boxes")
       )
+
     )
   )
 )
@@ -484,10 +529,10 @@ server <- function(input, output) {
                                    deces_deg()[[ages()]],choc = 0))
 
   proj_cap_choc_003 = reactive(Mat_Proj_Cap(df_capitaux(),deces_deg()[[Duree_contrat_rest()]],
-                                            deces_deg()[[ages()]],choc = 0.3))
+                                            deces_deg()[[ages()]],choc = input$choc_mort))
 
   proj_cap_choc_002 = reactive( Mat_Proj_Cap(df_capitaux(),deces_deg()[[Duree_contrat_rest()]],
-                                             deces_deg()[[ages()]],choc = 0.2) )
+                                             deces_deg()[[ages()]],choc = input$choc_cata) )
 
   # Vecteurs des capitax projetés (projetés choqués) ----
   proj_cap_vect = reactive(projection_cap(proj_cap()))
@@ -501,8 +546,8 @@ server <- function(input, output) {
                                   deces_deg()[[Duree_contrat_rest()]],choc = 0))
   FG_t = reactive(FG_moyen()*NB_contrat())
 
-  Augmentation_X <- reactive(0.14)
-  Majoration_X <- reactive(0.015)
+  Augmentation_X <- reactive(input$aug_fg)
+  Majoration_X <- reactive(input$maj_fg)
 
   ## FG_t après choque
   FG_t_choc <- reactive({
@@ -512,7 +557,18 @@ server <- function(input, output) {
     FG_t_Choque
   })
 
-  BEFG_vie =reactive(BEFG(FG_t(),TZC()[["Taux zéro coupon"]]))
+  BEFG_vie =reactive(
+    {
+      assign(x = "df_capitaux",df_capitaux(),envir = .GlobalEnv)
+      assign(x = "proj_cap",proj_cap(),envir = .GlobalEnv)
+      assign(x = "proj_cap_choc_003",proj_cap_choc_003(),envir = .GlobalEnv)
+      assign(x = "proj_cap_choc_002",proj_cap_choc_002(),envir = .GlobalEnv)
+      assign(x = "proj_cap_vect",proj_cap_vect(),envir = .GlobalEnv)
+      assign(x = "proj_cap_vect_003",proj_cap_vect_003(),envir = .GlobalEnv)
+      assign(x = "proj_cap_vect_002",proj_cap_vect_002(),envir = .GlobalEnv)
+      BEFG(FG_t(),TZC()[["Taux zéro coupon"]])
+    }
+    )
   BEFG_vie_Choque =reactive(BEFG(FG_t_choc(),TZC()[["Taux zéro coupon"]]))
 
 
@@ -520,6 +576,51 @@ server <- function(input, output) {
   BEGP = reactive(BEGP_vie(proj_cap_vect(),TZC()[["Taux zéro coupon"]]))
   BEGP_Choc_003 = reactive(BEGP_vie(proj_cap_vect_003(),TZC()[["Taux zéro coupon"]]))
   BEGP_Choc_002 = reactive(BEGP_vie(proj_cap_vect_002(),TZC()[["Taux zéro coupon"]]))
+
+  # SCR -----
+  output$scr_boxes <- renderUI(
+    fluidRow(
+      column(
+        4,
+        valueBox(
+          value =  tags$h3(
+            formatC(BEGP_Choc_003() - BEGP(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          ),
+          subtitle  = tags$h5("CSR mortalité"),
+          icon = icon("sack-dollar"),
+          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          footer = div("Exigence de capital pour risque de mortalité")
+        )
+      ),
+      column(
+        4,
+        valueBox(
+          value =  tags$h3(
+            formatC(BEGP_Choc_002()-BEGP(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          ),
+          subtitle  = tags$h5("CSR catastrophe"),
+          icon = icon("sack-dollar"),
+          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          footer = div("Exigence de capital relative au risque de catastrophe vie")
+        )
+      ),
+      column(
+        4,
+        valueBox(
+          value =  tags$h3(
+            formatC(BEFG_vie_Choque() - BEFG_vie(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          ),
+          subtitle  = tags$h5("CSR frais"),
+          icon = icon("sack-dollar"),
+          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          footer = div("Exigence de capital relative au risque de frais")
+        )
+      )
+
+
+    )
+  )
+
 
   output$valueBoxs_vie <- renderUI(
     fluidRow(
@@ -530,7 +631,7 @@ server <- function(input, output) {
             formatC(BEGP(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
           ),
           subtitle  = tags$h5("BEGP"),
-          icon = icon("car-burst"),
+          icon = icon("coins"),
           width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
           footer = div("BE des garanties probabilisées")
         )
@@ -551,10 +652,10 @@ server <- function(input, output) {
   )
 
   # Part des cessionnaires------
-  tc_vie <- reactive( 1/100)
-  PD <- reactive(1.2/100)
-  tc_prime = reactive(0.05)
-  tc_sinistre = reactive(0.03)
+  tc_vie <- reactive(input$tc_gp)
+  PD <- reactive(input$prob_def)
+  tc_prime = reactive(input$tc_p)
+  tc_sinistre = reactive(input$tc_s)
 
   BE_ENG_Cede_Vie <- reactive({
     tc_vie()*BEGP()
@@ -590,7 +691,7 @@ output$cession_boxes <- renderUI(
           formatC(Cession_vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 3)
         ),
         subtitle = tags$h5("Part des cessionnaires (Vie)"),
-        icon = icon("car-burst"),
+        icon = icon("coins"),
         width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
         footer = div("Part des cessionnaires dans les engagements vie")
       )
@@ -613,8 +714,8 @@ output$cession_boxes <- renderUI(
         value = tags$h3(
           formatC(BE_ENG_Cede_Vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 3)
         ),
-        subtitle = tags$h5("BEGP Cédés)"),
-        icon = icon("car-burst"),
+        subtitle = tags$h5("BEGP Cédés"),
+        icon = icon("coins"),
         width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
         footer = div("BEGP Cédés")
       )

@@ -3,7 +3,7 @@
     "path": "~/Desktop/PFE/Risk based solvency/Application Bs4/app.R",
     "project_path": "app.R",
     "type": "r_source",
-    "hash": "3829563919",
+    "hash": "2818288861",
     "contents": "",
     "dirty": false,
     "created": 1679860718795.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "646,3",
-        "scrollLine": "630"
+        "cursorPosition": "514,7",
+        "scrollLine": "509"
     },
     "folds": "",
-    "lastKnownWriteTime": 1686425667,
+    "lastKnownWriteTime": 1686445012,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1686425667110,
+    "last_content_update": 1686445012287,
     "read_only": false,
     "read_only_alternatives": []
 }
