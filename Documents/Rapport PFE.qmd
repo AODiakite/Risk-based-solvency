@@ -5,20 +5,23 @@ prefer-html: true
 format:
   html:
     number-sections: true
+    number-depth: 2
     toc: true
     toc-depth: 2
     toc_float: true
   pdf:
     number-sections: true
+    number-depth: 2
     toc: true
     toc-depth: 2
   docx:
     number-sections: true
+    number-depth: 2
     toc: true
     toc-depth: 2
 ---
 
-## Organisme d’accueil :
+# Organisme d'accueil {-}
 Créée en 1996, **A.R.M CONSULTANTS** est le premier cabinet d'actuaires conseils indépendants au Maroc, en Afrique francophone et dans la région MENA, spécialisé dans l'Actuariat, la gestion des risques et l'ingénierie des assurances. Son capital est détenu à 100% par ses associés, ce qui assure au Cabinet une complète indépendance de tout organisme assureur. La présence d'A.R.M CONSULTANTS, qui regroupe des actuaires consultants de haut niveau, disposant d'une formation supérieure pluridisciplinaires et ayant une longue expérience dans les différents domaines du Risk-Management, de l'assurance et de la prévoyance sociale tant en France qu'au Maroc, présente une réelle opportunité pour :
 
 -	Les institutions financières qui souhaitent innover et maitriser leurs risques, pour devenir leaders dans les domaines de l'assurance, de la bancassurance, de la réassurance, de la prévoyance sociale, de la retraite ou du crédit bancaire.
@@ -32,7 +35,7 @@ Créée en 1996, **A.R.M CONSULTANTS** est le premier cabinet d'actuaires consei
 -	International, par le biais de son partenariat avec des sociétés similaires de renommée internationale.
 
 
-## Liste des abréviations : 
+# Liste des abréviations {-}
 ```{r echo=FALSE}
 library(kableExtra)
 Ligne1 = c("Abréviation","SBR","ACAPS","AT","RNN","LSTM","MASI","CSR","BE","PPNA","PSAP","BAM","CSRB","CSRO","MR","EDS","GBM","OPCVM","OPCI","OPCC","FPCT")
@@ -48,7 +51,7 @@ tableau5 %>%
   kable_material(c("striped"))
 ```
 
-## Introduction :
+# Introduction {-}
 
 Suite aux crises multiples qui ont secoué le monde de la finance et de l'assurance notamment celle de 2008, les autorités se sont rendu compte de l'insuffisance de la supervision prudentielle. Cette dernière s'est montrée très chétive lors de la crise d'où la nécessité de mettre en place de nouvelles dispositions prudentielles plus robustes.
 
@@ -60,7 +63,9 @@ Les insuffisances évoquées n'ont pas épargné le cadre prudentiel marocain. C
 - *Le pilier II* porte sur les *exigences qualitatives* et définit les règles de gouvernance et de gestion des risques, en l'occurrence l'évaluation interne des risques de la solvabilité;
 - *Le pilier III* concerne, quant à lui, les *obligations de reporting* à l'Autorité et de diffusion de l'information au public.
 
-## Cadre réglementaire Marocain :
+# CHAPITRE I :  Cadre réglementaire Marocain
+
+## Cadre réglementaire Marocain
 
 Le Maroc est l'un des acteurs majeurs de l'assurance en Afrique. Ses compagnies ne cessent de gagner du terrain dans les marchés de la sous-région notamment en Afrique de l'ouest. Selon un rapport de l'[Atlas Mag](https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays)^[https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays], le Maroc est classé **2ème** en Afrique  et **49ème** mondial  avec un **chiffre d'affaire de 5 343 millions USD** en 2021.
 
@@ -96,12 +101,12 @@ La SBR (Solvabilité basée sur les risques) est une réforme prudentielle qui v
 
 Le pilier quantitatif définit de nouvelles règles pour calculer le niveau de fonds propres minimum que les assureurs doivent détenir, en fonction de l'ensemble de leur activité et des risques associés. Il introduit également un bilan prudentiel, basé sur la valeur de marché des actifs et des passifs, et une classification des fonds propres éligibles^[https://fnh.ma/article/actualite-financiere-maroc/assurances-solvabilite-basee-sur-les-risques-les-seuils-minimums-fixes-en-janvier-2019].
 
-Le pilier qualitatif concerne la gouvernance et le contrôle interne des assureurs, ainsi que la gestion des risques. Il impose aux assureurs de mettre en place des fonctions clés, comme la fonction actuarielle ou la fonction de conformité, et de réaliser une évaluation interne des risques et de la solvabilité (*ORSA*^[ORSA Own Risk and Solvency Assessment]). Il applique aussi le principe de « personne prudente » pour la politique d’investissement des assureurs. 
+Le pilier qualitatif concerne la gouvernance et le contrôle interne des assureurs, ainsi que la gestion des risques. Il impose aux assureurs de mettre en place des fonctions clés, comme la fonction actuarielle ou la fonction de conformité, et de réaliser une évaluation interne des risques et de la solvabilité (*ORSA*^[ORSA : Own Risk and Solvency Assessment]). Il applique aussi le principe de « personne prudente » pour la politique d'investissement des assureurs. 
 
 :::{.callout-tip}
 ## Le principe de « personne prudente »
 
-Le principe de « personne prudente » est un principe qui s’applique à la politique d’investissement des entreprises d’assurance et de réassurance. Il signifie que les assureurs ne doivent investir que dans des actifs dont ils peuvent correctement identifier, mesurer, suivre, gérer, contrôler et déclarer les risques. Ce principe remplace les limitations d’actif qui existaient auparavant dans le cadre réglementaire. Il vise à garantir l’adéquation des actifs aux engagements envers les assurés, en tenant compte des critères de sécurité, qualité, liquidité et rentabilité.
+Le principe de « personne prudente » est un principe qui s'applique à la politique d'investissement des entreprises d'assurance et de réassurance. Il signifie que les assureurs ne doivent investir que dans des actifs dont ils peuvent correctement identifier, mesurer, suivre, gérer, contrôler et déclarer les risques. Ce principe remplace les limitations d'actif qui existaient auparavant dans le cadre réglementaire. Il vise à garantir l'adéquation des actifs aux engagements envers les assurés, en tenant compte des critères de sécurité, qualité, liquidité et rentabilité.
 
 :::
 
@@ -115,8 +120,8 @@ La réforme SBR est entrée en vigueur progressivement au Maroc depuis 2019. Le 
 ## Piliers 1: Exigences quantitatives :
 
  Sur les trois piliers de la normes SBR, notre rapport de stage se concentre essentiellement sur le pilier 1. Ce dernier spécifie toutes les dispositions  réglementaires afin de satisfaire les exigences quantitatives de la norme.
- La détermination du capital de solvabilité requis ($CSR$) et la fixation des Fonds propres ($FP$) nécessite une analyse économique annuel du bilan prudentiel. L’organisme d'assurance ou de réassurance doit disposer d’une richesse nette suffisante pour faire face à ses risques dans $X\%$^[La métrique de risque n’est pas encore défini
-dans le projet marocain $SBR$] des situations possibles. Cela implique que sa richesse nette soit supérieure ou égale à l’exigence de solvabilité.
+ La détermination du capital de solvabilité requis ($CSR$) et la fixation des Fonds propres ($FP$) nécessite une analyse économique annuel du bilan prudentiel. L'organisme d'assurance ou de réassurance doit disposer d'une richesse nette suffisante pour faire face à ses risques dans $X\%$^[La métrique de risque n'est pas encore défini
+dans le projet marocain $SBR$] des situations possibles. Cela implique que sa richesse nette soit supérieure ou égale à l'exigence de solvabilité.
 Le bilan prudentiel SBR est un bilan qui reflète la situation économique des assureurs, et non pas uniquement leur situation comptable. Il se base sur une valorisation des actifs à leur prix de marché, c'est-à-dire le prix auquel ils pourraient être vendus ou transférés.
 Les passifs sont constitués essentiellement de dettes et des provisions techniques, qui représentent le coût estimé des engagements pris par les assureurs envers les assurés. Les provisions techniques se décomposent en deux éléments :
 
@@ -171,205 +176,11 @@ L'évaluation du capital de solvabilité requis (SCR) est la dernière étape du
 
 - Le modèle interne, qui est une méthode propre à l'assureur, qui prend en compte les spécificités de son profil de risque, et qui utilise ses propres paramètres. Le modèle interne doit être validé par le régulateur.
 
+# CHAPITRE II : Construction de la courbe des taux 
 
-## Valorisation  de l'actif :
-Selon les directions de l’autorité de contrôle des Assurances et de la Prévoyance Sociale, les actifs doivent être évaluer comme suit :
+## La construction de la courbe des taux zéro-coupon {#sec-courbe_zc}
 
-- Titres OPCVM et OPCI : Dernière valeur liquidative.
-- Titres OPCC et FPCT : Dernière valeur connue.
-- Titres de créances négociables, obligations et bons : Valeur de marché.
-- Immobilisations corporelles : Valeur comptable.
-- Autres créances : Valeur comptable.
-- Immobilisations en non-valeur : Valeur nulle.
-- Immobilisations incorporelles : Valeur nulle.
-- Actifs immobiliers hors OPCI : Valeur de transaction (sinon valeur comptable).
-- Autres actifs : Valeur d’expert (sinon valeur comptable)
-
-Pour les actions cotées à la bourse de Casablanca, ils sont valorisées à leur dernier cours coté avant la date d'inventaire, ou le moyenne des cours côtés des trois derniers mois précédant la date d'inventaire, si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par L'ACAPS.
-
-
-#### Modélisation du prix des actions : {-}
-
-Le prix d'une action ou plus communément appelé cours d'une action représente le prix auquel elle est achetée ou vendue sur un marché boursier. Ce prix fluctue en fonction de l'offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l'entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l'action représente la valeur perçue de l'entreprise par les investisseurs à un moment.
-
-Ainsi, si la valeur présente de l'action est une donnée du marché, sa valeur future quant à elle est aléatoire d'où la nécessité de sa modélisation.
-
-#### Modèle de Black-Scholes :
-
- Le modèle de Black-Scholes modèle a été développé en 1973 par _Fischer Black_, _Robert Merton_ et _Myron Scholes_, qui ont reçu le prix Nobel d'économie en 1997 pour leurs travaux. Ce modèle est l'un des concepts les plus importants dans la théorie de la finance modèle. Il permet d’évaluer le prix d'une option européenne en fonction  de son type et du prix de l'actif sous-jacent. Le modèle repose sur plusieurs hypothèses dont l'une d'entre elle est que le cours de l'actif sous-jacent  suit un mouvement géométrique avec une volatilité constante.
- 
- En termes mathématiques, le prix d'une action peut donc être représenté comme une fonction scalaire du temps actuel $t$. Nous noterons cette fonction $S(t)$. Notons qu'en termes techniques, $S(t)$ est une série temporelle, qui bien qu'apparemment continue (avec continuité $C[0]$), est en réalité discontinue (sujette de sauts). De plus, ce n'est pas une fonction dont la dérivée première n'existe pas.
- 
- Nous allons modéliser $S(t)$ comme une variable stochastique. Dans cette situation, nous sommes tenus de ne pas utiliser les outils standards de calcul (tels que les séries de Taylor, les dérivées, l'intégrale de Riemann), mais sont plutôt contraints d'utiliser les outils de calculs stochastiques (tels que le lemme d'Ito, la dérivée de Radon-Nykodym, Riemann -Stieltjes intégrale) pour faire avancer notre modélisation.
- 
- Dans ce contexte, le comportement de la variable $S(t)$ peut être décrit pour une *Equation Différentielle Stochastique* ($EDS$). Dans le cas des actions, l'$EDS$ standard utilisée pour modéliser la trajectoire du cours est appelé *Mouvement Brownien Géométrique* ($GBM$ : Geometric Brownian Motion). Sous la mesure de probabilité dite réelle $P$, le mouvement brownien géométrique ($GBM$) est formellement représenté en temps continu de la manière suivante : ^[Alonso Peña, Ph.D, C++ For Quantitative Finance]
- 
- $$
- dS_t = \mu S_t dt + \sigma S_t dW^P_t \quad ,
- $${#eq-gbmp}
- 
- où $\mu$ représente le drift, $\sigma$ la volatilité et $W^P$ est mouvement brownien standard sous la probabilité $P$.
- 
- Cependant, dans la littérature, cette représentation n'est pas utilisée pour la valorisation des produit dérivés. Il est remplacé par la représentation suivante sous la mesure de probabilité neutre au risque $\mathbb{Q}$:
- 
- $$
- dS_t = r S_t dt + \sigma S_t dW^\mathbb{Q}_t
- $${#eq-gbmq}
-
-Dans l'@eq-gbmq précédente, nous avons remplacé $\mu$ par le taux d'intérêt sans risque $r$, $\sigma$ est la volatilité et $dW$ est l'incrément d'un processus de Wiener. L'équation 2 peut en outre être représentée comme suit :
-
-$$
- \frac{dS_t}{S_t} = r dt + \sigma  dW^\mathbb{Q}_t
-$$
-
-Dans cette dernière équation, nous pouvons identifier le terme $\frac{dS_t}{S_t}$ du côté gauche de l'équation comme le rendement des capitaux propres. Ainsi, les deux termes du côté droit de l'équation sont un « terme de dérive » et un « terme de volatilité ». Chacun de ces termes est « mis à l'échelle » par les paramètres μ et σ, qui sont calibrés sur les prix actuels du marché des instruments négociés, tels que les options d'achat et de vente.
-
-Intéressons nous aux solutions $(S_t)_{t\geq 0}$ de l'EDS @eq-gbmq qui peut être réécrite comme suit :
-
-$$
-S_t = x_0 + \int_{0}^{t}S_s(\mu dt + \sigma  dW^\mathbb{P}_s)\;;\;\;avec\; S_0=x_0
-$${#eq-intEDS}
-
-Puisque $\mu$ et $\sigma$ sont positifs, cela signifie que l'on cherche un processus adapté $(S_t)_{t\geq 0 }$ tel que les intégrales $\int_0^t S_s$ et  $\int_0^t S_s  dW^\mathbb{P}_s$ aient un sens, et qui vérifie l'@eq-intEDS, pour chaque $t$.
-
-Commençons par un calcul formel en posant $Y_t = log(S_t)$ où $S_t$ est une solution de l'@eq-intEDS. $S_t$ est un processus d'Itô avec $K_s = \mu S_s$ et $H_s = \sigma S_s$. Appliquons la formule d'Itô à $f(x) = log(x)$. On obtient, en supposant $S_t$ positif :
-
-$$
-log(S_t) = log(S_0) + \int_{0}^{t} \frac{dS_s}{S_s}+\frac{1}{2} \int_{0}^{t}\frac{-1}{S_s^2}\sigma^2S_s^2 ds \quad ,
-$$
-soit, en utilsant @eq-gbmp :
-
-$$
-Y_t = Y_0 + \int_0^t (\mu - \frac{\sigma^2}{2})ds + \int_0^t\sigma dW_s \quad ,
-$$
-
-puis
-
-$$
-Y_t = log(S_t) =  log(S_0)+  (\mu - \frac{\sigma^2}{2})t + \sigma W_t \quad ,
-$$
-ainsi :
-
-$$
-S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t) \quad ,
-$${#eq-solBS}
-est solution de l'EDS.
-
-```{r echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
-#| Label: fig-gbmPlot
-#| fig-cap: Simulation de la trajectoire du prix de l'action X par la méthode de Monte Carlo en utilisant le modèle de Black and Scholes
-
-library(ggplot2)
-SBM <- function(t0 = 0,T_ = 1,N = 10000,nsim = 100){
-  X <- Map(
-    function(x) {c(0,rnorm(n= N,mean = 0,sd = sqrt((T_ -t0)/N))) %>%
-        cumsum()},
-    x = as.list(rep(N,nsim))
-  ) %>%
-    bind_cols() %>%
-    `names<-`(paste0("X",1:nsim))
-  X <- X %>%
-    mutate(t=seq(t0,T_,length.out = N +1) ) %>%
-    relocate(t)
-
-  plt <- X %>%
-    reshape2::melt(id="t",value.name = "Brownian") %>%
-    ggplot(aes(x=t, y=Brownian, colour=variable)) +
-    geom_line(show.legend = F) +
-    ylab("Brownian motion")+
-    hrbrthemes::theme_ipsum(grid = "")
-
-  list(data = X,plots =plt )
-
-}
-# Geometric
-GBM <- function(S0=100,mu = .05,sigma =.4,t0=0,T_= 1,N = 10000,nsim = 100){
-  sbm <- SBM(t0 = t0,T_ = T_,N = N,nsim = nsim)
-  t <- sbm$data$t
-  listSBM <-  as.list(sbm$data[,-1])
-  S = Map(function(x){
-    S0*exp(t*(mu-0.5*sigma^2)+sigma*listSBM[[x]])
-  },x=1:nsim) %>%
-    bind_cols() %>%
-    `names<-`(paste0("X",1:nsim)) %>%
-    mutate(t=t) %>%
-    relocate(t)
-  plt <- S %>%
-    reshape2::melt(id="t",value.name = "GBM") %>%
-    ggplot(aes(x=t, y=GBM, colour=variable)) +
-    geom_line(show.legend = F) +
-    ylab("Geometric Brownian Motion")+
-    hrbrthemes::theme_ipsum(grid = "XY")
-  mean_path = apply(S[,-1],1,mean)
-  ST = mean_path[length(mean_path)]
-  plt_mean <- ggplot(data = NULL,aes(x=t, y=mean_path,color = "red")) +
-    geom_line(show.legend = F) +
-    ylab("Mean price")+
-    hrbrthemes::theme_ipsum(grid = "XY")
-  list(data = S,plots =plt ,
-       mean_path = mean_path,
-       ST = ST,
-       plt_mean = plt_mean)
-}
-
-GBM_Sim = GBM()
-GBM_Sim$plt_mean
-```
-
-
-#### Réseaux de neurones récurrents :
-Dans cette partie on va s’intéressé à l’entrainement d’un modèle de réseaux de neurones récurrents, spécifiquement le modèle LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index) afin  prédire les cours journaliers futures.
-
-D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques,$\dots$
-
-Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur mémoire car ils prennent des informations d'entrées précédentes pour influencer l'entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d'une séquence donnée.
-
-Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau, alors que les réseaux feedforward (des réseaux de neurones artificiels qui traitent les informations dans une seule direction) ont des poids différents sur chaque nœud. Les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
-
-<div style="text-align:center">
-![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/Shema_RNN.png){#fig-piliers}
-</div>
-
-Un inconvénient des RNN standard est le problème du gradient de fuite, dans lequel les performances du réseau de neurones souffrent car il ne peut pas être formé correctement. Cela se produit avec des réseaux de neurones en couches profondes, qui sont utilisés pour traiter des données complexes.
-
-Les RNN standard qui utilisent une méthode d'apprentissage basée sur le gradient se dégradent à mesure qu'ils grandissent et deviennent plus complexes. Le réglage efficace des paramètres aux premières couches devient trop long et coûteux en calculs.
-
-Une solution au problème s'appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau. Cela permet également aux RNN de déterminer quelles données peuvent être oubliées.
-
-Dans notre cas, Nous nous sommes focalisés sur l'application de modèle LSTM sur les données de l’indice MASI. Notre échantillon contenu 5000 observations journalière du cours d’ouverture, cours Dernier, le cours le plus bas, le cours plus haut et la variation du cours entre deux dates successives.
-
-```{r echo=FALSE, warning=FALSE,message=FALSE}
-library(readxl)
-library(kableExtra)
-masi <- read_excel("C:/Users/LENOVO/Desktop/Risk-based-solvency/Application Bs4/Data/masi.xlsx")
-head(masi,15)%>% 
-  kbl() %>% 
-  kable_material(c("striped"))
-
-```
-La figure suivante donne un aperçu de Dernier cours de cet indice entre les années 2002 et 2022.
-
-<div style="text-align:center">
-![Le cours Historiques de Clôture pour l’indice MASI](Rapport-PFE_files/figure-html/Derniere.png){#fig-piliers}
-</div>
-
-Les réseaux de neurones récurrents sont réputés être plus performants comparer aux autres méthodes. Ainsi, il est tout naturelle de s’attendre à un excellent score lord d’une application du modèle LSTM, nous allons voir plus de détails sur la méthode de ce modèle sur le langage python la section Application^[[CHapitre: Application ]()].
-
-Le graphique suivant est une représentation conjointe du dernier cours observe (en bleu) et le cours prédit (en orange) sur la même période.
-
-<div style="text-align:center">
-![Courbe de cours prédit et de cours observé](Rapport-PFE_files/figure-html/Prediction.png){#fig-piliers}
-</div>
-
-Une remarque flagrante est que les deux courbes sont presque confondus, ce constat s’explique par la faiblesse de la valeur de RMSE qui veut 29,44.
-
-La racine de l'erreur quadratique moyenne (en anglais, root-mean-square error ou RMSE) est une mesure de l'écart type des résidus, ça veut dire il mesure la différence entre les valeurs prédites par le modèle et les valeurs observées.
-Tous ces raisons, prouve l’efficacité du modèle LSTM comparé à celui de Black&sholes.
-
-
-
-## La construction de la courbe des taux zéro-coupon :
-Dans cette partie nous nous intéressons à la construction de la courbe des taux zéro-coupon dont nous avons besoin dans le reste de ce travaille afin d'actualiser les flux futurs entrant dans le calcul des différentes Best Estimate. Les taux Zéro Coupons sont extraite à partir des taux moyens pondérés des transactions des bons de trésor publiées par [BANK AL MAGHRIB](https://www.bkam.ma/Marches/Principaux-indicateurs/Marche-obligataire/Marche-des-bons-de-tresor/Marche-secondaire/Taux-de-reference-des-bons-du-tresor?date=23%2F03%2F2023&block=e1d6b9bbf87f86f8ba53e8518e882982#address-c3367fcefc5f524397748201aee5dab8-e1d6b9bbf87f86f8ba53e8518e882982). Ces taux en fait, sont des taux monétaires pour les maturités inférieures ou égales à un an, alors qu'il représente un taux actuariel pour les maturités supérieures à un an, de plus ils ne sont disponibles que pour certaines maturités.
+Dans cette partie nous nous intéressons à la construction de la courbe des taux zéro-coupon dont nous avons besoin dans le reste de ce travaille afin d'actualiser les flux futurs entrant dans le calcul des différentes Best Estimate. Les taux zéro coupons sont extraits des taux moyens pondérés des transactions des bons de trésor publiées par la [BANK AL MAGHRIB](https://www.bkam.ma/Marches/Principaux-indicateurs/Marche-obligataire/Marche-des-bons-de-tresor/Marche-secondaire/Taux-de-reference-des-bons-du-tresor?date=23%2F03%2F2023&block=e1d6b9bbf87f86f8ba53e8518e882982#address-c3367fcefc5f524397748201aee5dab8-e1d6b9bbf87f86f8ba53e8518e882982). Ces taux, sont en effet des taux monétaires pour les maturités inférieures ou égales à un an, alors qu'il représente un taux actuariel pour les maturités supérieures à un an, de plus ils ne sont disponibles que pour certaines maturités.
 
 ```{r message=FALSE,warning=FALSE,error=FALSE,echo=FALSE}
 library(tidyverse)
@@ -414,21 +225,21 @@ TR = get_taux_BAM2(DATE = "2022-12-30")
 #| label: tbl-taux_ref
 #| tbl-cap: "Taux de référence des bons du Trésor du 30/12/2022"
 library(kableExtra)
-TR[1:10,] %>% 
+TR %>% 
   kbl() %>% 
   kable_material(c("striped"))
 
 ```
 
 
-Pour cette raison on va suivre les étapes suivantes pour la construction de la courbe des taux zéro-coupon :
+On va suivre les étapes suivantes pour la construction de la courbe des taux zéro-coupon :
 
 - 1-ère étape : Transformation des taux monétaires en taux actuariels.
 - 2-ème  étape :  Interpolation linéaire afin d'obtenir des taux actuariels pour des maturités pleines.
 -	3-ème  étape : Calcule des taux zéro coupons à partir des taux actuariels des maturités pleines par la Méthode du Bootstrap.
 -	4-ème  étape : Extrapolation de la courbe des taux zéro-coupon pour des maturités non observées lointaines par la méthode de Smith-Wilson.
 
-### Transformation des taux monétaires en taux actuariels :
+### Transformation des taux monétaires en taux actuariels
 
 Cette étape consiste à transformer les taux monétaires à des taux actuariels en utilisant la relation suivante :
 $$
@@ -468,7 +279,7 @@ TAC[1:10,] %>%
 
 ```
 
-### Interpolation linéaire de la courbe des taux actuariels :
+### Interpolation linéaire de la courbe des taux actuariels
 
 En réalité nous disposons que des taux actuariels des maturités ayant des valeurs décimales, le but de cette étape est donc la détermination des taux actuariels avec des maturités pleines en utilisant une interpolation linéaire.
 
@@ -516,7 +327,7 @@ INTER[1:10,] %>%
 ```
 
 
-### la méthode de Bootstrap :
+### la méthode de Bootstrap
 
 Le Bootstrap est une technique de reconstitution de la courbe zéro-coupon pas à pas, en déterminant les taux zéro-coupon à partir des taux actuariels, en faisant l'hypothèse que le prix théorique d'une obligation correspond à la somme de ses flux futures actualisés aux taux zéro-coupon de l'échéance de chaque flux. Ainsi, on suppose que les prix des obligations des Bons du trésor sont au pair, c'est-à-dire que le prix d'émission des obligations des bons du trésor et leur valeur nominale sont égaux.
 
@@ -666,7 +477,206 @@ $$
 R(t) = (\frac{1}{P(t)})^{\frac{1}{t}} - 1
 $${#eq-gbmp}
 
-## Valorisation des provisions techniques prudentielles :
+# CHAPITRE III : Valorisation  de l'actif
+
+## Directives de l'ACAPS
+Selon les directions de l'autorité de contrôle des Assurances et de la Prévoyance Sociale, les actifs doivent être évaluer comme suit :
+
+- Titres OPCVM et OPCI : Dernière valeur liquidative.
+- Titres OPCC et FPCT : Dernière valeur connue.
+- Titres de créances négociables, obligations et bons : Valeur de marché.
+- Immobilisations corporelles : Valeur comptable.
+- Autres créances : Valeur comptable.
+- Immobilisations en non-valeur : Valeur nulle.
+- Immobilisations incorporelles : Valeur nulle.
+- Actifs immobiliers hors OPCI : Valeur de transaction (sinon valeur comptable).
+- Autres actifs : Valeur d'expert (sinon valeur comptable)
+
+Pour les actions cotées à la bourse de Casablanca, ils sont valorisées à leur dernier cours coté avant la date d'inventaire, ou le moyenne des cours côtés des trois derniers mois précédant la date d'inventaire, si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par L'ACAPS.
+
+
+### Modélisation du prix des actions
+
+Le prix d'une action ou plus communément appelé cours d'une action représente le prix auquel elle est achetée ou vendue sur un marché boursier. Ce prix fluctue en fonction de l'offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l'entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l'action représente la valeur perçue de l'entreprise par les investisseurs à un moment.
+
+Ainsi, si la valeur présente de l'action est une donnée du marché, sa valeur future quant à elle est aléatoire d'où la nécessité de sa modélisation.
+
+### Modèle de Black-Scholes
+
+ Le modèle de Black-Scholes modèle a été développé en 1973 par _Fischer Black_, _Robert Merton_ et _Myron Scholes_, qui ont reçu le prix Nobel d'économie en 1997 pour leurs travaux. Ce modèle est l'un des concepts les plus importants dans la théorie de la finance modèle. Il permet d'évaluer le prix d'une option européenne en fonction  de son type et du prix de l'actif sous-jacent. Le modèle repose sur plusieurs hypothèses dont l'une d'entre elle est que le cours de l'actif sous-jacent  suit un mouvement géométrique avec une volatilité constante.
+ 
+ En termes mathématiques, le prix d'une action peut donc être représenté comme une fonction scalaire du temps actuel $t$. Nous noterons cette fonction $S(t)$. Notons qu'en termes techniques, $S(t)$ est une série temporelle, qui bien qu'apparemment continue (avec continuité $C[0]$), est en réalité discontinue (sujette de sauts). De plus, ce n'est pas une fonction dont la dérivée première n'existe pas.
+ 
+ Nous allons modéliser $S(t)$ comme une variable stochastique. Dans cette situation, nous sommes tenus de ne pas utiliser les outils standards de calcul (tels que les séries de Taylor, les dérivées, l'intégrale de Riemann), mais sont plutôt contraints d'utiliser les outils de calculs stochastiques (tels que le lemme d'Ito, la dérivée de Radon-Nykodym, Riemann -Stieltjes intégrale) pour faire avancer notre modélisation.
+ 
+ Dans ce contexte, le comportement de la variable $S(t)$ peut être décrit pour une *Equation Différentielle Stochastique* ($EDS$). Dans le cas des actions, l'$EDS$ standard utilisée pour modéliser la trajectoire du cours est appelé *Mouvement Brownien Géométrique* ($GBM$ : Geometric Brownian Motion). Sous la mesure de probabilité dite réelle $P$, le mouvement brownien géométrique ($GBM$) est formellement représenté en temps continu de la manière suivante : ^[Alonso Peña, Ph.D, C++ For Quantitative Finance]
+ 
+ $$
+ dS_t = \mu S_t dt + \sigma S_t dW^P_t \quad ,
+ $${#eq-gbmp1}
+ 
+ où $\mu$ représente le drift, $\sigma$ la volatilité et $W^P$ est mouvement brownien standard sous la probabilité $P$.
+ 
+ Cependant, dans la littérature, cette représentation n'est pas utilisée pour la valorisation des produit dérivés. Il est remplacé par la représentation suivante sous la mesure de probabilité neutre au risque $\mathbb{Q}$:
+ 
+ $$
+ dS_t = r S_t dt + \sigma S_t dW^\mathbb{Q}_t
+ $${#eq-gbmq}
+
+Dans l'@eq-gbmq précédente, nous avons remplacé $\mu$ par le taux d'intérêt sans risque $r$, $\sigma$ est la volatilité et $dW$ est l'incrément d'un processus de Wiener. L'équation 2 peut en outre être représentée comme suit :
+
+$$
+ \frac{dS_t}{S_t} = r dt + \sigma  dW^\mathbb{Q}_t
+$$
+
+Dans cette dernière équation, nous pouvons identifier le terme $\frac{dS_t}{S_t}$ du côté gauche de l'équation comme le rendement des capitaux propres. Ainsi, les deux termes du côté droit de l'équation sont un « terme de dérive » et un « terme de volatilité ». Chacun de ces termes est « mis à l'échelle » par les paramètres μ et σ, qui sont calibrés sur les prix actuels du marché des instruments négociés, tels que les options d'achat et de vente.
+
+Intéressons nous aux solutions $(S_t)_{t\geq 0}$ de l'EDS @eq-gbmq qui peut être réécrite comme suit :
+
+$$
+S_t = x_0 + \int_{0}^{t}S_s(\mu dt + \sigma  dW^\mathbb{P}_s)\;;\;\;avec\; S_0=x_0
+$${#eq-intEDS}
+
+Puisque $\mu$ et $\sigma$ sont positifs, cela signifie que l'on cherche un processus adapté $(S_t)_{t\geq 0 }$ tel que les intégrales $\int_0^t S_s$ et  $\int_0^t S_s  dW^\mathbb{P}_s$ aient un sens, et qui vérifie l'@eq-intEDS, pour chaque $t$.
+
+Commençons par un calcul formel en posant $Y_t = log(S_t)$ où $S_t$ est une solution de l'@eq-intEDS. $S_t$ est un processus d'Itô avec $K_s = \mu S_s$ et $H_s = \sigma S_s$. Appliquons la formule d'Itô à $f(x) = log(x)$. On obtient, en supposant $S_t$ positif :
+
+$$
+log(S_t) = log(S_0) + \int_{0}^{t} \frac{dS_s}{S_s}+\frac{1}{2} \int_{0}^{t}\frac{-1}{S_s^2}\sigma^2S_s^2 ds \quad ,
+$$
+soit, en utilsant @eq-gbmp1 :
+
+$$
+Y_t = Y_0 + \int_0^t (\mu - \frac{\sigma^2}{2})ds + \int_0^t\sigma dW_s \quad ,
+$$
+
+puis
+
+$$
+Y_t = log(S_t) =  log(S_0)+  (\mu - \frac{\sigma^2}{2})t + \sigma W_t \quad ,
+$$
+ainsi :
+
+$$
+S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t) \quad ,
+$${#eq-solBS}
+est solution de l'EDS.
+
+```{r echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+#| Label: fig-gbmPlot
+#| fig-cap: Simulation de la trajectoire du prix de l'action X par la méthode de Monte Carlo en utilisant le modèle de Black and Scholes
+
+library(ggplot2)
+SBM <- function(t0 = 0,T_ = 1,N = 10000,nsim = 100){
+  X <- Map(
+    function(x) {c(0,rnorm(n= N,mean = 0,sd = sqrt((T_ -t0)/N))) %>%
+        cumsum()},
+    x = as.list(rep(N,nsim))
+  ) %>%
+    bind_cols() %>%
+    `names<-`(paste0("X",1:nsim))
+  X <- X %>%
+    mutate(t=seq(t0,T_,length.out = N +1) ) %>%
+    relocate(t)
+
+  plt <- X %>%
+    reshape2::melt(id="t",value.name = "Brownian") %>%
+    ggplot(aes(x=t, y=Brownian, colour=variable)) +
+    geom_line(show.legend = F) +
+    ylab("Brownian motion")+
+    hrbrthemes::theme_ipsum(grid = "")
+
+  list(data = X,plots =plt )
+
+}
+# Geometric
+GBM <- function(S0=100,mu = .05,sigma =.4,t0=0,T_= 1,N = 10000,nsim = 100){
+  sbm <- SBM(t0 = t0,T_ = T_,N = N,nsim = nsim)
+  t <- sbm$data$t
+  listSBM <-  as.list(sbm$data[,-1])
+  S = Map(function(x){
+    S0*exp(t*(mu-0.5*sigma^2)+sigma*listSBM[[x]])
+  },x=1:nsim) %>%
+    bind_cols() %>%
+    `names<-`(paste0("X",1:nsim)) %>%
+    mutate(t=t) %>%
+    relocate(t)
+  plt <- S %>%
+    reshape2::melt(id="t",value.name = "GBM") %>%
+    ggplot(aes(x=t, y=GBM, colour=variable)) +
+    geom_line(show.legend = F) +
+    ylab("Geometric Brownian Motion")+
+    hrbrthemes::theme_ipsum(grid = "XY")
+  mean_path = apply(S[,-1],1,mean)
+  ST = mean_path[length(mean_path)]
+  plt_mean <- ggplot(data = NULL,aes(x=t, y=mean_path,color = "red")) +
+    geom_line(show.legend = F) +
+    ylab("Mean price")+
+    hrbrthemes::theme_ipsum(grid = "XY")
+  list(data = S,plots =plt ,
+       mean_path = mean_path,
+       ST = ST,
+       plt_mean = plt_mean)
+}
+
+GBM_Sim = GBM()
+GBM_Sim$plt_mean
+```
+
+
+### Réseaux de neurones récurrents 
+
+Dans cette partie on va s'intéressé à l'entrainement d'un modèle de réseaux de neurones récurrents, spécifiquement le modèle LSTM (Long short-term memory) avec des données historiques de l'indice MASI (Moroccan All Shares index) afin  prédire les cours journaliers futures.
+
+D'abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques,$\dots$
+
+Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur mémoire car ils prennent des informations d'entrées précédentes pour influencer l'entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d'une séquence donnée.
+
+Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau, alors que les réseaux feedforward (des réseaux de neurones artificiels qui traitent les informations dans une seule direction) ont des poids différents sur chaque nœud. Les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
+
+<div style="text-align:center">
+![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/Shema_RNN.png){#fig-piliers}
+</div>
+
+Un inconvénient des RNN standard est le problème du gradient de fuite, dans lequel les performances du réseau de neurones souffrent car il ne peut pas être formé correctement. Cela se produit avec des réseaux de neurones en couches profondes, qui sont utilisés pour traiter des données complexes.
+
+Les RNN standard qui utilisent une méthode d'apprentissage basée sur le gradient se dégradent à mesure qu'ils grandissent et deviennent plus complexes. Le réglage efficace des paramètres aux premières couches devient trop long et coûteux en calculs.
+
+Une solution au problème s'appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau. Cela permet également aux RNN de déterminer quelles données peuvent être oubliées.
+
+Dans notre cas, Nous nous sommes focalisés sur l'application de modèle LSTM sur les données de l'indice MASI. Notre échantillon contenu 5000 observations journalière du cours d'ouverture, cours Dernier, le cours le plus bas, le cours plus haut et la variation du cours entre deux dates successives.
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+library(readxl)
+library(kableExtra)
+masi <- read_excel("Rapport-PFE_files/Data/masi.xlsx")
+head(masi,15)%>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+La figure suivante donne un aperçu de Dernier cours de cet indice entre les années 2002 et 2022.
+
+<div style="text-align:center">
+![Le cours Historiques de Clôture pour l'indice MASI](Rapport-PFE_files/figure-html/Derniere.png){#fig-piliers}
+</div>
+
+Les réseaux de neurones récurrents sont réputés être plus performants comparer aux autres méthodes. Ainsi, il est tout naturelle de s'attendre à un excellent score lord d'une application du modèle LSTM, nous allons voir plus de détails sur la méthode de ce modèle sur le langage python la section Application^[[CHapitre: Application ]()].
+
+Le graphique suivant est une représentation conjointe du dernier cours observe (en bleu) et le cours prédit (en orange) sur la même période.
+
+<div style="text-align:center">
+![Courbe de cours prédit et de cours observé](Rapport-PFE_files/figure-html/Prediction.png){#fig-piliers}
+</div>
+
+Une remarque flagrante est que les deux courbes sont presque confondus, ce constat s'explique par la faiblesse de la valeur du RMSE qui veut $29,44$.
+
+La racine de l'erreur quadratique moyenne (en anglais, root-mean-square error ou RMSE) est une mesure de l'écart type des résidus, ça veut dire il mesure la différence entre les valeurs prédites par le modèle et les valeurs observées. Tous ces raisons, prouve l'efficacité du modèle LSTM comparé à celui de Black&sholes.
+
+# CHAPITRE IV : Valorisation des provisions techniques prudentielles 
+
+## Généralité
+
 Les provisions techniques prudentielles sont valorisées brutes de réassurance en considérant les contrats dont l'engagement de l'entreprise est en cours à la date d'inventaire. Les contrats d'assurance non-vie à tacite reconduction dont la date d'effet intervient postérieurement à la date d'inventaire et dont le préavis de résiliation a expiré à cette date sans qu'il y ait une demande de résiliation sont également pris en considération.
 
 Elles sont évaluées comme suit :
@@ -813,7 +823,7 @@ La meilleure estimation des frais de gestion, pour les rentes découlant des op�
 ### Opérations d'assurance non vie hors rentes :
 L'assurance non-vie, également connue sous le nom d'assurance dommages, est un secteur d'assurance qui vise à protéger les biens et les responsabilités des individus et des entreprises contre divers risques. Et il couvre une vaste gamme de domaines, tels que les accidents, les catastrophes naturelles, les dommages matériels, la responsabilité civile, les pertes financières, les vols et bien d'autres encore,$\dots$
 
-Aussi l’assurance non vie repose sur le principe de la mutualisation des risques, telle que Les assurés paient des primes périodiques à une compagnie d'assurance en échange d’une garantie de recevoir une indemnisation en cas de sinistre. L'assureur collecte les primes de nombreux assurés et utilise ces fonds pour couvrir les pertes subies par ceux qui ont subi des dommages assurés. Ainsi, l'assurance non-vie permet de répartir les risques et de fournir une protection financière contre les événements imprévus qui pourraient causer des pertes matérielles ou des responsabilités juridiques.
+Aussi l'assurance non vie repose sur le principe de la mutualisation des risques, telle que Les assurés paient des primes périodiques à une compagnie d'assurance en échange d'une garantie de recevoir une indemnisation en cas de sinistre. L'assureur collecte les primes de nombreux assurés et utilise ces fonds pour couvrir les pertes subies par ceux qui ont subi des dommages assurés. Ainsi, l'assurance non-vie permet de répartir les risques et de fournir une protection financière contre les événements imprévus qui pourraient causer des pertes matérielles ou des responsabilités juridiques.
 
 L'assurance non-vie offre une grande variété de produits et de polices adaptés à différents besoins. Parmi les exemples courants d'assurances non-vie, on trouve l'assurance automobile, l'assurance habitation, l'assurance responsabilité civile, l'assurance santé, l'assurance voyage et l'assurance entreprise. Chacune de ces polices est conçue pour offrir une protection spécifique contre les risques liés à ces domaines.
 
@@ -879,9 +889,9 @@ avec:
 
 - $FRFP_{t}$ : les flux de règlements futurs probabilisés nets de recours relatifs aux *sinistres survenus*, sont estimés sur la base d'un triangle de règlements par année de survenance net de recours conformément à la méthode  exigée parl'ACAPS.
 
-##### Méthode de calcul des flux de réglements futurs probabilisés pour les opérations non-vie hors rentes:
+##### Méthode de calcul des flux de réglements futurs probabilisés pour les opérations non-vie hors rentes
 
-##### Méthode des cadences – Chain Ladder : {-}
+##### Méthode des cadences – Chain Ladder {-}
 
 La méthode de Chain Ladder est celle spécifiée dans l'*annexe 5* de la circulaire de l'$ACAPS$ sur la $SBR$.
 Les méthodes de cadences de règlement se basent sur le principe que la vitesse des règlements, en pourcentage de la charge finale de sinistres, est constante d'une année de survenance à l'autre. Ainsi les paiements réalisés permettent d'estimer les provisions pour sinistres à payer.
@@ -985,13 +995,13 @@ $${#eq-gbmp}
 
 Bien que la méthode de Chain Ladder soit celle préconisée par l'ACAPS dans le cadre de la $SBR$, il existe sur marché d'autres méthodes de calcul des flux de règlements futurs.
 
-##### Méthode des cadences avec inflation :
+##### Méthode des cadences avec inflation
 
 Cette variante de la méthode des cadences tient compte de l'inflation de façon explicite.
 On calcule les paiements annuels en faisant la différence entre les colonnes successives du triangle des paiements cumulés. On ajuste ces paiements annuels en devises (MAD par exemple) constants en utilisant un indice d'inflation, puis on les cumule pour obtenir un triangle de montants cumulés en francs constants.
 On applique ensuite la méthode des cadences.
 
-##### La méthode du ratio de paiement :
+##### La méthode du ratio de paiement
 
 Cette méthode a été à Sawkins 1975 est semblable à la méthode des cadences de développement avec inflation, sauf que les coefficients de passage $\hat f_j$ sont calculés comme une moyenne de ratios et non comme un ratio de moyennes :
 
@@ -999,7 +1009,7 @@ $$
 \hat f_j = \frac{1}{n-j-1} \sum\limits_{i=0}^{n-j-1} \frac{C_{i,j+1}}{C_{i,j}}
 $${#eq-gbmp}
 
-##### La méthode du ratio de paiement :
+##### La méthode du ratio de paiement
 
 La méthode de Bornhuetter-Ferguson^[The Actuary and IBNR publié en 1972] est une méthode de provisionnement qui repose sur l'idée que les pertes finales, attendues pour une année de survenance sont connues a priori et que le rythme des paiements est stable d'une année à l'autre. Elle combine les caractéristiques de la méthode des cadences et de la méthode du ratio de sinistralité attendu. Elle utilise des facteurs de développement pour estimer le pourcentage de pertes rapportées ou payées et ajoute les pertes attendues multipliées par le pourcentage de pertes non rapportées ou non payées. Elle est surtout utilisée quand les pertes sont de faible fréquence mais de forte gravité.
 
@@ -1036,7 +1046,7 @@ $L = 90 \times 40\% + 90 \times 60\% = 90$, soit un volume de tardifs attendu de
 
 Plusieurs auteurs ont exprimé l'opinion que cette méthode est plus performante que la méthode des cadences de développement, en début de développement.
 
-#### La meilleure estimation des frais de gestion :
+#### La meilleure estimation des frais de gestion
 la meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs liés aux contrats.
 $$
 BEFG= \sum_{t \geq 1} \frac{FFGF_t}{(1+r_t)^t} \quad ,
@@ -1070,16 +1080,17 @@ avec :
 - $FG$: le montant frais de gestion.
 - $REC$ : les règlements au titre de l'exercice clos.
 
+# CHAPITRE V : Part des cessionnaires 
 
-### Part des cessionnaires dans les provisions techniques prudentielles :
+## Part des cessionnaires dans les provisions techniques prudentielles
 La part des cessionnaires dans les provisions techniques prudentielles est évaluée en considérant la différence entre d'une part, la meilleure estimation des engagements cédés et d'autre part, l'ajustement pour défaut de contrepartie.
 
 $$
 PC = BEC - Adj
 $${#eq-gbmp}
 
-#### La meilleure estimation des engagements cédés ($BEC$) :
-##### Les opérations d'assurance vie, décès ou de capitalisation : {-}
+### La meilleure estimation des engagements cédés ($BEC$) :
+#### Les opérations d'assurance vie, décès ou de capitalisation : {-}
 
 la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des engagements par le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques , des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
 
@@ -1091,7 +1102,7 @@ avec :
 - $TC$ (taux de cession): le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques, des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
 
 
-##### Les opérations non vie{-}
+#### Les opérations non vie{-}
 
 Pour les opérations non vie, la meilleure estimation des engagements cédés correspond à la somme de la meilleure estimation des engagements pour sinistres cédés et de la meilleure estimation des engagements pour primes cédés.
 
@@ -1104,7 +1115,7 @@ avec :
 
 -  $BEPC = TCP \times BEP$ : La meilleure estimation des engagements pour primes cédés est évaluée en multipliant la meilleure estimation des engagements pour primes par le taux de cession de primes. Le taux de cession ($TCP$) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l'exercice.
 
-#### L'ajustement pour défaut de contrepartie :
+### L'ajustement pour défaut de contrepartie :
 
 En cas de réassuarance, la compagnie d'assurance se confronte à un nouveau risque, celui de défaut de contrepartie. En effet, il se pourrait que les risques cédés par l'assureur ne soient pas supportés par le réassureur. Il est ainsi primordial de tenir en compte ce risque dans le calcul des meilleures estimations en effectuant un ajustement.
 L'ajustement pour défaut de contrepartie est déterminé en actualisant les flux d'ajustement futurs sur la base de la courbe des taux fixée par l'Autorité. Il correspond à la perte anticipée résultant de la défaillance probable du cessionnaire.
@@ -1129,7 +1140,7 @@ où:
 - $BEP_i$: correspond à la meilleure estimation des engagements pour primes projetée à la date i.
 - Les termes $RS_{0}$ et $RP_{0}$ correspondent aux ratios de passage utilisés pour le calcul de la meilleure estimation des engagements pour sinistres cédés et pour primes cédés respectivement à la date d'inventaire.
 
-> Pour les opérations d’assurance vie, décès ou de capitalisation:
+> Pour les opérations d'assurance vie, décès ou de capitalisation:
 
  La meilleure estimation des engagements cédès est déterminée par la formule suivante :
  
@@ -1140,12 +1151,12 @@ où:
 où :
 - $MEGP_i = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité et $(F_t)_{t>0}$ les flux de trésorerie futurs probabilisés.
 - $BDF_i = \frac{MEGP_i}{MEGP_0}\times BDF_0 \times (1+r_i)^i$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité.
-- $BDF_0$ correspond aux bénéfices discrétionnaires futurs à la date d’inventaire.
-- Le terme $R_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d’inventaire.
+- $BDF_0$ correspond aux bénéfices discrétionnaires futurs à la date d'inventaire.
+- Le terme $R_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d'inventaire.
 
 > Pour les rentes découlant des opérations non-vie:
 
-La meilleure estimation des engagements cédès au titre de l’année de projection correspond à :
+La meilleure estimation des engagements cédès au titre de l'année de projection correspond à :
 
 $$
  BEC = BEGP_i\times R_0 \quad ,
@@ -1155,12 +1166,12 @@ où :
 
 - $MEGP_i = \sum\limits_{t>i}\frac{F_t}{(1+r_t)^t}$, avec $(r_t)$ calculés à partir de la courbe des taux fixée par l'Autorité et $(F_t)_{t>0}$ les flux de trésorerie futurs probabilisés.
 
-- Le terme $R_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d’inventaire.
+- Le terme $R_0$ correspond au ratio de passage utilisé pour le calcul de la meilleure estimation des engagements cédés à la date d'inventaire.
 
 :::
 
 ::: {.callout-note}
-## Etape Nº2: Calcul des flux d’ajustement projetés 
+## Etape Nº2: Calcul des flux d'ajustement projetés 
 
 Au titre de l'année de projection $i$, le flux d'ajustement est calculé ainsi :
 
@@ -1172,11 +1183,11 @@ avec:
 - $DEV$ :dépôtven espèces et en valeurs.
 - $SDR$ :solde de réassurance
 
-La probabilité de défaut annuelle $PD$ du cessionnaire est établie conformément au tableau prévu a l’annexe.
+La probabilité de défaut annuelle $PD$ du cessionnaire est établie conformément au tableau prévu a l'annexe.
 :::
 
 ::: {.callout-note}
-## Etape Nº3: Calcul de l’ajustement pour défaut de contrepartie
+## Etape Nº3: Calcul de l'ajustement pour défaut de contrepartie
 
 $$
 Adj = \sum\limits_{i>0} \frac{Adj_i}{(1+r_i)^i} \quad ,
@@ -1185,8 +1196,9 @@ avec $(r_i)$ calculés à partir de la courbe des taux fixée par l'Autorité.
 
 :::
 
-## Capital de Solvabilité Requis :
+# CHAPITRE VI : Capital de Solvabilité Requis 
 
+## Définition générale
 Au cours de son existence, la compagnie d'assurance ou de réassurance fait face à plusieurs engagements dont la plus part sont risqués. Ce tas de risques encourus demande donc des préventions afin d'éviter ou de supporter leur avénement. Subséquemment, il est tout naturel de se demandait quel montant la compagnie devrait avoir à l'instant $t$ pour se couvrir des risques éventuels d'où l'introduction de la notion de *Capital de Solvabilité Requis* ($CSR$).
 
 Comme son nom l'indique, le CSR correspond au capital dont a besoin une entreprise d'assurance ou de réassurance pour faire face à tous les risques qui peuvent survenir dans le futur et limiter la probabilité de ruine.   
@@ -1236,11 +1248,10 @@ $${#eq-gbmp}
 
 
 
-
 ### Le capital de solvabilité requis de base ($CSRB$) :
 Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de **marché**, de **concentration**, de **contrepartie**, de **souscription vie** et de **souscription non-vie** et ce, après application des coefficients de corrélations.
 
-En d'autres termes, il s'agit du montant total des capitaux nécessaires pour faire face à ces divers types de risques. les exigences de capitaux sont évaluées individuellement pour chaque catégorie de risque, puis agrégées en appliquant les coefficients de corrélations, pour déterminer le capital de solvabilité requis de base. Cela permet aux compagnies d’assurance et de reassurance d’évaluer de manière précise les montants de capitaux nécessaires pour couvrir leurs risques spécifiques et d'assurer une solvabilité adéquate.
+En d'autres termes, il s'agit du montant total des capitaux nécessaires pour faire face à ces divers types de risques. les exigences de capitaux sont évaluées individuellement pour chaque catégorie de risque, puis agrégées en appliquant les coefficients de corrélations, pour déterminer le capital de solvabilité requis de base. Cela permet aux compagnies d'assurance et de reassurance d'évaluer de manière précise les montants de capitaux nécessaires pour couvrir leurs risques spécifiques et d'assurer une solvabilité adéquate.
 
 Le capital de solvabilité requis de base peut  s'écrit mathématiquement comme suit:
 $$
@@ -1252,7 +1263,7 @@ avec :
 
 - $\rho$ : Coefficients de corrélations.
 
-Jusqu’à présent, les coefficients de corrélation exactes entre les sous risques ne sont pas encore publiés par l’ACAPS, pour cette raison on a supposé l’indépendance entres tous ces sous risques sous risques, donc la matrice de corrélation va être de cette forme :
+Jusqu'à présent, les coefficients de corrélation exactes entre les sous risques ne sont pas encore publiés par l'ACAPS, pour cette raison on a supposé l'indépendance entres tous ces sous risques sous risques, donc la matrice de corrélation va être de cette forme :
 
 |               |Marché |Concentration|Contrepartie|Sousc. vie|Sousc. non-vie|
 |---------------|-------|-------------|------------|----------|--------------|
@@ -1276,7 +1287,7 @@ avec :
 - $\rho$ : Coefficients de corrélations.
 
 ##### L'exigence de capital relative au risque action ($CSR_A$) :
-Lorsqu'on parle de l'exigence de capital relative au risque action, il s'agit du montant de perte potentiel des fonds propres d'une institution financière résultant de baisses simultanées des valeurs des actions. Ce type de risque est lié à la volatilité et à la corrélation entre les différentes actions détenues dans le portefeuille d’action.
+Lorsqu'on parle de l'exigence de capital relative au risque action, il s'agit du montant de perte potentiel des fonds propres d'une institution financière résultant de baisses simultanées des valeurs des actions. Ce type de risque est lié à la volatilité et à la corrélation entre les différentes actions détenues dans le portefeuille d'action.
 
 Les taux de baisse à appliquer pour le calcul de l'exigence précitée sont fixés pour les catégories d'actions suivantes:
 
@@ -1393,8 +1404,7 @@ avec :  $ \qquad Type = \{ \text{type 1} ; \text{type 2} \}$
 
 ##### Exigence de capital relative au risque de contrepartie de type 1:
 L'exigence de capital relative au risque de contrepartie de type 1 est calculé en fonction des montants
-de pertes en cas de défaut des cessionnaires, des cédantes et des organismes dépositaires, selon la
-méthode décrit dans **l’annexe 9** du circulaire de l’ACAPS.Cette méthode et comme suit :  
+de pertes en cas de défaut des cessionnaires, des cédantes et des organismes dépositaires, selon la méthode décrite dans **l'annexe 9** du circulaire de l'ACAPS.Cette méthode et comme suit :  
 
 **1ère étape:** Calcul des pertes en cas de défaut des différentes contreparties $i$.
 
@@ -1411,7 +1421,7 @@ Où :
 - $CrC$ : les créances sur les cessionaires
 - $AR_i$ : le montant d'atténuation du risque via les différents contrats de réassurance conclus avec le cessionnaire i. Il correspond à la différence entre les montants d'exigences de capital pour les risques de souscription vie et non-vie calculés compte non tenu de la réassurance et compte tenu de la réassurance.
 
-## Pour un contrat d'acceptation :{-}
+###### Pour un contrat d'acceptation :{-}
 $$
 LGD_{i} = max (DEC_i + CrCd_i - PT_i \quad ; \quad 0  ) \quad ,
 $${#eq-gbmp}
@@ -1422,7 +1432,8 @@ où :
 - $ CrCd$ : la Créance sur la cédante ;
 - $PT_i$ : le montant des provisions techniques acceptées avec la cédante i ;
 
-## Pour un avoir auprès d'un organisme dépositaire :{-}
+ **Pour un avoir auprès d'un organisme dépositaire** :{-}
+ 
 $$
 LGD_{i} = max (AB_i;0)
 $${#eq-gbmp}
@@ -1433,7 +1444,8 @@ où :
 
 **2ème étape:** Sommation des LGD par échelle de notation :
 
-## Pour chaque échelle de notation $k$ : {-}
+**Pour chaque échelle de notation** $k$ :
+
 $$
 TLGD_{K} = \sum_{i} LGD_k \quad ,
 $${#eq-gbmp}
@@ -1470,9 +1482,9 @@ Et,
 $$
 Q = \frac{\sqrt{V_{inter} + V_{intra}}}{\sum_i LGD_{i}} \quad .
 $$
-Les valeurs de x1, x2 et x3 malheureusement ne sont pas encore publié par l’ACAPS.
+Les valeurs de x1, x2 et x3 malheureusement ne sont pas encore publié par l'ACAPS.
 
-##### Exigence de capital relative au risque de contrepartie de type 2 :
+##### Exigence de capital relative au risque de contrepartie de type 2
 L'exigence de capital relative au risque de contrepartie de type 2 est le montant total des
 exigences de capitaux relatives aux risque de contrepartie des assurés, des intermédiaires et des
 autres contreparties :
@@ -1487,12 +1499,13 @@ avec :
 
 3) $CSR_{ACr}$ : L'exigence de capital relative au risque lié aux autres contreparties correspond à $X\%$ de la somme des créances de l'actif circulant, autres que les créances vis-à-vis de l'Etat des contreparties visées aux 1) et 2) ci-dessus et les montants des chèques et valeurs à encaisser, nettes de provisions et qui demeurent impayées pendant une période supérieure à six (06) mois.
 
-#### Exigence de capital relative au risque de concentration ($CSR_{Ct}$) :
+#### Exigence de capital relative au risque de concentration ($CSR_{Ct}$)
+
 L'exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d'émetteurs appartenant aux mêmes groupes. 
 
 Lorsque des émetteurs appartenant à des groupes spécifiques présentent des liens étroits et partagent des caractéristiques similaires, une baisse de la valeur de leurs actifs peut avoir un impact très important. Par conséquent, il est essentiel de prendre en compte cette concentration de risques lors de l'évaluation des réserves de capital requises.
 
-Mathématiquement l’exigence de capital relative au risque de concentration correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d'émetteurs.
+Mathématiquement l'exigence de capital relative au risque de concentration correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d'émetteurs.
 $$
 CSR_{Ct} = \sqrt{\sum_i CSR_i^2}
 $${#eq-gbmp}
@@ -1500,26 +1513,27 @@ avec $i = \{ \text{Les sous-risques de concentration relatifs aux differents gro
 
 Pour chaque groupe d'émetteurs, l'exigence de capital relative au risque de concentration egale à $X\%$ de l'écart positif constaté entre le montant des placements de l'entreprise d'assurances et de réassurance, autres que les valeurs de l'Etat ou celles jouissant de sa garantie, relatifs à l'ensemble d'émetteurs appartenant au groupe précité et $X\%$ du total de ses placements.
 
-#### Exigence de capital relative au risque de souscription vie ($CSR_{SV}$) :
+#### Exigence de capital relative au risque de souscription vie ($CSR_{SV}$) 
+
 L'exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques.
 
-Le sous-risque de mortalité concerne les pertes potentielles découlant de décès prématurés d’un assuré, tandis que le sous-risque de longévité se rapporte aux pertes potentielles résultant d'une durée de vie plus longue que prévue. Le sous-risque de rachat concerne les pertes potentielles liées aux retraits anticipés des contrats d'assurance-vie, aussi le sous-risque de frais porte sur les pertes potentielles engendrées par les coûts administratifs associés aux contrats. Et le sous-risque de catastrophe concerne les pertes potentielles résultant d'événements extrêmes tels que des catastrophes naturelles.
+Le sous-risque de mortalité concerne les pertes potentielles découlant de décès prématurés d'un assuré, tandis que le sous-risque de longévité se rapporte aux pertes potentielles résultant d'une durée de vie plus longue que prévue. Le sous-risque de rachat concerne les pertes potentielles liées aux retraits anticipés des contrats d'assurance-vie, aussi le sous-risque de frais porte sur les pertes potentielles engendrées par les coûts administratifs associés aux contrats. Et le sous-risque de catastrophe concerne les pertes potentielles résultant d'événements extrêmes tels que des catastrophes naturelles.
 
-L'exigence de capital relative au risque de souscription vie permet de tenir compte des interdépendances entre ces différents sous-risques par l’applications des coefficients des corrélations entre ces eux, et de quantifier les réserves financières nécessaires aux compagnies d’assurance pour faire face aux pertes potentielles résultant des variations des facteurs liés à la mortalité, à la longévité, aux rachats, aux frais et aux catastrophes.
+L'exigence de capital relative au risque de souscription vie permet de tenir compte des interdépendances entre ces différents sous-risques par l'applications des coefficients des corrélations entre ces eux, et de quantifier les réserves financières nécessaires aux compagnies d'assurance pour faire face aux pertes potentielles résultant des variations des facteurs liés à la mortalité, à la longévité, aux rachats, aux frais et aux catastrophes.
 
 $$
 CSR_{SV} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
 $${#eq-gbmp}
 avec : $i,j \in \{\text{Mortalite, Longevite, Rachat, Frais, catastrophe} \}$
 
-##### Exigence de capital pour risque de mortalité ($CSR_{Mor}$) :
+##### Exigence de capital pour risque de mortalité ($CSR_{mort}$) :
 L'exigence de capital pour risque de mortalité correspond à la perte de fonds propres due à la hausse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
 
 La hausse des taux de mortalité précitée ne s'applique qu'aux contrats d'assurance pour lesquels une
 hausse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles.
 
 $$
-CSR_{Mor} = BE(Choc) - BE \quad ,
+CSR_{mort} = BE(Choc) - BE \quad ,
 $${#eq-gbmp}
 avec : 
 $$
@@ -1549,15 +1563,15 @@ $TM$ : Taux de Mortalité.
 $TM(Choc)$ : Le taux de mortalité choqué par une hausse de X%.
 
 ##### Exigence de capital pour risque de rachat ($CSR_{R}$) :
-d’abord c'est quoi un rachat en assurance vie ?
+d'abord c'est quoi un rachat en assurance vie ?
 
-un rachat en assurance vie est un retrait. L’épargne placée sur ce contrat est disponible : les fonds ne sont pas bloqués et les assures peuvent les récupérer intégralement, ou en partie, à tout moment. On distingue :
+un rachat en assurance vie est un retrait. L'épargne placée sur ce contrat est disponible : les fonds ne sont pas bloqués et les assures peuvent les récupérer intégralement, ou en partie, à tout moment. On distingue :
 
-•	**Le rachat partiel** : les assures peuvent récupérer une fraction de la valeur du contrat – qui sera constituée d’une part de capital et d’une part d’intérêts capitalisés – s’ils ont par exemple besoin de liquidités pour un projet précis. Le rachat partiel permet de ne pas mettre un terme au contrat et de ne pas perdre l’antériorité fiscale.
+- **Le rachat partiel** : les assures peuvent récupérer une fraction de la valeur du contrat qui sera constituée d'une part de capital et d'une part d'intérêts capitalisés s'ils ont par exemple besoin de liquidités pour un projet précis. Le rachat partiel permet de ne pas mettre un terme au contrat et de ne pas perdre l'antériorité fiscale.
 
-•	**Le rachat total** : les assures peuvent récupérer l’intégralité de la valeur de rachat de leur assurance vie, et leur contrat prend fin, entrainant la perte de l’antériorité fiscale.
+- **Le rachat total** : les assures peuvent récupérer l'intégralité de la valeur de rachat de leur assurance vie, et leur contrat prend fin, entraînant la perte de l'antériorité fiscale.
 
-L'exigence de capital pour risque de rachat est correspond au maximun entre les exigences de capitaux suivantes:
+L'exigence de capital pour risque de rachat est correspond au maximum entre les exigences de capitaux suivantes:
 
 - L'exigence de capital pour risque de hausse des taux de rachat : cette exigence signifie la perte de fonds propre qui résulterait d'une revalorisation des provisions techniques prudentielles suite à une hausse de $X\%$ des taux de rachat retenus, en montant et en nombre. Toutefois, les taux de rachat augmentés de la hausse précitée ne doivent pas dépasser $X\%$.
 
@@ -1599,7 +1613,7 @@ $$
 CSR_{Cat} = BE(Choc)-BE \quad ,
 $${#eq-gbmp}
 avec :
-$BE(Choc)$ : Meilleure estimation après le choc par un coefficient X%, ce taux est estimé par l’ACAPS de 0,2 %.
+$BE(Choc)$ : Meilleure estimation après le choc par un coefficient X%, ce taux est estimé par l'ACAPS de 0,2 %.
 $BE$: Meilleure estimation sans aucun choc.
 
 #### Exigence de capital relative au risque de souscription non vie ($CSR_{SNV}$) :
@@ -1717,12 +1731,79 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 :::
 
 
+# CHAPITRE VII : Application numérique de la Solvabilité Basée sur les Risque 
+
+## Modèle LSTM appliqué au cours de l'indice MASI
+
+## Application de calcul des CSR
+
+Dans le cadre de ce projet, nous avons développé une application permettant de calculer les capitaux de solvabilité requis. Ce calcul passe par plusieurs étapes c'est pourquoi l'application contient plusieurs onglets : 
+
+- **Paramètres** : les paramètres généraux de l'application;
+_ **Courbe des taux** : construction de la courbe des taux zéro coupon;
+_ **Non-vie hors rentes** : calcul des meilleures estimations pour une apération d'assurance non vie hors rente (exemple de l'accident de travail AT);
+- **Assurance vie** : calcul des meilleures estimations pour une apération d'assurance vie (exemple d'un capital garanti dégressif en cas de décès).
+
+![Onglets de l'application](Rapport-PFE_files/figure-html/Onglets_App.png){#fig-onglets}
+
+Cette application a été développée grâce a [Shiny](https://shiny.posit.co/) et une de ses extensions [bs4dash](https://rinterface.github.io/bs4Dash/index.html).
+En guise d'information, Shiny est un package R qui facilite la création d'applications Web interactives directement à partir de R. Vous pouvez héberger des applications autonomes sur une page Web ou les intégrer dans des documents _R Markdown_ ou créer des tableaux de bord. Vous pouvez également étendre vos applications Shiny avec des thèmes _CSS_, des widgets _html_ et des actions _JavaScript_, d'où l'intervention de {bs4Dash} dans ce projet. Il permet quant à lui de créer des tableaux de bord _Shiny_ avec la technologie _Bootstrap 4_. Le choix du langage R pour développer cette application est motivé par la simplicité du package shiny et de plus ce langage nous est déjà familier puisque c'est l'un des plus utilisés en sciences de données.
+
+L'application est une agglomération de codes et de calculs, son utilisation nécessite alors de claires indications.
+
+### Navigation dans le code source
+
+Le dossier de l'application contient trois fichiers principaux d'extention ".R". Le premier nommé _app.R_ contient la partie ui (user interface) et server de l'application. Le socond,  _functions.R_ détient l'ensemble des fonctions que nous avons programmé et qui sont requis dans le fichier _app.R_. Le dernier fichier sert à automatiser l'installation de tous les packages nécessaire pour faire tourner l'applciation et nous l'avons nommé _installation packages.R_.
+
+Les commentaires ont été faits de sorte à faciliter la navigation. Peut importe le fichier, vous pouvez commencer par contracter votre code comme indiqué dans la @fig-app_R. Cette dernière est celle du code contracté du fichier _app.R_. Comme vous pouvez le constater, les titres sont assez significatifs. Vous pouvez donc étendre la partie qui vous intéresse pour avoir accès au code.
+Cette astuce, simple qu'elle puisse paraître, est très utile pour naviguer dans le code source sachant que le nombre de lignes est pléthoriques.
+
+![Fichier app.R](Rapport-PFE_files/figure-html/codes_app_R.png){#fig-app_R}
+
+### Paramètres
+
+Cet onglet est dédié à la spécification de certains paramètres de la normes _SBR_. Nous avons donné des valeurs par défaut puisque l'ACAPS n'a toujours pas quantifié de manière officielle ces paramètres. Dans cet onglet on trouve :
+
+- **Choc de mortalité** : représente le taux de choc de mortalité que nous avons fixé à $30\%$ selon les informations disponibles.
+
+- **Choc de catastrophe** : taux de hausse de la mortalité due à une catastrophe naturelle. Ce taux est fixé par défaut à $0,2\%$  puisque l'ACAPS ne l'a pas encore communiqué. Par catastrophe naturelle, on sous entend une circonstance particulière telle qu'une épidémie, un tremblement de terre etc,
+
+- **Probabilité de défaut** : représente la probabilité de défaut des cessionnaires. Nous avons pris la valeur de $1,2\%$ qui est la praba de défaut moyenne des réassureurs sur le marché,
+
+- **Cession vie** : est le taux de cession des engagements dans le cadre de l'opération d'assurance vie. Ce paramètre dépend du traité de réassurance, autrement dit c'est une entrée définie par l'utilsateur de l'application et non par l'ACAPS. pour les données dont nous disposons, ce taux est de $1\%$,
+
+- **Cession primes non-vie** : taux de cession des primes dans l'opération d'assurance non vie qui vaut $5\%$,
+
+- **Cession sinistres non-vie** : taux de cession des sinistres dans l'opération d'assurance non vie qui vaut $3\%$,
+
+- **Augmentation des FG* : taux d'augmentation des frais de gestions valant par défaut dans notre application $14\%$;
+
+- **Majoration des FG** : taux de majoration des frais de gestions qui correspond au taux d'augmentation annuelle pour les années de projection. Il vaut $1,5\%$;
+
+![Apperçu de l'onglet paramètre](Rapport-PFE_files/figure-html/parametres.png){#fig-parametres}
+
+### Courbe des taux
+
+La construction de la courbe des taux zéro coupon est une étape cruciale du calcul de CSR. Nous avons inclus ce processus décrit à la @sec-courbe_zc. L'application donne la main à l'utilisateur de saisir une date de valeur, le 30 décembre 2022 pour notre étude. Cette date n'est rien d'autre que la date d'inventaire. 
+
+![Selection de la date de valeur](Rapport-PFE_files/figure-html/Date_zc.png){#fig-Date_zc}
+
+En suite, l'application se charge de télécharger automatiquement la table des taux des bons de références disponibles sur le site de la Banque Centrale BAM. Cette table est alors utilisée pour faire une interpolation afin de trouver les taux correspondant aux maturités pleines. On utilise ces derniers pour calculer d'abord les taux actuariels et par ricochet les taux zéro coupon. Dans cet onglet, on peut trouver les différentes étapes suivies pour la construction de la courbe des taux zéro coupon, du téléchargement des données au boostraping. De plus, toutes les tables sont exportables sous format pdf, excel, ou csv.
+
+![Apperçu de la courbe des taux zéro-coupon dans l'application](Rapport-PFE_files/figure-html/TauxZC2.png){#fig-tzc_app}
+
+![Zoom sur la courbe de taux zéro coupon (En bleue)](Rapport-PFE_files/figure-html/tauxZC.png){#fig-tzc}
+
+Une fois la courbe construite, nous allons l'utiliser dans la suite de notre application pour le calcul des tous les flux futurs actualisés dont nous aurons besoin.
+
+### Opérations d'assurance non-vie hors rente
+
 ## ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT {-}
 ### Echelles de notation {-}
 
 - Pour les cessionnaires et les cédantes :
 
-L’échelle de notation à retenir correspond à la notation financière la plus récente délivrée, durant les dix-huit (18) derniers mois, par l’une des agences de notation citées ci-dessous et ce, conformément au tableau de correspondance suivant :
+L'échelle de notation à retenir correspond à la notation financière la plus récente délivrée, durant les dix-huit (18) derniers mois, par l'une des agences de notation citées ci-dessous et ce, conformément au tableau de correspondance suivant :
 
 ```{r echo=FALSE}
 library(kableExtra)
@@ -1743,7 +1824,7 @@ tableau1 %>%
 ```
 
 
-En l’absence de notation financière délivrée, durant les dix-huit (18) derniers mois, par l’une des agences de notation financière précitées et en l’absence d’une notation financière équivalente justifiée, durant la même période, l’échelle de notation est retenue en fonction du ratio de solvabilité du cessionnaire ou de la cédante concerné et ce, conformément au tableau de correspondance suivant :
+En l'absence de notation financière délivrée, durant les dix-huit (18) derniers mois, par l'une des agences de notation financière précitées et en l'absence d'une notation financière équivalente justifiée, durant la même période, l'échelle de notation est retenue en fonction du ratio de solvabilité du cessionnaire ou de la cédante concerné et ce, conformément au tableau de correspondance suivant :
 
 ```{r echo=FALSE}
 library(kableExtra)
@@ -1763,16 +1844,16 @@ tableau2 %>%
   kable_material(c("striped"))
 ```
 
-Dans les autres cas, l’échelle de notation la plus faible est retenue.
+Dans les autres cas, l'échelle de notation la plus faible est retenue.
 
 - Pour les organismes dépositaires :
 
-L’échelle de notation à retenir correspond à la notation financière la plus récente délivrée, durant les
-dix-huit (18) derniers mois, par l’une des agences de notation citées ci-dessous et ce, conformément au tableau de correspondance suivant :
+L'échelle de notation à retenir correspond à la notation financière la plus récente délivrée, durant les
+dix-huit (18) derniers mois, par l'une des agences de notation citées ci-dessous et ce, conformément au tableau de correspondance suivant :
 
 ```{r echo=FALSE}
 library(kableExtra)
-Ligne1 = c("Echelle de notation","S&P", "FITCH RATINGS","MOODY’S")
+Ligne1 = c("Echelle de notation","S&P", "FITCH RATINGS","MOODY'S")
 Ligne2 = c("1","Supérieure ou égale à AA","Supérieure ou égale à AA","Supérieure ou égale à Aa")
 Ligne3 = c("2","Inférieure à AA et supérieure ou égale à A", "Inférieure à AA et supérieure ou égale à A", "Inférieure à Aa et supérieure ou égale à A")
 Ligne4 = c("3","Inférieure A et supérieure ou égale à BBB", "Inférieure A et supérieure ou égale à BBB","Inférieure A et supérieure ou égale à Baa")
@@ -1789,7 +1870,7 @@ tableau3 %>%
 
 ```
 
-En l’absence de notation financière délivrée, durant les dix-huit (18) derniers mois, par l’une des agences de notation financière précitées et en l’absence d’une notation financière équivalente justifiée, durant la même période, l’échelle de notation est retenue en fonction du ratio de solvabilité de l’organisme dépositaire concerné et ce, conformément au tableau de correspondance suivant :
+En l'absence de notation financière délivrée, durant les dix-huit (18) derniers mois, par l'une des agences de notation financière précitées et en l'absence d'une notation financière équivalente justifiée, durant la même période, l'échelle de notation est retenue en fonction du ratio de solvabilité de l'organisme dépositaire concerné et ce, conformément au tableau de correspondance suivant :
 
 ```{r echo=FALSE}
 library(kableExtra)
@@ -1808,11 +1889,11 @@ tableau4 %>%
   kbl() %>% 
   kable_material(c("striped"))
 ```
-Dans les autres cas, l’échelle de notation la plus faible est retenue.
+Dans les autres cas, l'échelle de notation la plus faible est retenue.
 
 ### Probabilités de défaut{-}
 
-La probabilité de défaut annuelle est établie en fonction de l’échelle de notation retenue en
+La probabilité de défaut annuelle est établie en fonction de l'échelle de notation retenue en
 application des dispositions du 1) ci-dessus et ce, conformément au tableau de correspondance ciaprès :
 ```{r echo=FALSE}
 library(kableExtra)

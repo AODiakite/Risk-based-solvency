@@ -1,5 +1,6 @@
 #' Ce fichier R contient toutes la partie interface de l'application
-#' ainsi que certains calculs. L'importation de fichiers functions.R est requis en début de
+#' ainsi que certains calculs. L'importation de fichiers functions.R
+#' est requis en début de
 #' puisqu'on en aura besoin dans la partie server de l'application.
 
 
@@ -34,7 +35,7 @@ ui <- dashboardPage(
     # Boxes need to be put in a row (or column)
     # Sidebar Items
     tabItems(
-      # Parametres-------
+  # Parametres-------
       tabItem(
         tabName = "parametres",
         box(
@@ -78,7 +79,7 @@ ui <- dashboardPage(
           )
         )
       ),
-      # Courbe des taux ----------
+  # Courbe des taux ----------
       tabItem(
         tabName = "courbe_taux",
         add_busy_spinner(
@@ -144,6 +145,7 @@ ui <- dashboardPage(
           )
         )
       ),
+  # Assurance non-vie hors rente ----------
       tabItem(
         tabName = "nonvieHR",
         uiOutput("valueBoxs_nvie"),
@@ -300,6 +302,7 @@ ui <- dashboardPage(
           )
         )
       ),
+  # Assurance vie----------
       tabItem(
         tabName = "ass_vie_menu",
         add_busy_spinner(
@@ -374,10 +377,12 @@ ui <- dashboardPage(
           )
         )
       ),
+  # Cession ----------
       tabItem(
         tabName = "cession_menu",
         uiOutput("cession_boxes")
       ),
+  # CSR ----------
       tabItem(
         tabName = "scr_menu",
         uiOutput("scr_boxes")
