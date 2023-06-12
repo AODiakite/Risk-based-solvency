@@ -1485,18 +1485,18 @@ FRFP = \hat R_p = \sum\limits_{i = p+1}^{n} \hat R_{i,n-i+p+1}  \qquad avec \;\;
 <p>Bien que la méthode de Chain Ladder soit celle préconisée par l’ACAPS dans le cadre de la <span class="math inline">\(SBR\)</span>, il existe sur marché d’autres méthodes de calcul des flux de règlements futurs.</p>
 </section>
 <section id="méthode-des-cadences-avec-inflation" class="level5" data-number="8.3.1.5">
-<h5 data-number="8.3.1.5" class="anchored" data-anchor-id="méthode-des-cadences-avec-inflation"><span class="header-section-number">8.3.1.5</span> Méthode des cadences avec inflation:</h5>
+<h5 data-number="8.3.1.5" class="anchored" data-anchor-id="méthode-des-cadences-avec-inflation"><span class="header-section-number">8.3.1.5</span> Méthode des cadences avec inflation :</h5>
 <p>Cette variante de la méthode des cadences tient compte de l’inflation de façon explicite. On calcule les paiements annuels en faisant la différence entre les colonnes successives du triangle des paiements cumulés. On ajuste ces paiements annuels en devises (MAD par exemple) constants en utilisant un indice d’inflation, puis on les cumule pour obtenir un triangle de montants cumulés en francs constants. On applique ensuite la méthode des cadences.</p>
 </section>
 <section id="la-méthode-du-ratio-de-paiement" class="level5" data-number="8.3.1.6">
-<h5 data-number="8.3.1.6" class="anchored" data-anchor-id="la-méthode-du-ratio-de-paiement"><span class="header-section-number">8.3.1.6</span> La méthode du ratio de paiement:</h5>
+<h5 data-number="8.3.1.6" class="anchored" data-anchor-id="la-méthode-du-ratio-de-paiement"><span class="header-section-number">8.3.1.6</span> La méthode du ratio de paiement :</h5>
 <p>Cette méthode a été à Sawkins 1975 est semblable à la méthode des cadences de développement avec inflation, sauf que les coefficients de passage <span class="math inline">\(\hat f_j\)</span> sont calculés comme une moyenne de ratios et non comme un ratio de moyennes :</p>
 <p><span class="math display">\[
 \hat f_j = \frac{1}{n-j-1} \sum\limits_{i=0}^{n-j-1} \frac{C_{i,j+1}}{C_{i,j}}
 \]</span></p>
 </section>
 <section id="la-méthode-du-ratio-de-paiement-1" class="level5" data-number="8.3.1.7">
-<h5 data-number="8.3.1.7" class="anchored" data-anchor-id="la-méthode-du-ratio-de-paiement-1"><span class="header-section-number">8.3.1.7</span> La méthode du ratio de paiement:</h5>
+<h5 data-number="8.3.1.7" class="anchored" data-anchor-id="la-méthode-du-ratio-de-paiement-1"><span class="header-section-number">8.3.1.7</span> La méthode du ratio de paiement :</h5>
 <p>La méthode de Bornhuetter-Ferguson<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> est une méthode de provisionnement qui repose sur l’idée que les pertes finales, attendues pour une année de survenance sont connues a priori et que le rythme des paiements est stable d’une année à l’autre. Elle combine les caractéristiques de la méthode des cadences et de la méthode du ratio de sinistralité attendu. Elle utilise des facteurs de développement pour estimer le pourcentage de pertes rapportées ou payées et ajoute les pertes attendues multipliées par le pourcentage de pertes non rapportées ou non payées. Elle est surtout utilisée quand les pertes sont de faible fréquence mais de forte gravité.</p>
 <p>En résumé, elle suppose que l’on dispose d’une information externe sur la valeur probable finale du coût total des sinistres, que l’on appelle <span class="math inline">\(A\)</span>, et que l’on connaisse la proportion de sinistres attendus.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> Cette méthode se formule comme suit :</p>
 <p><span id="eq-gbmp"><span class="math display">\[
@@ -1507,7 +1507,7 @@ L = D\times\frac{1}{LDF} + A \times (1- \frac{1}{LDF}) \quad ,
 <li><span class="math inline">\(L\)</span> : coût total estimé par cette méthode.</li>
 <li><span class="math inline">\(D\)</span> : coût total estimé en fonction des sinistres connues.</li>
 <li><span class="math inline">\(A\)</span> : coût total (connus + tardifs) attendu a priori.</li>
-<li><span class="math inline">\(LDF\)</span> : proportion de la liquidation déjà constatée</li>
+<li><span class="math inline">\(LDF\)</span> : proportion de la liquidation déjà constatée.</li>
 </ul>
 <div class="callout-tip callout callout-style-simple callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -1530,7 +1530,7 @@ Exemple
 </section>
 </section>
 <section id="la-meilleure-estimation-des-frais-de-gestion" class="level4" data-number="8.3.2">
-<h4 data-number="8.3.2" class="anchored" data-anchor-id="la-meilleure-estimation-des-frais-de-gestion"><span class="header-section-number">8.3.2</span> La meilleure estimation des frais de gestion:</h4>
+<h4 data-number="8.3.2" class="anchored" data-anchor-id="la-meilleure-estimation-des-frais-de-gestion"><span class="header-section-number">8.3.2</span> La meilleure estimation des frais de gestion :</h4>
 <p>la meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs liés aux contrats. <span id="eq-gbmp"><span class="math display">\[
 BEFG= \sum_{t \geq 1} \frac{FFGF_t}{(1+r_t)^t} \quad ,
 \tag{27}\]</span></span></p>
@@ -1546,9 +1546,9 @@ FFGF = \overline{TFG} \times (BES + BEP) \quad ,
 </ul>
 <p>Donc:</p>
 <p><span id="eq-gbmp"><span class="math display">\[
-\overline{TFG} = \frac{TFG_{t} + TFG_{t-1} + TFG_{t-2}}{3}
+\overline{TFG} = \frac{TFG_{t} + TFG_{t-1} + TFG_{t-2}}{3} \quad ,
 \tag{29}\]</span></span></p>
-<p>Ainsi que :</p>
+<p>ainsi que :</p>
 <p><span id="eq-gbmp"><span class="math display">\[
 TFG_{t} = \frac{FG}{BES+ REC} \quad ,
 \tag{30}\]</span></span></p>
@@ -1563,7 +1563,7 @@ TFG_{t} = \frac{FG}{BES+ REC} \quad ,
 <h3 data-number="8.4" class="anchored" data-anchor-id="part-des-cessionnaires-dans-les-provisions-techniques-prudentielles"><span class="header-section-number">8.4</span> Part des cessionnaires dans les provisions techniques prudentielles:</h3>
 <p>La part des cessionnaires dans les provisions techniques prudentielles est évaluée en considérant la différence entre d’une part, la meilleure estimation des engagements cédés et d’autre part, l’ajustement pour défaut de contrepartie.</p>
 <p><span id="eq-gbmp"><span class="math display">\[
-PC = BEC_{eng} - Adj
+PC = BEC - Adj
 \tag{31}\]</span></span></p>
 <section id="la-meilleure-estimation-des-engagements-cédés-bec" class="level4" data-number="8.4.1">
 <h4 data-number="8.4.1" class="anchored" data-anchor-id="la-meilleure-estimation-des-engagements-cédés-bec"><span class="header-section-number">8.4.1</span> La meilleure estimation des engagements cédés (<span class="math inline">\(BEC\)</span>) :</h4>
@@ -1571,7 +1571,7 @@ PC = BEC_{eng} - Adj
 <h5 class="unnumbered anchored" data-anchor-id="les-opérations-dassurance-vie-décès-ou-de-capitalisation">Les opérations d’assurance vie, décès ou de capitalisation :</h5>
 <p>la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des engagements par le rapport entre d’une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d’autre part, la somme des provisions mathématiques , des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.</p>
 <p><span id="eq-gbmp"><span class="math display">\[
-BEC_{eng} = TC \times BE_{eng} \quad ,
+BEC = TC \times BE_{eng} \quad ,
 \tag{32}\]</span></span> avec :</p>
 <ul>
 <li><span class="math inline">\(TC\)</span> (taux de cession): le rapport entre d’une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d’autre part, la somme des provisions mathématiques, des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.</li>
@@ -1590,16 +1590,16 @@ BEC =\; BESC + \; BEPC \quad ,
 </section>
 </section>
 <section id="lajustement-pour-défaut-de-contrepartie" class="level4" data-number="8.4.2">
-<h4 data-number="8.4.2" class="anchored" data-anchor-id="lajustement-pour-défaut-de-contrepartie"><span class="header-section-number">8.4.2</span> L’ajustement pour défaut de contrepartie:</h4>
+<h4 data-number="8.4.2" class="anchored" data-anchor-id="lajustement-pour-défaut-de-contrepartie"><span class="header-section-number">8.4.2</span> L’ajustement pour défaut de contrepartie :</h4>
 <p>En cas de réassuarance, la compagnie d’assurance se confronte à un nouveau risque, celui de défaut de contrepartie. En effet, il se pourrait que les risques cédés par l’assureur ne soient pas supportés par le réassureur. Il est ainsi primordial de tenir en compte ce risque dans le calcul des meilleures estimations en effectuant un ajustement. L’ajustement pour défaut de contrepartie est déterminé en actualisant les flux d’ajustement futurs sur la base de la courbe des taux fixée par l’Autorité. Il correspond à la perte anticipée résultant de la défaillance probable du cessionnaire.</p>
-<p>L’<em>ACAPS</em> propose une méthode de détermination des flux d’ajustement futurs décrite à <strong>l’annexe N°6</strong> de la circulaire. Cette méthode suit un certain nombre d’étapes que nous décrivons ci-après</p>
+<p>L’<em>ACAPS</em> propose une méthode de détermination des flux d’ajustement futurs décrite à <strong>l’annexe N°6</strong> de la circulaire de l’ACAPS. Cette méthode suit un certain nombre d’étapes que nous décrivons ci-après</p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Etape Nº1: Calcul des meilleures estimations cédées projetées:
+Etape Nº1: Calcul des meilleures estimations cédées projetées :
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1608,7 +1608,7 @@ Etape Nº1: Calcul des meilleures estimations cédées projetées:
 </blockquote>
 <p>Posons <span class="math inline">\((F_t)_{t&gt;0}\)</span> étant les flux de règlements futurs probabilisés. La meilleure estimation des engagements cédés au titre de l’année de projection <span class="math inline">\(BEC_i\)</span> est calculée comme suit :</p>
 <p><span id="eq-gbmp"><span class="math display">\[
-BEC_i = (BES_i \times RS_{0} + BEP_i \times RP_{0}),
+BEC_i = (BES_i \times RS_{0} + BEP_i \times RP_{0}) \quad,
 \tag{34}\]</span></span></p>
 <p>où:</p>
 <ul>
@@ -1670,7 +1670,7 @@ Etape Nº3: Calcul de l’ajustement pour défaut de contrepartie
 </div>
 <div class="callout-body-container callout-body">
 <p><span id="eq-gbmp"><span class="math display">\[
-Adj_D = \sum\limits_{i&gt;0} \frac{Adj_i}{(1+r_i)^i} \quad ,
+Adj = \sum\limits_{i&gt;0} \frac{Adj_i}{(1+r_i)^i} \quad ,
 \tag{38}\]</span></span> avec <span class="math inline">\((r_i)\)</span> calculés à partir de la courbe des taux fixée par l’Autorité.</p>
 </div>
 </div>
@@ -1803,9 +1803,9 @@ CSR_M = \sqrt{\sum_{i,j\in RM }(\rho_{i,j} * CSR_{i} * CSR_{j})} \quad ,
 <p>• Autres actions non cotées.</p>
 <p>• Entités d’infrastructures.</p>
 <p><span class="math display">\[
-CSR_A = BEC _{eng} - BE_{eng} \quad ,
+CSR_A = BE _{eng}(Choc) - BE_{eng} \quad ,
 \]</span> avec :</p>
-<p><span class="math inline">\(BEC _{eng}\)</span> : Best estimant des engagements après le choque de la valeur du marché des action.</p>
+<p><span class="math inline">\(BEC _{eng}(Choc)\)</span> : Best estimant des engagements après le choque de la valeur du marché des action.</p>
 <p><span class="math inline">\(BE_{eng}\)</span>: Best estimant des engagements.</p>
 </section>
 <section id="lexigence-de-capital-relative-au-risque-de-taux-csr_t" class="level5" data-number="9.1.1.2">
@@ -1824,9 +1824,9 @@ CSR_T = max (CSR_{TH}; CSR_{TB}) \quad ,
 <h5 data-number="9.1.1.3" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-risque-immobilier-csr_i"><span class="header-section-number">9.1.1.3</span> L’exigence de capital relative au risque immobilier (<span class="math inline">\(CSR_I\)</span>)</h5>
 <p>L’exigence de capital relative au risque immobilier est la perte de fonds propres due à une baisse de la valeur des actifs immobiliers.</p>
 <p>Cette exigence est établie pour évaluer les réserves financières nécessaires face à une potentielle baisse de valeur des biens immobiliers pour minimiser les risques. <span class="math display">\[
-CSR_I = BEC_{eng} - BE_{eng} \quad ,
+CSR_I = BEC_{eng}(Choc) - BE_{eng} \quad ,
 \]</span> avec :</p>
-<p><span class="math inline">\(BEC_{eng}\)</span> : La meilleure estimation des engagements choqué. <span class="math inline">\(BEC_{eng}\)</span> : La meilleure estimation des engagements avant choque.</p>
+<p><span class="math inline">\(BE_{eng}(Choc)\)</span> : La meilleure estimation des engagements choqué. <span class="math inline">\(BE_{eng}\)</span> : La meilleure estimation des engagements avant choque.</p>
 </section>
 <section id="lexigence-de-capital-relative-au-risque-décart-de-taux-csr_et" class="level5" data-number="9.1.1.4">
 <h5 data-number="9.1.1.4" class="anchored" data-anchor-id="lexigence-de-capital-relative-au-risque-décart-de-taux-csr_et"><span class="header-section-number">9.1.1.4</span> L’exigence de capital relative au risque d’écart de taux (<span class="math inline">\(CSR_ET\)</span>)</h5>
@@ -1841,20 +1841,20 @@ CSR_I = BEC_{eng} - BE_{eng} \quad ,
 <li>l’exigence de capital pour risque d’augmentation de la valeur de la devise étrangère par rapport au dirham.</li>
 <li>l’exigence de capital pour risque de diminution de la valeur de la devise étrangère par rapport au dirham.</li>
 </ul>
-<p>L’exigence de capital pour risques d’augmentation ou de diminution de la valeur de la devise étrangère par rapport au dirham est egale à la perte de fonds propres qui résulterait des scénarios d’augmentation ou de diminution, respectivement de <span class="math inline">\(X\%\)</span> et <span class="math inline">\(X\%\)</span>, de la valeur de la devise étrangère par rapport au dirham.</p>
+<p>L’exigence de capital pour risques d’augmentation ou de diminution de la valeur de la devise étrangère par rapport au dirham est égale à la perte de fonds propres qui résulterait des scénarios d’augmentation ou de diminution, respectivement de <span class="math inline">\(X\%\)</span> et <span class="math inline">\(X\%\)</span>, de la valeur de la devise étrangère par rapport au dirham.</p>
 <p><span class="math display">\[
-CSR_{Ch} = \sum_{i\in RC} CSR_{Ch_{i}}
+CSR_{Ch} = \sum_{i\in RC} CSR_{Ch_{i}} \quad ,
 \]</span> avec : <span class="math inline">\(RC\)</span> = {risque de change pour chaque devise étrangère }</p>
 <p>et <span class="math display">\[
 CSR^{change}_{i} = max (CSR^{augmentation}_{i} ; CSR^{diminution}_{i})
 \]</span> - augmentation : le risque d’augmentation de la valeur de la devise étrangère par rapport au dirham. - diminution : le risque de diminution de la valeur de la devise étrangère par rapport au dirham.</p>
-<p>tel que: &nbsp; <span class="math inline">\(CSR^{j}_{i} = BE^{\text{scénario j}} - BE\)</span> <span style="display:inline-block;width:2cm;"></span> <span class="math inline">\(j \in \{ augmentation ; diminution\}\)</span></p>
+<p>Tel que: <span class="math display">\[CSR^{j}_{i} = BE^{\text{scénario j}} - BE \qquad j \in \{ \text{augmentation} ; \text{diminution}\}\]</span></p>
 </section>
 </section>
-<section id="exigence-de-capital-relative-au-risque-de-contrepartie-csr_contrepartie" class="level4" data-number="9.1.2">
-<h4 data-number="9.1.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-contrepartie-csr_contrepartie"><span class="header-section-number">9.1.2</span> Exigence de capital relative au risque de contrepartie (<span class="math inline">\(CSR_{contrepartie}\)</span>)</h4>
+<section id="exigence-de-capital-relative-au-risque-de-contrepartie-csr_cp" class="level4" data-number="9.1.2">
+<h4 data-number="9.1.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-contrepartie-csr_cp"><span class="header-section-number">9.1.2</span> Exigence de capital relative au risque de contrepartie (<span class="math inline">\(CSR_{Cp}\)</span>)</h4>
 <p>L’exigence de capital relative au risque de contrepartie est le montant total des exigences de capitaux relatives aux sous-risques de contrepartie de <em>type 1</em> et de <em>type 2</em> , une fois les coefficients de corrélation appliqués. <span class="math display">\[
-CSR_{contrepartie} = \sqrt{\sum_{i,j\in type}(\rho_{i,j}\times CSR_{contrepartie}^{i}\times CSR_{contrepartie}^{j})}
+CSR_{Cp} = \sqrt{\sum_{i,j\in type}(\rho_{i,j}\times CSR_{Cp}^{i}\times CSR_{Cp}^{j})}
 \]</span> avec : <span class="math inline">\(type \in \{type 1 ; type 2\}\)</span></p>
 <section id="exigence-de-capital-relative-au-risque-de-contrepartie-de-type-1" class="level5" data-number="9.1.2.1">
 <h5 data-number="9.1.2.1" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-contrepartie-de-type-1"><span class="header-section-number">9.1.2.1</span> Exigence de capital relative au risque de contrepartie de type 1:</h5>
@@ -1916,41 +1916,48 @@ CSR_{contrepartie}^{type2} = CSR_{contrepartie}^{Assures} + CSR_{contrepartie}^{
 </ol>
 </section>
 </section>
-<section id="exigence-de-capital-relative-au-risque-de-concentration-csr_concentration" class="level4" data-number="9.1.3">
-<h4 data-number="9.1.3" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-concentration-csr_concentration"><span class="header-section-number">9.1.3</span> Exigence de capital relative au risque de concentration (<span class="math inline">\(CSR_{concentration}\)</span>)</h4>
+<section id="exigence-de-capital-relative-au-risque-de-concentration-csr_ct" class="level4" data-number="9.1.3">
+<h4 data-number="9.1.3" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-concentration-csr_ct"><span class="header-section-number">9.1.3</span> Exigence de capital relative au risque de concentration (<span class="math inline">\(CSR_{Ct}\)</span>)</h4>
 <p>L’exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d’émetteurs appartenant aux mêmes groupes.</p>
 <p>Lorsque des émetteurs appartenant à des groupes spécifiques présentent des liens étroits et partagent des caractéristiques similaires, une baisse de la valeur de leurs actifs peut avoir un impact très important. Par conséquent, il est essentiel de prendre en compte cette concentration de risques lors de l’évaluation des réserves de capital requises.</p>
 <p>Mathématiquement l’exigence de capital relative au risque de concentration correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d’émetteurs. <span class="math display">\[
-CSR_{concentration} = \sqrt{\sum_i CSR_i^2}
+CSR_{Ct} = \sqrt{\sum_i CSR_i^2}
 \]</span> avec <span class="math inline">\(i \in \{ \text{Les sous-risques de concentration relatifs aux differents groupes d'emetteurs.}\}\)</span></p>
 <p>Pour chaque groupe d’émetteurs, l’exigence de capital relative au risque de concentration egale à <span class="math inline">\(X\%\)</span> de l’écart positif constaté entre le montant des placements de l’entreprise d’assurances et de réassurance, autres que les valeurs de l’Etat ou celles jouissant de sa garantie, relatifs à l’ensemble d’émetteurs appartenant au groupe précité et <span class="math inline">\(X\%\)</span> du total de ses placements.</p>
 </section>
-<section id="exigence-de-capital-relative-au-risque-de-souscription-vie-_souscriptioncsr_vie" class="level4" data-number="9.1.4">
-<h4 data-number="9.1.4" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-souscription-vie-_souscriptioncsr_vie"><span class="header-section-number">9.1.4</span> Exigence de capital relative au risque de souscription vie (<span class="math inline">\(_{souscription}CSR_{vie}\)</span>)</h4>
+<section id="exigence-de-capital-relative-au-risque-de-souscription-vie-csr_sv" class="level4" data-number="9.1.4">
+<h4 data-number="9.1.4" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-souscription-vie-csr_sv"><span class="header-section-number">9.1.4</span> Exigence de capital relative au risque de souscription vie (<span class="math inline">\(CSR_{SV}\)</span>)</h4>
 <p>L’exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques.</p>
 <p>Le sous-risque de mortalité concerne les pertes potentielles découlant de décès prématurés d’un assuré, tandis que le sous-risque de longévité se rapporte aux pertes potentielles résultant d’une durée de vie plus longue que prévue. Le sous-risque de rachat concerne les pertes potentielles liées aux retraits anticipés des contrats d’assurance-vie, aussi le sous-risque de frais porte sur les pertes potentielles engendrées par les coûts administratifs associés aux contrats. Et le sous-risque de catastrophe concerne les pertes potentielles résultant d’événements extrêmes tels que des catastrophes naturelles.</p>
 <p>L’exigence de capital relative au risque de souscription vie permet de tenir compte des interdépendances entre ces différents sous-risques par l’applications des coefficients des corrélations entre ces eux, et de quantifier les réserves financières nécessaires aux compagnies d’assurance pour faire face aux pertes potentielles résultant des variations des facteurs liés à la mortalité, à la longévité, aux rachats, aux frais et aux catastrophes.</p>
 <p><span class="math display">\[
-_{souscription}CSR_{vie} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
-\]</span> avec : <span class="math inline">\(i,j \in \{\text{mortalite, longevite, rachat, frais  catastrophe} \}\)</span></p>
-<section id="exigence-de-capital-pour-risque-de-mortalité-csr_mortalite" class="level5" data-number="9.1.4.1">
-<h5 data-number="9.1.4.1" class="anchored" data-anchor-id="exigence-de-capital-pour-risque-de-mortalité-csr_mortalite"><span class="header-section-number">9.1.4.1</span> Exigence de capital pour risque de mortalité (<span class="math inline">\(CSR_{mortalite}\)</span>)</h5>
+CSR_{SV} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
+\]</span> avec : <span class="math inline">\(i,j \in \{\text{Mortalite, Longevite, Rachat, Frais, catastrophe} \}\)</span></p>
+<section id="exigence-de-capital-pour-risque-de-mortalité-csr_mor" class="level5" data-number="9.1.4.1">
+<h5 data-number="9.1.4.1" class="anchored" data-anchor-id="exigence-de-capital-pour-risque-de-mortalité-csr_mor"><span class="header-section-number">9.1.4.1</span> Exigence de capital pour risque de mortalité (<span class="math inline">\(CSR_{Mor}\)</span>)</h5>
 <p>L’exigence de capital pour risque de mortalité correspond à la perte de fonds propres due à la hausse de <span class="math inline">\(X\%\)</span> des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.</p>
 <p>La hausse des taux de mortalité précitée ne s’applique qu’aux contrats d’assurance pour lesquels une hausse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles.</p>
 <p><span class="math display">\[
-CSR_{mortalite} = BE^{hausse} - BE
-\]</span></p>
+CSR_{Mor} = BE(Choc) - BE \quad ,
+\]</span> avec : <span class="math display">\[
+TM(Choc) = TM \times (1 + X\%) \quad ,
+\]</span> telle que :</p>
+<p><span class="math inline">\(TM\)</span> : Taux de Mortalité avant choc. <span class="math inline">\(TM(Choc)\)</span> : Le taux de mortalité choqué par une hausse de X%.</p>
+<p>Selon l’Acaps, le taux de choc pour la mortalité est estimé à 30 %.</p>
 </section>
-<section id="exigence-de-capital-pour-risque-de-longévité-csr_longévité" class="level5" data-number="9.1.4.2">
-<h5 data-number="9.1.4.2" class="anchored" data-anchor-id="exigence-de-capital-pour-risque-de-longévité-csr_longévité"><span class="header-section-number">9.1.4.2</span> Exigence de capital pour risque de longévité (<span class="math inline">\(CSR_{longévité}\)</span>)</h5>
+<section id="exigence-de-capital-pour-risque-de-longévité-csr_lon" class="level5" data-number="9.1.4.2">
+<h5 data-number="9.1.4.2" class="anchored" data-anchor-id="exigence-de-capital-pour-risque-de-longévité-csr_lon"><span class="header-section-number">9.1.4.2</span> Exigence de capital pour risque de longévité (<span class="math inline">\(CSR_{Lon}\)</span>)</h5>
 <p>L’exigence de capital pour risque de longévité correspond à la perte de fonds propres qui résulterait de la baisse de <span class="math inline">\(X\%\)</span> des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.</p>
 <p>La baisse des taux de mortalité précitée ne s’applique qu’aux contrats d’assurance pour lesquels une baisse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles. <span class="math display">\[
-CSR_{longévité} = BE^{baisse} - BE
-\]</span></p>
+CSR_{Lon} = BE(Choc) - BE
+\]</span> avec :</p>
+<p><span class="math display">\[
+TM(Choc) = TM \times (1 - X \%) \quad ,
+\]</span> <span class="math inline">\(TM\)</span> : Taux de Mortalité. <span class="math inline">\(TM(Choc)\)</span> : Le taux de mortalité choqué par une hausse de X%.</p>
 </section>
 <section id="exigence-de-capital-pour-risque-de-rachat-csr_r" class="level5" data-number="9.1.4.3">
 <h5 data-number="9.1.4.3" class="anchored" data-anchor-id="exigence-de-capital-pour-risque-de-rachat-csr_r"><span class="header-section-number">9.1.4.3</span> Exigence de capital pour risque de rachat (<span class="math inline">\(CSR_{R}\)</span>)</h5>
-<p>Commençons d’abord par la définition de quoi un rachat en assurance vie ?</p>
+<p>d’abord c’est quoi un rachat en assurance vie ?</p>
 <p>un rachat en assurance vie est un retrait. L’épargne placée sur ce contrat est disponible : les fonds ne sont pas bloqués et les assures peuvent les récupérer intégralement, ou en partie, à tout moment. On distingue :</p>
 <p>• <strong>Le rachat partiel</strong> : les assures peuvent récupérer une fraction de la valeur du contrat – qui sera constituée d’une part de capital et d’une part d’intérêts capitalisés – s’ils ont par exemple besoin de liquidités pour un projet précis. Le rachat partiel permet de ne pas mettre un terme au contrat et de ne pas perdre l’antériorité fiscale.</p>
 <p>• <strong>Le rachat total</strong> : les assures peuvent récupérer l’intégralité de la valeur de rachat de leur assurance vie, et leur contrat prend fin, entrainant la perte de l’antériorité fiscale.</p>
@@ -1964,7 +1971,7 @@ CSR_{longévité} = BE^{baisse} - BE
 </ul>
 <p>La baisse des taux de rachat précitée ne s’applique qu’aux contrats d’assurance pour lesquels une baisse des taux de rachat entraîne une augmentation des provisions techniques prudentielles.</p>
 <p><span class="math display">\[
-CSR_R = max(CSR_{RHT}; CSR_{RBT})
+CSR_R = max(CSR_{RHT}; CSR_{RBT}) \quad ,
 \]</span> avec : <span class="math display">\[
 CSR_{RHT} = BE_{RHT} - BE
 \]</span> <span class="math display">\[
@@ -1992,28 +1999,37 @@ CSR_{frais} = BEC_{frais} - BE_{frais}
 <p><span class="math display">\[
 _{souscription}CSR_{non-vie} = \sqrt{\sum_{i,j} ( \rho_{i,j} \times CSR_i \times CSR_j)} \quad ,
 \]</span></p>
-<p>avec : <span class="math inline">\(i,j \in \{ \text{primes, provisions, catastrophe} \}\)</span> et <span class="math inline">\(\rho\)</span> es le coefficient de corrélation.</p>
-<section id="exigence-de-capital-relative-au-sous-risque-de-primes-csr_primes" class="level5" data-number="9.1.5.1">
-<h5 data-number="9.1.5.1" class="anchored" data-anchor-id="exigence-de-capital-relative-au-sous-risque-de-primes-csr_primes"><span class="header-section-number">9.1.5.1</span> Exigence de capital relative au sous-risque de primes (<span class="math inline">\(CSR_{primes}\)</span>)</h5>
+<p>avec :</p>
+<p><span class="math inline">\(i,j \in \{ \text{Primes, Provisions, Catastrophe} \}\)</span></p>
+<p><span class="math inline">\(\rho\)</span> : le coefficient de corrélation.</p>
+<section id="exigence-de-capital-relative-au-sous-risque-de-primes-csr_p" class="level5" data-number="9.1.5.1">
+<h5 data-number="9.1.5.1" class="anchored" data-anchor-id="exigence-de-capital-relative-au-sous-risque-de-primes-csr_p"><span class="header-section-number">9.1.5.1</span> Exigence de capital relative au sous-risque de primes (<span class="math inline">\(CSR_{P}\)</span>) :</h5>
 <p>L’exigence de capital relative au sous-risque de primes est le montant total des exigences de capitaux relatives aux sous-risques de primes par sous-catégorie et ce, après application des coefficients de corrélations. <span class="math display">\[
-CSR_{primes} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
-\]</span> avec : <span class="math inline">\(i,j \in \{ \text{Les sous-risques de primes par sous-categorie }\}\)</span> et <span class="math inline">\(\rho\)</span> es le coefficient de corrélation entre les sous-catégories des sous-risques de primes.</p>
+CSR_{P} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
+\]</span> avec :</p>
+<p><span class="math inline">\(i,j \in \{ \text{Les sous-risques de primes par sous-categorie }\}\)</span></p>
+<p><span class="math inline">\(\rho\)</span> : le coefficient de corrélation entre les sous-catégories des sous-risques de primes.</p>
 <p>Pour chaque sous-catégorie, l’exigence de capital afférente au sous risque de primes est égale à X fois le produit de l’écart-type de primes et du montant des primes acquises augmenté de la provision pour primes non-acquises nettes de réassurance au titre de l’exercice inventorié. <span class="math display">\[
-CSR_{sous-categorie}^{primes} = X * \sigma_{primes} * BE_{primes}
+CSR_{P}(\text{sous-categorie}) = X \times \sigma_{P} \times P \quad ,
 \]</span></p>
-<p>avec : &nbsp; <span class="math inline">\(BE_{primes} = Primes_{acquises}^{nettes} + Provision_{primes_{non-acquise}}^{nettes}\)</span></p>
+<p>avec :<br>
+<span class="math display">\[
+P = PA + PPNA \quad ,
+\]</span> telle que : <span class="math inline">\(P\)</span>: Primes. <span class="math inline">\(PA\)</span> : Primes acquises nettes. <span class="math inline">\(PPNA\)</span> : Provision pour primes non-acquises nettes.</p>
 </section>
-<section id="exigence-de-capital-relative-au-sous-risque-de-provisions-csr_provisions" class="level5" data-number="9.1.5.2">
-<h5 data-number="9.1.5.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-sous-risque-de-provisions-csr_provisions"><span class="header-section-number">9.1.5.2</span> Exigence de capital relative au sous-risque de provisions (<span class="math inline">\(CSR_{provisions}\)</span>):</h5>
+<section id="exigence-de-capital-relative-au-sous-risque-de-provisions-csr_pr" class="level5" data-number="9.1.5.2">
+<h5 data-number="9.1.5.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-sous-risque-de-provisions-csr_pr"><span class="header-section-number">9.1.5.2</span> Exigence de capital relative au sous-risque de provisions (<span class="math inline">\(CSR_{Pr}\)</span>) :</h5>
 <p>L’exigence de capital relative au sous-risque de provisions est la somme total des exigences de capitaux relatives aux sous-risques de provision par sous-catégorie, on prenant on considration les coefficients de correlation entre les sous-risques. <span class="math display">\[
-CSR_{provisions} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
-\]</span> avec : <span class="math inline">\(i,j \in \{\text{Les sous-risques de provisions par sous-categorie} \}\)</span> et <span class="math inline">\(\rho\)</span> es le coefficient de corrélation entre les sous-catégories des sous-risques de provisions.</p>
+CSR_{Pr} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)} \quad ,
+\]</span> avec :</p>
+<p><span class="math inline">\(i,j \in \{\text{Les sous-risques de provisions par sous-categorie} \}\)</span>.</p>
+<p><span class="math inline">\(\rho\)</span> : le coefficient de corrélation entre les sous-catégories des sous-risques de provisions.</p>
 <p>Pour chaque sous-catégorie, l’exigence de capital afférente au sous risque de provision est égale à X fois le produit de l’écart-type de provisions et du montant de la meilleure estimation des engagements pour sinistres nette de réassurance. <span class="math display">\[
-CSR_{sous-categorie}^{provisions} = X * \sigma_{provisions} * BE_{engagements}
+CSR_{Pr} (\text{sous-categorie}) = X\% \times \sigma_{Pr} \times BE_{eng}
 \]</span></p>
 </section>
-<section id="exigence-de-capital-relative-au-risque-de-catastrophe-non-vie" class="level5" data-number="9.1.5.3">
-<h5 data-number="9.1.5.3" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-catastrophe-non-vie"><span class="header-section-number">9.1.5.3</span> Exigence de capital relative au risque de catastrophe non-vie:</h5>
+<section id="exigence-de-capital-relative-au-risque-de-catastrophe-non-vie-csr_cat" class="level5" data-number="9.1.5.3">
+<h5 data-number="9.1.5.3" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-de-catastrophe-non-vie-csr_cat"><span class="header-section-number">9.1.5.3</span> Exigence de capital relative au risque de catastrophe non-vie (<span class="math inline">\(CSR_{Cat}\)</span>) :</h5>
 <p>L’exigence de capital relative au risque de catastrophe non-vie correspond au racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de catastrophe non-vie des garanties suivantes :</p>
 <ul>
 <li>Individuelles accidents et Invalidité ;</li>
@@ -2026,31 +2042,35 @@ CSR_{sous-categorie}^{provisions} = X * \sigma_{provisions} * BE_{engagements}
 <li>Aviation corps et responsabilité civile résultant de l’emploi des aéronefs ;</li>
 <li>Marchandises transportées par voie terrestre ;</li>
 <li>Assurance récolte, grêle ou gelée et éléments naturels ;</li>
-<li>Crédit et caution</li>
+<li>Crédit et caution;</li>
 </ul>
+<p><span class="math display">\[
+CSR_{Cat} = \sqrt{\sum_{i}   CSR_{i}^2} \quad ,
+\]</span> telle que, le <span class="math inline">\(i\)</span> Appartient à la liste des garanties ci-dessus.</p>
 </section>
 </section>
 </section>
 <section id="exigence-de-capital-relative-au-risque-opérationnel-csro" class="level3" data-number="9.2">
-<h3 data-number="9.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-opérationnel-csro"><span class="header-section-number">9.2</span> Exigence de capital relative au risque opérationnel (<span class="math inline">\(CSRO\)</span>)</h3>
+<h3 data-number="9.2" class="anchored" data-anchor-id="exigence-de-capital-relative-au-risque-opérationnel-csro"><span class="header-section-number">9.2</span> Exigence de capital relative au risque opérationnel (<span class="math inline">\(CSRO\)</span>) :</h3>
 <p>L’exigence de capital relative au risque opérationnel correspond à X% du capital de solvabilité requis de base. <span id="eq-gbmp"><span class="math display">\[
-CSR_{opérationnel} = X\% * CSR_{base}
+CSRO = X\% * CSRB
 \tag{41}\]</span></span></p>
 </section>
 <section id="ajustement-du-capital-de-solvabilité-requis" class="level3" data-number="9.3">
-<h3 data-number="9.3" class="anchored" data-anchor-id="ajustement-du-capital-de-solvabilité-requis"><span class="header-section-number">9.3</span> Ajustement du capital de solvabilité requis</h3>
-<section id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-assurés-adj_assurespertes" class="level4" data-number="9.3.1">
-<h4 data-number="9.3.1" class="anchored" data-anchor-id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-assurés-adj_assurespertes"><span class="header-section-number">9.3.1</span> Ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés (<span class="math inline">\(Adj_{assures}^{Pertes}\)</span>)</h4>
+<h3 data-number="9.3" class="anchored" data-anchor-id="ajustement-du-capital-de-solvabilité-requis"><span class="header-section-number">9.3</span> Ajustement du capital de solvabilité requis :</h3>
+<section id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-assurés-adj_as" class="level4" data-number="9.3.1">
+<h4 data-number="9.3.1" class="anchored" data-anchor-id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-assurés-adj_as"><span class="header-section-number">9.3.1</span> Ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés (<span class="math inline">\(Adj_{As}\)</span>) :</h4>
 <p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés egale au minimum de l’écart entre le capital de solvabilité requis de base calculées brutes et nettes d’absorption par les assurés, d’une part, et le montant des bénéfices discrétionnaires futures d’autre part. <span id="eq-gbmp"><span class="math display">\[
-Adj_{assures}^{Pertes} = min (CSR_{base}^{nettes}-CSR_{base}^{brutes};BDF)
+Adj_{As} = min (CSRB_{nette}-CSRB_{brute};BDF) \quad ,
 \tag{42}\]</span></span></p>
+<p>avec : <span class="math inline">\(Adj_{As}\)</span> : Ajustement pour tenir compte la capacité d’absorption des pertes par les assurés.</p>
 </section>
-<section id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-impôts-différés-ajt_textimpots-differespertes" class="level4" data-number="9.3.2">
-<h4 data-number="9.3.2" class="anchored" data-anchor-id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-impôts-différés-ajt_textimpots-differespertes"><span class="header-section-number">9.3.2</span> Ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés (<span class="math inline">\(Ajt_{\text{impots differes}}^{Pertes}\)</span>)</h4>
+<section id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-impôts-différés-ajt_id" class="level4" data-number="9.3.2">
+<h4 data-number="9.3.2" class="anchored" data-anchor-id="ajustement-visant-à-tenir-compte-de-la-capacité-dabsorption-des-pertes-par-les-impôts-différés-ajt_id"><span class="header-section-number">9.3.2</span> Ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés (<span class="math inline">\(Ajt_{ID}\)</span>)</h4>
 <p>L’ajustement visant à tenir compte de la capacité d’absorption des pertes par les impôts différés correspond au produit du taux d’impôts et le minimum de la somme du capital de solvabilité requis de base et l’exigence de capital relative au risque opérationnel diminuée de l’ajustement visant à tenir compte de la capacité d’absorption des pertes par les assurés, d’une part, et l’écart positif entre les impôts différés-passif et les impôts différés-actif, d’autre part.</p>
 <p><span id="eq-gbmp"><span class="math display">\[
-Ajt_{\text{impots differes}}^{Pertes} = Tx_{impots} \times min(CSR_{base} + CSR{operationnel} - Adj_{assures}^{Pertes} ; Impots_{passif}^{differes} - Impots_{actif}^{differes})
-\tag{43}\]</span></span></p>
+Ajt_{ID} = TI \times min(CSRB + CSRO - Adj_{As} \quad ; \quad ID_{p} - ID_{a})
+\tag{43}\]</span></span> avec : <span class="math inline">\(Ajt_{ID}\)</span> : Ajustement pour tenir compte de la capacité d’absorption des pertes par les impôts différés. <span class="math inline">\(TI\)</span> : aux d’Impôts. <span class="math inline">\(ID_{a}\)</span> : Les impôts différés-passif. <span class="math inline">\(ID_{p}\)</span> : Les impôts différés-actif.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

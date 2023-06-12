@@ -646,6 +646,7 @@ $P = (P(u_1) , P(u_2),\dots, P(u_N))^T$
 
 $µ = (e^{−UFR∗u_1}, e^{−UFR∗u_2},\dots,e^{-UFR*u_N})^T$
 
+
 $$
 W = 
 \begin{bmatrix}
@@ -736,7 +737,7 @@ Soit $q_{x+t}$ la probabilité qu'un individu d'âge $x$ lors de la souscription
 La prestation correspondante à ce contrat en date t :
 $$
 Dec_{t} = K  \times  NbP_t \times q_{x+t} \times (1+r_t)^t \quad ,
-$$
+$${#eq-gbmp}
 
 :::
 
@@ -909,7 +910,7 @@ Ils sont déterminés à partir du ttirangle de réglement cumulé par la formul
 
 $$
 f_{i,j} = \frac{C_{i,j+1}}{C_{i,j}} , \qquad \text{pour} \quad i\times j \in \{1,\dots,n\}\times \{1,\dots,n\}
-$$
+$${#eq-gbmp}
 
 :::
 
@@ -936,7 +937,7 @@ Un facteur de développement commun  est un coefficient qui permet de prédire l
 
 $$
 \hat{f}_j = \frac{\sum_{i=0}^{n-j+1} C_{i,j+1}}{\sum_{i=0}^{n-j+1} C_{i,j}} \quad ,
-$$
+$${#eq-gbmp}
 
  où $f_j$ est le facteur de développement commun de l'année de développement $j$ à $j+1$, $C_{i,j}$ est le règlement cumulé de l'année de survenance $i$ à l'année de développement $j$, et $n$ est le nombre d'années de survenance
 :::
@@ -949,7 +950,7 @@ Les règlements cumulés futurs sont estimés sur la base du triangle cumulé co
 
 $$
 \hat C_{i,j+1} = C_{i,n-i} \times \prod_{k=n-i}^{j}\hat f_k \quad ,
-$$
+$${#eq-gbmp}
 
 où $\hat C_{i,j+1}$ est le règlement cumulé futur de l'année de survenance $i$, $C_{i,n-i}$ est le règlement cumulé de l'année de survenance $i$ à l'année de développement $n-i$, $\hat f_k$ est le facteur de développement commun de l'année de développement $k$ à $k+1$, et $n$ est le nombre d'années de survenance.
 
@@ -957,7 +958,7 @@ La Provision pour Sinistre à Payer ($PSAP$) est déduite des $\hat C_{i,j}$ et 
 
 $$
 PSAP = \sum\limits_{i = 0}^{n-1} (\hat C_{i,n} -  C_{i,n-i} )
-$$
+$${#eq-gbmp}
 
 :::
 
@@ -968,7 +969,7 @@ A la sortie de l'étape 5, nous diposerons d'une matrice de règlements cumulés
 
 $$
 \hat R_{i,j} = \hat C_{i,j} - \hat C_{i,j-1} \;\; \quad pour\;\; 1\leq i,j\leq n \quad ,
-$$
+$${#eq-gbmp}
 avec : $\hat C_{i,j} = C_{i,j}$ lorsque $i \leq j$.
 :::
 
@@ -978,7 +979,7 @@ avec : $\hat C_{i,j} = C_{i,j}$ lorsque $i \leq j$.
 Les flux de règlements futurs nets correspondent à la somme des éléments de la diagonales du triangle décumulé inférieur obtenu à l'étape 6 :
 $$
 FRFP = \hat R_p = \sum\limits_{i = p+1}^{n} \hat R_{i,n-i+p+1}  \qquad avec \;\; 1 \leq p \leq n
-$$
+$${#eq-gbmp}
 
 :::
 
@@ -996,7 +997,7 @@ Cette méthode a été à Sawkins 1975 est semblable à la méthode des cadences
 
 $$
 \hat f_j = \frac{1}{n-j-1} \sum\limits_{i=0}^{n-j-1} \frac{C_{i,j+1}}{C_{i,j}}
-$$
+$${#eq-gbmp}
 
 ##### La méthode du ratio de paiement :
 
@@ -1243,11 +1244,11 @@ En d'autres termes, il s'agit du montant total des capitaux nécessaires pour fa
 
 Le capital de solvabilité requis de base peut  s'écrit mathématiquement comme suit:
 $$
-CSRB = \sqrt{\sum_{i,j\in Risk }(\rho_{i,j} * CSR_{i} * CSR_{j})} \quad ,
+CSRB = \sqrt{\sum_{i,j\in R }(\rho_{i,j} * CSR_{i} * CSR_{j})} \quad ,
 $${#eq-gbmp}
 avec : 
 
-- Risk $\in$ \{Marché, Concentration, Contrepartie, Souscription Vie, Souscription Non - Vie\} 
+- R $=$ \{Marché, Concentration, Contrepartie, Souscription Vie, Souscription Non - Vie\} 
 
 - $\rho$ : Coefficients de corrélations.
 
@@ -1261,20 +1262,20 @@ Jusqu’à présent, les coefficients de corrélation exactes entre les sous ris
 |Sousc. vie     |  0    |    0        |    0       |    1     |  0           |
 |Sousc. non-vie |  0    |    0        |    0       |    0     |  1           |
 
-#### EXIGENCE DE CAPITAL RELATIVE AUX RISQUES DE MARCHE ($CSR_M$)
+#### EXIGENCE DE CAPITAL RELATIVE AUX RISQUES DE MARCHE ($CSR_M$) :
 Pour l'exigence de capital relative au risque de marché, il est important de prendre en compte plusieurs sous-risques telle que, les sous-risques action, taux, immobilier, écart de taux et change. Chacun de ces sous-risques présente des caractéristiques uniques et nécessite une évaluation distincte. Une fois que les exigences de capitaux sont déterminées pour chaque sous-risque, elles sont agrégées pour obtenir l'exigence de capital total relative au risque de marché et ce, après application des coefficients de corrélations appropriés, ce qui permet de tenir compte des interdépendances et des corrélations entre ces différents sous-risques.
 
 Mathématiquement l'exigence de capital relative au risque de marché peut être représentée  comme suit
 $$
 CSR_M = \sqrt{\sum_{i,j\in RM }(\rho_{i,j} * CSR_{i} * CSR_{j})} \quad ,
-$$
+$${#eq-gbmp}
 avec : 
 
 - RM $\in$ \{action, taux, immobilier, écart de taux et change\} 
 
 - $\rho$ : Coefficients de corrélations.
 
-##### L'exigence de capital relative au risque action ($CSR_A$)
+##### L'exigence de capital relative au risque action ($CSR_A$) :
 Lorsqu'on parle de l'exigence de capital relative au risque action, il s'agit du montant de perte potentiel des fonds propres d'une institution financière résultant de baisses simultanées des valeurs des actions. Ce type de risque est lié à la volatilité et à la corrélation entre les différentes actions détenues dans le portefeuille d’action.
 
 Les taux de baisse à appliquer pour le calcul de l'exigence précitée sont fixés pour les catégories d'actions suivantes:
@@ -1291,7 +1292,7 @@ Les taux de baisse à appliquer pour le calcul de l'exigence précitée sont fix
 
 $$
 CSR_A = BE _{eng}(Choc) - BE_{eng} \quad ,
-$$
+$${#eq-gbmp}
 avec : 
 
 $BEC _{eng}(Choc)$ : Best estimant des engagements après le choque de la valeur du marché des action.
@@ -1307,7 +1308,7 @@ l'exigence de capital relative au risque de taux est une mesure essentielle pour
 La formule mathématique peut s'écrire comme suit:
 $$
 CSR_T = max (CSR_{TH}; CSR_{TB}) \quad ,
-$$
+$${#eq-gbmp}
 avec : 
 
 $CSR_{TH}$:Best estimate des engagements pour le scenario de hausse de taux. 
@@ -1318,25 +1319,32 @@ telle que :
 $$ CSR_{TB} = BE_{TB} - BE $$  
 $$ CSR_{TH} = BE_{TH} - BE $$     
 
-##### L'exigence de capital relative au risque immobilier ($CSR_I$)
+##### L'exigence de capital relative au risque immobilier ($CSR_I$) :
 L'exigence de capital relative au risque immobilier est la perte de fonds propres due à une baisse de la valeur des actifs immobiliers.
 
 Cette exigence est établie pour évaluer les réserves financières nécessaires face à une potentielle baisse de valeur des biens immobiliers pour minimiser les risques.
 $$
-CSR_I = BEC_{eng}(Choc) - BE_{eng} \quad ,
-$$
+CSR_I = BE_{eng}(Choc) - BE_{eng} \quad ,
+$${#eq-gbmp}
 avec : 
 
-$BE_{eng}(Choc)$ : La meilleure estimation des engagements choqué.
+$BE_{eng}(Choc)$ : La meilleure estimation des engagements choqué par une baisse de la valeur des actifs immobiliers.
+
 $BE_{eng}$ : La meilleure estimation des engagements avant choque.
 
-##### L'exigence de capital relative au risque d'écart de taux ($CSR_ET$)
+##### L'exigence de capital relative au risque d'écart de taux ($CSR_ET$) :
 
 L'exigence de capital relative au risque d'écart de taux est la perte de fonds propres due à l'application des taux de baisse à la valeur des titres de créances non émis ou non garantis par l'Etat.
+$$
+CSR_{ET} = BE_{eng}(Choc) - BE_{eng} \quad ,
+$${#eq-gbmp}
+$BE_{eng}$ : La meilleure estimation des engagements avant choque.
+
+$BE_{eng}(Choc)$ : La meilleure estimation des engagements choqué par une baisse de la valeur des titres de créances non émis ou non garantis par l'Etat.
 
 Les taux de baisse à appliquer sont calculés en fonction de la duration et de la prime de risque à l'émission.
 
-##### L'exigence de capital relative au sous-risque de change ($CSR_Ch$)
+##### L'exigence de capital relative au sous-risque de change ($CSR_Ch$) :
 L'exigence de capital relative au sous-risque de change correspond à la somme des exigences de capitaux pour risque de change pour chaque devise étrangère.
 
 L'exigence de capital pour risque de change pour chaque devise étrangère correspond à la plus élevée des exigences de capitaux suivantes:
@@ -1348,105 +1356,136 @@ L'exigence de capital pour risques d'augmentation ou de diminution de la valeur 
 
 $$
 CSR_{Ch} = \sum_{i\in RC} CSR_{Ch_{i}} \quad ,
-$$
-avec : $RC$ = \{risque de change pour chaque devise étrangère \}
+$${#eq-gbmp}
 
-et 
-$$
-CSR^{change}_{i} = max (CSR^{augmentation}_{i} ; CSR^{diminution}_{i})
-$$
-- augmentation : le risque d'augmentation de la valeur de la devise étrangère par rapport au dirham.
-- diminution : le risque de diminution de la valeur de la devise étrangère par rapport au dirham.
+avec : 
 
-Tel que:  $$CSR^{j}_{i} = BE^{\text{scénario j}} - BE \qquad j \in \{ \text{augmentation} ; \text{diminution}\}$$  
+$RC$ = \{risque de change pour chaque devise étrangère \}
+
+et, 
+ 
+$$
+CSR_{Ch_{i}} = max (CSR_{i}(Aug) \quad  ; \quad CSR_{i}(Dim))
+$$
+- CSR_{i}(Aug) : L'exigence de capital pour risque d'augmentation de la valeur de la devise étrangère par rapport au dirham.
+- CSR_{i}(Dim) : L'exigence de capital pour risque de diminution de la valeur de la devise étrangère par rapport au dirham.
+
+Tell que: 
+
+$$
+CSR_{i}(Aug) = BE(Aug) - BE \quad ;
+$$ 
+$$
+CSR_{i}(Dim) = BE(Dim) - BE \quad ;
+$$ 
+avec :
+
+$BE(Aug)$ :  Meilleur estimation des engagement pour le scénario d'augmentation de la valeur de la devise étrangère par rapport au dirham.
+
+$BE(Dim)$ : Meilleur estimation des engagement pour le scénario de diminution de la valeur de la devise étrangère par rapport au dirham.
   
 #### Exigence de capital relative au risque de contrepartie ($CSR_{Cp}$)
 L'exigence de capital relative au risque de contrepartie est le montant total des exigences de capitaux relatives aux sous-risques de contrepartie de *type 1* et de *type 2*   , une fois les coefficients de corrélation appliqués.
 $$
-CSR_{Cp} = \sqrt{\sum_{i,j\in type}(\rho_{i,j}\times CSR_{Cp}^{i}\times CSR_{Cp}^{j})}
-$$
-avec : $type \in \{type 1 ; type 2\}$
+CSR_{Cp} = \sqrt{\sum_{i,j\in Type}(\rho_{i,j}\times CSR_{Cp_{i}}\times CSR_{Cp_{j}})}
+$${#eq-gbmp}
+avec :  $ \qquad Type = \{ \text{type 1} ; \text{type 2} \}$
 
 ##### Exigence de capital relative au risque de contrepartie de type 1:
 L'exigence de capital relative au risque de contrepartie de type 1 est calculé en fonction des montants
 de pertes en cas de défaut des cessionnaires, des cédantes et des organismes dépositaires, selon la
-méthode suivante: ** voir l'annexe 9**
+méthode décrit dans **l’annexe 9** du circulaire de l’ACAPS.Cette méthode et comme suit :  
 
 **1ère étape:** Calcul des pertes en cas de défaut des différentes contreparties $i$.
 
 - Pour un contrat de réassurance:
 
 $$
-LGD_{i} = max (X * (BE_{cédée_{i}} + \text{créances sur les cessionaires} + AR_i) - \text{Dépot en espèces ou en valeur};0)
-$$
+LGD_{i} = max (X * (BE_{cédée_{i}} + CrC + AR_i) - \text{DEV};0)
+$${#eq-gbmp}
 Où :
 
-- $BE_{cédée_{i}}$ : La meilleure estimation des engagements cédés au cessionnaire ;
+- $BEC_{i}$ : La meilleure estimation des engagements cédés au cessionnaire ;
 - $LGD_{i}$ : la perte en cas de défaut du cessionnaire i ;
-- $\text{Depot en espèces ou en valeur}$ : le montant des dépôts en espèces ou en valeurs du cessionnaire i ;
+- $DEV$ : le montant des dépôts en espèces ou en valeurs du cessionnaire i ;
+- $CrC$ : les créances sur les cessionaires
 - $AR_i$ : le montant d'atténuation du risque via les différents contrats de réassurance conclus avec le cessionnaire i. Il correspond à la différence entre les montants d'exigences de capital pour les risques de souscription vie et non-vie calculés compte non tenu de la réassurance et compte tenu de la réassurance.
 
-- Pour un contrat d'acceptation:
+## Pour un contrat d'acceptation :{-}
 $$
-LGD_{i} = max (\text{Dépôts en espèces aupret de la cédante }_i + \text{Créance sur la cédante}_i - \text{Provision techniques}_i;0  )
-$$
-Où :
+LGD_{i} = max (DEC_i + CrCd_i - PT_i \quad ; \quad 0  ) \quad ,
+$${#eq-gbmp}
+où :
 
 - $LGD_{i}$: la perte en cas de défaut de la cédante i ;
-- $\text{Dépôts en espèces aupret de la cédante }_i$ : le montant des dépôts en espèces déposés chez la cédante i ;
-- $\text{Provision techniques}_i$ : le montant des provisions techniques acceptées avec la cédante i
+- $ DEC_i$ : le montant des dépôts en espèces déposés chez la cédante i ;
+- $ CrCd$ : la Créance sur la cédante ;
+- $PT_i$ : le montant des provisions techniques acceptées avec la cédante i ;
 
-- Pour un avoir auprès d'un organisme dépositaire :
+## Pour un avoir auprès d'un organisme dépositaire :{-}
 $$
-LGD_{i} = max (\text{Avoirs en banque}_i;0)
-$$
-Où :
+LGD_{i} = max (AB_i;0)
+$${#eq-gbmp}
+où :
 
 -$LGD_{i}$ : la perte en cas de défaut de la banque i ;
+-$AB$ : L'Avoirs en banque.
 
 **2ème étape:** Sommation des LGD par échelle de notation :
 
-Pour chaque échelle de notation $k$ :
+## Pour chaque échelle de notation $k$ : {-}
 $$
-TLGD_{K} = \sum_{\text{Contrepartie faisant partie de la même échels de notation k}} LGD_k
-$$
+TLGD_{K} = \sum_{i} LGD_k \quad ,
+$${#eq-gbmp}
+avec : 
+
+$i = \{ \text{Contrepartie faisant partie de la même échels de notation k} \}$
 
 **3ème étape:** Calcul des volumes suivants :
 $$
-V_{inter} = \sum_{j,k} \frac{PD_k * (1-PD_k) * PD_j * (1-PD_j)}{X * (PD_j+PD_k)-PD_j*PD_k} * TLGD_j *TLGD_k
+V_{inter} = \sum_{j,k} \frac{PD_k \times (1-PD_k) \times PD_j \times (1-PD_j)}{X \times (PD_j+PD_k)-PD_j\times PD_k} \times TLGD_j \times TLGD_k
+$${#eq-gbmp}
 $$
-$$
-V_{inter} = \sum_{j} \frac{X* PD_j * (1-PD_j)}{X - PD_j} * \sum_{PD_j} LGD_{i}^{2}
+V_{inter} = \sum_{j} \frac{X \times PD_j \times (1-PD_j)}{X - PD_j} \times \sum_{PD_j} LGD_{i}^{2}
 $$
 Où :
 
-- $PD_j$ et$PD_k$: probabilités de défaut des contreparties j et k, établies conformément au tableau prévu au 2) de l'annexe n°12.
+- $PD_j$ et$PD_k$: probabilités de défaut des contreparties j et k, établies conformément aux tableaux de l'annexe.
 - $TLGD_j$ et $TLGD_k$ : somme des pertes en cas de défaut pour les contreparties dont la probabilité de défaut est, respectivement, de $PD_j$ et$PD_k$.
 - $\sum_{PD_j} LGD_{i}^{2}$ : somme couvrant toutes les expositions dont la probabilité de défaut est de $PD_j$.
 
 **4ème étape:** Calcul du de la façon suivante :
 $$
-CSR_{contrepartie}^{type1} = \begin{cases}
-X * \sqrt{V_{inter} + V_{intra}}; \; & \text{si} \; \frac{\sqrt{V_{inter} + V_{intra}}}{\sum_i LGD_{i}} \leq x1 \\
-X * \sqrt{V_{inter} + V_{intra}}; \; & \text{si} \; x1 \leq\frac{\sqrt{V_{inter} + V_{intra}}}{\sum_i LGD_{i}} \leq x2 \\
-\sum_i LGD_{i}  & \text{si} \; \frac{\sqrt{V_{inter} + V_{intra}}}{\sum_i LGD_{i}} \geq x2 \\
-\end{cases}
+CSR_{Cr1} = \begin{cases}
+X * \sqrt{V_{inter} + V_{intra}}; \; & \text{si} \; Q \leq x1 \\
+X * \sqrt{V_{inter} + V_{intra}}; \; & \text{si} \; x1 \leq Q \leq x2 \\
+\sum_i LGD_{i}  & \text{si} \; Q \geq x2 \\
+\end{cases} 
+$${#eq-gbmp}
+avec : 
+
+$CSR_{Cr1}$ : Exigence de capital relative au risque de contrepartie de type 1.
+
+Et,
 $$
+Q = \frac{\sqrt{V_{inter} + V_{intra}}}{\sum_i LGD_{i}} \quad .
+$$
+Les valeurs de x1, x2 et x3 malheureusement ne sont pas encore publié par l’ACAPS.
 
 ##### Exigence de capital relative au risque de contrepartie de type 2:
 L'exigence de capital relative au risque de contrepartie de type 2 est le montant total des
 exigences de capitaux relatives aux risque de contrepartie des assurés, des intermédiaires et des
 autres contreparties :
 $$
-CSR_{contrepartie}^{type2} = CSR_{contrepartie}^{Assures} + CSR_{contrepartie}^{Intermediaires} + CSR_{contrepartie}^{autres-contreparties}
-$$
+CSR_{Cr2} = CSR_{CrAs} + CSR_{CrI} + CSR_{ACr} \quad ,
+$${#eq-gbmp}
 avec :
 
-1) L'exigence de capital relative au risque de contrepartie des assurés correspond à $X\%$ des créances relatives aux primes ou cotisations qui demeurent impayées six (06) mois après la date de leur émission. Les créances précitées s'entendent nettes de provisions.
+1) $CSR_{CrAs} $ : L'exigence de capital relative au risque de contrepartie des assurés correspond à $X\%$ des créances relatives aux primes ou cotisations qui demeurent impayées six (06) mois après la date de leur émission. Les créances précitées s'entendent nettes de provisions.
 
-2) L'exigence de capital relative au risque de contrepartie des intermédiaires correspond à $X\%$ des créances sur les intermédiaires d'assurances nettes de provisions.
+2) $CSR_{CrI} $ : L'exigence de capital relative au risque de contrepartie des intermédiaires correspond à $X\%$ des créances sur les intermédiaires d'assurances nettes de provisions.
 
-3) L'exigence de capital relative au risque lié aux autres contreparties correspond à $X\%$ de la somme des créances de l'actif circulant, autres que les créances vis-à-vis de l'Etat des contreparties visées aux 1) et 2) ci-dessus et les montants des chèques et valeurs à encaisser, nettes de provisions et qui demeurent impayées pendant une période supérieure à six (06) mois.
+3) $CSR_{ACr}$ : L'exigence de capital relative au risque lié aux autres contreparties correspond à $X\%$ de la somme des créances de l'actif circulant, autres que les créances vis-à-vis de l'Etat des contreparties visées aux 1) et 2) ci-dessus et les montants des chèques et valeurs à encaisser, nettes de provisions et qui demeurent impayées pendant une période supérieure à six (06) mois.
 
 #### Exigence de capital relative au risque de concentration ($CSR_{Ct}$)
 L'exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d'émetteurs appartenant aux mêmes groupes. 
@@ -1456,8 +1495,8 @@ Lorsque des émetteurs appartenant à des groupes spécifiques présentent des l
 Mathématiquement l’exigence de capital relative au risque de concentration correspond à la racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de concentration relatifs aux différents groupes d'émetteurs.
 $$
 CSR_{Ct} = \sqrt{\sum_i CSR_i^2}
-$$
-avec $i \in \{ \text{Les sous-risques de concentration relatifs aux differents groupes d'emetteurs.}\}$ 
+$${#eq-gbmp}
+avec $i = \{ \text{Les sous-risques de concentration relatifs aux differents groupes d'emetteurs.}\}$ 
 
 Pour chaque groupe d'émetteurs, l'exigence de capital relative au risque de concentration egale à $X\%$ de l'écart positif constaté entre le montant des placements de l'entreprise d'assurances et de réassurance, autres que les valeurs de l'Etat ou celles jouissant de sa garantie, relatifs à l'ensemble d'émetteurs appartenant au groupe précité et $X\%$ du total de ses placements.
 
@@ -1470,7 +1509,7 @@ L'exigence de capital relative au risque de souscription vie permet de tenir com
 
 $$
 CSR_{SV} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
-$$
+$${#eq-gbmp}
 avec : $i,j \in \{\text{Mortalite, Longevite, Rachat, Frais, catastrophe} \}$
 
 ##### Exigence de capital pour risque de mortalité ($CSR_{Mor}$)
@@ -1481,7 +1520,7 @@ hausse des taux de mortalité entraîne une augmentation des provisions techniqu
 
 $$
 CSR_{Mor} = BE(Choc) - BE \quad ,
-$$
+$${#eq-gbmp}
 avec : 
 $$
 TM(Choc) = TM \times (1 + X\%) \quad ,
@@ -1500,7 +1539,7 @@ La baisse des taux de mortalité précitée ne s'applique qu'aux contrats d'assu
 baisse des taux de mortalité entraîne une augmentation des provisions techniques prudentielles.
 $$
 CSR_{Lon} = BE(Choc) - BE
-$$
+$${#eq-gbmp}
 avec : 
 
 $$
@@ -1530,34 +1569,45 @@ La baisse des taux de rachat précitée ne s'applique qu'aux contrats d'assuranc
 
 $$
 CSR_R = max(CSR_{RHT}; CSR_{RBT}) \quad ,
-$$
+$${#eq-gbmp}
 avec : 
 $$
-CSR_{RHT} = BE_{RHT} - BE
+\begin{cases}
+  CSR_{RHT} = BE_{RHT} - BE \\
+  CSR_{RBT} = BE_{RBT} - BE
+\end{cases}
 $$
-$$
-CSR_{RBT} = BE_{RBT} - BE
-$$
+tell que : 
+
+$BE_{RHT}$ : Meilleur estimation des engagements pour le scenario d'une hausse des taux de rachat.
+$BE_{RBT}$ : Meilleur estimation des engagements pour le scenario d'une baisse des taux de rachat.
 
 ##### Exigence de capital relative au risque de frais ($CSR_{F}$)
 L'exigence de capital relative au risque de frais correspond à la perte de fonds propres due à des augmentations combinées de :
 
 - $X%$ du montant de frais de gestion unitaire moyen retenu pour le calcul des provisions techniques prudentielles des opérations d'assurance vie, décès ou de capitalisation et des rentes découlant des opérations non-vie et ce, par sous-catégorie;
 - $X%$ par année de projection du montant de frais de gestion unitaire moyen précité.
+
 $$
-CSR_{frais} = BEC_{frais} - BE_{frais}
-$$
+CSR_{F} = BE_{F}(Choc) - BE_{F}
+$${#eq-gbmp}
 
 ##### Exigence de capital relative au risque de catastrophe ($CSR_{Cat}$)
 
 L'exigence de capital relative au risque de catastrophe vie correspond à l'application d'un coefficient de $X\%$ aux montants des capitaux sous risque relatifs aux garanties en cas de décès nets de réassurance.
+$$
+CSR_{Cat} = BE(Choc)-BE \quad ,
+$${#eq-gbmp}
+avec :
+$BE(Choc)$ : Meilleure estimation après le choc par un coefficient X%, ce taux est estimé par l’ACAPS de 0,2 %.
+$BE$: Meilleure estimation sans aucun choc.
 
-#### Exigence de capital relative au risque de souscription non vie ($_{souscription}CSR_{non-vie}$)
+#### Exigence de capital relative au risque de souscription non vie ($CSR_{SNV}$)
 L'exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux \textbf{sous-risques de primes, de provisions et de catastrophe non-vie}, une fois les coefficients de corrélation appliqués.
 
 $$
-_{souscription}CSR_{non-vie} = \sqrt{\sum_{i,j} ( \rho_{i,j} \times CSR_i \times CSR_j)} \quad ,
-$$
+CSR_{SNV} = \sqrt{\sum_{i,j} ( \rho_{i,j} \times CSR_i \times CSR_j)} \quad ,
+$${#eq-gbmp}
 
 avec : 
 
@@ -1568,8 +1618,8 @@ $\rho$ : le coefficient de corrélation.
 ##### Exigence de capital relative au sous-risque de primes ($CSR_{P}$) :
 L'exigence de capital relative au sous-risque de primes est le montant total  des exigences de capitaux relatives aux sous-risques de primes par sous-catégorie et ce, après application des coefficients de corrélations.
 $$
-CSR_{P} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)}
-$$
+CSR_{P} = \sqrt{\sum_{i,j} ( \rho_{i,j} \times CSR_i \times CSR_j)}
+$${#eq-gbmp}
 avec : 
 
 $i,j \in \{ \text{Les sous-risques de primes par sous-categorie }\}$
@@ -1595,7 +1645,7 @@ $PPNA$ : Provision pour primes non-acquises nettes.
 L'exigence de capital relative au sous-risque de provisions est la somme total des exigences de capitaux relatives aux sous-risques de provision par sous-catégorie, on prenant on considration les coefficients de correlation entre les sous-risques.
 $$
 CSR_{Pr} = \sqrt{\sum_{i,j} ( \rho_{i,j}* CSR_i * CSR_j)} \quad ,
-$$
+$${#eq-gbmp}
 avec : 
 
 $i,j \in \{\text{Les sous-risques de provisions par sous-categorie} \}$.
@@ -1624,7 +1674,7 @@ L'exigence de capital relative au risque de catastrophe non-vie correspond au ra
 
 $$
 CSR_{Cat} = \sqrt{\sum_{i}   CSR_{i}^2} \quad ,
-$$
+$${#eq-gbmp}
 telle que, le $i$ Appartient à la liste des garanties ci-dessus.
 
 ### Exigence de capital relative au risque opérationnel ($CSRO$) :
