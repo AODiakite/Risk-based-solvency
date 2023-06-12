@@ -1,16 +1,14 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
+#' Ce fichier R contient toutes la partie interface de l'application
+#' ainsi que certains calculs. L'importation de fichiers functions.R est requis en début de
+#' puisqu'on en aura besoin dans la partie server de l'application.
+
+
 source("functions.R")
-# Define UI for application that draws a histogram
+
+# Define UI  -------------
 ui <- dashboardPage(
   dashboardHeader(
-    title = "SBR Application ",
+    title = "SBR App",
     skin = "light"
   ),
   controlbar = dashboardControlbar(
@@ -42,43 +40,42 @@ ui <- dashboardPage(
         box(
           status = "navy", solidHeader = T, width = 12,
           title = "Pramètres généraux",
-          tags$caption("Les paramètres devant provenir de la réglementation"),
+          tags$caption("Les paramètres devant provenir de la réglementation SBR."),
           tags$hr(),
           fluidRow(
             column(
               3,
-              numericInput("choc_mort","Choc de mortalité",value = 0.3,min = 0,max = 1)
+              numericInput("choc_mort", "Choc de mortalité", value = 0.3, min = 0, max = 1)
             ),
             column(
               3,
-              numericInput("choc_cata","Choc catastrophe",value = 0.2,min = 0,max = 1)
+              numericInput("choc_cata", "Choc catastrophe", value = 0.2, min = 0, max = 1)
             ),
             column(
               3,
-              numericInput("prob_def","Probabilité de défaut",value = 0.012,min = 0,max = 1)
+              numericInput("prob_def", "Probabilité de défaut", value = 0.012, min = 0, max = 1)
             ),
             column(
               3,
-              numericInput("tc_gp","Cession vie",value = 0.01,min = 0,max = 1)
+              numericInput("tc_gp", "Cession vie", value = 0.01, min = 0, max = 1)
             ),
             column(
               3,
-              numericInput("tc_p","Cession primes non-vie",value = 0.05,min = 0,max = 1)
+              numericInput("tc_p", "Cession primes non-vie", value = 0.05, min = 0, max = 1)
             ),
             column(
               3,
-              numericInput("tc_s","Cession sinistres non-vie",value = 0.03,min = 0,max = 1)
+              numericInput("tc_s", "Cession sinistres non-vie", value = 0.03, min = 0, max = 1)
             ),
             column(
               3,
-              numericInput("aug_fg","Augmentation des FG",value = 0.14,min = 0,max = 1)
+              numericInput("aug_fg", "Augmentation des FG", value = 0.14, min = 0, max = 1)
             ),
             column(
               3,
-              numericInput("maj_fg","Majoration des FG",value = 0.015,min = 0,max = 1)
+              numericInput("maj_fg", "Majoration des FG", value = 0.015, min = 0, max = 1)
             )
           )
-
         )
       ),
       # Courbe des taux ----------
@@ -149,8 +146,7 @@ ui <- dashboardPage(
       ),
       tabItem(
         tabName = "nonvieHR",
-          uiOutput("valueBoxs_nvie")
-        ,
+        uiOutput("valueBoxs_nvie"),
         fluidRow(
           box(
             status = "navy", solidHeader = T, width = 6,
@@ -183,12 +179,12 @@ ui <- dashboardPage(
                 4,
                 # Input: Select separator
                 radioButtons("sep", "Separator",
-                             choices = c(
-                               Comma = ",",
-                               Semicolon = ";",
-                               Tab = "\t"
-                             ),
-                             selected = ","
+                  choices = c(
+                    Comma = ",",
+                    Semicolon = ";",
+                    Tab = "\t"
+                  ),
+                  selected = ","
                 )
               ),
               column(
@@ -196,21 +192,19 @@ ui <- dashboardPage(
                 offset = 1,
                 # Input: Select quotes
                 radioButtons("quote", "Quote",
-                             choices = c(
-                               None = "",
-                               "Double Quote" = '"',
-                               "Single Quote" = "'"
-                             ),
-                             selected = '"'
+                  choices = c(
+                    None = "",
+                    "Double Quote" = '"',
+                    "Single Quote" = "'"
+                  ),
+                  selected = '"'
                 )
               )
             ),
             column(
               12,
-                actionButton(inputId = "tgl_btn", "Confirmer la lecture du triangle" , status = "success", width = "100%")
+              actionButton(inputId = "tgl_btn", "Confirmer la lecture du triangle", status = "success", width = "100%")
             )
-
-
           ),
           box(
             status = "navy", solidHeader = T, width = 6,
@@ -223,36 +217,36 @@ ui <- dashboardPage(
               ),
               column(
                 4,
-                numericInput("pa0", "Année n",value = NULL)
+                numericInput("pa0", "Année n", value = NULL)
               ),
               column(
                 4,
-                numericInput("pa1", "Année n-1",value = NULL)
+                numericInput("pa1", "Année n-1", value = NULL)
               ),
               column(
                 4,
-                numericInput("pa2", "Année n-2",value = NULL)
+                numericInput("pa2", "Année n-2", value = NULL)
               )
             ),
             tags$hr(),
             fluidRow(
               column(
                 4,
-                numericInput("ppna","PPNA",value = NULL)
+                numericInput("ppna", "PPNA", value = NULL)
               ),
               column(
                 4,
-                numericInput("pfp","Primes futurs",value = NULL)
+                numericInput("pfp", "Primes futurs", value = NULL)
               ),
               column(
                 4,
-                numericInput("taux_acq","Taux frais d’acquisition",value = NULL)
+                numericInput("taux_acq", "Taux frais d’acquisition", value = NULL)
               )
             ),
             fluidRow(
               column(
                 9,
-                numericInput("tx_FG_Moyen", label = "Taux de frais gestion moyens", value = NULL, min = 0,max = 1)
+                numericInput("tx_FG_Moyen", label = "Taux de frais gestion moyens", value = NULL, min = 0, max = 1)
               ),
               column(
                 3,
@@ -260,12 +254,11 @@ ui <- dashboardPage(
               )
             )
           )
-
         ),
         fluidRow(
           tabBox(
-             solidHeader = T, width = 12,maximizable = TRUE,
-            type = "tabs", side = "right",status = "navy",
+            solidHeader = T, width = 12, maximizable = TRUE,
+            type = "tabs", side = "right", status = "navy",
             tabPanel(
               tags$b("Apperçu du triangle"),
               # Triangle de réglements
@@ -276,13 +269,12 @@ ui <- dashboardPage(
               # Triangle de reglements
               DT::dataTableOutput("trgl_global", width = "100%")
             )
-
-            )
+          )
         ),
         fluidRow(
           tabBox(
             solidHeader = T, width = 6,
-            type = "tabs", side = "right",status = "navy",
+            type = "tabs", side = "right", status = "navy",
             title = "Cadence de liquidations",
             tabPanel(
               tags$b("Graphique"),
@@ -295,7 +287,7 @@ ui <- dashboardPage(
           ),
           tabBox(
             solidHeader = T, width = 6,
-            type = "tabs", side = "right",status = "navy",
+            type = "tabs", side = "right", status = "navy",
             title = "Cash flows",
             tabPanel(
               tags$b("Graphique"),
@@ -306,7 +298,6 @@ ui <- dashboardPage(
               DT::dataTableOutput("cf_data")
             )
           )
-
         )
       ),
       tabItem(
@@ -315,9 +306,7 @@ ui <- dashboardPage(
           spin = "breeding-rhombus",
           margins = c(300, 600), width = "100px", height = "100px"
         ),
-
-        uiOutput("valueBoxs_vie")
-        ,
+        uiOutput("valueBoxs_vie"),
         fluidRow(
           box(
             status = "navy", solidHeader = T, width = 6,
@@ -325,15 +314,15 @@ ui <- dashboardPage(
             tags$caption("Veuillez importer les données de l'opération d'assurance décès avec capital dégressif"),
             # Input: Select a file
             fileInput("fileDecesDeg", "Choisir la base de données",
-                      buttonLabel = "Parcourir...",
-                      multiple = FALSE,
-                      accept = c(
-                        "text/csv",
-                        "text/comma-separated-values,text/plain",
-                        ".csv",
-                        ".xls",
-                        ".xlsx"
-                      )
+              buttonLabel = "Parcourir...",
+              multiple = FALSE,
+              accept = c(
+                "text/csv",
+                "text/comma-separated-values,text/plain",
+                ".csv",
+                ".xls",
+                ".xlsx"
+              )
             ),
             # Horizontal line
             tags$hr(),
@@ -342,12 +331,12 @@ ui <- dashboardPage(
                 4,
                 # Input: Select separator
                 radioButtons("sep", "Separator",
-                             choices = c(
-                               Comma = ",",
-                               Semicolon = ";",
-                               Tab = "\t"
-                             ),
-                             selected = ","
+                  choices = c(
+                    Comma = ",",
+                    Semicolon = ";",
+                    Tab = "\t"
+                  ),
+                  selected = ","
                 )
               ),
               column(
@@ -355,21 +344,19 @@ ui <- dashboardPage(
                 offset = 1,
                 # Input: Select quotes
                 radioButtons("quote", "Quote",
-                             choices = c(
-                               None = "",
-                               "Double Quote" = '"',
-                               "Single Quote" = "'"
-                             ),
-                             selected = '"'
+                  choices = c(
+                    None = "",
+                    "Double Quote" = '"',
+                    "Single Quote" = "'"
+                  ),
+                  selected = '"'
                 )
               )
             ),
             column(
               12,
-              actionButton(inputId = "deces_btn", "Confirmer la lecture des données" , status = "success", width = "100%")
+              actionButton(inputId = "deces_btn", "Confirmer la lecture des données", status = "success", width = "100%")
             )
-
-
           ),
           box(
             status = "navy", solidHeader = T, width = 6,
@@ -377,7 +364,6 @@ ui <- dashboardPage(
             tags$caption("Après avoir confirmé la lecture des données, vous devez selectionner les colonnes dont aura besoin dans le calcul."),
             uiOutput("columns")
           )
-
         ),
         fluidRow(
           box(
@@ -385,7 +371,6 @@ ui <- dashboardPage(
             title = tags$b("Apperçu des données"),
             # Triangle de réglements
             DT::dataTableOutput("deces_data", width = "100%")
-
           )
         )
       ),
@@ -397,23 +382,24 @@ ui <- dashboardPage(
         tabName = "scr_menu",
         uiOutput("scr_boxes")
       )
-
     )
   )
 )
 
-# Define server logic required to draw a histogram
+# Define SERVER ---------------
+
 server <- function(input, output) {
   useAutoColor()
   # Donnees Deces  ----
   deces_deg <- reactive({
     tryCatch(
-      {req(input$fileDecesDeg)
+      {
+        req(input$fileDecesDeg)
         inFile <- input$fileDecesDeg
         if (tools::file_ext(inFile$name) == "csv") {
-          dat <- read.csv(inFile$datapath,sep =  input$sep, input$quote)
+          dat <- read.csv(inFile$datapath, sep = input$sep, input$quote)
         } else {
-          dat <- read_excel(inFile$datapath,col_names = TRUE)
+          dat <- read_excel(inFile$datapath, col_names = TRUE)
         }
         dat
       },
@@ -425,19 +411,21 @@ server <- function(input, output) {
   }) %>%
     bindEvent(input$deces_btn)
 
-  observeEvent(input$deces_btn,
-               shinyalert::shinyalert("OK !", "Lecture des données confirmée avec succès" ,"success",timer = 2500)
+  observeEvent(
+    input$deces_btn,
+    shinyalert::shinyalert("OK !", "Lecture des données confirmée avec succès", "success", timer = 2500)
   )
 
 
   output$deces_data <- DT::renderDataTable(
     tryCatch(
-      {req(input$fileDecesDeg)
+      {
+        req(input$fileDecesDeg)
         inFile <- input$fileDecesDeg
         if (tools::file_ext(inFile$name) == ".csv") {
-          dat <- read.csv(inFile$datapath,sep =  input$sep, input$quote)
+          dat <- read.csv(inFile$datapath, sep = input$sep, input$quote)
         } else {
-          dat <- read_excel(inFile$datapath,col_names = TRUE)
+          dat <- read_excel(inFile$datapath, col_names = TRUE)
         }
         dat
       },
@@ -460,51 +448,58 @@ server <- function(input, output) {
 
   output$columns <- renderUI(
     fluidRow(
-      column(6,
-             selectInput(inputId = "ages_deces",label = "Age de l'assuré",choices = c("",names(deces_deg())))
+      column(
+        6,
+        selectInput(inputId = "ages_deces", label = "Age de l'assuré", choices = c("", names(deces_deg())))
       ),
-      column(6,
-             selectInput(inputId = "annes_deces",label = "Année d'effet",choices = c("",names(deces_deg())))
+      column(
+        6,
+        selectInput(inputId = "annes_deces", label = "Année d'effet", choices = c("", names(deces_deg())))
       ),
-      column(6,
-             selectInput(inputId = "duree_deces",label = "Durée du contrat",choices = c("",names(deces_deg())))
+      column(
+        6,
+        selectInput(inputId = "duree_deces", label = "Durée du contrat", choices = c("", names(deces_deg())))
       ),
-      column(6,
-             selectInput(inputId = "duree_rest_deces",label = "Durée restante",choices = c("",names(deces_deg())))
+      column(
+        6,
+        selectInput(inputId = "duree_rest_deces", label = "Durée restante", choices = c("", names(deces_deg())))
       ),
-      column(6,
-             selectInput(inputId = "capital_deces",label = "Capital initial",choices = c("",names(deces_deg())))
+      column(
+        6,
+        selectInput(inputId = "capital_deces", label = "Capital initial", choices = c("", names(deces_deg())))
       ),
-      column(6,
-             numericInput(inputId = "fgm_deces",label = "Frais de gestion moyen",min = 0,value = NULL)
+      column(
+        6,
+        numericInput(inputId = "fgm_deces", label = "Frais de gestion moyen", min = 0, value = NULL)
       ),
-      column(12,
-             actionButton(inputId = "columns_btn", "Confirmer la selection" , status = "success", width = "100%")
+      column(
+        12,
+        actionButton(inputId = "columns_btn", "Confirmer la selection", status = "success", width = "100%")
       )
     )
   )
 
-  Duree_contrat_rest = reactive(
+  Duree_contrat_rest <- reactive(
     input$duree_rest_deces
   ) %>%
     bindEvent(input$columns_btn)
-  ages = reactive(
+  ages <- reactive(
     input$ages_deces
   ) %>%
     bindEvent(input$columns_btn)
-  Annee = reactive(
+  Annee <- reactive(
     input$annes_deces
   ) %>%
     bindEvent(input$columns_btn)
-  maturite = reactive(
+  maturite <- reactive(
     input$duree_deces
   ) %>%
     bindEvent(input$columns_btn)
-  cap_initial = reactive(
+  cap_initial <- reactive(
     input$capital_deces
   ) %>%
     bindEvent(input$columns_btn)
-  FG_moyen = reactive(
+  FG_moyen <- reactive(
     input$fgm_deces
   ) %>%
     bindEvent(input$columns_btn)
@@ -512,70 +507,78 @@ server <- function(input, output) {
   max_duree_rest <- reactive(
     max(
       deces_deg()[[Duree_contrat_rest()]]
-      )
+    )
   )
   annee_max_proj <- reactive(
     max(deces_deg()[[Annee()]] + deces_deg()[[maturite()]])
   )
   df_capitaux <- reactive(
-    Matrice_Capitaux(Annee = deces_deg()[[Annee()]],
-                     maturite = deces_deg()[[maturite()]],
-                     cap_initial = deces_deg()[[cap_initial()]],
-                     max_duree_rest = max_duree_rest(),annee_max_proj = annee_max_proj())
+    Matrice_Capitaux(
+      Annee = deces_deg()[[Annee()]],
+      maturite = deces_deg()[[maturite()]],
+      cap_initial = deces_deg()[[cap_initial()]],
+      max_duree_rest = max_duree_rest(), annee_max_proj = annee_max_proj()
+    )
   )
 
   # Matrice des capitax projetés (projetés choqués) ----
-  proj_cap =reactive( Mat_Proj_Cap(df_capitaux(),deces_deg()[[Duree_contrat_rest()]],
-                                   deces_deg()[[ages()]],choc = 0))
+  proj_cap <- reactive(Mat_Proj_Cap(df_capitaux(), deces_deg()[[Duree_contrat_rest()]],
+    deces_deg()[[ages()]],
+    choc = 0
+  ))
 
-  proj_cap_choc_003 = reactive(Mat_Proj_Cap(df_capitaux(),deces_deg()[[Duree_contrat_rest()]],
-                                            deces_deg()[[ages()]],choc = input$choc_mort))
+  proj_cap_choc_003 <- reactive(Mat_Proj_Cap(df_capitaux(), deces_deg()[[Duree_contrat_rest()]],
+    deces_deg()[[ages()]],
+    choc = input$choc_mort
+  ))
 
-  proj_cap_choc_002 = reactive( Mat_Proj_Cap(df_capitaux(),deces_deg()[[Duree_contrat_rest()]],
-                                             deces_deg()[[ages()]],choc = input$choc_cata) )
+  proj_cap_choc_002 <- reactive(Mat_Proj_Cap(df_capitaux(), deces_deg()[[Duree_contrat_rest()]],
+    deces_deg()[[ages()]],
+    choc = input$choc_cata
+  ))
 
   # Vecteurs des capitax projetés (projetés choqués) ----
-  proj_cap_vect = reactive(projection_cap(proj_cap()))
+  proj_cap_vect <- reactive(projection_cap(proj_cap()))
 
-  proj_cap_vect_003 = reactive(projection_cap(proj_cap_choc_003()))
+  proj_cap_vect_003 <- reactive(projection_cap(proj_cap_choc_003()))
 
-  proj_cap_vect_002 = reactive(projection_cap(proj_cap_choc_002()))
+  proj_cap_vect_002 <- reactive(projection_cap(proj_cap_choc_002()))
 
   # BE FG Vie ------
-  NB_contrat = reactive(NBContrat(deces_deg()[[ages()]],
-                                  deces_deg()[[Duree_contrat_rest()]],choc = 0))
-  FG_t = reactive(FG_moyen()*NB_contrat())
+  NB_contrat <- reactive(NBContrat(deces_deg()[[ages()]],
+    deces_deg()[[Duree_contrat_rest()]],
+    choc = 0
+  ))
+  FG_t <- reactive(FG_moyen() * NB_contrat())
 
   Augmentation_X <- reactive(input$aug_fg)
   Majoration_X <- reactive(input$maj_fg)
 
   ## FG_t après choque
   FG_t_choc <- reactive({
-    vect_choque_FG = 1+c(Augmentation_X(),rep(Majoration_X(),max_duree_rest()-1))
-    FG_t_Choque = FG_moyen() * cumprod(vect_choque_FG)
-    FG_t_Choque = FG_t_Choque * NB_contrat()
+    vect_choque_FG <- 1 + c(Augmentation_X(), rep(Majoration_X(), max_duree_rest() - 1))
+    FG_t_Choque <- FG_moyen() * cumprod(vect_choque_FG)
+    FG_t_Choque <- FG_t_Choque * NB_contrat()
     FG_t_Choque
   })
 
-  BEFG_vie =reactive(
-    {
-      assign(x = "df_capitaux",df_capitaux(),envir = .GlobalEnv)
-      assign(x = "proj_cap",proj_cap(),envir = .GlobalEnv)
-      assign(x = "proj_cap_choc_003",proj_cap_choc_003(),envir = .GlobalEnv)
-      assign(x = "proj_cap_choc_002",proj_cap_choc_002(),envir = .GlobalEnv)
-      assign(x = "proj_cap_vect",proj_cap_vect(),envir = .GlobalEnv)
-      assign(x = "proj_cap_vect_003",proj_cap_vect_003(),envir = .GlobalEnv)
-      assign(x = "proj_cap_vect_002",proj_cap_vect_002(),envir = .GlobalEnv)
-      BEFG(FG_t(),TZC()[["Taux zéro coupon"]])
-    }
-    )
-  BEFG_vie_Choque =reactive(BEFG(FG_t_choc(),TZC()[["Taux zéro coupon"]]))
+  BEFG_vie <- reactive({
+    assign(x = "df_capitaux", df_capitaux(), envir = .GlobalEnv)
+    assign(x = "proj_cap", proj_cap(), envir = .GlobalEnv)
+    assign(x = "proj_cap_choc_003", proj_cap_choc_003(), envir = .GlobalEnv)
+    assign(x = "proj_cap_choc_002", proj_cap_choc_002(), envir = .GlobalEnv)
+    assign(x = "proj_cap_vect", proj_cap_vect(), envir = .GlobalEnv)
+    assign(x = "proj_cap_vect_003", proj_cap_vect_003(), envir = .GlobalEnv)
+    assign(x = "proj_cap_vect_002", proj_cap_vect_002(), envir = .GlobalEnv)
+    BEFG(FG_t(), TZC()[["Taux zéro coupon"]])
+  })
+  BEFG_vie_Choque <- reactive(BEFG(FG_t_choc(), TZC()[["Taux zéro coupon"]]))
 
 
   # BE Garantie probabilisé vie ------
-  BEGP = reactive(BEGP_vie(proj_cap_vect(),TZC()[["Taux zéro coupon"]]))
-  BEGP_Choc_003 = reactive(BEGP_vie(proj_cap_vect_003(),TZC()[["Taux zéro coupon"]]))
-  BEGP_Choc_002 = reactive(BEGP_vie(proj_cap_vect_002(),TZC()[["Taux zéro coupon"]]))
+  BEGP <- reactive(BEGP_vie(proj_cap_vect(), TZC()[["Taux zéro coupon"]]))
+  BEGP_Choc_003 <- reactive(BEGP_vie(proj_cap_vect_003(), TZC()[["Taux zéro coupon"]]))
+  BEGP_Choc_002 <- reactive(BEGP_vie(proj_cap_vect_002(), TZC()[["Taux zéro coupon"]]))
 
   # SCR -----
   output$scr_boxes <- renderUI(
@@ -583,41 +586,39 @@ server <- function(input, output) {
       column(
         4,
         valueBox(
-          value =  tags$h3(
-            formatC(BEGP_Choc_003() - BEGP(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          value = tags$h3(
+            formatC(BEGP_Choc_003() - BEGP(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
           ),
-          subtitle  = tags$h5("CSR mortalité"),
+          subtitle = tags$h5("CSR mortalité"),
           icon = icon("sack-dollar"),
-          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("Exigence de capital pour risque de mortalité")
         )
       ),
       column(
         4,
         valueBox(
-          value =  tags$h3(
-            formatC(BEGP_Choc_002()-BEGP(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          value = tags$h3(
+            formatC(BEGP_Choc_002() - BEGP(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
           ),
-          subtitle  = tags$h5("CSR catastrophe"),
+          subtitle = tags$h5("CSR catastrophe"),
           icon = icon("sack-dollar"),
-          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("Exigence de capital relative au risque de catastrophe vie")
         )
       ),
       column(
         4,
         valueBox(
-          value =  tags$h3(
-            formatC(BEFG_vie_Choque() - BEFG_vie(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          value = tags$h3(
+            formatC(BEFG_vie_Choque() - BEFG_vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
           ),
-          subtitle  = tags$h5("CSR frais"),
+          subtitle = tags$h5("CSR frais"),
           icon = icon("sack-dollar"),
-          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("Exigence de capital relative au risque de frais")
         )
       )
-
-
     )
   )
 
@@ -627,24 +628,24 @@ server <- function(input, output) {
       column(
         6,
         valueBox(
-          value =  tags$h3(
-            formatC(BEGP(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          value = tags$h3(
+            formatC(BEGP(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
           ),
-          subtitle  = tags$h5("BEGP"),
+          subtitle = tags$h5("BEGP"),
           icon = icon("coins"),
-          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("BE des garanties probabilisées")
         )
       ),
       column(
         6,
         valueBox(
-          value =  tags$h3(
-            formatC(BEFG_vie(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          value = tags$h3(
+            formatC(BEFG_vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
           ),
-          subtitle  = tags$h5("Frais de gestion"),
+          subtitle = tags$h5("Frais de gestion"),
           icon = icon("sack-dollar"),
-          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("BE des frais de gestions")
         )
       )
@@ -654,221 +655,221 @@ server <- function(input, output) {
   # Part des cessionnaires------
   tc_vie <- reactive(input$tc_gp)
   PD <- reactive(input$prob_def)
-  tc_prime = reactive(input$tc_p)
-  tc_sinistre = reactive(input$tc_s)
+  tc_prime <- reactive(input$tc_p)
+  tc_sinistre <- reactive(input$tc_s)
 
   BE_ENG_Cede_Vie <- reactive({
-    tc_vie()*BEGP()
+    tc_vie() * BEGP()
   })
-  BE_Sin_Cede <- reactive(BE_Sin_nv()*tc_sinistre())
-  BE_Primes_Cede <- reactive(BE_Prime()*tc_prime())
+  BE_Sin_Cede <- reactive(BE_Sin_nv() * tc_sinistre())
+  BE_Primes_Cede <- reactive(BE_Prime() * tc_prime())
 
   Adj_DC_VIE <- reactive(
-    Ajustement_DC_Vie(proj_cap_vect(),TZC()[["Taux zéro coupon"]],tc_vie(),PD())
-    )
+    Ajustement_DC_Vie(proj_cap_vect(), TZC()[["Taux zéro coupon"]], tc_vie(), PD())
+  )
   Adj_DC_NVIE <- reactive(
-    Ajustement_DC_NVie(r_hat = Cash_flows(),
-                       cad_liq = cadence(),
-                       ZC = TZC()[["Taux zéro coupon"]],
-                       RS = RS(),
-                       PPNA = parametrage()[["PPNA"]],
-                       PFP = parametrage()[["Prime_Futur"]],
-                       taux_acquistion = parametrage()[["tx_acq"]],
-                       PD = PD(),
-                       tc_prime = tc_prime() , tc_sinistre = tc_sinistre())
+    Ajustement_DC_NVie(
+      r_hat = Cash_flows(),
+      cad_liq = cadence(),
+      ZC = TZC()[["Taux zéro coupon"]],
+      RS = RS(),
+      PPNA = parametrage()[["PPNA"]],
+      PFP = parametrage()[["Prime_Futur"]],
+      taux_acquistion = parametrage()[["tx_acq"]],
+      PD = PD(),
+      tc_prime = tc_prime(), tc_sinistre = tc_sinistre()
+    )
   )
 
-BE_ENG_Cede_NVie <- reactive(BE_Sin_Cede()+BE_Primes_Cede())
-Cession_vie <- reactive(BE_ENG_Cede_Vie()-Adj_DC_VIE())
-Cession_non_vie <- reactive(BE_ENG_Cede_NVie()-Adj_DC_NVIE())
+  BE_ENG_Cede_NVie <- reactive(BE_Sin_Cede() + BE_Primes_Cede())
+  Cession_vie <- reactive(BE_ENG_Cede_Vie() - Adj_DC_VIE())
+  Cession_non_vie <- reactive(BE_ENG_Cede_NVie() - Adj_DC_NVIE())
 
-output$cession_boxes <- renderUI(
-  fluidRow(
-    column(
-      6,
-      valueBox(
-        value = tags$h3(
-          formatC(Cession_vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 3)
-        ),
-        subtitle = tags$h5("Part des cessionnaires (Vie)"),
-        icon = icon("coins"),
-        width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
-        footer = div("Part des cessionnaires dans les engagements vie")
-      )
-    ),
-    column(
-      6,
-      valueBox(
-        value = tags$h3(
-          formatC(Cession_non_vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 3)
-        ),
-        subtitle = tags$h5("Part des cessionnaires (Non-Vie)"),
-        icon = icon("car-burst"),
-        width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
-        footer = div("Part des cessionnaires dans les engagements vie")
-      )
-    ),
-    column(
-      4,
-      valueBox(
-        value = tags$h3(
-          formatC(BE_ENG_Cede_Vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 3)
-        ),
-        subtitle = tags$h5("BEGP Cédés"),
-        icon = icon("coins"),
-        width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
-        footer = div("BEGP Cédés")
-      )
-    ),
-    column(
-      4,
-      valueBox(
-        value = tags$h3(
-          formatC(BE_Sin_Cede(), big.mark = " ", decimal.mark = ",", format = "f", digits = 3)
-        ),
-        subtitle = tags$h5("BE Sinistres Cédés"),
-        icon = icon("car-burst"),
-        width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
-        footer = div("BE des engagements pour sinistre cédés")
-      )
+  output$cession_boxes <- renderUI(
+    fluidRow(
+      column(
+        6,
+        valueBox(
+          value = tags$h3(
+            formatC(Cession_vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("Part des cessionnaires (Vie)"),
+          icon = icon("coins"),
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
+          footer = div("Part des cessionnaires dans les engagements vie")
+        )
       ),
-    column(
-      4,
-      valueBox(
-        value = tags$h3(
-          formatC(BE_Primes_Cede(), big.mark = " ", decimal.mark = ",", format = "f", digits = 3)
-        ),
-        subtitle = tags$h5("BE Primes Cédés (Non-Vie)"),
-        icon = icon("car-burst"),
-        width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
-        footer = div("BE des engagements pour prime cédés")
+      column(
+        6,
+        valueBox(
+          value = tags$h3(
+            formatC(Cession_non_vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("Part des cessionnaires (Non-Vie)"),
+          icon = icon("car-burst"),
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
+          footer = div("Part des cessionnaires dans les engagements non-vie")
+        )
+      ),
+      column(
+        4,
+        valueBox(
+          value = tags$h3(
+            formatC(BE_ENG_Cede_Vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("BEGP Cédés"),
+          icon = icon("coins"),
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
+          footer = div("BEGP Cédés")
+        )
+      ),
+      column(
+        4,
+        valueBox(
+          value = tags$h3(
+            formatC(BE_Sin_Cede(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("BE Sinistres Cédés"),
+          icon = icon("car-burst"),
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
+          footer = div("BE des engagements pour sinistres cédés")
+        )
+      ),
+      column(
+        4,
+        valueBox(
+          value = tags$h3(
+            formatC(BE_Primes_Cede(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("BE Primes Cédés (Non-Vie)"),
+          icon = icon("car-burst"),
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
+          footer = div("BE des engagements pour primes cédés")
+        )
       )
     )
-
   )
-)
 
 
   # Parametrage ------
-  parametrage <- reactive(
-    {
-      list(
-        Sum_PA = input$pa0 + input$pa1+ input$pa2,
-        PPNA = input$ppna,
-        Prime_Futur = input$pfp,
-        tx_acq = input$taux_acq,
-        tx_FG_Moy = input$tx_FG_Moyen
-      )
-    }
-  ) %>%
+  parametrage <- reactive({
+    list(
+      Sum_PA = input$pa0 + input$pa1 + input$pa2,
+      PPNA = input$ppna,
+      Prime_Futur = input$pfp,
+      tx_acq = input$taux_acq,
+      tx_FG_Moy = input$tx_FG_Moyen
+    )
+  }) %>%
     bindEvent(input$param_btn)
   # Ratio de sinistralité
   RS <- reactive({
-    decumul = decumul_tri(triangleAT(),c_hat())
-    CU = apply(decumul,1,sum)
-    nn = length(CU)
-    rs =  sum(CU[(nn-2):nn])/parametrage()[["Sum_PA"]]
-    assign("rs",rs,envir = .GlobalEnv)
+    decumul <- decumul_tri(triangleAT(), c_hat())
+    CU <- apply(decumul, 1, sum)
+    nn <- length(CU)
+    rs <- sum(CU[(nn - 2):nn]) / parametrage()[["Sum_PA"]]
+    assign("rs", rs, envir = .GlobalEnv)
     rs
   })
   # BE sinistre
   BE_Sin_nv <- reactive({
-    BE_Sinistre_nv(r_hat = Cash_flows(),ZC = TZC()[["Taux zéro coupon"]])
+    BE_Sinistre_nv(r_hat = Cash_flows(), ZC = TZC()[["Taux zéro coupon"]])
   })
   # BE prime
   BE_Prime <- reactive({
-    BE_Prime_nv(cad_liq = cadence(),RS = RS(),
-                PPNA = parametrage()[["PPNA"]],PFP = parametrage()[["Prime_Futur"]],
-                ZC = TZC()[["Taux zéro coupon"]],taux_acquistion =  parametrage()[["tx_acq"]])
+    BE_Prime_nv(
+      cad_liq = cadence(), RS = RS(),
+      PPNA = parametrage()[["PPNA"]], PFP = parametrage()[["Prime_Futur"]],
+      ZC = TZC()[["Taux zéro coupon"]], taux_acquistion = parametrage()[["tx_acq"]]
+    )
   })
-  PSAP = reactive({
-    Diag = diag(apply(triangleAT(),1,rev))
-    c_hat <- C_hat(triangle = triangleAT(),fdc = calculer_fdc(triangleAT()))
-    psap =  sum(c_hat[,ncol(c_hat)] - Diag,na.rm = TRUE)
+  PSAP <- reactive({
+    Diag <- diag(apply(triangleAT(), 1, rev))
+    c_hat <- C_hat(triangle = triangleAT(), fdc = calculer_fdc(triangleAT()))
+    psap <- sum(c_hat[, ncol(c_hat)] - Diag, na.rm = TRUE)
     psap
   })
   # BE frais de gestion
   BE_Frais_NV <- reactive({
-    parametrage()[["tx_FG_Moy"]]*(BE_Sin_nv()+BE_Prime())
+    parametrage()[["tx_FG_Moy"]] * (BE_Sin_nv() + BE_Prime())
   })
   output$valueBoxs_nvie <- renderUI(
     fluidRow(
       column(
         3,
         valueBox(
-          value =  tags$h3(
-            formatC(BE_Sin_nv(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
-            ),
-          subtitle  = tags$h5("BE Sinistre"),
+          value = tags$h3(
+            formatC(BE_Sin_nv(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("BE Sinistre"),
           icon = icon("car-burst"),
-          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("BE des engagements pour sinistres")
         )
       ),
       column(
         3,
         valueBox(
-          value =  tags$h3(
-            formatC(BE_Prime(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
-            ),
-          subtitle  = tags$h5("BE Prime"),
+          value = tags$h3(
+            formatC(BE_Prime(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("BE Prime"),
           icon = icon("sack-dollar"),
-          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("BE des engagements pour prime")
         )
       ),
       column(
         3,
         valueBox(
-          value =  tags$h3(
-            formatC(BE_Frais_NV(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
-            ),
-          subtitle  = tags$h5("BE FG"),
+          value = tags$h3(
+            formatC(BE_Frais_NV(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("BE FG"),
           icon = icon("money-check-dollar"),
-          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("BE des frais de gestion")
         )
       ),
       column(
         3,
         valueBox(
-          value =  tags$h3(
-            formatC(PSAP(),big.mark = " ",decimal.mark = ",",format = "f",digits = 3)
+          value = tags$h3(
+            formatC(PSAP(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
           ),
-          subtitle  = tags$h5("PSAP"),
+          subtitle = tags$h5("PSAP"),
           icon = icon("hand-holding-dollar"),
-          width = 12,color = "lightblue",gradient = TRUE,elevation = 3,
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("Provision pour sinistre à payer")
         )
       )
-
-
     )
   )
 
   # Triangle de réglement ----
   triangleAT <- reactive({
     tryCatch(
-      {req(input$fileTriangle)
+      {
+        req(input$fileTriangle)
         inFile <- input$fileTriangle
         if (tools::file_ext(inFile$name) == "csv") {
-          dat <- read.csv(inFile$datapath,sep =  input$sep, input$quote)
+          dat <- read.csv(inFile$datapath, sep = input$sep, input$quote)
         } else {
-          dat <- read_excel(inFile$datapath,col_names = TRUE)
+          dat <- read_excel(inFile$datapath, col_names = TRUE)
         }
-        colnames(dat) = c("Année",0:(nrow(dat)-1))
-        annee = dat[["Année"]]
-        dat = dat[,-1]
-        dat = as.matrix(dat)
-        if(input$cumuler ) dat = t(apply(dat,1,cumsum))
-        dat = Triangulariser(dat)
-        dat = as.data.frame(dat)
-        dat[["Année"]] = annee
-        dat = dplyr::relocate(dat,"Année")
-        dat = as.data.frame(dat)
-        rownames(dat) = annee
-        dat = dat[,-1]
-        colnames(dat) = 0:(nrow(dat)-1)
+        colnames(dat) <- c("Année", 0:(nrow(dat) - 1))
+        annee <- dat[["Année"]]
+        dat <- dat[, -1]
+        dat <- as.matrix(dat)
+        if (input$cumuler) dat <- t(apply(dat, 1, cumsum))
+        dat <- Triangulariser(dat)
+        dat <- as.data.frame(dat)
+        dat[["Année"]] <- annee
+        dat <- dplyr::relocate(dat, "Année")
+        dat <- as.data.frame(dat)
+        rownames(dat) <- annee
+        dat <- dat[, -1]
+        colnames(dat) <- 0:(nrow(dat) - 1)
         as.matrix(dat)
       },
       error = function(e) {
@@ -878,33 +879,35 @@ output$cession_boxes <- renderUI(
     )
   }) %>%
     bindEvent(input$tgl_btn)
-  observeEvent(input$tgl_btn,
-               shinyalert::shinyalert("OK !", "Lecture du triangle confirmée avec succès" ,"success",timer = 2500)
-               )
+  observeEvent(
+    input$tgl_btn,
+    shinyalert::shinyalert("OK !", "Lecture du triangle confirmée avec succès", "success", timer = 2500)
+  )
 
 
   output$trgl_data <- DT::renderDataTable(
     tryCatch(
-      {req(input$fileTriangle)
+      {
+        req(input$fileTriangle)
         inFile <- input$fileTriangle
         if (tools::file_ext(inFile$name) == "csv") {
-          dat <- read.csv(inFile$datapath,sep =  input$sep, input$quote)
+          dat <- read.csv(inFile$datapath, sep = input$sep, input$quote)
         } else {
-          dat <- read_excel(inFile$datapath,col_names = TRUE)
+          dat <- read_excel(inFile$datapath, col_names = TRUE)
         }
-        colnames(dat) = c("Année",0:(nrow(dat)-1))
-        annee = dat[["Année"]]
-        dat = dat[,-1]
-        dat = as.matrix(dat)
-        if(input$cumuler ) dat = t(apply(dat,1,cumsum))
-        dat = Triangulariser(dat)
-        dat = as.data.frame(dat)
-        dat[["Année"]] = annee
-        dat = dplyr::relocate(dat,"Année")
-        dat = as.data.frame(dat)
-        rownames(dat) = annee
-        dat = dat[,-1]
-        colnames(dat) = 0:(nrow(dat)-1)
+        colnames(dat) <- c("Année", 0:(nrow(dat) - 1))
+        annee <- dat[["Année"]]
+        dat <- dat[, -1]
+        dat <- as.matrix(dat)
+        if (input$cumuler) dat <- t(apply(dat, 1, cumsum))
+        dat <- Triangulariser(dat)
+        dat <- as.data.frame(dat)
+        dat[["Année"]] <- annee
+        dat <- dplyr::relocate(dat, "Année")
+        dat <- as.data.frame(dat)
+        rownames(dat) <- annee
+        dat <- dat[, -1]
+        colnames(dat) <- 0:(nrow(dat) - 1)
         dat
       },
       error = function(e) {
@@ -922,38 +925,32 @@ output$cession_boxes <- renderUI(
       scrollX = TRUE,
       scrollY = 500
     )
-
   )
   # Calcul des règlements cumulés futurs par année de survenance
-  c_hat <- reactive(
-    {
-      fdc = calculer_fdc(triangleAT())
-      C_hat(triangleAT(),fdc)
-    }
-  )
+  c_hat <- reactive({
+    fdc <- calculer_fdc(triangleAT())
+    C_hat(triangleAT(), fdc)
+  })
   # Cadence de liquidqtion
-  cadence = reactive({
-    decumul = decumul_tri(triangleAT(),c_hat())
-    CU = apply(decumul,1,sum)
-    rglts = apply(decumul,2,sum)
-    cad_liq = rglts/sum(CU)
+  cadence <- reactive({
+    decumul <- decumul_tri(triangleAT(), c_hat())
+    CU <- apply(decumul, 1, sum)
+    rglts <- apply(decumul, 2, sum)
+    cad_liq <- rglts / sum(CU)
     cad_liq
   })
   # Cash flows
-  Cash_flows <- reactive(
-    {
-      decumul = decumul = decumul_tri(triangleAT(),c_hat())
-      r_hat = R_hat(decumul)
-      r_hat
-    }
-  )
+  Cash_flows <- reactive({
+    decumul <- decumul <- decumul_tri(triangleAT(), c_hat())
+    r_hat <- R_hat(decumul)
+    r_hat
+  })
   output$trgl_global <- DT::renderDT(
     {
-      tglinf = c_hat()
-      rownames(tglinf) = rownames(triangleAT())
-      colnames(tglinf) = colnames(triangleAT())
+      tglinf <- c_hat()
+      rownames(tglinf) <- rownames(triangleAT())
+      colnames(tglinf) <- colnames(triangleAT())
       tglinf
-
     },
     extensions = "Buttons",
     options = list(
@@ -966,30 +963,28 @@ output$cession_boxes <- renderUI(
       scrollY = 500
     )
   )
-  output$cad_plot <- renderPlotly(
-    {
-      cad_liq = cadence()
-      cad_liq = data.frame("Cadence de liquidation" = cadence(),check.names = FALSE)
-      cad_liq$`Cadence de liquidation (%)` = paste0(gsub(",","\\.",round(100*cadence(),2)),"%")
-      plot_ly(
-        data = cad_liq, y= ~`Cadence de liquidation`,
-        type = "bar", mode = "markers",
-        hovertext = glue("Année de développement : {0:(nrow(cad_liq)-1)}
-                         Cadence de liquidation (%) : {cad_liq$`Cadence de liquidation (%)`}") ,
-        hoverinfo = 'text'
-      ) %>%
-        layout(
-          title = "Cadence de liquidation",
-          xaxis = list(title = "Année de développement",showline= T, linewidth=2, linecolor='black'),
-          yaxis = list(title = "")
-        )
-      }
-  )
+  output$cad_plot <- renderPlotly({
+    cad_liq <- cadence()
+    cad_liq <- data.frame("Cadence de liquidation" = cadence(), check.names = FALSE)
+    cad_liq$`Cadence de liquidation (%)` <- paste0(gsub(",", "\\.", round(100 * cadence(), 2)), "%")
+    plot_ly(
+      data = cad_liq, y = ~`Cadence de liquidation`,
+      type = "bar", mode = "markers",
+      hovertext = glue("Année de développement : {0:(nrow(cad_liq)-1)}
+                         Cadence de liquidation (%) : {cad_liq$`Cadence de liquidation (%)`}"),
+      hoverinfo = "text"
+    ) %>%
+      layout(
+        title = "Cadence de liquidation",
+        xaxis = list(title = "Année de développement", showline = T, linewidth = 2, linecolor = "black"),
+        yaxis = list(title = "")
+      )
+  })
   output$cad_data <- DT::renderDT(
     {
-      cad_liq = cadence()
-      cad_liq = data.frame("Cadence de liquidation" = cadence(),check.names = FALSE)
-      cad_liq$`Cadence de liquidation (%)` = paste0(gsub(",","\\.",round(100*cadence(),2)),"%")
+      cad_liq <- cadence()
+      cad_liq <- data.frame("Cadence de liquidation" = cadence(), check.names = FALSE)
+      cad_liq$`Cadence de liquidation (%)` <- paste0(gsub(",", "\\.", round(100 * cadence(), 2)), "%")
       cad_liq
     },
     extensions = "Buttons",
@@ -1003,32 +998,30 @@ output$cession_boxes <- renderUI(
       scrollY = 500
     )
   )
-  output$cf_plot <- renderPlotly(
-    {
-      r_hat = data.frame("Flux de règlements futurs nets de recours" = Cash_flows(),check.names = FALSE)
-      nn = nrow(triangleAT())
+  output$cf_plot <- renderPlotly({
+    r_hat <- data.frame("Flux de règlements futurs nets de recours" = Cash_flows(), check.names = FALSE)
+    nn <- nrow(triangleAT())
 
-      rownames(r_hat) = as.numeric(rownames(triangleAT())[nn]) + 1:(nn-1)
-      r_hat[["Année"]] = rownames(r_hat)
-      plot_ly(data = r_hat,
-              x =~`Année`,y =~`Flux de règlements futurs nets de recours`,
-              type = 'bar'
-              ) %>%
-        layout(
-          title = "Flux de règlements futurs nets de recours",
-          legend = list(orientation = "h", xanchor = "center", x = 0.5),
-          xaxis = list(title = "",showline= T, linewidth=2, linecolor='black'),
-          yaxis = list(title = "",showline= T, linewidth=2, linecolor='black')
-        )
-
-    }
-  )
+    rownames(r_hat) <- as.numeric(rownames(triangleAT())[nn]) + 1:(nn - 1)
+    r_hat[["Année"]] <- rownames(r_hat)
+    plot_ly(
+      data = r_hat,
+      x = ~`Année`, y = ~`Flux de règlements futurs nets de recours`,
+      type = "bar"
+    ) %>%
+      layout(
+        title = "Flux de règlements futurs nets de recours",
+        legend = list(orientation = "h", xanchor = "center", x = 0.5),
+        xaxis = list(title = "", showline = T, linewidth = 2, linecolor = "black"),
+        yaxis = list(title = "", showline = T, linewidth = 2, linecolor = "black")
+      )
+  })
   output$cf_data <- DT::renderDT(
     {
-      r_hat = data.frame("Flux de règlements futurs nets de recours " = Cash_flows(),check.names = FALSE)
-      nn = nrow(triangleAT())
+      r_hat <- data.frame("Flux de règlements futurs nets de recours " = Cash_flows(), check.names = FALSE)
+      nn <- nrow(triangleAT())
 
-      rownames(r_hat) = as.numeric(rownames(triangleAT())[nn]) + 1:(nn-1)
+      rownames(r_hat) <- as.numeric(rownames(triangleAT())[nn]) + 1:(nn - 1)
       r_hat
     },
     extensions = "Buttons",

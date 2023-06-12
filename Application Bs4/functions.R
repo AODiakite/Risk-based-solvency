@@ -1,7 +1,17 @@
+#' Ce fichier R contient toutes les fonctions nécessaires pour notre application.
+#' Le but est d'éviter l'encombrement du fichier app.R
+
+# Eviter les messages d'avertissements
 options(warn = -1)
+# Source du fichier R contenants tous les packages requis.
 source("installation packages.R")
+
+
+# Table de  mortalité TD-88-90 ---------
+
 TD_88_90 <- read_excel("Data/TD-88-90.xlsx")
 
+#-----------------------------------------------
 # Proba de survie -----
 tPx <- function(x,TD = TD_88_90){
   tryCatch(
@@ -15,13 +25,17 @@ tPx <- function(x,TD = TD_88_90){
 
 }
 
+
+
+#-----------------------------------------------
 # Proba de Deces -----
 tQx <- function(x,TD = TD_88_90){
   1 - tPx(x,TD)
 }
 
 
-#' Mat ages
+#-----------------------------------------------
+# Mat ages ---------------------
 #'
 #' @param Duree_contrat_rest Vecteur de durée des contrats restantes
 #' @param ages Vecteur d'age
@@ -39,13 +53,29 @@ Mat_Ages <- function(Duree_contrat_rest,ages){
   mat_ages
 }
 
+#-----------------------------------------------
+# Caclul des proba de sur vie pour une matrice d'ages --------------
 Mat_tPx <- function(mat_ages){
   tPx(mat_ages)
 }
 
+#-----------------------------------------------
+# Caclul des proba de deces pour une matrice d'ages ----------
 Mat_tQx <- function(mat_ages){
   tQx(mat_ages)
 }
+
+
+#-----------------------------------------------
+# Tableau d'ammortissement des capitaux garantis ------
+#'
+#' @param Annee annee d'effet du cantrat
+#' @param maturite duree du contrat
+#' @param cap_initial capital initial
+#' @param tx_interet taux d'interet
+#' @param annee_max_proj année de cloture du contrat
+#'
+#' @return
 
 tableau_amort = function(Annee,maturite,cap_initial,tx_interet = 0.04 ,annee_max_proj = 2042){
   annuite = (cap_initial*tx_interet)*(1/(1-(1+tx_interet)^(-maturite)))
@@ -70,13 +100,15 @@ tableau_amort = function(Annee,maturite,cap_initial,tx_interet = 0.04 ,annee_max
   df
 }
 
-#' Title
+#-----------------------------------------------
+# Matrice_Capitaux ---------
+#' Calcul pour de capitaux amortis pour chaque age, capital initial et maturite.
 #'
 #' @param Annee vecteur des annees
 #' @param maturite vecteur
 #' @param cap_initial vecteur
 #' @param max_duree_rest vecteur
-#'
+#' @return dataframe de capitaux amortis pour chaque année de projections
 
 Matrice_Capitaux <- function(Annee,maturite,cap_initial,
                              max_duree_rest = max(Duree_contrat_rest),annee_max_proj = 2042){
@@ -100,6 +132,18 @@ Matrice_Capitaux <- function(Annee,maturite,cap_initial,
 #                                deces_deg_unique$Capital_d_c_s_initial,
 #                                max(deces_deg_unique$`Durre contrat restante`))
 
+
+
+#-----------------------------------------------
+# Mat_Proj_Cap -------------
+#'
+#' @param df_capitaux obtenue de la fonction Matrice_Capitaux
+#' @param Duree_contrat_rest vecteur
+#' @param ages vecteur
+#' @param choc choc de mortailité ou de catastrophe
+#'
+#' @return Matrice de projection des capitaux (inclusion des proba)
+
 Mat_Proj_Cap <- function(df_capitaux,Duree_contrat_rest,ages,choc = 0){
   mat_ages = Mat_Ages(Duree_contrat_rest,ages)
   mat_tqx =(1+choc) * Mat_tQx(mat_ages)
@@ -112,9 +156,10 @@ Mat_Proj_Cap <- function(df_capitaux,Duree_contrat_rest,ages,choc = 0){
   mat_tqx*df_capitaux*mat_tpx_cumul
 }
 
-#' Somme des capitaux projetés pour chaque année
+#-----------------------------------------------
+# Capitaux projter pour l'ensemble des polices du portefeuille ----------------
 #'
-#' @param proj_cap Matrice de projection des capitaux
+#' @param proj_cap Matrice de projection des capitaux obtenu de la fonction  Mat_Proj_Cap
 #'
 #' @return Vector
 
@@ -122,7 +167,8 @@ projection_cap <- function(proj_cap){
   apply(proj_cap,2,sum)
 }
 
-#' BE des garanties probabilisées
+#-----------------------------------------------
+# BE des garanties probabilisées --------
 #'
 #' @param proj_cap_vect vecteur de capitaux projetés
 #' @param ZC vecteur de taux ZC
@@ -135,8 +181,16 @@ BEGP_vie <- function(proj_cap_vect, ZC){
   sum(proj_cap_vect/denom)
 }
 
-# NB contrat
-
+#-----------------------------------------------
+# Projection du nombre de contrats -----------
+#' @param ages vecteur
+#' @param Duree_contrat_rest vecteur
+#' @param choc choc de mortalité
+#'
+#' @return
+#' @export
+#'
+#' @examples
 NBContrat <- function(ages,Duree_contrat_rest,choc = 0){
   mat_ages = Mat_Ages(Duree_contrat_rest,ages)
   mat_tqx =(1+choc) * Mat_tQx(mat_ages)
@@ -155,14 +209,16 @@ NBContrat <- function(ages,Duree_contrat_rest,choc = 0){
   NB_contrat
 }
 
-# BEFG
+#-----------------------------------------------
+# BEFG ------------
 BEFG = \(FG_t,ZC){
   n_max = length(FG_t)
   denom = (1 + ZC[1:n_max])^(1:n_max)
   sum(FG_t/denom)
 }
 
-# Cession ------
+#-----------------------------------------------
+# Ajustement pour défaut de contrepartie ------
 
 Ajustement_DC_Vie <- \(BEGPi,ZC,taux_cession,PD){
   BEGPi_actualised = BEGPi/((1+ZC[1:length(BEGPi)])^(1:length(BEGPi)))
@@ -204,6 +260,7 @@ Ajustement_DC_NVie <- \(r_hat,cad_liq,ZC,RS,PPNA,PFP,taux_acquistion,PD,tc_prime
 }
 
 
+#-----------------------------------------------
 # Taux de référence des bons de trésor -------
 
 get_taux_BAM <- function(DATE = "2021-12-30"){
@@ -240,6 +297,7 @@ get_taux_BAM <- function(DATE = "2021-12-30"){
   )
 }
 
+#-----------------------------------------------
 # Conversion du taux monétaire en taux actuariel ----
 #' taux_BAM : Représente la table de taux obtenu grace à la fonction get_taux_BAM
 #' Valeurs retournées : Data frame
@@ -254,6 +312,7 @@ get_taux_act <- function(taux_BAM){
   )
 }
 
+#-----------------------------------------------
 # Interpolation des taux actuariels pour avoir des taux de Maturité pleine ----
 #' TA : La table de taux actuariel obtenue grace à la fonction get_taux_act
 #' Valeurs retournées : Data frame
@@ -275,6 +334,7 @@ interpolation <- function(TA){
 
 }
 
+#-----------------------------------------------
 # Transformation du taux actuariel en taux ZC avec la méthode boostrap ------------
 #' T_INTER: resultat de la fonction interpolation
 #' Valeurs retournées : Data frame
@@ -296,6 +356,7 @@ boostrapping <- function(T_INTER){
   )
 }
 
+#-----------------------------------------------
 # Triangle superieur -----
 Triangulariser <- function(TriangleRgleAT){
   triangle0 = matrix(nrow = nrow(TriangleRgleAT), ncol = ncol(TriangleRgleAT))
@@ -330,6 +391,7 @@ calculer_fdi <- function(triangle){
   return(fdi)
 }
 
+#-----------------------------------------------
 # Calcul des facteurs de développement communs ------
 
 calculer_fdc <- function(triangle){
@@ -395,6 +457,7 @@ decumul_tri <- function(triangle, c_hat){
   decumul
 }
 
+#-----------------------------------------------
 # Cash flows : -------
 #' Fonction de calcul les flux de règlements futurs probabilisés nets de recours relatifs aux sinistres survenus
 #'
@@ -413,6 +476,7 @@ R_hat <- function(decumul){
   r_hat[n] = rev_decumul[1,n]
   r_hat[-1]
 }
+#-----------------------------------------------
 # BE Prime Non Vie-hors rente -----
 #'La somme actualisée des flux de règlements futurs probabilisés nets
 #' de recours relatifs aux sinistres non encore survenus
@@ -432,6 +496,7 @@ BE_Prime_nv <- function(cad_liq,RS,PPNA,PFP,ZC, taux_acquistion){
 
 }
 
+#-----------------------------------------------
 # La meilleure estimation des engagements pour sinistres nets -----
 #' Title
 #'
@@ -445,12 +510,4 @@ BE_Sinistre_nv = function(r_hat, ZC ){
   sum(r_hat/((1+ZC[1:length(r_hat)])^(1:length(r_hat))))
 }
 
-
-
-
-
-
-
-
-
-
+#-----------------------------------------------
