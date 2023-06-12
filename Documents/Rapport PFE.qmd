@@ -32,7 +32,7 @@ Créée en 1996, **A.R.M CONSULTANTS** est le premier cabinet d'actuaires consei
 -	International, par le biais de son partenariat avec des sociétés similaires de renommée internationale.
 
 
-## Liste des abréviations: 
+## Liste des abréviations : 
 ```{r echo=FALSE}
 library(kableExtra)
 Ligne1 = c("Abréviation","SBR","ACAPS","AT","RNN","LSTM","MASI","CSR","BE","PPNA","PSAP","BAM","CSRB","CSRO","MR","EDS","GBM","OPCVM","OPCI","OPCC","FPCT")
@@ -60,7 +60,7 @@ Les insuffisances évoquées n'ont pas épargné le cadre prudentiel marocain. C
 - *Le pilier II* porte sur les *exigences qualitatives* et définit les règles de gouvernance et de gestion des risques, en l'occurrence l'évaluation interne des risques de la solvabilité;
 - *Le pilier III* concerne, quant à lui, les *obligations de reporting* à l'Autorité et de diffusion de l'information au public.
 
-## Cadre réglementaire marocain
+## Cadre réglementaire Marocain :
 
 Le Maroc est l'un des acteurs majeurs de l'assurance en Afrique. Ses compagnies ne cessent de gagner du terrain dans les marchés de la sous-région notamment en Afrique de l'ouest. Selon un rapport de l'[Atlas Mag](https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays)^[https://www.atlas-mag.net/article/marche-africain-de-l-assurance-en-2019-chiffre-d-affaires-des-principaux-pays], le Maroc est classé **2ème** en Afrique  et **49ème** mondial  avec un **chiffre d'affaire de 5 343 millions USD** en 2021.
 
@@ -112,7 +112,7 @@ La réforme SBR est entrée en vigueur progressivement au Maroc depuis 2019. Le 
 
 ![Les 3 piliers de la SBR](Rapport-PFE_files/figure-html/piliers.png){#fig-piliers}
 
-## Piliers 1: Exigences quantitatives
+## Piliers 1: Exigences quantitatives :
 
  Sur les trois piliers de la normes SBR, notre rapport de stage se concentre essentiellement sur le pilier 1. Ce dernier spécifie toutes les dispositions  réglementaires afin de satisfaire les exigences quantitatives de la norme.
  La détermination du capital de solvabilité requis ($CSR$) et la fixation des Fonds propres ($FP$) nécessite une analyse économique annuel du bilan prudentiel. L’organisme d'assurance ou de réassurance doit disposer d’une richesse nette suffisante pour faire face à ses risques dans $X\%$^[La métrique de risque n’est pas encore défini
@@ -172,7 +172,7 @@ L'évaluation du capital de solvabilité requis (SCR) est la dernière étape du
 - Le modèle interne, qui est une méthode propre à l'assureur, qui prend en compte les spécificités de son profil de risque, et qui utilise ses propres paramètres. Le modèle interne doit être validé par le régulateur.
 
 
-## Valorisation  de l'actif:
+## Valorisation  de l'actif :
 Selon les directions de l’autorité de contrôle des Assurances et de la Prévoyance Sociale, les actifs doivent être évaluer comme suit :
 
 - Titres OPCVM et OPCI : Dernière valeur liquidative.
@@ -190,7 +190,7 @@ Pour les actions cotées à la bourse de Casablanca, ils sont valorisées à leu
 
 #### Modélisation du prix des actions : {-}
 
-Le prix d'une action ou plus communément appelé cours d'une action représente le prix auquel elle est acheté ou vendue sur un marché boursier. Ce prix fluctue en fonction de l'offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l'entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l'action représente la valeur perçue de l'entreprise par les investisseurs à un moment.
+Le prix d'une action ou plus communément appelé cours d'une action représente le prix auquel elle est achetée ou vendue sur un marché boursier. Ce prix fluctue en fonction de l'offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l'entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l'action représente la valeur perçue de l'entreprise par les investisseurs à un moment.
 
 Ainsi, si la valeur présente de l'action est une donnée du marché, sa valeur future quant à elle est aléatoire d'où la nécessité de sa modélisation.
 
@@ -317,7 +317,7 @@ GBM_Sim$plt_mean
 ```
 
 
-#### Réseaux de neurones récurrents:
+#### Réseaux de neurones récurrents :
 Dans cette partie on va s’intéressé à l’entrainement d’un modèle de réseaux de neurones récurrents, spécifiquement le modèle LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index) afin  prédire les cours journaliers futures.
 
 D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques,$\dots$
@@ -516,7 +516,7 @@ INTER[1:10,] %>%
 ```
 
 
-### la méthode de Bootstrap:
+### la méthode de Bootstrap :
 
 Le Bootstrap est une technique de reconstitution de la courbe zéro-coupon pas à pas, en déterminant les taux zéro-coupon à partir des taux actuariels, en faisant l'hypothèse que le prix théorique d'une obligation correspond à la somme de ses flux futures actualisés aux taux zéro-coupon de l'échéance de chaque flux. Ainsi, on suppose que les prix des obligations des Bons du trésor sont au pair, c'est-à-dire que le prix d'émission des obligations des bons du trésor et leur valeur nominale sont égaux.
 
@@ -590,7 +590,7 @@ BOOST[1:10,] %>%
 
 
 
-### Extrapolation de la courbe des taux zéro-coupon : méthode de Smith-Wilson
+### Extrapolation de la courbe des taux zéro-coupon : Méthode de Smith-Wilson
 
 La méthode Smith-Wilson est une méthode d'extrapolation de la courbe des taux d'intérêt développée par les chercheurs Smith et Wilson en 1995, et est utilisée pour extrapoler les taux à long terme. Son principe est d'ajuster une courbe mathématique à la courbe des taux observée sur le marché, en utilisant une fonction spécifique appelée "fonction de Smith-Wilson". Cette fonction est une combinaison de deux termes : le premier terme représente une fonction de décroissance exponentielle, qui est utilisée pour modéliser la partie courte de la courbe des taux ; le second terme est une fonction polynomiale qui est utilisée pour modéliser la partie longue de la courbe des taux.  
 
@@ -702,7 +702,7 @@ avec :
 - $BEGP$: la meilleure estimation des garanties probabilisées.
 - $BDF$: les bénéfices discrétionnaires futurs.
 
-##### Meilleure estimation des garanties probabilisées: {#sec-MEGP}
+##### Meilleure estimation des garanties probabilisées : {#sec-MEGP}
 La meilleure estimation des garanties probabilisées est calculée garantie par garantie et tête par tête, en actualisant les flux de trésorerie futurs probabilisés, afférents aux engagements garantis à la date d'inventaire. Toutefois, l'entreprise d'assurances et de réassurance peut procéder à une agrégation en retenant des critères homogènes, notamment l'âge et ce, après accord de l'Autorité.
 $$
 BEGP = \sum\limits_{t=0}^{t=N}\frac{(Dec_{t}-Enc_{t})}{(1+r_t)^t} \quad,
@@ -742,7 +742,7 @@ $${#eq-gbmp}
 :::
 
 
-##### Bénéfices discrétionnaires futurs:
+##### Bénéfices discrétionnaires futurs :
 Les bénéfices discrétionnaires futurs sont évalués pour chaque ensemble homogène de contrats.
 
 $$
@@ -769,7 +769,7 @@ avec :
 - $RT$ :les résultats techniques.
 - $RF$ :les résultats financiers.
 
-#### Meilleure estimation des frais de gestions ($BEFG$):
+#### Meilleure estimation des frais de gestions ($BEFG$) :
 La meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs probabilisés.
 $$
 BEFG = \sum\limits_{t = 1}^{N} \frac{FG_t}{(1+r_t)^t}
@@ -797,7 +797,7 @@ $$
 $${#eq-gbmp}
 
 
-### Rentes découlants des opérations non-vie:
+### Rentes découlants des opérations non-vie :
 La meilleure estimation des engagements pour les rentes découlant des opérations d'assurance non vie correspond à la meilleure estimation des garanties probabilisées déterminée avant.
 $$
 BE_{eng} = BEGP \quad ,
@@ -810,14 +810,14 @@ avec :
 
 La meilleure estimation des frais de gestion, pour les rentes découlant des opérations d'assurance non vie est déterminée de la meme façon comme avant.
 
-### Opérations d'assurance non vie hors rentes:
+### Opérations d'assurance non vie hors rentes :
 L'assurance non-vie, également connue sous le nom d'assurance dommages, est un secteur d'assurance qui vise à protéger les biens et les responsabilités des individus et des entreprises contre divers risques. Et il couvre une vaste gamme de domaines, tels que les accidents, les catastrophes naturelles, les dommages matériels, la responsabilité civile, les pertes financières, les vols et bien d'autres encore,$\dots$
 
 Aussi l’assurance non vie repose sur le principe de la mutualisation des risques, telle que Les assurés paient des primes périodiques à une compagnie d'assurance en échange d’une garantie de recevoir une indemnisation en cas de sinistre. L'assureur collecte les primes de nombreux assurés et utilise ces fonds pour couvrir les pertes subies par ceux qui ont subi des dommages assurés. Ainsi, l'assurance non-vie permet de répartir les risques et de fournir une protection financière contre les événements imprévus qui pourraient causer des pertes matérielles ou des responsabilités juridiques.
 
 L'assurance non-vie offre une grande variété de produits et de polices adaptés à différents besoins. Parmi les exemples courants d'assurances non-vie, on trouve l'assurance automobile, l'assurance habitation, l'assurance responsabilité civile, l'assurance santé, l'assurance voyage et l'assurance entreprise. Chacune de ces polices est conçue pour offrir une protection spécifique contre les risques liés à ces domaines.
 
-#### La meilleure estimation des engagements:
+#### La meilleure estimation des engagements :
 la meilleure estimation des engagements comprend la meilleure estimation des engagements pour sinistres nets de recours et la meilleure estimation des engagements pour primes.
 $$
 BE_{eng}= BES + BEP 
@@ -881,7 +881,7 @@ avec:
 
 ##### Méthode de calcul des flux de réglements futurs probabilisés pour les opérations non-vie hors rentes:
 
-##### Méthode des cadences – Chain Ladder:
+##### Méthode des cadences – Chain Ladder : {-}
 
 La méthode de Chain Ladder est celle spécifiée dans l'*annexe 5* de la circulaire de l'$ACAPS$ sur la $SBR$.
 Les méthodes de cadences de règlement se basent sur le principe que la vitesse des règlements, en pourcentage de la charge finale de sinistres, est constante d'une année de survenance à l'autre. Ainsi les paiements réalisés permettent d'estimer les provisions pour sinistres à payer.
@@ -897,14 +897,14 @@ Cette méthode est l'une des plus utilisée sur le marché. Elle tient cette cé
 Conformément à la spécification technique de l'ACAPS, l'estimation des  flux de règlements futurs probabilisés nets de recours relatifs aux sinistres survenus ($FRFP$) passe par les étapes citées ci-aprés.
 
 ::: {.callout-note}
-## Etape 1 : Constitution du triangle des règlements cumulés net de recours:
+## Etape 1 : Constitution du triangle des règlements cumulés net de recours :
 
 Pour chaque année de survenance, on construit le triangle des règlements nets de recours à partir des données d'inventaire. La longueur d'historique des triangles des règlements doit correspondre à la nature du risque analysé et couvrir toute la durée de vie des engagements à la date d'inventaire. L'entreprise d'assurances et de réassurance doit expliquer pourquoi la méthode utilisée pour sa détermination est adaptée.
 
 :::
 
 ::: {.callout-note}
-## Etape 2 : Calcul des facteurs de développement individuels:
+## Etape 2 : Calcul des facteurs de développement individuels :
 
 Ils sont déterminés à partir du ttirangle de réglement cumulé par la formule suivante :
 
@@ -915,7 +915,7 @@ $${#eq-gbmp}
 :::
 
 ::: {.callout-note}
-## Etape 3 : Vérification des hypothèses:
+## Etape 3 : Vérification des hypothèses :
 
 Cette méthode reposes sur certaines hypothèses qui faudrait vérifier avant de poursuivre les calculs.
 
@@ -931,7 +931,7 @@ Pour chaque année de développement $j$, le nuage de points représentant les r
 :::
 
 ::: {.callout-note}
-## Etape 4 : Calcul des facteurs de développement communs:
+## Etape 4 : Calcul des facteurs de développement communs :
 
 Un facteur de développement commun  est un coefficient qui permet de prédire les données futures manquantes à partir des données observées. La formule pour calculer les facteurs de développement communs est la suivante :
 
@@ -943,7 +943,7 @@ $${#eq-gbmp}
 :::
 
 ::: {.callout-note}
-## Etape 5 :Calcul des règlements cumulés futurs par année de survenance:
+## Etape 5 :Calcul des règlements cumulés futurs par année de survenance :
 
 Les règlements cumulés futurs sont estimés sur la base du triangle cumulé comme suit :
 
@@ -963,7 +963,7 @@ $${#eq-gbmp}
 :::
 
 ::: {.callout-note}
-## Etape 6 : Constitution du triangle des règlements décumulés futurs par année de survenance:
+## Etape 6 : Constitution du triangle des règlements décumulés futurs par année de survenance :
 
 A la sortie de l'étape 5, nous diposerons d'une matrice de règlements cumulés. Cette étape consiste à la décumuler en utilisant la formule suivante :
 
@@ -1071,7 +1071,7 @@ avec :
 - $REC$ : les règlements au titre de l'exercice clos.
 
 
-### Part des cessionnaires dans les provisions techniques prudentielles:
+### Part des cessionnaires dans les provisions techniques prudentielles :
 La part des cessionnaires dans les provisions techniques prudentielles est évaluée en considérant la différence entre d'une part, la meilleure estimation des engagements cédés et d'autre part, l'ajustement pour défaut de contrepartie.
 
 $$
@@ -1113,7 +1113,7 @@ L'*ACAPS* propose une méthode de détermination des flux d'ajustement futurs d�
 
 
 ::: {.callout-note}
-## Etape Nº1: Calcul des meilleures estimations cédées projetées :
+## Etape Nº1: Calcul des meilleures estimations cédées projetées 
 
 > Pour les opérations d'assurance non-vie hors rentes:
 
@@ -1160,7 +1160,7 @@ où :
 :::
 
 ::: {.callout-note}
-## Etape Nº2: Calcul des flux d’ajustement projetés
+## Etape Nº2: Calcul des flux d’ajustement projetés 
 
 Au titre de l'année de projection $i$, le flux d'ajustement est calculé ainsi :
 
@@ -1185,7 +1185,7 @@ avec $(r_i)$ calculés à partir de la courbe des taux fixée par l'Autorité.
 
 :::
 
-## Capital de Solvabilité Requis 
+## Capital de Solvabilité Requis :
 
 Au cours de son existence, la compagnie d'assurance ou de réassurance fait face à plusieurs engagements dont la plus part sont risqués. Ce tas de risques encourus demande donc des préventions afin d'éviter ou de supporter leur avénement. Subséquemment, il est tout naturel de se demandait quel montant la compagnie devrait avoir à l'instant $t$ pour se couvrir des risques éventuels d'où l'introduction de la notion de *Capital de Solvabilité Requis* ($CSR$).
 
@@ -1237,7 +1237,7 @@ $${#eq-gbmp}
 
 
 
-### Le capital de solvabilité requis de base ($CSRB$):
+### Le capital de solvabilité requis de base ($CSRB$) :
 Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de **marché**, de **concentration**, de **contrepartie**, de **souscription vie** et de **souscription non-vie** et ce, après application des coefficients de corrélations.
 
 En d'autres termes, il s'agit du montant total des capitaux nécessaires pour faire face à ces divers types de risques. les exigences de capitaux sont évaluées individuellement pour chaque catégorie de risque, puis agrégées en appliquant les coefficients de corrélations, pour déterminer le capital de solvabilité requis de base. Cela permet aux compagnies d’assurance et de reassurance d’évaluer de manière précise les montants de capitaux nécessaires pour couvrir leurs risques spécifiques et d'assurer une solvabilité adéquate.
@@ -1300,7 +1300,7 @@ $BEC _{eng}(Choc)$ : Best estimant des engagements après le choque de la valeur
 $BE_{eng}$: Best estimant des engagements.
 
 
-##### L'exigence de capital relative au risque de taux ($CSR_T}$)
+##### L'exigence de capital relative au risque de taux ($CSR_T$)
 L'exigence de capital relative au risque de taux représente le montant estimé de la perte maximale en fonds propres subir en raison de variations à la baisse ou à la hausse des taux d'intérêt appliquées à l'ensemble de ses actifs et passifs.
 
 l'exigence de capital relative au risque de taux est une mesure essentielle pour évaluer et gérer les risques liés aux fluctuations des taux d'intérêt. Elle contribue à assurer la stabilité financière en prévoyant une réserve adéquate pour faire face aux pertes potentielles résultant de ces variations.
@@ -1332,7 +1332,7 @@ $BE_{eng}(Choc)$ : La meilleure estimation des engagements choqué par une baiss
 
 $BE_{eng}$ : La meilleure estimation des engagements avant choque.
 
-##### L'exigence de capital relative au risque d'écart de taux ($CSR_ET$) :
+##### L'exigence de capital relative au risque d'écart de taux ($CSR_{ET}$) :
 
 L'exigence de capital relative au risque d'écart de taux est la perte de fonds propres due à l'application des taux de baisse à la valeur des titres de créances non émis ou non garantis par l'Etat.
 $$
@@ -1344,7 +1344,7 @@ $BE_{eng}(Choc)$ : La meilleure estimation des engagements choqué par une baiss
 
 Les taux de baisse à appliquer sont calculés en fonction de la duration et de la prime de risque à l'émission.
 
-##### L'exigence de capital relative au sous-risque de change ($CSR_Ch$) :
+##### L'exigence de capital relative au sous-risque de change ($CSR_{Ch}$) :
 L'exigence de capital relative au sous-risque de change correspond à la somme des exigences de capitaux pour risque de change pour chaque devise étrangère.
 
 L'exigence de capital pour risque de change pour chaque devise étrangère correspond à la plus élevée des exigences de capitaux suivantes:
@@ -1472,7 +1472,7 @@ Q = \frac{\sqrt{V_{inter} + V_{intra}}}{\sum_i LGD_{i}} \quad .
 $$
 Les valeurs de x1, x2 et x3 malheureusement ne sont pas encore publié par l’ACAPS.
 
-##### Exigence de capital relative au risque de contrepartie de type 2:
+##### Exigence de capital relative au risque de contrepartie de type 2 :
 L'exigence de capital relative au risque de contrepartie de type 2 est le montant total des
 exigences de capitaux relatives aux risque de contrepartie des assurés, des intermédiaires et des
 autres contreparties :
@@ -1487,7 +1487,7 @@ avec :
 
 3) $CSR_{ACr}$ : L'exigence de capital relative au risque lié aux autres contreparties correspond à $X\%$ de la somme des créances de l'actif circulant, autres que les créances vis-à-vis de l'Etat des contreparties visées aux 1) et 2) ci-dessus et les montants des chèques et valeurs à encaisser, nettes de provisions et qui demeurent impayées pendant une période supérieure à six (06) mois.
 
-#### Exigence de capital relative au risque de concentration ($CSR_{Ct}$)
+#### Exigence de capital relative au risque de concentration ($CSR_{Ct}$) :
 L'exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d'émetteurs appartenant aux mêmes groupes. 
 
 Lorsque des émetteurs appartenant à des groupes spécifiques présentent des liens étroits et partagent des caractéristiques similaires, une baisse de la valeur de leurs actifs peut avoir un impact très important. Par conséquent, il est essentiel de prendre en compte cette concentration de risques lors de l'évaluation des réserves de capital requises.
@@ -1500,7 +1500,7 @@ avec $i = \{ \text{Les sous-risques de concentration relatifs aux differents gro
 
 Pour chaque groupe d'émetteurs, l'exigence de capital relative au risque de concentration egale à $X\%$ de l'écart positif constaté entre le montant des placements de l'entreprise d'assurances et de réassurance, autres que les valeurs de l'Etat ou celles jouissant de sa garantie, relatifs à l'ensemble d'émetteurs appartenant au groupe précité et $X\%$ du total de ses placements.
 
-#### Exigence de capital relative au risque de souscription vie ($CSR_{SV}$)
+#### Exigence de capital relative au risque de souscription vie ($CSR_{SV}$) :
 L'exigence de capital relative au risque de souscription vie est la somme total des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques.
 
 Le sous-risque de mortalité concerne les pertes potentielles découlant de décès prématurés d’un assuré, tandis que le sous-risque de longévité se rapporte aux pertes potentielles résultant d'une durée de vie plus longue que prévue. Le sous-risque de rachat concerne les pertes potentielles liées aux retraits anticipés des contrats d'assurance-vie, aussi le sous-risque de frais porte sur les pertes potentielles engendrées par les coûts administratifs associés aux contrats. Et le sous-risque de catastrophe concerne les pertes potentielles résultant d'événements extrêmes tels que des catastrophes naturelles.
@@ -1512,7 +1512,7 @@ CSR_{SV} = \sqrt{\sum_{i,j} ( \rho_{i,j}\times CSR_i \times CSR_j)}
 $${#eq-gbmp}
 avec : $i,j \in \{\text{Mortalite, Longevite, Rachat, Frais, catastrophe} \}$
 
-##### Exigence de capital pour risque de mortalité ($CSR_{Mor}$)
+##### Exigence de capital pour risque de mortalité ($CSR_{Mor}$) :
 L'exigence de capital pour risque de mortalité correspond à la perte de fonds propres due à la hausse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
 
 La hausse des taux de mortalité précitée ne s'applique qu'aux contrats d'assurance pour lesquels une
@@ -1532,7 +1532,7 @@ $TM(Choc)$ : Le taux de mortalité choqué par une hausse de X%.
 
 Selon l'Acaps, le taux de choc pour la mortalité est estimé à 30 %.
 
-##### Exigence de capital pour risque de longévité ($CSR_{Lon}$)
+##### Exigence de capital pour risque de longévité ($CSR_{Lon}$) :
 L'exigence de capital pour risque de longévité correspond à la perte de fonds propres qui résulterait de la baisse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
 
 La baisse des taux de mortalité précitée ne s'applique qu'aux contrats d'assurance pour lesquels une
@@ -1548,7 +1548,7 @@ $$
 $TM$ : Taux de Mortalité. 
 $TM(Choc)$ : Le taux de mortalité choqué par une hausse de X%.
 
-##### Exigence de capital pour risque de rachat ($CSR_{R}$)
+##### Exigence de capital pour risque de rachat ($CSR_{R}$) :
 d’abord c'est quoi un rachat en assurance vie ?
 
 un rachat en assurance vie est un retrait. L’épargne placée sur ce contrat est disponible : les fonds ne sont pas bloqués et les assures peuvent les récupérer intégralement, ou en partie, à tout moment. On distingue :
@@ -1582,7 +1582,7 @@ tell que :
 $BE_{RHT}$ : Meilleur estimation des engagements pour le scenario d'une hausse des taux de rachat.
 $BE_{RBT}$ : Meilleur estimation des engagements pour le scenario d'une baisse des taux de rachat.
 
-##### Exigence de capital relative au risque de frais ($CSR_{F}$)
+##### Exigence de capital relative au risque de frais ($CSR_{F}$) :
 L'exigence de capital relative au risque de frais correspond à la perte de fonds propres due à des augmentations combinées de :
 
 - $X%$ du montant de frais de gestion unitaire moyen retenu pour le calcul des provisions techniques prudentielles des opérations d'assurance vie, décès ou de capitalisation et des rentes découlant des opérations non-vie et ce, par sous-catégorie;
@@ -1592,7 +1592,7 @@ $$
 CSR_{F} = BE_{F}(Choc) - BE_{F}
 $${#eq-gbmp}
 
-##### Exigence de capital relative au risque de catastrophe ($CSR_{Cat}$)
+##### Exigence de capital relative au risque de catastrophe ($CSR_{Cat}$) :
 
 L'exigence de capital relative au risque de catastrophe vie correspond à l'application d'un coefficient de $X\%$ aux montants des capitaux sous risque relatifs aux garanties en cas de décès nets de réassurance.
 $$
@@ -1602,7 +1602,7 @@ avec :
 $BE(Choc)$ : Meilleure estimation après le choc par un coefficient X%, ce taux est estimé par l’ACAPS de 0,2 %.
 $BE$: Meilleure estimation sans aucun choc.
 
-#### Exigence de capital relative au risque de souscription non vie ($CSR_{SNV}$)
+#### Exigence de capital relative au risque de souscription non vie ($CSR_{SNV}$) :
 L'exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux \textbf{sous-risques de primes, de provisions et de catastrophe non-vie}, une fois les coefficients de corrélation appliqués.
 
 $$
@@ -1696,7 +1696,7 @@ $${#eq-gbmp}
 avec : 
 $Adj_{As}$ : Ajustement pour tenir compte la capacité d'absorption des pertes par les assurés.
 
-#### Ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés ($Ajt_{ID}$)
+#### Ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés ($Ajt_{ID}$) :
 
 L'ajustement visant à tenir compte de la capacité d'absorption des pertes par les impôts différés correspond au produit du taux d'impôts et le minimum de la somme du capital de solvabilité requis de base et l'exigence de capital relative au risque opérationnel diminuée de l'ajustement visant à tenir compte de la capacité d'absorption des pertes par les assurés, d'une part, et l'écart positif entre les impôts différés-passif et les impôts différés-actif, d'autre part.
 
@@ -1717,8 +1717,8 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 :::
 
 
-## ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT{-}
-### Echelles de notation{-}
+## ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT {-}
+### Echelles de notation {-}
 
 - Pour les cessionnaires et les cédantes :
 
