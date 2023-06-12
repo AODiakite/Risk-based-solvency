@@ -49,7 +49,7 @@ ui <- dashboardPage(
             ),
             column(
               3,
-              numericInput("choc_cata", "Choc catastrophe", value = 0.2, min = 0, max = 1)
+              numericInput("choc_cata", "Choc catastrophe", value = 0.002, min = 0, max = 1)
             ),
             column(
               3,
@@ -470,7 +470,7 @@ server <- function(input, output) {
       ),
       column(
         6,
-        numericInput(inputId = "fgm_deces", label = "Frais de gestion moyen", min = 0, value = NULL)
+        numericInput(inputId = "fgm_deces", label = "Frais de gestion unitaire moyen", min = 0, value = NULL)
       ),
       column(
         12,
@@ -583,6 +583,34 @@ server <- function(input, output) {
   # SCR -----
   output$scr_boxes <- renderUI(
     fluidRow(
+      column(
+        6,
+        valueBox(
+          value = tags$h3(
+            formatC(
+              sqrt((BEGP_Choc_003() - BEGP())^2 + (BEGP_Choc_002() - BEGP())^2 + (BEFG_vie_Choque() - BEFG_vie())^2),
+              big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("CSR Souscription vie"),
+          icon = icon("sack-dollar"),
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
+          footer = div("Capital de Solvabilité Requis (Souscription vie)")
+        )
+      ),
+      column(
+        6,
+        valueBox(
+          value = tags$h3(
+            formatC(
+              sqrt((BE_Prime())^2 + (BE_Prime()+BE_Sin_nv())^2),
+              big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("CSR Souscription non-vie"),
+          icon = icon("sack-dollar"),
+          width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
+          footer = div("Capital de Solvabilité Requis (Souscription non-vie)")
+        )
+      ),
       column(
         4,
         valueBox(
