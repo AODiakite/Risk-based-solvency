@@ -672,13 +672,13 @@ Le graphique suivant est une représentation conjointe du dernier cours observé
 
 Une remarque flagrante est que les deux courbes sont presque confondues. Ce constat s'explique par la faiblesse de la valeur du RMSE qui vaut $29,44$.
 
-La racine de l'erreur quadratique moyenne (en anglais, root-mean-square error ou RMSE) est une mesure de l'écart type des résidus. Plus précisément, elle mesure la différence entre les valeurs prédites par le modèle et les valeurs observées. En terme de cohérence et de précistion, le modèle LSTM nous a donné de meilleurs résutat comparé à celui de Black & Scholes.
+La racine de l'erreur quadratique moyenne (en anglais, root-mean-square error ou RMSE) est une mesure de l'écart type des résidus. Plus précisément, elle mesure la différence entre les valeurs prédites par le modèle et les valeurs observées. En terme de cohérence et de précision, le modèle LSTM nous a donné de meilleurs résultat comparé à celui de Black & Scholes.
 
 # CHAPITRE IV : Valorisation des provisions techniques prudentielles 
 
 ## Généralité
 
-Les provisions techniques prudentielles sont valorisées brutes de réassurance en considérant les contrats dont l'engagement de l'entreprise est en cours à la date d'inventaire. Les contrats d'assurance non-vie à tacite reconduction dont la date d'effet intervient postérieurement à la date d'inventaire et dont le préavis de résiliation a expiré à cette date sans qu'il y ait une demande de résiliation sont également pris en considération.
+Les provisions techniques prudentielles bruts de réassurance sont valorisées en considérant les contrats dont l'engagement de l'entreprise est en cours à la date d'inventaire. Les contrats d'assurance non-vie à tacite reconduction dont la date d'effet intervient postérieurement à la date d'inventaire et dont le préavis de résiliation a expiré à cette date sans qu'il y ait une demande de résiliation sont également pris en considération.
 
 Elles sont évaluées comme suit :
 $$
