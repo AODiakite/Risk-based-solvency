@@ -651,10 +651,58 @@ server <- function(input, output) {
           width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("Exigence de capital relative au risque de frais")
         )
+      ),
+      column(
+        6,
+        valueBox(
+          value = tags$h3(
+            formatC(MR_NVie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("MR non-vie"),
+          icon = icon("anchor-lock"),
+          width = 12, color = "danger", gradient = TRUE, elevation = 3,
+          footer = div("Marge de risque non vie")
+        )
+      ),
+      column(
+        6,
+        valueBox(
+          value = tags$h3(
+            formatC(MR_Vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
+          ),
+          subtitle = tags$h5("MR vie"),
+          icon = icon("anchor-lock"),
+          width = 12, color = "danger", gradient = TRUE, elevation = 3,
+          footer = div("Marge de risque vie")
+        )
       )
+
+
     )
   )
 
+  MR_NVie = reactive(
+     MargeRisque_NVie(
+      r_hat = Cash_flows(),
+      cad_liq = cadence(),
+      ZC = TZC()[["Taux zéro coupon"]],
+      RS = RS(),
+      PPNA = parametrage()[["PPNA"]],
+      PFP = parametrage()[["Prime_Futur"]],
+      taux_acquistion = parametrage()[["tx_acq"]],
+      CSR0 = sqrt((BEGP_Choc_003() - BEGP())^2 + (BEGP_Choc_002() - BEGP())^2 + (BEFG_vie_Choque() - BEFG_vie())^2),
+      alpha = 0.06
+    )
+  )
+  MR_Vie = reactive(
+    MargeRisque_Vie(
+      BEGPi = proj_cap_vect(),
+      FG_t = FG_t(),
+      ZC = TZC()[["Taux zéro coupon"]],
+      CSR0 = sqrt((BEGP_Choc_003() - BEGP())^2 + (BEGP_Choc_002() - BEGP())^2 + (BEFG_vie_Choque() - BEFG_vie())^2),
+      alpha = 0.06
+    )
+  )
 
   output$valueBoxs_vie <- renderUI(
     fluidRow(

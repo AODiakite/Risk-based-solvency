@@ -511,3 +511,45 @@ BE_Sinistre_nv = function(r_hat, ZC ){
 }
 
 #-----------------------------------------------
+# Marge de risque ------
+
+MargeRisque_Vie <- \(BEGPi,FG_t,ZC,CSR0,alpha = 0.06){
+  BEGPi_actualised = BEGPi/((1+ZC[1:length(BEGPi)])^(1:length(BEGPi)))
+  BEGP_i = cumsum(rev(BEGPi_actualised))
+  BEGP_i = rev(BEGP_i)
+  n_max = length(FG_t)
+  denom = (1 + ZC[1:n_max])^(1:n_max)
+  FG_t = FG_t/denom
+  FG_t = rev(cumsum(rev(FG_t)))
+  BE_ENG = BEGP_i+FG_t
+
+  CSRi = BE_ENG*CSR0/ BE_ENG[1]
+  CSRi[-1] = CSRi[-1]/((1+ZC[1:length(CSRi[-1])])^(1:length(CSRi[-1])))
+
+  alpha*sum(CSRi)
+}
+
+# Opeération d'assurance non-vie
+
+MargeRisque_NVie <- \(r_hat,cad_liq,ZC,RS,PPNA,PFP,taux_acquistion,CSR0, alpha = 0.06){
+  cad_liq0 = cad_liq[-1]
+  cad_actualiser = cad_liq0/((1+ZC[1:length(cad_liq0)])^(1:length(cad_liq0)))
+  cad_actualiser_cumule = rev(cumsum(rev(cad_actualiser)))
+  PFP_Vect = c(PFP,rep(0,length(cad_liq0)-1))
+  PFPA = (1-taux_acquistion)*PFP_Vect
+  BEPrimes = RS*(PPNA+PFP_Vect)*cad_actualiser_cumule-PFPA
+
+  BESinistre = r_hat/((1+ZC[1:length(r_hat)])^(1:length(r_hat)))
+  BESinistre = rev(cumsum(rev(BESinistre)))
+
+
+  BE_ENG = BESinistre+BEPrimes
+  CSRi = BE_ENG*CSR0/ BE_ENG[1]
+  CSRi[-1] = CSRi[-1]/((1+ZC[1:length(CSRi[-1])])^(1:length(CSRi[-1])))
+
+  alpha*sum(CSRi)
+
+}
+
+
+#-----------------------------------------------
