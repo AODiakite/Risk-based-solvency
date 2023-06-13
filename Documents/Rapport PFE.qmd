@@ -24,7 +24,7 @@ format:
 # Organisme d'accueil {-}
 Créée en 1996, **A.R.M CONSULTANTS** est le premier cabinet d'actuaires conseils indépendants au Maroc, en Afrique francophone et dans la région MENA, spécialisé dans l'Actuariat, la gestion des risques et l'ingénierie des assurances. Son capital est détenu à 100% par ses associés, ce qui assure au Cabinet une complète indépendance de tout organisme assureur. La présence d'A.R.M CONSULTANTS, qui regroupe des actuaires consultants de haut niveau, disposant d'une formation supérieure pluridisciplinaires et ayant une longue expérience dans les différents domaines du Risk-Management, de l'assurance et de la prévoyance sociale tant en France qu'au Maroc, présente une réelle opportunité pour :
 
--	Les institutions financières qui souhaitent innover et maitriser leurs risques, pour devenir leaders dans les domaines de l'assurance, de la bancassurance, de la réassurance, de la prévoyance sociale, de la retraite ou du crédit bancaire.
+-	Les institutions financières qui souhaitent innover et maîtriser leurs risques, pour devenir leaders dans les domaines de l'assurance, de la bancassurance, de la réassurance, de la prévoyance sociale, de la retraite ou du crédit bancaire.
 -	Les entreprises et les établissements publics, qui souhaitent optimiser leurs performances en matière de gestion de leurs risques, de leurs assurances et de leurs engagements sociaux.
 -	Les administrations qui cherchent à élaborer des études actuarielles pour améliorer les systèmes existants de couvertures sociales ou mettre en place de nouveaux régimes de prévoyance sociale.
 
@@ -55,7 +55,7 @@ tableau5 %>%
 
 Suite aux crises multiples qui ont secoué le monde de la finance et de l'assurance notamment celle de 2008, les autorités se sont rendu compte de l'insuffisance de la supervision prudentielle. Cette dernière s'est montrée très chétive lors de la crise d'où la nécessité de mettre en place de nouvelles dispositions prudentielles plus robustes.
 
-C'est dans ce contexte, à l'image de _Bale 2_ pour la finance, que la _Solvabilité 2_ voit le jour dans le milieu de l'assurance. Cette réforme réglementaire  européenne vient renforcer la précédente en adaptant au mieux les exigences de fonds propres des compagnies d'assurances et de réassurances aux risques qu'elles encourent.
+C'est dans ce contexte, à l'image de _Bâle 2_ pour la finance, que la _Solvabilité 2_ voit le jour dans le milieu de l'assurance. Cette réforme réglementaire  européenne vient renforcer la précédente en adaptant au mieux les exigences de fonds propres des compagnies d'assurances et de réassurances aux risques qu'elles encourent.
 
 Les insuffisances évoquées n'ont pas épargné le cadre prudentiel marocain. C'est ainsi que l'Autorité de Contrôle des Assurances et de la Prévoyance Sociale (ACAPS^[https://www.acaps.ma/fr/l-acaps/missions]) a adopter la norme de Solvabilité Basé sur les Risques (SBR) afin de tenir compte de la diversités des risques encourues par les compagnies d'assurances et de réassurances marocaines. La SBR s'articule autour de trois piliers :
 
@@ -97,7 +97,7 @@ table %>%
 ```
 
 Le Royaume doit se succès à la rigueur de son dispositif prudentiel qui se consolide de plus en plus.
-La SBR (Solvabilité basée sur les risques) est une réforme prudentielle qui vient en ce sens renforcer cette dynamique. elle vise à consolider  la résilience des compagnies d'assurances face aux différents risques qu'elles encourent. Elle repose sur trois piliers : le pilier quantitatif, le pilier qualitatif et le pilier informatif^[solvabilité basée sur les risques assurances maroc Acaps].
+La SBR (Solvabilité basée sur les risques) est une réforme prudentielle qui vient en ce sens renforcer cette dynamique. elle vise à consolider  la résilience des compagnies d'assurances face aux différents risques qu'elles encourent. Elle repose sur trois piliers : le pilier quantitatif, le pilier qualitatif et le pilier informatif^[solvabilité basée sur les risques assurances Maroc , ACAPS].
 
 Le pilier quantitatif définit de nouvelles règles pour calculer le niveau de fonds propres minimum que les assureurs doivent détenir, en fonction de l'ensemble de leur activité et des risques associés. Il introduit également un bilan prudentiel, basé sur la valeur de marché des actifs et des passifs, et une classification des fonds propres éligibles^[https://fnh.ma/article/actualite-financiere-maroc/assurances-solvabilite-basee-sur-les-risques-les-seuils-minimums-fixes-en-janvier-2019].
 
@@ -147,7 +147,7 @@ La réassurance est un moyen pour les assureurs de transférer une partie de leu
 
 Les assureurs peuvent aussi mettre en œuvre des actions de gestion pour limiter l'impact des chocs sur leurs passifs. Par exemple, ils peuvent modifier la tarification ou la distribution de leurs produits, ou ajuster leurs garanties ou leurs options. Ces actions de gestion sont prises en compte dans le calcul des provisions techniques après choc.
 
-Enfin, les assureurs peuvent bénéficier d'un ajustement pour capaciter  d'absorption des pertes par les impôts différés. Cela signifie qu'en cas de perte, ils peuvent réduire leur base imposable et donc leur impôt à payer. Cet ajustement diminue le SCR des assureurs.
+Enfin, les assureurs peuvent bénéficier d'un ajustement pour augmenter leur capacité  d'absorption des pertes par les impôts différés. Cela signifie qu'en cas de perte, ils peuvent réduire leur base imposable et donc leur impôt à payer. Cet ajustement diminue le SCR des assureurs.
 
 
 L'évaluation des provisions techniques est une étape importante du bilan prudentiel, car elle détermine le coût estimé des engagements pris par les assureurs envers les assurés. Il faut donc que cette évaluation soit encadrée par des règles et des principes, qui garantissent sa fiabilité et sa cohérence. Parmi ces règles et principes, on peut citer :
@@ -331,7 +331,7 @@ INTER[1:10,] %>%
 
 Le Bootstrap est une technique de reconstitution de la courbe zéro-coupon pas à pas, en déterminant les taux zéro-coupon à partir des taux actuariels, en faisant l'hypothèse que le prix théorique d'une obligation correspond à la somme de ses flux futures actualisés aux taux zéro-coupon de l'échéance de chaque flux. Ainsi, on suppose que les prix des obligations des Bons du trésor sont au pair, c'est-à-dire que le prix d'émission des obligations des bons du trésor et leur valeur nominale sont égaux.
 
--	**Pour une maturité inferieure ou égale a un an** :
+-	**Pour une maturité inférieure ou égale a un an** :
 
 Le taux zéro-coupon est donc le taux actuariel de même maturité. Car aucun coupon n'est payé avant l'échéance.
 
@@ -431,7 +431,7 @@ avec :
 
 - $W$ représente un ensemble de fonctions à noyau pour chaque prix d'obligation observable d'entrée.
 - $\alpha$ : la vitesse de convergence vers le UFR.
-- $N$: le nombre  d'obligations ZC dont le prix est observésur le marché.
+- $N$: le nombre  d'obligations ZC dont le prix est observé sur le marché.
 - $u_j$: la j-ème  maturité disponible. .
 - $\gamma_j$ : les inconnus à ajuster par rapport à la courbe des taux zéro-coupon disponible avant extrapolation.
 
@@ -507,9 +507,9 @@ Ainsi, si la valeur présente de l'action est une donnée du marché, sa valeur 
  
  En termes mathématiques, le prix d'une action peut donc être représenté comme une fonction scalaire du temps actuel $t$. Nous noterons cette fonction $S(t)$. Notons qu'en termes techniques, $S(t)$ est une série temporelle, qui bien qu'apparemment continue (avec continuité $C[0]$), est en réalité discontinue (sujette de sauts). De plus, ce n'est pas une fonction dont la dérivée première n'existe pas.
  
- Nous allons modéliser $S(t)$ comme une variable stochastique. Dans cette situation, nous sommes tenus de ne pas utiliser les outils standards de calcul (tels que les séries de Taylor, les dérivées, l'intégrale de Riemann), mais sont plutôt contraints d'utiliser les outils de calculs stochastiques (tels que le lemme d'Ito, la dérivée de Radon-Nykodym, Riemann -Stieltjes intégrale) pour faire avancer notre modélisation.
+ Nous allons modéliser $S(t)$ comme une variable stochastique. Dans cette situation, nous sommes tenus de ne pas utiliser les outils standards de calcul (tels que les séries de Taylor, les dérivées, l'intégrale de Riemann), mais sont plutôt contraints d'utiliser les outils de calculs stochastiques (tels que le lemme d'Itô, la dérivée de Radon-Nikodym, Riemann -Stieltjes intégrale) pour faire avancer notre modélisation.
  
- Dans ce contexte, le comportement de la variable $S(t)$ peut être décrit pour une *Equation Différentielle Stochastique* ($EDS$). Dans le cas des actions, l'$EDS$ standard utilisée pour modéliser la trajectoire du cours est appelé *Mouvement Brownien Géométrique* ($GBM$ : Geometric Brownian Motion). Sous la mesure de probabilité dite réelle $P$, le mouvement brownien géométrique ($GBM$) est formellement représenté en temps continu de la manière suivante : ^[Alonso Peña, Ph.D, C++ For Quantitative Finance]
+ Dans ce contexte, le comportement de la variable $S(t)$ peut être décrit pour une *Équation Différentielle Stochastique* ($EDS$). Dans le cas des actions, l'$EDS$ standard utilisée pour modéliser la trajectoire du cours est appelé *Mouvement Brownien Géométrique* ($GBM$ : Geometric Brownian Motion). Sous la mesure de probabilité dite réelle $P$, le mouvement brownien géométrique ($GBM$) est formellement représenté en temps continu de la manière suivante : ^[Alonso Peña, Ph.D, C++ For Quantitative Finance]
  
  $$
  dS_t = \mu S_t dt + \sigma S_t dW^P_t \quad ,
@@ -544,7 +544,7 @@ Commençons par un calcul formel en posant $Y_t = log(S_t)$ où $S_t$ est une so
 $$
 log(S_t) = log(S_0) + \int_{0}^{t} \frac{dS_s}{S_s}+\frac{1}{2} \int_{0}^{t}\frac{-1}{S_s^2}\sigma^2S_s^2 ds \quad ,
 $$
-soit, en utilsant @eq-gbmp1 :
+soit, en utilisant @eq-gbmp1 :
 
 $$
 Y_t = Y_0 + \int_0^t (\mu - \frac{\sigma^2}{2})ds + \int_0^t\sigma dW_s \quad ,
@@ -626,13 +626,13 @@ GBM_Sim$plt_mean
 
 ### Réseaux de neurones récurrents 
 
-Dans cette partie on va s'intéressé à l'entrainement d'un modèle de réseaux de neurones récurrents, spécifiquement le modèle LSTM (Long short-term memory) avec des données historiques de l'indice MASI (Moroccan All Shares index) afin  prédire les cours journaliers futures.
+Dans cette partie on va s'intéresser à l'entraînement d'un modèle de réseaux de neurones récurrents (**RNN** pour _recurrent neural network_ en anglais), plus spécifiquement au modèle LSTM (Long short-term memory) avec des données historiques de l'indice MASI (_Moroccan All Shares Index_) afin  prédire les cours journaliers de clôture.
 
-D'abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques,$\dots$
+Le (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur ( _Deep Learning_ ) sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, traitement automatique des langues ( _NLP_ ), la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques,$\dots$
 
-Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur mémoire car ils prennent des informations d'entrées précédentes pour influencer l'entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d'une séquence donnée.
+Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur mémoire car ils prennent des informations d'entrées précédentes pour influencer l'entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les évènements futurs seraient également utiles pour déterminer la sortie d'une séquence donnée.
 
-Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau, alors que les réseaux feedforward (des réseaux de neurones artificiels qui traitent les informations dans une seule direction) ont des poids différents sur chaque nœud. Les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
+Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau, alors que les réseaux _feedforward_ (des réseaux de neurones artificiels qui traitent les informations dans une seule direction) ont des poids différents sur chaque nœud. Les **RNN** partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
 
 <div style="text-align:center">
 ![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/Shema_RNN.png){#fig-piliers}
@@ -642,9 +642,9 @@ Un inconvénient des RNN standard est le problème du gradient de fuite, dans le
 
 Les RNN standard qui utilisent une méthode d'apprentissage basée sur le gradient se dégradent à mesure qu'ils grandissent et deviennent plus complexes. Le réglage efficace des paramètres aux premières couches devient trop long et coûteux en calculs.
 
-Une solution au problème s'appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau. Cela permet également aux RNN de déterminer quelles données peuvent être oubliées.
+Une solution au problème s'appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau, et quelles données peuvent être oubliées.
 
-Dans notre cas, Nous nous sommes focalisés sur l'application de modèle LSTM sur les données de l'indice MASI. Notre échantillon contenu 5000 observations journalière du cours d'ouverture, cours Dernier, le cours le plus bas, le cours plus haut et la variation du cours entre deux dates successives.
+Dans notre cas, Nous nous sommes focalisés sur l'application du modèle LSTM sur les données de l'indice MASI. Notre échantillon comporte $5000$ observations journalières du cours d'ouverture, cours de clôture, le cours le plus bas, le cours plus haut et la variation du cours entre deux dates successives.
 
 ```{r echo=FALSE, warning=FALSE,message=FALSE}
 library(readxl)
@@ -655,23 +655,24 @@ head(masi,15)%>%
   kable_material(c("striped"))
 
 ```
+
 La figure suivante donne un aperçu de Dernier cours de cet indice entre les années 2002 et 2022.
 
 <div style="text-align:center">
-![Le cours Historiques de Clôture pour l'indice MASI](Rapport-PFE_files/figure-html/Derniere.png){#fig-piliers}
+![Le cours Historiques de Clôture pour l'indice MASI](Rapport-PFE_files/figure-html/Derniere.png){#fig-masi_plot}
 </div>
 
-Les réseaux de neurones récurrents sont réputés être plus performants comparer aux autres méthodes. Ainsi, il est tout naturelle de s'attendre à un excellent score lord d'une application du modèle LSTM, nous allons voir plus de détails sur la méthode de ce modèle sur le langage python la section Application^[[CHapitre: Application ]()].
+Les réseaux de neurones récurrents sont réputés être plus performants comparés aux autres méthodes en terme de prédiction de série chronologique. Ainsi, il est tout naturel de s'attendre à un excellent score lors d'une application du modèle LSTM. Nous allons voir plus de détails sur la méthode de ce modèle sur le langage python la @sec-rnn_app.
 
-Le graphique suivant est une représentation conjointe du dernier cours observe (en bleu) et le cours prédit (en orange) sur la même période.
+Le graphique suivant est une représentation conjointe du dernier cours observé (en bleu) et le cours prédit (en orange) par notre modèle sur la même période.
 
 <div style="text-align:center">
 ![Courbe de cours prédit et de cours observé](Rapport-PFE_files/figure-html/Prediction.png){#fig-piliers}
 </div>
 
-Une remarque flagrante est que les deux courbes sont presque confondus, ce constat s'explique par la faiblesse de la valeur du RMSE qui veut $29,44$.
+Une remarque flagrante est que les deux courbes sont presque confondues. Ce constat s'explique par la faiblesse de la valeur du RMSE qui vaut $29,44$.
 
-La racine de l'erreur quadratique moyenne (en anglais, root-mean-square error ou RMSE) est une mesure de l'écart type des résidus, ça veut dire il mesure la différence entre les valeurs prédites par le modèle et les valeurs observées. Tous ces raisons, prouve l'efficacité du modèle LSTM comparé à celui de Black&sholes.
+La racine de l'erreur quadratique moyenne (en anglais, root-mean-square error ou RMSE) est une mesure de l'écart type des résidus. Plus précisément, elle mesure la différence entre les valeurs prédites par le modèle et les valeurs observées. En terme de cohérence et de précistion, le modèle LSTM nous a donné de meilleurs résutat comparé à celui de Black & Scholes.
 
 # CHAPITRE IV : Valorisation des provisions techniques prudentielles 
 
@@ -820,7 +821,7 @@ avec :
 
 La meilleure estimation des frais de gestion, pour les rentes découlant des opérations d'assurance non vie est déterminée de la meme façon comme avant.
 
-### Opérations d'assurance non vie hors rentes :
+### Opérations d'assurance non vie hors rentes
 L'assurance non-vie, également connue sous le nom d'assurance dommages, est un secteur d'assurance qui vise à protéger les biens et les responsabilités des individus et des entreprises contre divers risques. Et il couvre une vaste gamme de domaines, tels que les accidents, les catastrophes naturelles, les dommages matériels, la responsabilité civile, les pertes financières, les vols et bien d'autres encore,$\dots$
 
 Aussi l'assurance non vie repose sur le principe de la mutualisation des risques, telle que Les assurés paient des primes périodiques à une compagnie d'assurance en échange d'une garantie de recevoir une indemnisation en cas de sinistre. L'assureur collecte les primes de nombreux assurés et utilise ces fonds pour couvrir les pertes subies par ceux qui ont subi des dommages assurés. Ainsi, l'assurance non-vie permet de répartir les risques et de fournir une protection financière contre les événements imprévus qui pourraient causer des pertes matérielles ou des responsabilités juridiques.
@@ -863,7 +864,7 @@ $${#eq-gbmp}
 
 avec :
 
-- $CU$: [La charge ultime visée correspond, par exercice de survenance, à la somme des règlements cumulés et des règlements futurs au titre de l'année de survenance considérée.] représente la charge ultime.
+- $CU$: La charge ultime visée correspond, par exercice de survenance, à la somme des règlements cumulés et des règlements futurs au titre de l'année de survenance considérée.
 - $PA$ les primes acquises.
 
 Tell que :
@@ -891,7 +892,7 @@ avec:
 
 ##### Méthode de calcul des flux de réglements futurs probabilisés pour les opérations non-vie hors rentes
 
-##### Méthode des cadences – Chain Ladder {-}
+##### Méthode des cadences – Chain Ladder {#sec-ladder}
 
 La méthode de Chain Ladder est celle spécifiée dans l'*annexe 5* de la circulaire de l'$ACAPS$ sur la $SBR$.
 Les méthodes de cadences de règlement se basent sur le principe que la vitesse des règlements, en pourcentage de la charge finale de sinistres, est constante d'une année de survenance à l'autre. Ainsi les paiements réalisés permettent d'estimer les provisions pour sinistres à payer.
@@ -1733,7 +1734,7 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 
 # CHAPITRE VII : Application numérique de la Solvabilité Basée sur les Risque 
 
-## Modèle LSTM appliqué au cours de l'indice MASI
+## Modèle LSTM appliqué au cours de l'indice MASI{#sec-rnn_app}
 
 ## Application de calcul des CSR
 
@@ -1796,7 +1797,322 @@ En suite, l'application se charge de télécharger automatiquement la table des 
 
 Une fois la courbe construite, nous allons l'utiliser dans la suite de notre application pour le calcul des tous les flux futurs actualisés dont nous aurons besoin.
 
+
 ### Opérations d'assurance non-vie hors rente
+
+Pour cette opération, l'entreprise d'accueil a mis à notre disposition une base de données sur l'assurance Accident de Travail (AT). Il s'agit d'un triangle de règlements cumulés d'une assurance AT (voir la @sec-ladder).
+
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-triangleAT
+#| tbl-cap: Triangle de réglements cumulés d'une assurance AT
+
+library(readxl)
+library(kableExtra)
+triangleAT <- read_excel("Rapport-PFE_files/Data/triangleAT.xlsx")
+triangleAT%>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+
+Notre application donne à l'utilsateur l'option de selectionner manuellement le triangle, au cas où ce dernier n'est pas cumulé, l'utilsateur peut cocher sur la case _Voulez vous cumuler le triangle ?_ avant de confirmer la lecture (voir @fig-import). Les autres paramètres de cette fenêtre sont des paramètres généraux d'importation de données dans commun à tous les langages de programmation.
+
+![Importation du triangle](Rapport-PFE_files/figure-html/importTrgle.png){#fig-import}
+
+En plus du triangle, cet onglet de l'application a besoin des donnèes d'entrée telles que :
+
+- **Primes Acquises (PA)** : nécessaire pour le calcul du ratio de sinistralité qui pour rappel vaut $RS = \frac{\sum\limits_{i=n-2}^{n}CU_i}{\sum\limits_{i=n-2}^{n}PA_i}$ où CU représente les charges ultimes,
+
+- **PPNA** : provision pour primes non acquises à la date d'inventaire,
+
+- **Primes futurs** : le montant unique des primes futurs,
+
+- **Taux de frais d'acquisition** : Le taux de frais d'acquisition en assurance est le pourcentage de frais prélevé par l'assureur sur chaque versement effectué par l'assuré
+
+- **Taux de frais gestion moyens**
+
+La @fig-parametrage donne un aperçu de l'endroit où ces paramètres sont requis et le @tbl-parametrage représente les données historiques de PA et PPNA dont nous avons besoin.
+
+![Aperçu du paramétrage dans l'application](Rapport-PFE_files/figure-html/parametrage.png){#fig-parametrage}
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-parametrage
+#| tbl-cap: Données de PA et PPNA
+
+library(readxl)
+library(kableExtra)
+pam <- read_excel("Rapport-PFE_files/Data/parametrage.xlsx")
+pam%>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+
+
+L'application supporte le calcul des meilleures estimations des engagements une fois tous les paramètres de cet onglet sont renseignés.
+
+##### Meilleure estimation des engagements pour sinistres avec Chain Ladder{-}
+
+En suivant les étapes mentionnées à la @sec-ladder, on a obtenu les facteurs de développements présenté dans le tableau @tbl-fdev.
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-fdev
+#| tbl-cap: Les facteur de développements
+library(kableExtra)
+fdc = data.frame(
+        fdc1 = c(37312),
+        fdc2 = c(16890),
+        fdc3 = c(13263),
+        fdc4 = c(11770),
+        fdc5 = c(11161),
+        fdc6 = c(10585),
+        fdc7 = c(10450),
+        fdc8 = c(10234),
+        fdc9 = c(10176),
+       fdc10 = c(10164)
+      )
+fdc = fdc/10000
+fdc%>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+Ces facteurs sont ensuite utilisé pour remplir le triangle inférieur par la méthode de Chaine Ladder pour obtenir les règlements futurs (@tbl-regF) cumulés dons la dernières colonnes représente les charges ultimes.
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-regF
+#| tbl-cap: Réglements futurs cumulées
+library(readxl)
+library(kableExtra)
+reglfutur = read_excel("Rapport-PFE_files/Data/reglFutures.xlsx")
+
+reglfutur%>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+On en déduit facilement les flux de règlements futurs en faisant la sommes des élments du triangle inférieur décumulé. Par suite, on obtient les cashflows pour les 10 années de projections suivants :
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-cash
+#| tbl-cap: Flux de règlements futurs (Cafh Flows)
+library(readxl)
+library(kableExtra)
+cash = read_excel("Rapport-PFE_files/Data/cash.xlsx")
+
+cash%>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+Une actualisation des cash flows de la @tbl-cash par la courbe des taux zéro coupon s'opère automatiquement par l'application pour effectuer le calcul de la meilleure estimation des engagements pour sinistres :
+
+$$
+BES = 213\;799\; \text{MAD}
+$$
+
+##### Meilleure estimation des engagements pour prime ($BEP$){-}
+
+Pour le calcul de la $BEP$, nous avons besoin du ration de sinitralité ($RS = \frac{\sum\limits_{i=n-2}^{n}CU_i}{\sum\limits_{i=n-2}^{n}PA_i}$). Notre application calcule ce ratio à partir des PA données en input puisque nous disposons déjà des charges ultimes, qui, nous le rappelons, correspondent aux éléments de la dernière colonne de la @tbl-regF. Ainsi nous obtenons les paramètres suivants :
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+library(kableExtra)
+par2 = data.frame(
+  stringsAsFactors = FALSE,
+                Parametre = c("RS","PPNA",
+                              "Primes futurs","Taux de frais d'acquisition"),
+            Valeur = c("0,698546111", "25000", "100000", "0,1")
+       )
+
+par2%>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+```
+
+Après détermination des cadences de liquidation, nous trouve comme meilleure estimation des engagements pour prime :
+
+$$
+BEP = -16\;907\; \text{MAD}
+$$
+
+Ce résultat négatif s'explique par le montant des primes primes futurs. En effet, du fait que cette prime soit unique et importante, au moment de l'inventaire, l'asssureur a encaissé plus qu'il ne doit décaisser d'ici 10 ans pour les engagements correspondants. Par conséquent, puis que la meilleure estimation correspond à la différence entre les décaiseement et les encaissements, alors c'est pourquoi la $BEP$ est négative.
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+library(kableExtra)
+cad = data.frame(
+  stringsAsFactors = FALSE,
+             Cad.0 = c("7,78%"),
+             Cad.1 = c("21,25%"),
+             Cad.2 = c("20,00%"),
+             Cad.3 = c("16,00%"),
+             Cad.4 = c("11,51%"),
+             Cad.5 = c("8,88%"),
+             Cad.6 = c("5,00%"),
+             Cad.7 = c("4,07%"),
+             Cad.8 = c("2,21%"),
+             Cad.9 = c("1,70%"),
+            Cad.10 = c("1,61%")
+      )
+
+cad %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+```
+
+![Output des cadences de liquidations dans l'application](Rapport-PFE_files/figure-html/cad.png)
+
+##### Meilleure estimation des frais de gestions ($BEFG$){-}
+ Le taux moyen des trois dernières années des frais de gestions étant de $3\%$, on aboutit au résultat :
+ 
+ $$
+ BEFG = 59\;067\;\text{MAD}
+ $$
+
+![Affichages des BE dans l'application](Rapport-PFE_files/figure-html/BENV.png)
+
+
+### Opérations d'assurance vie
+
+Dans ce projet nous avons étudié le cas d'un capital décès dégressif. Ce dernier est un type de capital versé aux bénéficiaires d'une assurance décès qui diminue progressivement avec le temps, jusqu'à atteindre un capital nul. Ce type de capital est utile pour couvrir un besoin financier important lors des premières années de l'assurance (hypothèque, crédit, enfants à charge, etc.) et qui diminue au fil du temps. Comme dans le cas du triangle, l'utilisateur de notre application peut parcourir son ordinateur afin de sélectionner la table de données qui doit contenir au moins les colonnes suivantes :
+
+- **Age de l'assuré**,
+- **Année d'effet du contrat**,
+- **Durée du contrat**,
+- **Durée restante du contrat**,
+- **Le capital initial**.
+
+L'utilisateur doit sélectionner les colonnes mentionner sous-dessus puis renseigné les frais de gestions unitaire moyen qui est de $100$ pour notre étude. 
+
+![Importation des données (Capital Décès Dégressif)](Rapport-PFE_files/figure-html/dec_import.png){#fig-dec_import}
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-dec_table
+#| tbl-cap: Données du Capital décès dégressif (CDD)
+library(kableExtra)
+cdd = data.frame(
+        stringsAsFactors = FALSE,
+             check.names = FALSE,
+                      ID = c(1400001L, 1400002L, 1400003L),
+                     Age = c(46L, 43L, 35L),
+         `Année.d'effet` = c(2017L, 2017L, 2014L),
+      Ann_e_d_expiration = c(2037L, 2042L, 2039L),
+        Dur_e_de_contrat = c(20L, 25L, 25L),
+  Durre.contrat.restante = c(15L, 20L, 17L),
+                   Prime = c(55624, 94684, 4113),
+   Capital_d_c_s_initial = c(2625000, 1785000, 262500)
+)
+
+cdd %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+#### Tableau d'amortissement{-}
+
+Le capital étant dégressif, il est primordial de voir comment se capital est amorti tout au long de la durée du contrat. Voici un exemple d'ammortissemnt d'un contrat de durée $25\;ans$, de date d'effet 2017, de capital initial $1\;785\;000\;\text{MAD}$. Le montant des annuités vaut $114\;261\;\text{MAD}$ sachant que le taux d'intérêt est de $4\%$.
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-amort
+#| tbl-cap: Tableau d'amortissement
+#| tbl-subcap: CRP désigne le capital restant à payer en cas de décès
+library(kableExtra)
+amort =  data.frame(
+                   Annee = c(2017L,2018L,2019L,
+                             2020L,2021L,2022L,2023L,2024L,2025L,2026L,
+                             2027L,2028L,2029L,2030L,2031L,2032L,2033L,
+                             2034L,2035L,2036L,2037L,2038L,2039L,2040L,
+                             2041L,2042L),
+                     CRP = c(1785000L,1742139L,
+                             1697563L,1651204L,1602991L,1552849L,1500702L,
+                             1446468L,1390066L,1331407L,1270402L,1206957L,
+                             1140974L,1072351L,1000984L,926762L,849571L,
+                             769293L,685803L,598974L,508671L,414757L,317086L,
+                             215508L,109867L,0L),
+                Intérêts = c(71400L,69686L,
+                             67903L,66048L,64120L,62114L,60028L,57859L,55603L,
+                             53256L,50816L,48278L,45639L,42894L,40039L,
+                             37070L,33983L,30772L,27432L,23959L,20347L,
+                             16590L,12683L,8620L,4395L,0L),
+           Amortissement = c(42861L,44576L,
+                             46359L,48213L,50142L,52147L,54233L,56403L,58659L,
+                             61005L,63445L,65983L,68622L,71367L,74222L,
+                             77191L,80279L,83490L,86829L,90302L,93915L,
+                             97671L,101578L,105641L,109867L,0L),
+                 Annuité = c(114261L,114261L,
+                             114261L,114261L,114261L,114261L,114261L,114261L,
+                             114261L,114261L,114261L,114261L,114261L,
+                             114261L,114261L,114261L,114261L,114261L,114261L,
+                             114261L,114261L,114261L,114261L,114261L,114261L,
+                             0L)
+         )
+
+amort %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+Ce calcul se fait automatiquement par l'application à partir de la table de données.
+
+#### Projection du capital ammorti{-}
+
+Maintenant que nous disposant du capital amorti pour la durée du contrat, l'étape qui s'en suit est de déterminer la valeur probable de ce capital. On sait que ce capital sera versé qu'en cas de décès de l'assuré. Alors, pour une année $j$ de projection de donnée, le capital restant ($VPC$) est versé que si l'assuré d'âge $x$ survit jusqu'à l'année $j-1$ et décède à l'année $j$. En terme mathématiques :
+
+$$
+VPC = _{j-1}p_x \times q_{x+j}*CRP_i
+$$
+
+#### Résultats et interprétations{-}
+
+L'onglet dédié à cette opération d'assurance de capital décès dégressif, après tout calcul, fournit les résultat suivants :
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-bevie
+#| tbl-cap: Meilleure estimation des granatie probabilisée et des frais de gestions
+library(kableExtra)
+bevie =  data.frame(
+                   `Meilleure estimation des garanties probabilisées` = c("183 895 103"),
+                   `Meilleure estimation des frais de gestions` = c("3 725 418"),check.names = F
+         )
+
+bevie %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+![Apperçu des résultat dans l'application](Rapport-PFE_files/figure-html/BE_VIE.png)
+
+
+### Part des cessionnaires
+
+La part des cessionnaires est déterminées conformément aux spécification techniques de l'ACAPS. Les taux de cession sont fournis dans l'onglet paramètres et peuvent être modifiés en fonction du traité de réassurance correspondant à l'étude :
+
+- **Taux de cession des engagements vie** :  $1\%$,
+
+- **Taux de cession primes non-vie** : $5\%$,
+
+- **Taux de cession sinistres non-vie** : $3\%$.
+
+La meilleure estimations des engagements pour primes non-vie étant négative, on s'attend aussi à une cession négative des primes.
+
+![Part des cessionnaires](Rapport-PFE_files/figure-html/cession.png){#fig-cession}
+
+
+### Capital de solvabilité requis
+
+En tenant compte des paramètres renseigné dans le premier onglet ainsi que de tous les calculs effectués dans les autres onglets, il en ressort les capitaux de solvabilité requis pour les risque de souscription vie et non vie indiqué à la figure suivante :
+
+![les CSR calculés](Rapport-PFE_files/figure-html/CSR.png){#fig-csr}
+
+Nous avons supposé que les sous risques sont indépendants entendant la publication de la matrice de corrélation entre ces sous-risques.
 
 ## ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT {-}
 ### Echelles de notation {-}
@@ -1894,7 +2210,7 @@ Dans les autres cas, l'échelle de notation la plus faible est retenue.
 ### Probabilités de défaut{-}
 
 La probabilité de défaut annuelle est établie en fonction de l'échelle de notation retenue en
-application des dispositions du 1) ci-dessus et ce, conformément au tableau de correspondance ciaprès :
+application des dispositions du 1) ci-dessus et ce, conformément au tableau de correspondance ci après :
 ```{r echo=FALSE}
 library(kableExtra)
 Ligne1 = c("Echelle de notation","1","2","3","4","5")
