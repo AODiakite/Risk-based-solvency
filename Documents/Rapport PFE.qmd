@@ -2414,7 +2414,8 @@ TD%>%
 
 ## ANNEXE N°3 : Vérification des hypothèses de Chain Ladder : {-} 
 
-\underline{\textebf{Hypothèse N°1 :}}
+\textebf{Hypothèse N°1 :}\\
+
 L'hypothèse d'indépendance, suppose que les paiements de sinistres sont indépendants les uns des autres, ce qui signifie que le montant d'un sinistre ne dépend pas des montants des autres sinistres.
 
 Pour la vérification de cette hypothèse, Nous avons tracé les facteurs de développement $f_{i,j}$ individuel pour chaque année de développement $j$ en fonction de toutes les années de survenance $i$, et on a comparé la moyenne de facteur de développement individuel.
@@ -2433,8 +2434,8 @@ significativement proche de la moyenne des facteurs de développement individuel
 On peut constater que les $f_{i,j}$ sont à peu près alignés autout des {f_j} ce qui nous
 pousse a validé la prémière hypothèse de Chian Ladder.\\
 
+\textebf{Hypothèse N°2 :}\\
 
-\underline{\textebf{Hypothèse N°2 :}}
 L'hypothèse de linéarité dans la méthode de Chain-Ladder suppose que les sinistres  évoluent de manière constante et prévisible au fil du temps. Cela signifie que la tendance  observée dans les paiements de sinistres passés se poursuivra sans changement significatif à l'avenir.
 
 Pour vérifier cette hypothèse, on a tracé les montants des règlements cumulés de chaque année de développement en fonction de l’années de développement avant, et on a contrôlé s'il Ya une linéarité entre ces deux années, le nuage de points représentant les règlements cumulés de d’une année $j$ par rapport aux règlements cumulés de l’année $j-1$ doit être approché significativement par une droite.

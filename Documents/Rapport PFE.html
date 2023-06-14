@@ -1308,7 +1308,7 @@ S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t) \quad ,
 <p>Les réseaux de neurones récurrents sont réputés être plus performants comparés aux autres méthodes en terme de prédiction de série chronologique. Ainsi, il est tout naturel de s’attendre à un excellent score lors d’une application du modèle LSTM. Nous allons voir plus de détails sur la méthode de ce modèle sur le langage python la <a href="#sec-rnn_app">Section&nbsp;7.1</a>.</p>
 <p>Le graphique suivant est une représentation conjointe du dernier cours observé (en bleu) et le cours prédit (en orange) par notre modèle sur la même période.</p>
 <div style="text-align:center">
-<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-Prediction_masi" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="Rapport-PFE_files/figure-html/Prediction.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;5: Courbe de cours prédit et de cours observé</figcaption><p></p>
@@ -2419,7 +2419,7 @@ Remarque
 <p>Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur “mémoire” car ils prennent des informations d’entrées précédentes pour influencer l’entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d’une séquence donnée.</p>
 <p>Une autre caractéristique distinctive des réseaux récurrents est qu’ils partagent des paramètres à travers chaque couche du réseau. Alors que les réseaux feedforward « des réseaux de neurones artificiels qui traitent les informations dans une seule direction » ont des poids différents sur chaque nœud, les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l’apprentissage par renforcement.</p>
 <div style="text-align:center">
-<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-RNN" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="Rapport-PFE_files/figure-html/Shema_RNN.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;7: Fonctionnement des réseaux de neurones récurrents</figcaption><p></p>
@@ -2580,7 +2580,7 @@ Remarque
 </div>
 <p>Après le nettoyage des donnes qu’on a collectées, nous avons représenté premièrement le cours historique de clôture « Dernier » en fonction de temps afin d’avoir une idée sur la variation à long terme et à court terme de cet indice.</p>
 <div style="text-align:center">
-<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-Derniere1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="Rapport-PFE_files/figure-html/Derniere.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;8: Le cours Historiques de Clôture pour l’indice MASI</figcaption><p></p>
@@ -2592,7 +2592,7 @@ Remarque
 <p>Ensuite, on a divisé les données en deux ensembles, une pour l’entraînement, et la deuxième pour le test. L’ensemble d’entraînement est utilisé pour entrainer et ajuster les poids du module LSTM, tandis que l’ensemble de test permet d’évaluer les performances finales du modèle sur des données inconnues. Une fois qu’on a terminé ces étapes, les données sont utilisées pour entraîner notre module LSTM, qui va nous permettre de prédire des cours futures.</p>
 <p>Les représentations graphiques suivantes montrent les états d’entraînement et de test de notre module. On remarque donc une cohérence entre les résultats de prédiction et les valeurs réelles. De plus, le RMSE (racine de l’erreur quadratique moyenne) de notre module est de <span class="math inline">\(\textbf{27,44}\)</span>, tandis que les valeurs estimées se situent autour de dix milliers. La chose qui prouve l’efficacité de notre module LSTM.</p>
 <div style="text-align:center">
-<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-prediction1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="Rapport-PFE_files/figure-html/prediction.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;9: Courbes de cours prédit et cours réel</figcaption><p></p>
@@ -4357,29 +4357,47 @@ CSR_i = \frac{BE_{eng_i}}{BE_{eng_0}} \times CSR_0 \quad ,
 </section>
 <section id="annexe-n3-vérification-des-hypothèses-de-chain-ladder" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="annexe-n3-vérification-des-hypothèses-de-chain-ladder">ANNEXE N°3 : Vérification des hypothèses de Chain Ladder :</h2>
-
+<p>\</p>
+<p>L’hypothèse d’indépendance, suppose que les paiements de sinistres sont indépendants les uns des autres, ce qui signifie que le montant d’un sinistre ne dépend pas des montants des autres sinistres.</p>
+<p>Pour la vérification de cette hypothèse, Nous avons tracé les facteurs de développement <span class="math inline">\(f_{i,j}\)</span> individuel pour chaque année de développement <span class="math inline">\(j\)</span> en fonction de toutes les années de survenance <span class="math inline">\(i\)</span>, et on a comparé la moyenne de facteur de développement individuel.</p>
+<p>Les facteurs de développement individuels relatif à une année de développement <span class="math inline">\(j\)</span> doivent être significativement proche de la moyenne des facteurs de développement individuels sur ladite année pour que la première hypothèse soit vérifiée.</p>
 <div style="text-align:center">
-<p>!(Rapport-PFE_files/figure-html/H1_1.png){#fig-piliers}</p>
-</div>
-<div style="text-align:center">
-<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-CL11" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Rapport-PFE_files/figure-html/H1_2.png" class="img-fluid figure-img"></p>
+<p><img src="Rapport-PFE_files/figure-html/H1_1.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;21: Vérification de l’hypothèse N°1 surles années de développement</figcaption><p></p>
 </figure>
 </div>
 </div>
 <div style="text-align:center">
-<p>!(Rapport-PFE_files/figure-html/H2-1.png){#fig-piliers}</p>
-</div>
-<div style="text-align:center">
-<div id="fig-piliers" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-CL11" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Rapport-PFE_files/figure-html/H2-2.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;22: Vérification de l’hypothèse N°2 pour les années de développement</figcaption><p></p>
+<p><img src="Rapport-PFE_files/figure-html/H1_2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;22: Vérification de l’hypothèse N°1 surles années de développement</figcaption><p></p>
 </figure>
 </div>
 </div>
+<p>On peut constater que les <span class="math inline">\(f_{i,j}\)</span> sont à peu près alignés autout des {f_j} ce qui nous pousse a validé la prémière hypothèse de Chian Ladder.\</p>
+<p>\</p>
+<p>L’hypothèse de linéarité dans la méthode de Chain-Ladder suppose que les sinistres évoluent de manière constante et prévisible au fil du temps. Cela signifie que la tendance observée dans les paiements de sinistres passés se poursuivra sans changement significatif à l’avenir.</p>
+<p>Pour vérifier cette hypothèse, on a tracé les montants des règlements cumulés de chaque année de développement en fonction de l’années de développement avant, et on a contrôlé s’il Ya une linéarité entre ces deux années, le nuage de points représentant les règlements cumulés de d’une année <span class="math inline">\(j\)</span> par rapport aux règlements cumulés de l’année <span class="math inline">\(j-1\)</span> doit être approché significativement par une droite.</p>
+<div style="text-align:center">
+<div id="fig-CL21" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Rapport-PFE_files/figure-html/H2-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;23: Vérification de l’hypothèse N°1 surles années de développement</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div style="text-align:center">
+<div id="fig-CL22" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Rapport-PFE_files/figure-html/H2-2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;24: Vérification de l’hypothèse N°2 pour les années de développement</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>On remarque bien que pour toutes les années de développement il y a un sort de linéarité entre les années de développements ce que prouve la deuxième hypothèse.</p>
 </section>
 </section>
 
