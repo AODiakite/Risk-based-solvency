@@ -675,7 +675,7 @@ Les réseaux de neurones récurrents sont réputés être plus performants compa
 Le graphique suivant est une représentation conjointe du dernier cours observé (en bleu) et le cours prédit (en orange) par notre modèle sur la même période.
 
 <div style="text-align:center">
-![Courbe de cours prédit et de cours observé](Rapport-PFE_files/figure-html/Prediction.png){#fig-piliers}
+![Courbe de cours prédit et de cours observé](Rapport-PFE_files/figure-html/Prediction.png){#fig-Prediction_masi}
 </div>
 
 Une remarque flagrante est que les deux courbes sont presque confondues. Ce constat s'explique par la faiblesse de la valeur du RMSE qui vaut $29,44$.
@@ -1831,6 +1831,63 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 # CHAPITRE VII : Application numérique de la Solvabilité Basée sur les Risque 
 
 ## Modèle LSTM appliqué au cours de l'indice MASI{#sec-rnn_app}
+Dans cette partie on va s’intéressé à l’entrainement d’un module de réseaux de neurones récurrents, spécifiquement le module LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index).
+
+D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques,$\dots$
+
+Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur "mémoire" car ils prennent des informations d'entrées précédentes pour influencer l'entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d'une séquence donnée.
+
+Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau. Alors que les réseaux feedforward « des réseaux de neurones artificiels qui traitent les informations dans une seule direction » ont des poids différents sur chaque nœud, les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
+
+<div style="text-align:center">
+![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/Shema_RNN.png){#fig-RNN}
+</div>
+
+Un inconvénient des RNN standard est le problème du gradient de fuite, dans lequel les performances du réseau de neurones souffrent car il ne peut pas être formé correctement. Cela se produit avec des réseaux de neurones en couches profondes, qui sont utilisés pour traiter des données complexes.
+
+Les RNN standard qui utilisent une méthode d'apprentissage basée sur le gradient se dégradent à mesure qu'ils grandissent et deviennent plus complexes. Le réglage efficace des paramètres aux premières couches devient trop long et coûteux en calculs.
+
+Une solution au problème s'appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau. Cela permet également aux RNN de déterminer quelles données peuvent être oubliées.
+
+Dans notre cas, nous possédons une base de données historiques de l’indice MASI pour une durée de 5000 jours contenant 6 colonne :
+
+-	Date : la date d’observation. 
+-	Dernier : le cours de clôture de la journée.
+-	Ouverture : le cours d’ouverture de la journée.
+-	PlusHaut : le maximun du cours de la journée.
+-	PlusBas : le minumun du cours de la journée.
+-	Variation : la variation des cours entre deux dates successives.
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+library(readxl)
+library(kableExtra)
+masi <- read_excel("Rapport-PFE_files/Data/masi.xlsx")
+head(masi,15)%>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+Après le nettoyage des donnes qu’on a collectées, nous avons représenté premièrement le cours historique de clôture « Dernier » en fonction de temps afin d'avoir une idée sur la variation à long terme et à court terme de cet indice.
+
+<div style="text-align:center">
+![Le cours Historiques de Clôture pour l’indice MASI](Rapport-PFE_files/figure-html/Derniere.png){#fig-Derniere1}
+</div>
+
+Une fois les données préparées, nous avons effectué une normalisation des valeurs numériques pour les mettre à l'échelle.
+
+Deuxièmement, nous les avons transformées en tenseurs, qui sont des tableaux multidimensionnels. Cette étape est cruciale lors de l'entraînement d'un module LSTM, Pour cela, chaque séquence de données doit être découpée en fenêtres temporelles, où chaque fenêtre contient un certain nombre de pas de temps. Chaque pas de temps représente une observation individuelle dans la séquence.
+
+Ensuite, on a divisé les données en deux ensembles, une pour l’entraînement, et la deuxième pour le test. L'ensemble d'entraînement est utilisé pour entrainer et ajuster les poids du module LSTM, tandis que l'ensemble de test permet d'évaluer les performances finales du modèle sur des données inconnues.
+Une fois qu’on a terminé ces étapes, les données sont utilisées pour entraîner notre module LSTM, qui va nous permettre de prédire des cours futures.
+
+Les représentations graphiques suivantes montrent les états d'entraînement et de test de notre module. On remarque donc une cohérence entre les résultats de prédiction et les valeurs réelles. De plus, le RMSE (racine de l'erreur quadratique moyenne) de notre module est de $\textbf{27,44}$, tandis que les valeurs estimées se situent autour de dix milliers. La chose qui prouve l'efficacité de notre module LSTM.
+
+<div style="text-align:center">
+![Courbes de cours prédit et cours réel](Rapport-PFE_files/figure-html/prediction.png){#fig-prediction1}
+</div>
+
+
 
 ## Application de calcul des CSR
 
@@ -2210,7 +2267,28 @@ En tenant compte des paramètres renseigné dans le premier onglet ainsi que de 
 
 Nous avons supposé que les sous risques sont indépendants entendant la publication de la matrice de corrélation entre ces sous-risques.
 
-## ANNEXE : Correspondance CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT {-}
+## ANNEXE N°1 : MARGE DE RISQUE : {-}
+Selon le circulaire de l'ACAPS, la marge de risque est calculée séparément pour les engagements vie et rentes découlant des opérations non vie ainsi que pour les engagements des opérations non vie comme suit :
+$$
+MR = \alpha \times \sum_{i\geq 0} \frac{CSR_i}{(1+r_{i+1})^{i+1}} \quad ,
+$$
+où :
+
+$\alpha$ : représente le taux du coût du capital, Selon l'ACAPS $\alpha = 6\%$.
+
+$CSR_i$ : représente le capital de solvabilité requis projeté à la date i compte non tenu des exigences de capitaux relatives aux risques opérationnel, de marché, de concentration et de contrepartie. Il est calculé comme suit : 
+$$
+CSR_i = \frac{BE_{eng_i}}{BE_{eng_0}} \times CSR_0 \quad ,
+$$
+
+$BE_{eng_i}$ : correspond à la meilleure estimation des engagements projetée à la date $i$.
+
+$CSR_0$ : représente le capital de solvabilité requis à la date d’inventaire compte non tenu des exigences de capitaux relatives aux risques opérationnel, de marché, de concentration et de contrepartie.
+
+$r_i$ : correspond à la structure par terme de la courbe des taux fixée par l’Autorité.
+
+
+## ANNEXE N°2 : CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT {-}
 ### Echelles de notation {-}
 
 - Pour les cessionnaires et les cédantes :
@@ -2303,7 +2381,7 @@ tableau4 %>%
 ```
 Dans les autres cas, l'échelle de notation la plus faible est retenue.
 
-### Probabilités de défaut{-}
+### Probabilités de défaut : {-}
 
 La probabilité de défaut annuelle est établie en fonction de l'échelle de notation retenue en
 application des dispositions du 1) ci-dessus et ce, conformément au tableau de correspondance ci après :
@@ -2319,6 +2397,69 @@ tableau5 %>%
   kbl() %>% 
   kable_material(c("striped"))
 ```
+
+## ANNEXE N°2 : TABLES DE MORTALITE TD 88-90 {-}
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: TD-88-90
+#| tbl-cap: TABLE DE MORTALITE TD 88-90
+library(readxl)
+library(kableExtra)
+TD<- read_excel("Rapport-PFE_files/Data/TD-88-90.xlsx")
+TD%>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+## ANNEXE N°3 : Vérification des hypothèses de Chain Ladder : {-} 
+
+\underline{\textebf{Hypothèse N°1 :}}
+L'hypothèse d'indépendance, suppose que les paiements de sinistres sont indépendants les uns des autres, ce qui signifie que le montant d'un sinistre ne dépend pas des montants des autres sinistres.
+
+Pour la vérification de cette hypothèse, Nous avons tracé les facteurs de développement $f_{i,j}$ individuel pour chaque année de développement $j$ en fonction de toutes les années de survenance $i$, et on a comparé la moyenne de facteur de développement individuel.
+
+Les facteurs de développement individuels relatif à une année de développement $j$ doivent être
+significativement proche de la moyenne des facteurs de développement individuels sur ladite année pour que la première hypothèse soit vérifiée.
+
+<div style="text-align:center">
+![Vérification de l'hypothèse N°1 surles années de développement](Rapport-PFE_files/figure-html/H1_1.png){#fig-CL11}
+</div>
+
+<div style="text-align:center">
+![Vérification de l'hypothèse N°1 surles années de développement ](Rapport-PFE_files/figure-html/H1_2.png){#fig-CL11}
+</div>
+
+On peut constater que les $f_{i,j}$ sont à peu près alignés autout des {f_j} ce qui nous
+pousse a validé la prémière hypothèse de Chian Ladder.\\
+
+
+\underline{\textebf{Hypothèse N°2 :}}
+L'hypothèse de linéarité dans la méthode de Chain-Ladder suppose que les sinistres  évoluent de manière constante et prévisible au fil du temps. Cela signifie que la tendance  observée dans les paiements de sinistres passés se poursuivra sans changement significatif à l'avenir.
+
+Pour vérifier cette hypothèse, on a tracé les montants des règlements cumulés de chaque année de développement en fonction de l’années de développement avant, et on a contrôlé s'il Ya une linéarité entre ces deux années, le nuage de points représentant les règlements cumulés de d’une année $j$ par rapport aux règlements cumulés de l’année $j-1$ doit être approché significativement par une droite.
+
+<div style="text-align:center">
+![Vérification de l'hypothèse N°1 surles années de développement](Rapport-PFE_files/figure-html/H2-1.png){#fig-CL21}
+</div>
+
+<div style="text-align:center">
+![Vérification de l'hypothèse N°2 pour les années de développement](Rapport-PFE_files/figure-html/H2-2.png){#fig-CL22}
+</div>
+
+On remarque bien que pour toutes les années de développement il y a un sort de linéarité entre les années de développements ce que prouve la deuxième hypothèse.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
