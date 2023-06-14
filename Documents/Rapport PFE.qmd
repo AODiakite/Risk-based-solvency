@@ -1,5 +1,5 @@
 ---
-title: "Rapport PFE"
+title: "Solvabilité Basée sur les Risques (SBR), Application de calcul des Provisions Prudentielles et du Capital de Solvabilité Requis en assurance vie et non-vie"
 author: "DIAKITE Abdoul Oudouss, ETTADLAOUI Othmane"
 prefer-html: true
 format:
@@ -14,11 +14,15 @@ format:
     number-depth: 2
     toc: true
     toc-depth: 2
+    lot: true
+    lof: true
   docx:
     number-sections: true
     number-depth: 2
     toc: true
     toc-depth: 2
+    lot: true
+    lof: true
 ---
 
 # Organisme d'accueil {-}
@@ -40,15 +44,46 @@ Créée en 1996, **A.R.M CONSULTANTS** est le premier cabinet d'actuaires consei
 
 ```{r echo=FALSE}
 library(kableExtra)
-Ligne1 = c("Abréviation","SBR","ACAPS","AT","RNN","LSTM","MASI","CSR","BE","PPNA","PSAP","BAM","CSRB","CSRO","MR","EDS","GBM","OPCVM","OPCI","OPCC","FPCT")
 
-Ligne2 = c("Désignation","Solvabilité Basée sur les risques","Autorité de contrôle des Assurances et de la Prévoyance Sociale","Accident de travail", "Réseaux de neurones récurrents", "Long short-term memory", "Moroccan All Shares index","Capital de Solvabilité Requis","Best Estimate","Provision pour primes non Acquises","Provision pour Sinistre à Payer","Bank Al Maghrib","Capital de solvabilité requis de base","Capital de solvabilité requis relative au risque Opérationnel","Marge de Risque","Equation Différentielle Stochastique","Geometric Brownian Motion","Organisme de Placement Collectif en Valeurs Mobilières","Organisme de Placement Collectif Immobilier","Organismes de Placement Collectif en Capital","Fonds de Placement Collectifs en Titrisation")
-
-tableau5 <- data.frame(Ligne1, Ligne2)
-colnames(tableau5) = tableau5[1,]
-tableau5 = tableau5[-1,]
-rownames(tableau5) = NULL
-tableau5 %>% 
+abv = data.frame(
+  stringsAsFactors = FALSE,
+             Abréviation = c("Adj","AT","BE",
+                             "BE_eng","BEC_eng","BEFG","BEGP","BEP","BEPC",
+                             "BES","BESC","CSR","CSRB","CSRO","CU","Dec",
+                             "Dot","Enc","FDF","FFGF","FG"),
+             Désignation = c("Ajustement pour défaut de contrepartie","Accident de travail",
+                             "Best Estimate","Meilleure Estimation des engagements",
+                             "meilleure estimation des engagements cédés",
+                             "Meilleure Estimation des frais de gestion",
+                             "Meilleure Estimation des garanties probabilisées",
+                             "Meilleure estimation des engagements pour primes",
+                             "Meilleure Estimation des Engagements pour Primes cédés",
+                             "Meilleure estimation des engagements pour sinistres",
+                             "Meilleure Estimation des Engagements pour Sinistres cédés","Capital de Solvabilité Requis",
+                             "Capital de solvabilité requis de base",
+                             "Capital de solvabilité requis relative au risque Opérationnel",
+                             "Charge Ultime","Les décaissements","Dotations",
+                             "Les encaissements",
+                             "Bénéfices Discrétionnaires Futurs","Flux de Frais de Gestion Futurs",
+                             "Frais de gestions"),
+             Abréviation = c("FGU","FRFP","MR",
+                             "NbC","PA","PC","PD","PFPA","PPB","PPNA",
+                             "PT","RègC","RègF","RF","RS","RT","ST","TC",
+                             "TFG","TL","TPB"),
+             Désignation = c("Frais de gestion unitaire","Flux de règlements futurs probabilisés",
+                             "Marge de Risque","Nombre de contrats",
+                             "Primes Acquises","Part des Cessionnaires",
+                             "Probabilité de Défaut","Primes Futures Probabilisé et Actualisé",
+                             "Provision pour participation aux bénéfices",
+                             "Provision pour primes non Acquises",
+                             "Provision Technique","Règlements cumulés","Règlements futurs",
+                             "les résultats financiers.","ratio de sinistralité",
+                             "les résultats techniques.","Soldes Techniques",
+                             "Taux de Cession","Taux de Frais de Gestion",
+                             "Taux de Liquidation",
+                             "Taux de participation aux bénéfices")
+      )
+abv %>% 
   kbl() %>% 
   kable_material(c("striped"))
 ```
@@ -278,7 +313,7 @@ get_taux_act2 <- function(taux_BAM){
 
 library(kableExtra)
 TAC = get_taux_act2(taux_BAM = TR)
-TAC[1:10,] %>% 
+TAC %>% 
   kbl() %>% 
   kable_material(c("striped"))
 
@@ -325,7 +360,7 @@ interpolation2 <- function(TA){
 
 library(kableExtra)
 INTER = interpolation2(TA = TAC)
-INTER[1:10,] %>% 
+INTER %>% 
   kbl() %>% 
   kable_material(c("striped"))
 
@@ -401,7 +436,7 @@ boostrapping2 <- function(T_INTER){
 
 library(kableExtra)
 BOOST = boostrapping2(T_INTER = INTER)
-BOOST[1:10,] %>% 
+BOOST %>% 
   kbl() %>% 
   kable_material(c("striped"))
 
@@ -490,6 +525,30 @@ $${#eq-gbmp}
 ## Directives de l'ACAPS
 Selon les directions de l'autorité de contrôle des Assurances et de la Prévoyance Sociale, les actifs doivent être évaluer comme suit :
 
+```{r echo=FALSE}
+library(kableExtra)
+
+val = data.frame(
+  stringsAsFactors = FALSE,
+                   Actif = c("Actions cotées à la bourse","Titres OPCVM et OPCI",
+                             "Titres OPCC et FPCT",
+                             "Titres de créances négociables , obligations et bons","Immobilisations corporelles",
+                             "Autres créances","Immobilisations en non valeur",
+                             "Immobilisations incorporelles",
+                             "Actifs immobiliers hors OPCI","Autres actifs"),
+            Valorisation = c("Dernier cours coté","Dernière valeur liquidative",
+                             "Dernière valeur connue","Valeur de marché","Valeur comptable",
+                             "Valeur comptable","Valeur nulle","Valeur nulle",
+                             "Valeur de transaction ( sinon valeur comptable )",
+                             "Valeur d’expert (sinon valeur comptable )")
+      )
+
+
+val %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+```
+
 - Titres OPCVM et OPCI : Dernière valeur liquidative.
 - Titres OPCC et FPCT : Dernière valeur connue.
 - Titres de créances négociables, obligations et bons : Valeur de marché.
@@ -503,7 +562,7 @@ Selon les directions de l'autorité de contrôle des Assurances et de la Prévoy
 Pour les actions cotées à la bourse de Casablanca, ils sont valorisées à leur dernier cours coté avant la date d'inventaire, ou le moyenne des cours côtés des trois derniers mois précédant la date d'inventaire, si  le volume ou la quantité journaliers moyens des transactions sur les 3 derniers mois précédant la date d'inventaire sont inférieurs aux seuils fixés par L'ACAPS.
 
 
-### Modélisation du prix des actions
+## Modélisation du prix des actions
 
 Le prix d'une action ou plus communément appelé cours d'une action représente le prix auquel elle est achetée ou vendue sur un marché boursier. Ce prix fluctue en fonction de l'offre et de la demande pour cette action, ainsi que de nombreux autres facteurs tels que les performances financières de l'entreprise, les conditions économiques générales et les évènements mondiaux. Autrement dit, le cours de l'action représente la valeur perçue de l'entreprise par les investisseurs à un moment.
 
@@ -517,7 +576,7 @@ Ainsi, si la valeur présente de l'action est une donnée du marché, sa valeur 
  
  Nous allons modéliser $S(t)$ comme une variable stochastique. Dans cette situation, nous sommes tenus de ne pas utiliser les outils standards de calcul (tels que les séries de Taylor, les dérivées, l'intégrale de Riemann), mais sont plutôt contraints d'utiliser les outils de calculs stochastiques (tels que le lemme d'Itô, la dérivée de Radon-Nikodym, Riemann -Stieltjes intégrale) pour faire avancer notre modélisation.
  
- Dans ce contexte, le comportement de la variable $S(t)$ peut être décrit pour une *Équation Différentielle Stochastique* ($EDS$). Dans le cas des actions, l'$EDS$ standard utilisée pour modéliser la trajectoire du cours est appelé *Mouvement Brownien Géométrique* ($GBM$ : Geometric Brownian Motion). Sous la mesure de probabilité dite réelle $P$, le mouvement brownien géométrique ($GBM$) est formellement représenté en temps continu de la manière suivante : ^[Alonso Peña, Ph.D, C++ For Quantitative Finance]
+ Dans ce contexte, le comportement de la variable $S(t)$ peut être décrit pour une *Équation Différentielle Stochastique* ($EDS$). Dans le cas des actions, l'$EDS$ standard utilisée pour modéliser la trajectoire du cours est appelé *Mouvement Brownien Géométrique* ($GBM$ : Geometric Brownian Motion). Sous la mesure de probabilité dite réelle $P$, le mouvement brownien géométrique ($GBM$) est formellement représenté en temps continu de la manière suivante : (voir l'ouvrage _C++ For Quantitative Finance_^[Alonso Peña, Ph.D, C++ For Quantitative Finance])
  
  $$
  dS_t = \mu S_t dt + \sigma S_t dW^P_t \quad ,
@@ -570,66 +629,14 @@ S_t = S_0 \exp((\mu - \frac{\sigma^2}{2})t + \sigma W_t) \quad ,
 $${#eq-solBS}
 est solution de l'EDS.
 
-```{r echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
-#| Label: fig-gbmPlot
-#| fig-cap: Simulation de la trajectoire du prix de l'action X par la méthode de Monte Carlo en utilisant le modèle de Black and Scholes
 
-library(ggplot2)
-SBM <- function(t0 = 0,T_ = 1,N = 10000,nsim = 100){
-  X <- Map(
-    function(x) {c(0,rnorm(n= N,mean = 0,sd = sqrt((T_ -t0)/N))) %>%
-        cumsum()},
-    x = as.list(rep(N,nsim))
-  ) %>%
-    bind_cols() %>%
-    `names<-`(paste0("X",1:nsim))
-  X <- X %>%
-    mutate(t=seq(t0,T_,length.out = N +1) ) %>%
-    relocate(t)
+![Simulation du cours de l'indice MASI sur une année avec le modèle de Black-Scholes](Rapport-PFE_files/figure-html/Masi_BS.png){#fig-MASI_BS}
 
-  plt <- X %>%
-    reshape2::melt(id="t",value.name = "Brownian") %>%
-    ggplot(aes(x=t, y=Brownian, colour=variable)) +
-    geom_line(show.legend = F) +
-    ylab("Brownian motion")+
-    hrbrthemes::theme_ipsum(grid = "")
+![Cours de l'indice Masi observé sur la même période](Rapport-PFE_files/figure-html/MASI_reel.png){#fig-MASI_R}
 
-  list(data = X,plots =plt )
 
-}
-# Geometric
-GBM <- function(S0=100,mu = .05,sigma =.4,t0=0,T_= 1,N = 10000,nsim = 100){
-  sbm <- SBM(t0 = t0,T_ = T_,N = N,nsim = nsim)
-  t <- sbm$data$t
-  listSBM <-  as.list(sbm$data[,-1])
-  S = Map(function(x){
-    S0*exp(t*(mu-0.5*sigma^2)+sigma*listSBM[[x]])
-  },x=1:nsim) %>%
-    bind_cols() %>%
-    `names<-`(paste0("X",1:nsim)) %>%
-    mutate(t=t) %>%
-    relocate(t)
-  plt <- S %>%
-    reshape2::melt(id="t",value.name = "GBM") %>%
-    ggplot(aes(x=t, y=GBM, colour=variable)) +
-    geom_line(show.legend = F) +
-    ylab("Geometric Brownian Motion")+
-    hrbrthemes::theme_ipsum(grid = "XY")
-  mean_path = apply(S[,-1],1,mean)
-  ST = mean_path[length(mean_path)]
-  plt_mean <- ggplot(data = NULL,aes(x=t, y=mean_path,color = "red")) +
-    geom_line(show.legend = F) +
-    ylab("Mean price")+
-    hrbrthemes::theme_ipsum(grid = "XY")
-  list(data = S,plots =plt ,
-       mean_path = mean_path,
-       ST = ST,
-       plt_mean = plt_mean)
-}
 
-GBM_Sim = GBM()
-GBM_Sim$plt_mean
-```
+
 
 
 ### Réseaux de neurones récurrents 
@@ -704,7 +711,7 @@ avec :
 
 - *$MR$* : La marge de risque correspond au coût d'immobilisation du capital de solvabilité requis afférent aux engagements garantis. Elle est calculée, séparément pour les engagements des opérations d'assurances vie et rentes découlant des opérations non vie ainsi que pour les engagements des opérations non vie.
 
-### Opérations d'assurance vie, décès ou capitalisation
+## Opérations d'assurance vie, décès ou capitalisation
 
 L'assurance vie est un instrument financier largement utilisé qui offre une protection et des avantages financiers à long terme. Il s'agit d'un contrat entre un assuré et un assureur, dans lequel l'assuré paie régulièrement des primes en échange d'une garantie de versement d'un capital ou d'une rente à un bénéficiaire désigné en cas de décès de l'assuré. Cependant, l'assurance vie ne se limite pas uniquement à la protection en cas de décès, elle peut également offrir des avantages supplémentaires tels que l'accumulation d'épargne, la constitution d'un capital pour la retraite ou des possibilités de planification successorale.
 
@@ -712,7 +719,7 @@ L'assurance vie fonctionne sur le principe de la mutualisation des risques. Les 
 
 L'une des caractéristiques clés de l'assurance vie est sa nature flexible. Les polices d'assurance vie peuvent être adaptées aux besoins spécifiques de chaque individu, en termes de durée, de montant de la prime et de type de couverture. Il existe différents types d'assurance vie, tels que l'assurance vie temporaire (ou temporaire renouvelable), l'assurance vie entière, l'assurance vie universelle et l'assurance vie variable, offrant ainsi une gamme d'options pour répondre aux objectifs financiers et aux préférences de chacun.
 
-#### Meilleure estimations des engagements ($BE_{eng}$)
+### Meilleure estimations des engagements ($BE_{eng}$)
 
 Pour les opérations d'assurance vie, décès ou de capitalisation hors unités de compte, la meilleure estimation des engagements comprend la meilleure estimation des garanties probabilisées et les bénéfices discrétionnaires futurs.
 
@@ -725,11 +732,12 @@ avec :
 - $BEGP$: la meilleure estimation des garanties probabilisées.
 - $BDF$: les bénéfices discrétionnaires futurs.
 
-##### Meilleure estimation des garanties probabilisées {#sec-MEGP}
+#### Meilleure estimation des garanties probabilisées {#sec-MEGP}
 
 La meilleure estimation des garanties probabilisées est calculée garantie par garantie et tête par tête, en actualisant les flux de trésorerie futurs probabilisés, afférents aux engagements garantis à la date d'inventaire. Toutefois, l'entreprise d'assurances et de réassurance peut procéder à une agrégation en retenant des critères homogènes, notamment l'âge et ce, après accord de l'Autorité.
 
 $$
+
 BEGP = \sum\limits_{t=0}^{t=N}\frac{(Dec_{t}-Enc_{t})}{(1+r_t)^t} \quad,
 
 $${#eq-gbmp}
@@ -741,7 +749,7 @@ avec :
 
 - $Dec_{t}$: Les décaissements à la date $t$. qui correspondent aux règlements de toutes prestations garanties au titre des contrats, y compris les rachats. Ils sont déterminés en tenant compte des engagements contractuels et en utilisant, le cas échéant, les bases techniques suivantes :
 
-- **La table de mortalité**: La table de mortalité TV 88-90 pour les assurances en cas de vie ou la table de mortalité TD 88-90 pour les assurances en cas de décès (**prévues à l'annexe**), auxquelles l'entreprise d'assurances et de réassurance peut substituer une table de mortalité d'expérience, matérialisant la mortalité propre à la population de ses assurés et ce, après accord de l'Autorité ;
+- **La table de mortalité**: La table de mortalité TV 88-90 pour les assurances en cas de vie ou la table de mortalité TD 88-90 pour les assurances en cas de décès (**prévues à l'ANNEXE N°3**), auxquelles l'entreprise d'assurances et de réassurance peut substituer une table de mortalité d'expérience, matérialisant la mortalité propre à la population de ses assurés et ce, après accord de l'Autorité ;
 
 - **La table de rachat en montant**.
 
@@ -772,7 +780,7 @@ $${#eq-gbmp}
 :::
 
 
-##### Bénéfices discrétionnaires futurs
+#### Bénéfices discrétionnaires futurs
 
 Les bénéfices discrétionnaires futurs en assurance sont une partie des engagements de l'assureur qui incluent les participations aux bénéfices futurs (appelés Future Discretionary Benefits ou FDB) qui sont purement discrétionnaires et ne sont pas garantis par le contrat ou la réglementation. Ils dépendent de la performance financière de l'assureur et de sa politique de distribution. Leur meilleure estimation est donnée par la formule suivante :
 
@@ -800,7 +808,7 @@ avec :
 - $RT$ :les résultats techniques.
 - $RF$ :les résultats financiers.
 
-#### Meilleure estimation des frais de gestions ($BEFG$)
+### Meilleure estimation des frais de gestions ($BEFG$)
 
 La meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs probabilisés.
 $$
@@ -830,7 +838,7 @@ $$
 $${#eq-gbmp}
 
 
-### Rentes découlants des opérations non-vie
+## Rentes découlants des opérations non-vie
 
 La meilleure estimation des engagements pour les rentes découlant des opérations d'assurance non vie correspond à la meilleure estimation des garanties probabilisées déterminée avant.
 
@@ -845,7 +853,7 @@ avec :
 
 La meilleure estimation des frais de gestion, pour les rentes découlant des opérations d'assurance non vie est déterminée de la meme façon comme avant.
 
-### Opérations d'assurance non vie hors rentes
+## Opérations d'assurance non vie hors rentes
 
 L'assurance non-vie, également connue sous le nom d'assurance dommages, est un secteur d'assurance qui vise à protéger les biens et les responsabilités des individus et des entreprises contre divers risques. Et il couvre une vaste gamme de domaines, tels que les accidents, les catastrophes naturelles, les dommages matériels, la responsabilité civile, les pertes financières, les vols et bien d'autres encore.
 
@@ -853,7 +861,7 @@ Elle repose aussi sur le principe de la mutualisation des risques, telle que Les
 
 L'assurance non-vie offre une grande variété de produits et de polices adaptés à différents besoins. Parmi les exemples courants d'assurances non-vie, on trouve l'assurance automobile, l'assurance habitation, l'assurance responsabilité civile, l'assurance santé, l'assurance voyage, l'accident de travail, l'assurance entreprise, etc. Chacune de ces polices est conçue pour offrir une protection spécifique contre les risques liés à ces domaines.
 
-#### La meilleure estimation des engagements
+### La meilleure estimation des engagements
 
 la meilleure estimation des engagements comprend la meilleure estimation des engagements pour sinistres nets de recours et la meilleure estimation des engagements pour primes.
 $$
@@ -861,7 +869,7 @@ BE_{eng}= BES + BEP
 $${#eq-gbmp}
 
 
-##### La meilleure estimation des engagements pour primes($BEP$)
+#### La meilleure estimation des engagements pour primes($BEP$)
 La meilleure estimation des engagements pour primes correspond à la différence entre :
 
 - La somme actualisée des flux de règlements futurs probabilisés nets de recours relatifs aux *sinistres non encore survenus* afférents aux contrats.
@@ -906,7 +914,7 @@ avec :
 - $PPNA$: La provision pour primes non acquises.
 - $PFP$: Le montant des primes futures probabilisé.
 
-##### La meilleure estimation des engagements pour sinistres nets ($BES$):
+#### La meilleure estimation des engagements pour sinistres nets ($BES$):
 
 La meilleure estimation des engagements pour sinistres nets de recours est déterminée en actualisant, les flux de règlements futurs probabilisés nets de recours relatifs aux sinistres survenus afférents aux contrats.
 
@@ -917,9 +925,9 @@ avec:
 
 - $FRFP_{t}$ : les flux de règlements futurs probabilisés nets de recours relatifs aux *sinistres survenus*, sont estimés sur la base d'un triangle de règlements par année de survenance net de recours conformément à la méthode  exigée parl'ACAPS.
 
-##### Méthode de calcul des flux de réglements futurs probabilisés pour les opérations non-vie hors rentes
+#### Méthode de calcul des flux de réglements futurs probabilisés pour les opérations non-vie hors rentes
 
-##### Méthode des cadences – Chain Ladder {#sec-ladder}
+#### Méthode des cadences – Chain Ladder {#sec-ladder}
 
 La méthode de Chain Ladder est celle spécifiée dans l'*annexe 5* de la circulaire de l'$ACAPS$ sur la $SBR$.
 Les méthodes de cadences de règlement se basent sur le principe que la vitesse des règlements, en pourcentage de la charge finale de sinistres, est constante d'une année de survenance à l'autre. Ainsi les paiements réalisés permettent d'estimer les provisions pour sinistres à payer.
@@ -1023,13 +1031,13 @@ $${#eq-gbmp}
 
 Bien que la méthode de Chain Ladder soit celle préconisée par l'ACAPS dans le cadre de la $SBR$, il existe sur marché d'autres méthodes de calcul des flux de règlements futurs.
 
-##### Méthode des cadences avec inflation
+#### Méthode des cadences avec inflation
 
 Cette variante de la méthode des cadences tient compte de l'inflation de façon explicite.
 On calcule les paiements annuels en faisant la différence entre les colonnes successives du triangle des paiements cumulés. On ajuste ces paiements annuels en devises (MAD par exemple) constants en utilisant un indice d'inflation, puis on les cumule pour obtenir un triangle de montants cumulés en francs constants.
 On applique ensuite la méthode des cadences.
 
-##### La méthode du ratio de paiement
+#### La méthode du ratio de paiement
 
 Cette méthode a été à Sawkins 1975 est semblable à la méthode des cadences de développement avec inflation, sauf que les coefficients de passage $\hat f_j$ sont calculés comme une moyenne de ratios et non comme un ratio de moyennes :
 
@@ -1037,11 +1045,11 @@ $$
 \hat f_j = \frac{1}{n-j-1} \sum\limits_{i=0}^{n-j-1} \frac{C_{i,j+1}}{C_{i,j}}
 $${#eq-gbmp}
 
-##### La méthode du ratio de paiement
+#### La méthode du ratio de paiement
 
 La méthode de Bornhuetter-Ferguson^[The Actuary and IBNR publié en 1972] est une méthode de provisionnement qui repose sur l'idée que les pertes finales, attendues pour une année de survenance sont connues a priori et que le rythme des paiements est stable d'une année à l'autre. Elle combine les caractéristiques de la méthode des cadences et de la méthode du ratio de sinistralité attendu. Elle utilise des facteurs de développement pour estimer le pourcentage de pertes rapportées ou payées et ajoute les pertes attendues multipliées par le pourcentage de pertes non rapportées ou non payées. Elle est surtout utilisée quand les pertes sont de faible fréquence mais de forte gravité.
 
-En résumé, elle suppose que l'on dispose d'une information externe sur la valeur probable finale du coût total des sinistres, que l'on appelle $A$, et que l'on connaisse la proportion de sinistres attendus.^[CNAM 2002-2003, Mathématiques actuarielles fondamentales (assurance non vie), Eléments de cours – 24 mars 2003 – liquidation des sinistres]
+En résumé, elle suppose que l'on dispose d'une information externe sur la valeur probable finale du coût total des sinistres, que l'on appelle $A$, et que l'on connaisse la proportion de sinistres attendus ( _ref_^[CNAM 2002-2003, Mathématiques actuarielles fondamentales (assurance non vie), Eléments de cours – 24 mars 2003 – liquidation des sinistres] ).
 Cette méthode se formule comme suit :
 
 $$
@@ -1074,7 +1082,8 @@ $L = 90 \times 40\% + 90 \times 60\% = 90$, soit un volume de tardifs attendu de
 
 Plusieurs auteurs ont exprimé l'opinion que cette méthode est plus performante que la méthode des cadences de développement, en début de développement.
 
-#### La meilleure estimation des frais de gestion
+### La meilleure estimation des frais de gestion
+
 la meilleure estimation des frais de gestion correspond à la somme actualisée des flux de frais de gestion futurs liés aux contrats.
 $$
 BEFG= \sum_{t \geq 1} \frac{FFGF_t}{(1+r_t)^t} \quad ,
@@ -1120,8 +1129,8 @@ $$
 PC = BEC - Adj
 $${#eq-gbmp}
 
-### La meilleure estimation des engagements cédés ($BEC$)
-#### Les opérations d'assurance vie, décès ou de capitalisation {-}
+## La meilleure estimation des engagements cédés ($BEC$)
+### Les opérations d'assurance vie, décès ou de capitalisation {-}
 
 la meilleure estimation des engagements cédés est évaluée en multipliant la meilleure estimation des engagements par le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques , des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
 
@@ -1133,7 +1142,7 @@ avec :
 - $TC$ (taux de cession): le rapport entre d'une part, la part des cessionnaires dans les provisions mathématiques et dans les provisions pour capitaux, rentes et rachats à payer et d'autre part, la somme des provisions mathématiques, des provisions pour capitaux, rentes et rachats à payer bruts de réassurance.
 
 
-#### Les opérations non-vie
+### Les opérations non-vie
 
 Pour les opérations non vie, la meilleure estimation des engagements cédés correspond à la somme de la meilleure estimation des engagements pour sinistres cédés et de la meilleure estimation des engagements pour primes cédés.
 
@@ -1146,7 +1155,7 @@ avec :
 
 -  $BEPC = TCP \times BEP$ : La meilleure estimation des engagements pour primes cédés est évaluée en multipliant la meilleure estimation des engagements pour primes par le taux de cession de primes. Le taux de cession ($TCP$) de primes précité correspond au rapport entre les primes brutes non vie (cessions) et les primes émises de l'exercice.
 
-### L'ajustement pour défaut de contrepartie :
+## L'ajustement pour défaut de contrepartie
 
 En cas de réassuarance, la compagnie d'assurance se confronte à un nouveau risque, celui de défaut de contrepartie. En effet, il se pourrait que les risques cédés par l'assureur ne soient pas supportés par le réassureur. Il est ainsi primordial de tenir en compte ce risque dans le calcul des meilleures estimations en effectuant un ajustement.
 L'ajustement pour défaut de contrepartie est déterminé en actualisant les flux d'ajustement futurs sur la base de la courbe des taux fixée par l'Autorité. Il correspond à la perte anticipée résultant de la défaillance probable du cessionnaire.
@@ -1214,7 +1223,7 @@ avec:
 - $DEV$ :dépôtven espèces et en valeurs.
 - $SDR$ :solde de réassurance
 
-La probabilité de défaut annuelle $PD$ du cessionnaire est établie conformément au tableau prévu a l'annexe.
+La probabilité de défaut annuelle $PD$ du cessionnaire est établie conformément au tableau prévu en _ANNEXE N°2_ de ce rapport .
 :::
 
 ::: {.callout-note}
@@ -1281,7 +1290,7 @@ $${#eq-gbmp}
 
 
 
-### Le capital de solvabilité requis de base ($CSRB$)
+## Le capital de solvabilité requis de base ($CSRB$)
 
 Le capital de solvabilité requis de base est le montant total des exigences de capitaux liées aux risques de **marché**, de **concentration**, de **contrepartie**, de **souscription vie** et de **souscription non-vie** et ce, après application des coefficients de corrélations.
 
@@ -1309,7 +1318,7 @@ Jusqu'à présent, les coefficients de corrélation exactes entre les sous risqu
 |Sousc. vie     |  0    |    0        |    0       |    1     |  0           |
 |Sousc. non-vie |  0    |    0        |    0       |    0     |  1           |
 
-#### EXIGENCE DE CAPITAL RELATIVE AUX RISQUES DE MARCHE ($CSR_M$)
+### Exigence de caiptal relative au risque de marché ($CSR_M$)
 
 Pour l'exigence de capital relative au risque de marché, il est important de prendre en compte plusieurs sous-risques tel que, les sous-risques action, taux, immobilier, écart de taux et change. Chacun de ces sous-risques présente des caractéristiques uniques et nécessite une évaluation distincte. Une fois que les exigences de capitaux déterminées pour chaque sous-risque, elles sont agrégées pour obtenir l'exigence de capital total relative au risque de marché et ce, après application des coefficients de corrélations appropriés, ce qui permet de tenir compte des interdépendances et des corrélations entre ces différents sous-risques.
 
@@ -1324,7 +1333,7 @@ avec :
 
 - $\rho$ : Coefficients de corrélations.
 
-##### L'exigence de capital relative au risque action ($CSR_A$)
+#### L'exigence de capital relative au risque action ($CSR_A$)
 
 Lorsqu'on parle de l'exigence de capital relative au risque action, il s'agit du montant de perte potentiel des fonds propres d'une institution financière résultant de baisses simultanées des valeurs des actions. Ce type de risque est lié à la volatilité et à la corrélation entre les différentes actions détenues dans le portefeuille d'actions.
 
@@ -1346,7 +1355,7 @@ avec :
 - $BE_{eng}$: Best estimant des engagements.
 
 
-##### L'exigence de capital relative au risque de taux ($CSR_T$)
+#### L'exigence de capital relative au risque de taux ($CSR_T$)
 
 L'exigence de capital relative au risque de taux représente le montant estimé de la perte maximale en fonds propres subit en raison de la baisse ou de la hausse des taux d'intérêt appliquées à l'ensemble de ses actifs et passifs.
 
@@ -1368,7 +1377,7 @@ telle que :
 $$ CSR_{TB} = BE_{TB} - BE $$  
 $$ CSR_{TH} = BE_{TH} - BE $$     
 
-##### L'exigence de capital relative au risque immobilier ($CSR_I$)
+#### L'exigence de capital relative au risque immobilier ($CSR_I$)
 
 L'exigence de capital relative au risque immobilier est la perte de fonds propres due à une baisse de la valeur des actifs immobiliers.
 
@@ -1383,7 +1392,7 @@ avec :
 
 - $BE_{eng}$ : La meilleure estimation des engagements avant choque.
 
-##### L'exigence de capital relative au risque d'écart de taux ($CSR_{ET}$)
+#### L'exigence de capital relative au risque d'écart de taux ($CSR_{ET}$)
 
 L'exigence de capital relative au risque d'écart de taux est la perte de fonds propres due à l'application des taux de baisse à la valeur des titres de créances non émis ou non garantis par l'Etat.
 
@@ -1396,7 +1405,7 @@ $${#eq-gbmp}
 
 Les taux de baisse à appliquer sont calculés en fonction de la duration et de la prime de risque à l'émission.
 
-##### L'exigence de capital relative au sous-risque de change ($CSR_{Ch}$)
+#### L'exigence de capital relative au sous-risque de change ($CSR_{Ch}$)
 
 L'exigence de capital relative au sous-risque de change correspond à la somme des exigences de capitaux pour risque de change pour chaque devise étrangère.
 
@@ -1441,7 +1450,7 @@ $BE(Aug)$ :  Meilleur estimation des engagement pour le scénario d'augmentation
 
 $BE(Dim)$ : Meilleur estimation des engagement pour le scénario de diminution de la valeur de la devise étrangère par rapport au dirham.
   
-#### Exigence de capital relative au risque de contrepartie ($CSR_{Cp}$)
+### Exigence de capital relative au risque de contrepartie ($CSR_{Cp}$)
 
 L'exigence de capital relative au risque de contrepartie est le montant total des exigences de capitaux relatives aux sous-risques de contrepartie de *type 1* et de *type 2*   , une fois les coefficients de corrélation appliqués.
 
@@ -1451,7 +1460,7 @@ $${#eq-gbmp}
 
 avec :  $ \qquad Type = \{ \text{type 1} ; \text{type 2} \}$
 
-##### Exigence de capital relative au risque de contrepartie de type 1
+#### Exigence de capital relative au risque de contrepartie de type 1
 
 L'exigence de capital relative au risque de contrepartie de type 1 est calculé en fonction des montants
 de pertes en cas de défaut des cessionnaires, des cédantes et des organismes dépositaires, selon la méthode décrite dans **l'annexe 9** du circulaire de l'ACAPS. Cette méthode est la suivante :  
@@ -1514,7 +1523,7 @@ V_{inter} = \sum_{j} \frac{X \times PD_j \times (1-PD_j)}{X - PD_j} \times \sum_
 $$
 Où :
 
-- $PD_j$ et$PD_k$: probabilités de défaut des contreparties j et k, établies conformément aux tableaux de l'annexe.
+- $PD_j$ et$PD_k$: probabilités de défaut des contreparties j et k, établies conformément aux tableaux de l' _ANNEXE N°2_ .
 - $TLGD_j$ et $TLGD_k$ : somme des pertes en cas de défaut pour les contreparties dont la probabilité de défaut est, respectivement, de $PD_j$ et$PD_k$.
 - $\sum_{PD_j} LGD_{i}^{2}$ : somme couvrant toutes les expositions dont la probabilité de défaut est de $PD_j$.
 
@@ -1538,7 +1547,7 @@ $$
 
 Les valeurs de x1, x2 et x3  ne sont pas encore publiées par l'ACAPS.
 
-##### Exigence de capital relative au risque de contrepartie de type 2
+#### Exigence de capital relative au risque de contrepartie de type 2
 
 L'exigence de capital relative au risque de contrepartie de type 2 est le montant total des
 exigences de capitaux relatives aux risque de contrepartie des assurés, des intermédiaires et des
@@ -1558,7 +1567,7 @@ avec :
 
 $X\%$ est un taux devant être communiqué par l'ACAPS.
 
-#### Exigence de capital relative au risque de concentration ($CSR_{Ct}$)
+### Exigence de capital relative au risque de concentration ($CSR_{Ct}$)
 
 L'exigence de capital relative au risque de concentration correspond à la perte des fonds propres due à la baisse des actifs associés aux ensembles d'émetteurs appartenant aux mêmes groupes. 
 
@@ -1574,11 +1583,11 @@ avec $i = \{ \text{Les sous-risques de concentration relatifs aux differents gro
 
 Pour chaque groupe d'émetteurs, l'exigence de capital relative au risque de concentration égale à $X\%$ de l'écart positif constaté entre le montant des placements de l'entreprise d'assurances et de réassurance, autres que les valeurs de l'Etat ou celles jouissant de sa garantie, relatifs à l'ensemble d'émetteurs appartenant au groupe précité et $X\%$ du total de ses placements. Les pourcentages cités précédemment ($X\%$) ne sont pas encore publiés par l'ACAPS.
 
-#### Exigence de capital relative au risque de souscription vie ($CSR_{SV}$) 
+### Exigence de capital relative au risque de souscription vie ($CSR_{SV}$) 
 
 L'exigence de capital relative au risque de souscription vie est la somme des exigences de capitaux relatives aux sous-risques de mortalité, de longévité, de rachat, de frais et de catastrophe, on appliquant les coefficients de corrélations entre ces sous-risques.
 
-Le sous-risque de mortalité concerne les pertes potentielles découlant de décès prématurés d'un assuré, tandis que le sous-risque de longévité se rapporte aux pertes potentielles résultant d'une durée de vie plus longue que prévue. Le sous-risque de rachat concerne les pertes potentielles liées aux retraits anticipés des contrats d'assurance-vie, aussi le sous-risque de frais porte sur les pertes potentielles engendrées par les coûts administratifs associés aux contrats. Et le sous-risque de catastrophe concerne les pertes potentielles résultant d’évènements extrêmes tels que des catastrophes naturelles.
+Le sous-risque de mortalité concerne les pertes potentielles découlant de décès prématurés d'un assuré, tandis que le sous-risque de longévité se rapporte aux pertes potentielles résultant d'une durée de vie plus longue que prévue. Le sous-risque de rachat concerne les pertes potentielles liées aux retraits anticipés des contrats d'assurance-vie, aussi le sous-risque de frais porte sur les pertes potentielles engendrées par les coûts administratifs associés aux contrats. Et le sous-risque de catastrophe concerne les pertes potentielles résultant d'évènements extrêmes tels que des catastrophes naturelles.
 
 L'exigence de capital relative au risque de souscription vie permet de tenir compte des interdépendances entre ces différents sous-risques par l'applications des coefficients des corrélations entre eux, et de quantifier les réserves financières nécessaires aux compagnies d'assurance pour faire face aux pertes potentielles résultant des variations des facteurs liés à la mortalité, à la longévité, aux rachats, aux frais et aux catastrophes.
 
@@ -1588,7 +1597,7 @@ $${#eq-gbmp}
 
 avec : $i,j \in \{\text{Mortalite, Longevite, Rachat, Frais, catastrophe} \}$
 
-##### Exigence de capital pour risque de mortalité ($CSR_{mort}$)
+#### Exigence de capital pour risque de mortalité ($CSR_{mort}$)
 
 L'exigence de capital pour risque de mortalité correspond à la perte de fonds propres due à la hausse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
 
@@ -1611,7 +1620,7 @@ $TM(Choc)$ : Le taux de mortalité choqué par une hausse de $X\%$.
 
 le taux de choc pour la mortalité est estimé à $30\ %$.
 
-##### Exigence de capital pour risque de longévité ($CSR_{Lon}$)
+#### Exigence de capital pour risque de longévité ($CSR_{Lon}$)
 
 L'exigence de capital pour risque de longévité correspond à la perte de fonds propres qui résulterait de la baisse de $X\%$ des taux de mortalité retenus pour le calcul des provisions techniques prudentielles.
 
@@ -1629,7 +1638,7 @@ $$
 $TM$ : Taux de Mortalité. 
 $TM(Choc)$ : Le taux de mortalité choqué par une hausse de X%.
 
-##### Exigence de capital pour risque de rachat ($CSR_{R}$) :
+#### Exigence de capital pour risque de rachat ($CSR_{R}$) :
 
 Qu'est-ce qu'un rachat en assurance vie ?
 Un rachat en assurance vie est un retrait d'une partie ou de la totalité de l'épargne placée sur un contrat d'assurance vie. Le rachat peut être total ou partiel, ponctuel ou programmé. Le rachat entraîne des conséquences fiscales qui dépendent de la durée du contrat et de la date des versements. Le rachat peut être soumis à l'impôt sur le revenu, au prélèvement forfaitaire libératoire ou au prélèvement forfaitaire unique, ainsi qu'aux prélèvements sociaux. Le rachat n'est pas possible si le bénéficiaire du contrat a accepté le bénéfice sans l'accord du souscripteur. 
@@ -1668,7 +1677,7 @@ tell que :
 $BE_{RHT}$ : Meilleur estimation des engagements pour le scenario d'une hausse des taux de rachat.
 $BE_{RBT}$ : Meilleur estimation des engagements pour le scenario d'une baisse des taux de rachat.
 
-##### Exigence de capital relative au risque de frais ($CSR_{F}$)
+#### Exigence de capital relative au risque de frais ($CSR_{F}$)
 
 L'exigence de capital relative au risque de frais correspond à la perte de fonds propres due à des augmentations combinées de :
 
@@ -1681,7 +1690,7 @@ $${#eq-gbmp}
 
 Les taux $X\%$ ne sont pas encore publiés par l'ACAPS.
 
-##### Exigence de capital relative au risque de catastrophe ($CSR_{Cat}$)
+#### Exigence de capital relative au risque de catastrophe ($CSR_{Cat}$)
 
 L'exigence de capital relative au risque de catastrophe vie correspond à l'application d'un coefficient de $X\%$ (non encore publié) aux montants des capitaux sous risque relatifs aux garanties en cas de décès nets de réassurance.
 
@@ -1694,7 +1703,7 @@ avec :
 - $BE(Choc)$ : Meilleure estimation après le choc par un coefficient X%, ce taux est estimé à $0,2\%$,
 - $BE$: Meilleure estimation sans aucun choc.
 
-#### Exigence de capital relative au risque de souscription non vie ($CSR_{SNV}$)
+### Exigence de capital relative au risque de souscription non vie ($CSR_{SNV}$)
 
 L'exigence de capital relative au risque de souscription non-vie est la somme totale des exigences de capitaux relatives aux \textbf{sous-risques de primes, de provisions et de catastrophe non-vie}, une fois les coefficients de corrélation appliqués.
 
@@ -1708,7 +1717,7 @@ $i,j \in \{ \text{Primes, Provisions, Catastrophe} \}$
 
 $\rho$ : le coefficient de corrélation.
 
-##### Exigence de capital relative au sous-risque de primes ($CSR_{P}$)
+#### Exigence de capital relative au sous-risque de primes ($CSR_{P}$)
 
 L'exigence de capital relative au sous-risque de primes est le montant total  des exigences de capitaux relatives aux sous-risques de primes par sous-catégorie et ce, après application des coefficients de corrélations.
 
@@ -1741,7 +1750,7 @@ telle que :
 - $PPNA$ : Provision pour primes non-acquises nettes.
 
 
-##### Exigence de capital relative au sous-risque de provisions ($CSR_{Pr}$)
+#### Exigence de capital relative au sous-risque de provisions ($CSR_{Pr}$)
 
 L'exigence de capital relative au sous-risque de provisions est la somme total des exigences de capitaux relatives aux sous-risques de provision par sous-catégorie, on prenant on considration les coefficients de correlation entre les sous-risques.
 
@@ -1761,7 +1770,7 @@ $$
 CSR_{Pr} (\text{sous-categorie}) = X\% \times \sigma_{Pr} \times BE_{eng}
 $$
 
-##### Exigence de capital relative au risque de catastrophe non-vie ($CSR_{Cat}$)
+#### Exigence de capital relative au risque de catastrophe non-vie ($CSR_{Cat}$)
 
 L'exigence de capital relative au risque de catastrophe non-vie correspond au racine carrée de la somme des carrés des exigences de capitaux relatives au sous-risque de catastrophe non-vie des garanties suivantes :
 
@@ -1831,61 +1840,143 @@ Dans le cas où l'écart entre les impôts différés-passif et les impôts diff
 # CHAPITRE VII : Application numérique de la Solvabilité Basée sur les Risque 
 
 ## Modèle LSTM appliqué au cours de l'indice MASI{#sec-rnn_app}
-Dans cette partie on va s’intéressé à l’entrainement d’un module de réseaux de neurones récurrents, spécifiquement le module LSTM (Long short-term memory) avec des données historiques de l’indice MASI (Moroccan All Shares index).
 
-D’abord, un réseau neuronal récurrent (RNN) est un type de réseau neuronal artificiel qui utilise des données séquentielles ou des données de séries chronologiques. Ces algorithmes d'apprentissage en profondeur sont couramment utilisés pour les problèmes ordinaux ou temporels, tels que la traduction linguistique, le traitement du langage naturel, la reconnaissance vocale et le sous-titrage d'images, la prédiction des séries chronologiques,$\dots$
+Ce code est utilisé pour créer et entraîner un modèle de réseaux de neurones récurrents (RNN) appelé Long Short-Term Memory (LSTM) pour prédire le dernier cours de l'indice MASI à partir des données historiques.
 
-Les réseaux de neurones récurrents utilisent des données de formation pour apprendre. Ils se distinguent par leur "mémoire" car ils prennent des informations d'entrées précédentes pour influencer l'entrée et la sortie actuelles. Alors que les réseaux de neurones profonds traditionnels supposent que les entrées et les sorties sont indépendantes les unes des autres, la sortie des réseaux de neurones récurrents dépend des éléments antérieurs de la séquence. Alors que les événements futurs seraient également utiles pour déterminer la sortie d'une séquence donnée.
+Voici une explication étape par étape du code :
 
-Une autre caractéristique distinctive des réseaux récurrents est qu'ils partagent des paramètres à travers chaque couche du réseau. Alors que les réseaux feedforward « des réseaux de neurones artificiels qui traitent les informations dans une seule direction » ont des poids différents sur chaque nœud, les réseaux de neurones récurrents partagent le même paramètre de poids dans chaque couche du réseau. Cela dit, ces poids sont toujours ajustés au cours des processus de rétropropagation et de descente de gradient pour faciliter l'apprentissage par renforcement.
+1. Les bibliothèques nécessaires sont importées, notamment pandas pour la manipulation des données, matplotlib pour la visualisation des résultats, et TensorFlow pour la création et l'entraînement du modèle LSTM.
 
-<div style="text-align:center">
-![Fonctionnement des réseaux de neurones récurrents](Rapport-PFE_files/figure-html/Shema_RNN.png){#fig-RNN}
-</div>
+2. Le fichier CSV contenant les données historiques est lu à l'aide de la fonction `pd.read_csv()`, et les données sont stockées dans un DataFrame appelé `df`.
 
-Un inconvénient des RNN standard est le problème du gradient de fuite, dans lequel les performances du réseau de neurones souffrent car il ne peut pas être formé correctement. Cela se produit avec des réseaux de neurones en couches profondes, qui sont utilisés pour traiter des données complexes.
+3. Deux fonctions, `convert_num()` et `pct_to_num()`, sont définies pour convertir les valeurs des colonnes en nombres. La première fonction est utilisée pour enlever les espaces, les points et les virgules et convertir les valeurs en nombres décimaux. La deuxième fonction est utilisée pour enlever les espaces, les virgules et les signes de pourcentage, puis convertir les valeurs en nombres décimaux.
 
-Les RNN standard qui utilisent une méthode d'apprentissage basée sur le gradient se dégradent à mesure qu'ils grandissent et deviennent plus complexes. Le réglage efficace des paramètres aux premières couches devient trop long et coûteux en calculs.
+4. Les fonctions de conversion sont appliquées aux colonnes appropriées du DataFrame à l'aide de la méthode `applymap()`.
 
-Une solution au problème s'appelle les réseaux de mémoire longue à court terme (LSTM), que les informaticiens Sepp Hochreiter et Jurgen Schmidhuber ont inventés en 1997. Les RNN construits avec des unités LSTM classent les données en cellules de mémoire à court terme et à long terme. Cela permet aux RNN de déterminer quelles données sont importantes et doivent être mémorisées et renvoyées dans le réseau. Cela permet également aux RNN de déterminer quelles données peuvent être oubliées.
+5. Les données sont préparées pour l'entraînement du modèle. Les colonnes pertinentes du DataFrame (`Dernier`, `Ouv.`, `Plus Haut`, `Plus Bas`) sont extraites et converties en tableaux NumPy. Les données sont ensuite normalisées à l'aide de la classe `MinMaxScaler` de scikit-learn, ce qui les met à l'échelle entre 0 et 1.
 
-Dans notre cas, nous possédons une base de données historiques de l’indice MASI pour une durée de 5000 jours contenant 6 colonne :
+6. Des séquences de données sont créées pour l'entraînement du modèle. Chaque séquence contient les 5 observations précédentes en tant qu'entrée et la valeur du cours "Dernier" à la prochaine observation en tant que sortie. Cela permet d'entraîner le modèle à prédire le cours futur en fonction des observations passées.
 
--	Date : la date d’observation. 
--	Dernier : le cours de clôture de la journée.
--	Ouverture : le cours d’ouverture de la journée.
--	PlusHaut : le maximun du cours de la journée.
--	PlusBas : le minumun du cours de la journée.
--	Variation : la variation des cours entre deux dates successives.
+7. Les données sont divisées en ensembles d'entraînement et de test. 95% des données sont utilisées pour l'entraînement et 5% sont réservées pour les tests.
 
-```{r echo=FALSE, warning=FALSE,message=FALSE}
-library(readxl)
-library(kableExtra)
-masi <- read_excel("Rapport-PFE_files/Data/masi.xlsx")
-head(masi,15)%>% 
-  kbl() %>% 
-  kable_material(c("striped"))
+8. Le modèle LSTM est défini à l'aide de la classe `Sequential` de Keras. Il est composé de trois couches LSTM avec une couche de dropout entre chaque couche pour éviter le surapprentissage. La dernière couche est une couche dense avec une seule unité qui prédit la valeur du cours "Dernier".
 
+9. Le modèle est compilé avec l'optimiseur Adam et la fonction de perte "mean_squared_error" pour mesurer l'erreur de prédiction.
+
+10. Le modèle est entraîné sur les données d'entraînement à l'aide de la méthode `fit()`. Le nombre d'époques est défini à 100 et la taille du lot est définie à 30.
+
+11. Le modèle est utilisé pour faire des prédictions sur les données de test à l'aide de la méthode `predict()`. Les prédictions sont inversées à l'échelle originale à l'aide de la méthode `inverse_transform()` de l'objet `scaler`.
+
+12. L'erreur de prédiction est évaluée en calculant la racine carrée de l'erreur quadratique moyenne (RMSE) entre les valeurs de test réelles et les valeurs prédites.
+
+13. Les valeurs réelles et prédites sont tracées à l'aide de la bibliothèque matplotlib pour visualiser les performances du modèle.
+
+En résumé, ce code utilise un modèle LSTM pour prédire le dernier cours du MASI à partir des données historiques, puis évalue les performances du modèle en calculant l'erreur de prédiction et en traçant les résultats.
+
+```{python eval = F}
+import pandas as pd
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, LSTM, Dropout
+import numpy as np
+
+#Lecture du fichier csv
+df = pd.read_csv('Moroccan All Shares - Données Historiques.csv')
+
+# Conversion en nombres
+def convert_num(x):
+    x = x.replace(" ", "")
+    x = x.replace(".", "")
+    x = x.replace(",", ".")
+    return float(x)
+
+# Conversion des pourcentages en nombres
+def pct_to_num(x):
+    x = x.replace(" ", "")
+    x = x.replace(",", ".")
+    x = x.replace("%", "")
+    return float(x)
+
+# Appliquer les fonctions de conversion aux colonnes appropriées
+df_temp = df.loc[:, ~df.columns.isin(["Date", "Variation %","Vol."])].applymap(convert_num)
+df.loc[:, ~df.columns.isin(["Date", "Variation %","Vol."])] = df_temp
+df["Variation %"] = df["Variation %"].apply(pct_to_num)
+
+
+# Préparer les données
+# Supposons que df est un dataframe contenant les données historiques
+# avec les colonnes suivantes: Date, Dernier, Ouv., Plus Haut, Plus Bas, Vol., Variation %
+# On va utiliser les 5 dernières observations comme entrées du modèle
+# et prédire le cours Dernier à la prochaine date
+
+# Convertir les données en numpy arrays
+X = df[['Dernier','Ouv.',' Plus Haut', 'Plus Bas']].to_numpy()
+y = df["Dernier"].to_numpy()
+
+# Normaliser les données
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+X = scaler.fit_transform(X)
+y = scaler.fit_transform(y.reshape(-1, 1))
+
+# Créer des séquences de données
+# Chaque séquence contient 5 observations consécutives (timesteps) comme entrée
+# et le cours Dernier à la prochaine observation comme sortie
+X_seq = []
+y_seq = []
+timesteps = 5
+for i in range(timesteps, len(X)):
+  X_seq.append(X[i-timesteps:i])
+  y_seq.append(y[i])
+X_seq = np.array(X_seq)
+y_seq = np.array(y_seq)
+
+# Diviser les données en train et test sets
+train_size = int(len(X_seq) * 0.95)
+X_train, X_test = X_seq[:train_size], X_seq[train_size:]
+y_train, y_test = y_seq[:train_size], y_seq[train_size:]
+
+# Définir le modèle RNN
+model = Sequential()
+model.add(LSTM(units=50, return_sequences=True, 
+               input_shape=(X_train.shape[1], X_train.shape[2])))
+model.add(Dropout(0.2))
+model.add(LSTM(units=50, return_sequences=True))
+model.add(Dropout(0.2))
+model.add(LSTM(units=50))
+model.add(Dropout(0.2))
+model.add(Dense(units=1))
+
+# Compiler le modèle
+model.compile(optimizer='adam', loss='mean_squared_error')
+
+# Entraîner le modèle
+model.fit(X_train, y_train, epochs=100, batch_size=30)
+
+# Faire des prédictions
+y_pred = model.predict(X_test)
+y_pred = scaler.inverse_transform(y_pred) # Revenir à l'échelle originale
+
+# Évaluer le modèle
+from sklearn.metrics import mean_squared_error
+rmse = np.sqrt(mean_squared_error(scaler.inverse_transform(y_test), y_pred))
+print('RMSE: ', rmse)
+
+# Tracer les valeurs observées et prédites
+
+plt.plot(scaler.inverse_transform(y_test), label='Dernier cours observé')
+plt.plot(y_pred, label='Dernier cours prédite')
+plt.legend()
+plt.xlabel('Jours')
+plt.ylabel('Dernier cours')
+plt.title('Prédiction du dernier cours avec un modèle LSTM')
+plt.show()
 ```
 
-Après le nettoyage des donnes qu’on a collectées, nous avons représenté premièrement le cours historique de clôture « Dernier » en fonction de temps afin d'avoir une idée sur la variation à long terme et à court terme de cet indice.
+![Courbe de cours prédit et de cours observé](Rapport-PFE_files/figure-html/Prediction.png){#fig-Prediction_masi2}
 
-<div style="text-align:center">
-![Le cours Historiques de Clôture pour l’indice MASI](Rapport-PFE_files/figure-html/Derniere.png){#fig-Derniere1}
-</div>
 
-Une fois les données préparées, nous avons effectué une normalisation des valeurs numériques pour les mettre à l'échelle.
-
-Deuxièmement, nous les avons transformées en tenseurs, qui sont des tableaux multidimensionnels. Cette étape est cruciale lors de l'entraînement d'un module LSTM, Pour cela, chaque séquence de données doit être découpée en fenêtres temporelles, où chaque fenêtre contient un certain nombre de pas de temps. Chaque pas de temps représente une observation individuelle dans la séquence.
-
-Ensuite, on a divisé les données en deux ensembles, une pour l’entraînement, et la deuxième pour le test. L'ensemble d'entraînement est utilisé pour entrainer et ajuster les poids du module LSTM, tandis que l'ensemble de test permet d'évaluer les performances finales du modèle sur des données inconnues.
-Une fois qu’on a terminé ces étapes, les données sont utilisées pour entraîner notre module LSTM, qui va nous permettre de prédire des cours futures.
-
-Les représentations graphiques suivantes montrent les états d'entraînement et de test de notre module. On remarque donc une cohérence entre les résultats de prédiction et les valeurs réelles. De plus, le RMSE (racine de l'erreur quadratique moyenne) de notre module est de $\textbf{27,44}$, tandis que les valeurs estimées se situent autour de dix milliers. La chose qui prouve l'efficacité de notre module LSTM.
-
-<div style="text-align:center">
-![Courbes de cours prédit et cours réel](Rapport-PFE_files/figure-html/prediction.png){#fig-prediction1}
-</div>
 
 
 
@@ -2256,6 +2347,7 @@ La part des cessionnaires est déterminées conformément aux spécification tec
 
 La meilleure estimations des engagements pour primes non-vie étant négative, on s'attend aussi à une cession négative des primes.
 
+
 ![Part des cessionnaires](Rapport-PFE_files/figure-html/cession.png){#fig-cession}
 
 
@@ -2263,33 +2355,104 @@ La meilleure estimations des engagements pour primes non-vie étant négative, o
 
 En tenant compte des paramètres renseigné dans le premier onglet ainsi que de tous les calculs effectués dans les autres onglets, il en ressort les capitaux de solvabilité requis pour les risque de souscription vie et non vie indiqué à la figure suivante :
 
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-csr_vie_non
+#| tbl-cap: CSR Souscription
+library(kableExtra)
+csr =  data.frame(
+  stringsAsFactors = FALSE,
+                 X = c("CSR Souscription vie", "CSR Souscription non-vie"),
+                 y= c("52 496 918", "197 616")
+)
+
+csr = t(csr)
+rownames(csr) = NULL
+
+csr %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-csr_sousrisk
+#| tbl-cap: CSR Sous-risques
+library(kableExtra)
+csr =  data.frame(
+  stringsAsFactors = FALSE,
+                 X = c("CSR mortalité", "CSR catastrophe", "CSR frais"),
+                 Y = c("52 485 959", "353 884", "1 012 563")
+)
+
+csr = t(csr)
+rownames(csr) = NULL
+
+csr %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+#| label: tbl-RM
+#| tbl-cap: Marges de risques
+library(kableExtra)
+csr =  data.frame(
+  stringsAsFactors = FALSE,
+                 X = c("Marge de risque non-vie", "Marge de risque vie"),
+                 Y = c("9 338 125", "19 965 000")
+)
+
+csr = t(csr)
+rownames(csr) = NULL
+
+csr %>% 
+  kbl() %>% 
+  kable_material(c("striped"))
+
+```
+
+
 ![les CSR calculés](Rapport-PFE_files/figure-html/CSR.png){#fig-csr}
 
 Nous avons supposé que les sous risques sont indépendants entendant la publication de la matrice de corrélation entre ces sous-risques.
 
-## ANNEXE N°1 : MARGE DE RISQUE : {-}
-Selon le circulaire de l'ACAPS, la marge de risque est calculée séparément pour les engagements vie et rentes découlant des opérations non vie ainsi que pour les engagements des opérations non vie comme suit :
+# Conclusion {-}
+
+L'assurance est une opération de garantie de risque en contrepartie d'une prime. De ce fait, le secteur de l'assurance demeure très visqueux en terme de risques encourus. Il est de la responsabilité des autorités de réglementer ce milieu car la ruine d'une compagnie peut engendrer des conséquences néfastes à l'économie globale.
+
+La Solvabilité Basée sur les Risques (SBR) est une réforme en cours d'élaboration qui est  inspirée de la directive européenne Solvabilité II. Lors de ce stage au sein de **ARM CONSULTANTS**, nous avons développés une application avec le langage R permettant de calculer les capitaux de solvabilité requis comme indiqué par la norme SBR. L'application automatise tous le processus de calcul permettant ainsi une utilisation sans avoir, au préalable, connaissance du langage R. L'objectif est d'anticiper l'élaboration d'un outil de calcul des SCR afin de faciliter la transition vers la nouvelle norme. Notre travaille reste ouvert à toute proposition allant dans le sens à le bonifier.
+
+Ce stage nous a permis de renforcer nos connaissance en assurance. Au cours de notre passage de ce cabinet, nous avons appris à faire face à des problématiques réelles du marché. Cette expérience acquise, est aussi le fruit d'un encadrement étroit dont nous avons fait objet. 
+
+
+# ANNEXE N°1 : MARGE DE RISQUE {-}
+
+La marge de risque est calculée séparément pour les engagements vie et rentes découlant des opérations non vie ainsi que pour les engagements des opérations non vie comme suit :
+
 $$
 MR = \alpha \times \sum_{i\geq 0} \frac{CSR_i}{(1+r_{i+1})^{i+1}} \quad ,
 $$
 où :
 
-$\alpha$ : représente le taux du coût du capital, Selon l'ACAPS $\alpha = 6\%$.
+- $\alpha$ : représente le taux du coût du capital, pas encore publié mais établi à $\alpha = 6\%$ dans notre projet.
 
-$CSR_i$ : représente le capital de solvabilité requis projeté à la date i compte non tenu des exigences de capitaux relatives aux risques opérationnel, de marché, de concentration et de contrepartie. Il est calculé comme suit : 
+- $CSR_i$ : représente le capital de solvabilité requis projeté à la date $i$ compte non tenu des exigences de capitaux relatives aux risques opérationnel, de marché, de concentration et de contrepartie. Il est calculé comme suit : 
+
 $$
 CSR_i = \frac{BE_{eng_i}}{BE_{eng_0}} \times CSR_0 \quad ,
 $$
 
-$BE_{eng_i}$ : correspond à la meilleure estimation des engagements projetée à la date $i$.
+- $BE_{eng_i}$ : correspond à la meilleure estimation des engagements projetée à la date $i$.
 
-$CSR_0$ : représente le capital de solvabilité requis à la date d’inventaire compte non tenu des exigences de capitaux relatives aux risques opérationnel, de marché, de concentration et de contrepartie.
+- $CSR_0$ : représente le capital de solvabilité requis à la date d'inventaire compte non tenu des exigences de capitaux relatives aux risques opérationnel, de marché, de concentration et de contrepartie.
 
-$r_i$ : correspond à la structure par terme de la courbe des taux fixée par l’Autorité.
+- $r_i$ : correspond à la structure par terme de la courbe des taux fixée par l'Autorité.
 
 
-## ANNEXE N°2 : CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT {-}
-### Echelles de notation {-}
+# ANNEXE N°2 : CORRESPONDANCE ENTRE ECHELLE DE NOTATION ET PROBABILITE DE DEFAUT {-}
+
+## Echelles de notation {-}
 
 - Pour les cessionnaires et les cédantes :
 
@@ -2381,7 +2544,7 @@ tableau4 %>%
 ```
 Dans les autres cas, l'échelle de notation la plus faible est retenue.
 
-### Probabilités de défaut : {-}
+## Probabilités de défaut : {-}
 
 La probabilité de défaut annuelle est établie en fonction de l'échelle de notation retenue en
 application des dispositions du 1) ci-dessus et ce, conformément au tableau de correspondance ci après :
@@ -2398,7 +2561,7 @@ tableau5 %>%
   kable_material(c("striped"))
 ```
 
-## ANNEXE N°2 : TABLES DE MORTALITE TD 88-90 {-}
+# ANNEXE N°3 : TABLES DE MORTALITE TD 88-90 {-}
 
 ```{r echo=FALSE, warning=FALSE,message=FALSE}
 #| label: TD-88-90
@@ -2412,9 +2575,9 @@ TD%>%
 
 ```
 
-## ANNEXE N°3 : Vérification des hypothèses de Chain Ladder : {-} 
+# ANNEXE N°4 : Vérification des hypothèses de Chain Ladder {-} 
 
-\textebf{Hypothèse N°1 :}\\
+**Hypothèse N°1 :**
 
 L'hypothèse d'indépendance, suppose que les paiements de sinistres sont indépendants les uns des autres, ce qui signifie que le montant d'un sinistre ne dépend pas des montants des autres sinistres.
 
@@ -2431,14 +2594,15 @@ significativement proche de la moyenne des facteurs de développement individuel
 ![Vérification de l'hypothèse N°1 surles années de développement ](Rapport-PFE_files/figure-html/H1_2.png){#fig-CL11}
 </div>
 
-On peut constater que les $f_{i,j}$ sont à peu près alignés autout des {f_j} ce qui nous
-pousse a validé la prémière hypothèse de Chian Ladder.\\
+On peut constater que les $f_{i,j}$ sont à peu près alignés autour des {f_j} ce qui nous
+pousse a validé la première hypothèse de Chian Ladder.
 
-\textebf{Hypothèse N°2 :}\\
+
+**Hypothèse N°2 :**
 
 L'hypothèse de linéarité dans la méthode de Chain-Ladder suppose que les sinistres  évoluent de manière constante et prévisible au fil du temps. Cela signifie que la tendance  observée dans les paiements de sinistres passés se poursuivra sans changement significatif à l'avenir.
 
-Pour vérifier cette hypothèse, on a tracé les montants des règlements cumulés de chaque année de développement en fonction de l’années de développement avant, et on a contrôlé s'il Ya une linéarité entre ces deux années, le nuage de points représentant les règlements cumulés de d’une année $j$ par rapport aux règlements cumulés de l’année $j-1$ doit être approché significativement par une droite.
+Pour vérifier cette hypothèse, on a tracé les montants des règlements cumulés de chaque année de développement en fonction de l'année de développement précédant, et on a contrôlé s'il y a une linéarité entre ces deux années. le nuage de points représentant les règlements cumulés d'une année $j$ par rapport aux règlements cumulés de l'année $j-1$ doit être approché significativement par une droite.
 
 <div style="text-align:center">
 ![Vérification de l'hypothèse N°1 surles années de développement](Rapport-PFE_files/figure-html/H2-1.png){#fig-CL21}
@@ -2448,7 +2612,7 @@ Pour vérifier cette hypothèse, on a tracé les montants des règlements cumul�
 ![Vérification de l'hypothèse N°2 pour les années de développement](Rapport-PFE_files/figure-html/H2-2.png){#fig-CL22}
 </div>
 
-On remarque bien que pour toutes les années de développement il y a un sort de linéarité entre les années de développements ce que prouve la deuxième hypothèse.
+On remarque bien, que pour toutes les années de développement, il y a une sorte de linéarité entre les années de développements. Ce qui prouve la deuxième hypothèse.
 
 
 
