@@ -1318,6 +1318,7 @@ Jusqu'à présent, les coefficients de corrélation exactes entre les sous risqu
 |Sousc. vie     |  0    |    0        |    0       |    1     |  0           |
 |Sousc. non-vie |  0    |    0        |    0       |    0     |  1           |
 
+
 ### Exigence de caiptal relative au risque de marché ($CSR_M$)
 
 Pour l'exigence de capital relative au risque de marché, il est important de prendre en compte plusieurs sous-risques tel que, les sous-risques action, taux, immobilier, écart de taux et change. Chacun de ces sous-risques présente des caractéristiques uniques et nécessite une évaluation distincte. Une fois que les exigences de capitaux déterminées pour chaque sous-risque, elles sont agrégées pour obtenir l'exigence de capital total relative au risque de marché et ce, après application des coefficients de corrélations appropriés, ce qui permet de tenir compte des interdépendances et des corrélations entre ces différents sous-risques.
@@ -1353,7 +1354,6 @@ avec :
 
 - $BEC _{eng}(Choc)$ : Best estimant des engagements après le choque de la valeur du marché des action.
 - $BE_{eng}$: Best estimant des engagements.
-
 
 #### L'exigence de capital relative au risque de taux ($CSR_T$)
 
