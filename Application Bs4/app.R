@@ -27,7 +27,7 @@ ui <- dashboardPage(
       menuItem(text = "Non-vie hors rentes", tabName = "nonvieHR", icon = icon("car-burst")),
       menuItem(text = "Assurance vie", tabName = "ass_vie_menu", icon = icon("heart-pulse")),
       menuItem(text = "Part des cessionnaires", tabName = "cession_menu", icon = icon("handshake")),
-      menuItem(text = "SCR", tabName = "scr_menu", icon = icon("coins"))
+      menuItem(text = "CSR et MR", tabName = "scr_menu", icon = icon("coins"))
     )
   ),
   # Body content----------
@@ -724,7 +724,7 @@ server <- function(input, output) {
           value = tags$h3(
             formatC(BEFG_vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
           ),
-          subtitle = tags$h5("Frais de gestion"),
+          subtitle = tags$h5("BEFG"),
           icon = icon("sack-dollar"),
           width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("BE des frais de gestions")
@@ -798,7 +798,7 @@ server <- function(input, output) {
           value = tags$h3(
             formatC(BE_ENG_Cede_Vie(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
           ),
-          subtitle = tags$h5("BEGP Cédés"),
+          subtitle = tags$h5("BEGP Cédés (Vie)"),
           icon = icon("coins"),
           width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("BEGP Cédés")
@@ -810,7 +810,7 @@ server <- function(input, output) {
           value = tags$h3(
             formatC(BE_Sin_Cede(), big.mark = " ", decimal.mark = ",", format = "f", digits = 0)
           ),
-          subtitle = tags$h5("BE Sinistres Cédés"),
+          subtitle = tags$h5("BE Sinistres Cédés (Non-Vie)"),
           icon = icon("car-burst"),
           width = 12, color = "lightblue", gradient = TRUE, elevation = 3,
           footer = div("BE des engagements pour sinistres cédés")
