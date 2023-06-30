@@ -1,17 +1,3 @@
----
-title: "Solvabilité Basée sur les Risques (SBR), Application de calcul des Provisions Prudentielles et du Capital de Solvabilité Requis en assurance vie et non-vie"
-date: "30 June,2023"
-output:
-  html_document: 
-    toc: yes
-    fig_caption: yes
-    keep_md: yes
-    fig_width: 10
-    fig_height: 10
-always_allow_html: true
----
-
-
 
 ## Introduction
 
