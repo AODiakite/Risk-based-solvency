@@ -1058,9 +1058,7 @@ Ce calcul se fait automatiquement par l'application à partir de la table de don
 
 Maintenant que nous disposant du capital amorti pour la durée du contrat, l'étape qui s'en suit est de déterminer la valeur probable de ce capital. On sait que ce capital sera versé qu'en cas de décès de l'assuré. Alors, pour une année $j$ de projection de donnée, le capital restant ($VPC$) est versé que si l'assuré d'âge $x$ survit jusqu'à l'année $j-1$ et décède à l'année $j$. En terme mathématiques :
 
-$$
-VPC = _{j-1}p_x \times q_{x+j}*CRP_i
-$$
+$VPC = _{j-1}p_x \times q_{x+j}*CRP_i$
 
 #### Résultats et interprétations {.unnumbered}
 
